@@ -1129,6 +1129,62 @@ body.dark-mode .fund-card-soft:hover {
   color: var(--groww-text-secondary);
 }
 
+/* Fund Essentials Card (Matching Groww IMG_9941.PNG) */
+.fund-essentials-card {
+  background: var(--groww-surface);
+  border: 1px solid var(--groww-border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.essential-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 8px 0;
+  font-size: 13px;
+}
+
+.essential-row:not(:last-child) {
+  border-bottom: 1px solid var(--groww-divider);
+}
+
+.essential-label {
+  color: var(--groww-text-secondary);
+  font-size: 12.5px;
+  flex-shrink: 0;
+}
+
+.essential-val {
+  color: var(--groww-text-primary);
+  font-weight: 600;
+  text-align: right;
+  font-size: 12.5px;
+}
+
+.essential-val.highlight {
+  color: var(--groww-green-text);
+  font-weight: 700;
+}
+
+.essential-val.note {
+  font-size: 11.5px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--groww-text-secondary);
+  max-width: 200px;
+}
+
+.essential-val.muted {
+  font-size: 11.5px;
+  color: var(--groww-text-secondary);
+  max-width: 200px;
+}
+
 .health-badge-clean {
   text-align: center;
   padding: 18px 16px 14px 16px;
