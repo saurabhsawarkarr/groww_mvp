@@ -106,8 +106,9 @@ Right-click `index.html` and select **"Open with Live Server"**.
    ```
 2. In your GitHub repository settings:
    * Go to **Settings** &rarr; **Pages**.
-   * Under **Build and deployment** &rarr; **Source**, select **GitHub Actions**.
-3. The included workflow (`.github/workflows/deploy.yml`) will automatically build and publish your live prototype!
+   * Under **Build and deployment** &rarr; **Source**, select **Deploy from a branch**.
+   * Select branch **`main`** and folder **`/ (root)`**, then click **Save**.
+3. GitHub Pages will build and publish your live prototype at `https://saurabhsawarkarr.github.io/groww_mvp/`!
 
 ---
 
