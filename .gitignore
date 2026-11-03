@@ -1,0 +1,29 @@
+# Dependencies & Environments
+node_modules/
+.env
+.env.local
+
+# Temporary Browser Profiles & Caches
+.edge_tmp/
+.chrome_tmp/
+.temp_edge_profile/
+
+# Test Run Screenshots in Root (Organized assets are kept in docs/screenshots/)
+shot_*.png
+screenshot.png
+canva_page_2.png
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+
+# Editor & IDE Directories
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log

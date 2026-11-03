@@ -1,0 +1,1239 @@
+/* ========================================================
+   GROWW DESIGN SYSTEM - AUTHENTIC LIGHT THEME (MATCHING APP SCREENSHOTS)
+   ======================================================== */
+:root {
+  /* Authentic Groww Light Palette (from app screenshots) */
+  --groww-bg: #FFFFFF;
+  --groww-bg-subtle: #F8FAFC;
+  --groww-surface: #FFFFFF;
+  --groww-surface-alt: #F4F6F8;
+  --groww-border: #E8EBF0;
+  --groww-border-light: #ECEFF2;
+  --groww-divider: #F1F3F6;
+
+  --groww-text-primary: #242833;
+  --groww-text-secondary: #7C828D;
+  --groww-text-muted: #9AA1AE;
+
+  --groww-green: #00D09C;
+  --groww-green-text: #00A877;
+  --groww-green-bg: #E8F8F3;
+  --groww-green-border: rgba(0, 208, 156, 0.3);
+
+  --groww-red: #EB5B56;
+  --groww-red-bg: #FEECEB;
+  --groww-red-border: rgba(235, 91, 86, 0.25);
+
+  --groww-indigo-card: #18172E;
+  --groww-indigo-border: rgba(99, 102, 241, 0.4);
+
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-pill: 9999px;
+
+  --font-family: -apple-system, BlinkMacSystemFont, "Inter", "SF Pro Display", Roboto, sans-serif;
+}
+
+/* Optional Dark Mode Token Overrides */
+body.dark-mode {
+  --groww-bg: #0D0E12;
+  --groww-bg-subtle: #12141A;
+  --groww-surface: #161822;
+  --groww-surface-alt: #1E212D;
+  --groww-border: rgba(255, 255, 255, 0.08);
+  --groww-border-light: rgba(255, 255, 255, 0.06);
+  --groww-divider: rgba(255, 255, 255, 0.05);
+
+  --groww-text-primary: #FFFFFF;
+  --groww-text-secondary: #8B94A5;
+  --groww-text-muted: #545E71;
+
+  --groww-green-text: #00D09C;
+  --groww-green-bg: rgba(0, 208, 156, 0.12);
+  --groww-red-bg: rgba(235, 91, 86, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: var(--font-family);
+  background: #F1F3F6;
+  color: var(--groww-text-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.dark-mode {
+  background: #08090C;
+}
+
+/* Presentation Toolbar (Outside the Phone) */
+.pres-header {
+  width: 100%;
+  background: #FFFFFF;
+  border-bottom: 1px solid var(--groww-border);
+  padding: 10px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+}
+
+body.dark-mode .pres-header {
+  background: #0D0E12;
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.brand-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.groww-logo-svg {
+  width: 28px;
+  height: 28px;
+}
+
+.brand-title {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  color: var(--groww-text-primary);
+}
+
+.brand-tag {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--groww-green-bg);
+  color: var(--groww-green-text);
+  border: 1px solid var(--groww-green-border);
+}
+
+.controls-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.mode-toggle {
+  display: flex;
+  background: var(--groww-surface-alt);
+  border-radius: var(--radius-pill);
+  padding: 3px;
+  border: 1px solid var(--groww-border);
+}
+
+.mode-btn {
+  background: transparent;
+  border: none;
+  color: var(--groww-text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.mode-btn.active {
+  background: #FFFFFF;
+  color: var(--groww-text-primary);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+body.dark-mode .mode-btn.active {
+  background: #232838;
+  color: #FFFFFF;
+}
+
+.theme-toggle-btn {
+  background: transparent;
+  border: 1px solid var(--groww-border);
+  color: var(--groww-text-primary);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* App Viewport Container */
+.app-container {
+  padding: 16px 12px 30px 12px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Realistic Phone Frame with Fixed Dimensions & Internal Scroll */
+.phone-frame {
+  width: 100%;
+  max-width: 396px;
+  height: 825px;
+  max-height: calc(100vh - 60px);
+  background: var(--groww-bg);
+  border-radius: 36px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+body.dark-mode .phone-frame {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+/* Phone Status Bar */
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px 6px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--groww-text-primary);
+  background: var(--groww-bg);
+  z-index: 50;
+  flex-shrink: 0;
+}
+
+.status-bar-icons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--groww-text-primary);
+}
+
+/* Internal Screen Area & Scroll Modes */
+.screen-content {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  scroll-behavior: smooth;
+  padding-bottom: 0;
+}
+
+.screen-content.view-non-scroll {
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.screen-content.view-non-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.screen-content.view-deepdive-scroll {
+  overflow-y: auto !important;
+}
+
+.screen-content::-webkit-scrollbar {
+  width: 4px;
+}
+.screen-content::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+body.dark-mode .screen-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Bottom Navigation Bar - Authentic Groww Style (Matching Screenshots) */
+.bottom-nav {
+  position: relative;
+  height: 56px;
+  background: #FFFFFF;
+  border-top: 1px solid var(--groww-divider);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 100;
+  flex-shrink: 0;
+}
+
+body.dark-mode .bottom-nav {
+  background: #0E1015;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  color: var(--groww-text-secondary);
+  font-size: 10px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  width: 25%;
+  transition: color 0.15s ease;
+}
+
+.nav-item svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+}
+
+.nav-item.active {
+  color: #3851E0; /* Groww Mutual Funds Active Color */
+  font-weight: 600;
+}
+
+body.dark-mode .nav-item.active {
+  color: var(--groww-green);
+}
+
+.nav-item.active svg {
+  stroke: #3851E0;
+}
+body.dark-mode .nav-item.active svg {
+  stroke: var(--groww-green);
+}
+
+/* Sub-header Navigation inside Screens */
+.slide-top-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 18px;
+  flex-shrink: 0;
+}
+
+.slide-top-nav.sticky-nav {
+  position: sticky;
+  top: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(14px);
+  z-index: 60;
+  border-bottom: 1px solid var(--groww-border);
+}
+
+body.dark-mode .slide-top-nav.sticky-nav {
+  background: rgba(13, 14, 18, 0.95);
+}
+
+.back-btn {
+  background: transparent;
+  border: none;
+  color: var(--groww-text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  margin-left: -6px;
+  transition: background 0.15s;
+  flex-shrink: 0;
+}
+
+.back-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+body.dark-mode .back-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.slide-nav-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--groww-text-primary);
+  letter-spacing: -0.2px;
+  flex: 1;
+}
+
+/* Groww Header Top Tabs (Explore, Dashboard, SIPs, Watchlist) */
+.groww-top-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--groww-divider);
+  padding: 0 16px;
+  gap: 20px;
+}
+
+.groww-tab-link {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--groww-text-secondary);
+  padding: 10px 0 12px 0;
+  cursor: pointer;
+  position: relative;
+  text-decoration: none;
+}
+
+.groww-tab-link.active {
+  color: var(--groww-text-primary);
+  font-weight: 700;
+}
+
+.groww-tab-link.active::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--groww-green);
+  border-radius: 3px 3px 0 0;
+}
+
+/* ========================================================
+   SCREEN 1: GROWW DASHBOARD (COMPACT & NON-SCROLLING)
+   ======================================================== */
+.dashboard-compact-view {
+  padding: 8px 18px 12px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  height: 100%;
+}
+
+.groww-appbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 0 4px 0;
+}
+
+.appbar-actions-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: var(--groww-text-secondary);
+}
+
+/* Portfolio Summary - Clean, Flat */
+.portfolio-summary-flat {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 4px 0;
+}
+
+.metric-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.metric-label-flat {
+  font-size: 14px;
+  color: var(--groww-text-secondary);
+  font-weight: 400;
+}
+
+.metric-val-flat {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+}
+
+.metric-val-flat.loss {
+  color: var(--groww-red);
+}
+
+.metric-val-flat.neutral {
+  color: var(--groww-text-primary);
+}
+
+/* The Insight Trigger Card ("Why is my portfolio down?") */
+.insight-trigger-card {
+  background: linear-gradient(135deg, #1C1938 0%, #16152B 60%, #151A2C 100%);
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  border-radius: 16px;
+  padding: 15px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.15);
+}
+
+.insight-trigger-card:hover {
+  transform: translateY(-2px);
+}
+
+.insight-icon-box {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(139, 92, 246, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #C084FC;
+}
+
+.insight-text-box {
+  flex: 1;
+}
+
+.insight-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 3px;
+  letter-spacing: -0.2px;
+}
+
+.insight-subtext {
+  font-size: 12px;
+  line-height: 1.4;
+  color: #D1D5DB;
+  font-weight: 400;
+}
+
+.insight-sparkline {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #94A3B8;
+  flex-shrink: 0;
+}
+
+/* Holdings Open Flat List (Matching IMG_9938.PNG) */
+.holdings-header-flat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 0 4px 0;
+  color: var(--groww-text-secondary);
+}
+
+.sort-pill-flat {
+  font-size: 12px;
+  color: var(--groww-text-secondary);
+  cursor: pointer;
+}
+
+.holdings-flat-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.holding-flat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--groww-divider);
+  cursor: pointer;
+}
+
+.holding-flat-row:last-child {
+  border-bottom: none;
+}
+
+.holding-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-width: 70%;
+}
+
+.holding-fund-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--groww-text-primary);
+  line-height: 1.35;
+  letter-spacing: -0.1px;
+}
+
+.holding-sip-badge {
+  font-size: 11.5px;
+  color: var(--groww-text-muted);
+  font-weight: 400;
+  margin-top: 2px;
+}
+
+.holding-right-val {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.holding-curr-amount {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--groww-text-primary);
+}
+
+.holding-pct {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.holding-pct.loss {
+  color: var(--groww-red);
+}
+
+.holding-pct.gain {
+  color: var(--groww-green-text);
+}
+
+/* ========================================================
+   SCREEN 2: FUND SELECTION (SPACIOUS & BREATHABLE GROWW STYLE)
+   ======================================================== */
+.fund-select-compact-view {
+  padding: 4px 18px 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hero-banner-clean {
+  text-align: center;
+  padding: 4px 12px 6px 12px;
+}
+
+.hero-svg-icon {
+  width: 44px;
+  height: 44px;
+  margin: 0 auto 6px auto;
+  border-radius: var(--radius-md);
+  background: rgba(99, 102, 241, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-title-clean {
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--groww-text-primary);
+  letter-spacing: -0.3px;
+  line-height: 1.3;
+}
+
+.hero-sub-clean {
+  font-size: 13px;
+  color: var(--groww-text-secondary);
+  line-height: 1.45;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.funds-soft-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+/* Card Style (Matching IMG_9936 / IMG_9937 / IMG_9939) */
+.fund-card-soft {
+  background: var(--groww-surface);
+  border: 1px solid var(--groww-border-light);
+  border-radius: 16px;
+  padding: 13px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.fund-card-soft:hover {
+  border-color: #CBD5E1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+body.dark-mode .fund-card-soft:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.fund-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.fund-identity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.fund-name-block {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.fund-name-text {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--groww-text-primary);
+  letter-spacing: -0.2px;
+  line-height: 1.25;
+}
+
+.fund-plan-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  color: var(--groww-text-secondary);
+}
+
+.sip-pill-tag {
+  background: var(--groww-green-bg);
+  color: var(--groww-green-text);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1.5px 6px;
+  border-radius: 4px;
+}
+
+.fund-header-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.fund-ret-label {
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  white-space: nowrap;
+}
+
+.fund-ret-label.loss {
+  color: var(--groww-red);
+}
+
+.fund-ret-label.gain {
+  color: var(--groww-green-text);
+}
+
+/* 3-Column Stats Alignment: Generous, crisp alignment */
+.fund-stats-row {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr 1.25fr;
+  padding-top: 9px;
+  border-top: 1px solid var(--groww-divider);
+  gap: 8px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 2px;
+}
+
+.stat-label-muted {
+  font-size: 11px;
+  color: var(--groww-text-secondary);
+  font-weight: 400;
+}
+
+.stat-val-bold {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--groww-text-primary);
+  letter-spacing: -0.2px;
+}
+
+/* ========================================================
+   SCREEN 3+: DEEP DIVE REPORT (CONTINUOUS SCROLLING)
+   ======================================================== */
+.deep-dive-scroll-content {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 24px;
+}
+
+.fund-hero-tag {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.rec-card-soft {
+  background: var(--groww-bg-subtle);
+  border: 1px solid var(--groww-border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  display: flex;
+  gap: 12px;
+}
+
+.rec-icon-box {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: rgba(99, 102, 241, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6366F1;
+  flex-shrink: 0;
+}
+
+.rec-tag-pill {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: var(--groww-green-text);
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+
+.rec-title-text {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--groww-text-primary);
+  line-height: 1.4;
+  margin-bottom: 3px;
+}
+
+.rec-desc-text {
+  font-size: 11.5px;
+  color: var(--groww-text-secondary);
+  line-height: 1.4;
+}
+
+/* SIP Accumulation Card (Styled like Return Calculator in IMG_9939.PNG) */
+.accumulation-container {
+  background: var(--groww-surface);
+  border: 1px solid var(--groww-border);
+  border-radius: var(--radius-lg);
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+
+.acc-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.acc-icon-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--groww-green-bg);
+  color: var(--groww-green-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.acc-title-main {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--groww-text-primary);
+  margin-bottom: 2px;
+}
+
+.acc-sub-caption {
+  font-size: 11.5px;
+  color: var(--groww-text-secondary);
+}
+
+/* Borderless Clean Table (Matching IMG_9940.PNG) */
+.sip-table-clean {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.sip-table-clean th {
+  font-size: 11px;
+  color: var(--groww-text-secondary);
+  font-weight: 600;
+  text-align: right;
+  padding: 8px 4px;
+  border-bottom: 1px solid var(--groww-divider);
+}
+
+.sip-table-clean th:first-child {
+  text-align: left;
+}
+
+.sip-table-clean td {
+  font-size: 13px;
+  color: var(--groww-text-primary);
+  padding: 9px 4px;
+  text-align: right;
+  border-bottom: 1px solid var(--groww-divider);
+}
+
+.sip-table-clean td:first-child {
+  text-align: left;
+  font-weight: 600;
+}
+
+.units-highlight-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 4px 0;
+}
+
+.units-lbl {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--groww-text-primary);
+}
+
+.units-big-num {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--groww-green-text);
+  letter-spacing: -0.5px;
+}
+
+/* Dotted Divider & Comparison (Matching IMG_9939.PNG) */
+.comparison-pill-box {
+  background: var(--groww-bg-subtle);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px dashed var(--groww-border);
+}
+
+.comp-left-label {
+  font-size: 11.5px;
+  color: var(--groww-text-secondary);
+}
+
+.comp-left-units {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--groww-text-primary);
+}
+
+.comp-pill-green {
+  background: var(--groww-green-bg);
+  border: 1px solid var(--groww-green-border);
+  color: var(--groww-green-text);
+  padding: 5px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 11.5px;
+  font-weight: 700;
+  text-align: right;
+}
+
+.disclaimer-muted {
+  font-size: 10.5px;
+  color: var(--groww-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.what-means-soft {
+  background: var(--groww-bg-subtle);
+  border: 1px solid var(--groww-border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  display: flex;
+  gap: 12px;
+}
+
+.what-means-icon-box {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: rgba(99, 102, 241, 0.1);
+  color: #6366F1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.flow-divider {
+  height: 1px;
+  background: var(--groww-divider);
+  margin: 16px 18px;
+}
+
+.section-title-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 10px;
+}
+
+.flow-section-heading {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--groww-text-primary);
+}
+
+.flow-section-sub {
+  font-size: 11.5px;
+  color: var(--groww-text-secondary);
+}
+
+.alert-banner-pill {
+  background: var(--groww-red-bg);
+  border: 1px solid var(--groww-red-border);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.alert-banner-title {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--groww-red);
+}
+
+.impact-breakdown-card {
+  background: var(--groww-surface);
+  border: 1px solid var(--groww-border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.factor-row-clean {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  font-size: 13px;
+}
+
+.factor-row-clean:not(:last-child) {
+  border-bottom: 1px solid var(--groww-divider);
+}
+
+.factor-row-clean.total {
+  border-top: 1px solid var(--groww-border);
+  padding-top: 10px;
+  font-weight: 700;
+  font-size: 13.5px;
+}
+
+.info-pill-note {
+  background: var(--groww-bg-subtle);
+  border: 1px solid var(--groww-border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: var(--groww-text-secondary);
+}
+
+/* Timeframe Pills (Matching ( 6M ) 1Y 3Y 5Y in IMG_9939.PNG) */
+.timeframe-pill-selector {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 0 2px 0;
+}
+
+.tf-pill-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--groww-text-secondary);
+  padding: 4px 14px;
+  border-radius: var(--radius-pill);
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.tf-pill-btn.active {
+  background: transparent;
+  color: var(--groww-text-primary);
+  border: 1.5px solid var(--groww-text-primary);
+  font-weight: 700;
+}
+
+.chart-card-soft {
+  background: var(--groww-surface);
+  border: 1px solid var(--groww-border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.manager-card-soft {
+  background: var(--groww-surface);
+  border: 1px solid var(--groww-border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.manager-avatar-soft {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--groww-surface-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--groww-text-secondary);
+}
+
+.health-badge-clean {
+  text-align: center;
+  padding: 18px 16px 14px 16px;
+  background: var(--groww-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--groww-border);
+}
+
+.health-shield-soft {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 10px auto;
+  border-radius: 16px;
+  background: var(--groww-green-bg);
+  border: 1px solid var(--groww-green-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--groww-green-text);
+}
+
+.health-main-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--groww-text-primary);
+  margin-bottom: 3px;
+  letter-spacing: -0.3px;
+}
+
+.health-sub-text {
+  font-size: 12px;
+  color: var(--groww-text-secondary);
+  line-height: 1.4;
+  max-width: 270px;
+  margin: 0 auto;
+}
+
+.takeaway-box-soft {
+  background: var(--groww-surface);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  border: 1px solid var(--groww-border);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.takeaway-list-clean {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.takeaway-item-clean {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--groww-text-primary);
+}
+
+.takeaway-item-clean svg {
+  color: var(--groww-green-text);
+  flex-shrink: 0;
+  margin-top: 1.5px;
+}
+
+/* Dual Action Buttons at Bottom (Matching IMG_9939 - IMG_9941) */
+.dual-bottom-actions {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 12px;
+  padding: 0 18px;
+  margin-top: 12px;
+}
+
+.btn-secondary-mint {
+  background: var(--groww-green-bg);
+  color: var(--groww-green-text);
+  font-size: 14px;
+  font-weight: 700;
+  border: none;
+  border-radius: 12px;
+  padding: 13px;
+  cursor: pointer;
+  text-align: center;
+  transition: opacity 0.15s;
+}
+
+.btn-primary-green {
+  background: var(--groww-green);
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 700;
+  border: none;
+  border-radius: 12px;
+  padding: 13px;
+  cursor: pointer;
+  text-align: center;
+  transition: opacity 0.15s;
+}
+
+.btn-secondary-mint:hover,
+.btn-primary-green:hover {
+  opacity: 0.9;
+}
