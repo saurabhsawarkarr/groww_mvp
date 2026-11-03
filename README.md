@@ -1,7 +1,7 @@
 # Groww Mutual Funds – Portfolio Understanding MVP
 ### *"Why is my portfolio down?"*
 
-[![Live Demo](https://img.shields.io/badge/Demo-GitHub%20Pages-00D09C?style=for-the-badge&logo=github)](https://saurabhsawarkarr.github.io/groww-portfolio-mvp)
+[![Live Demo](https://img.shields.io/badge/Demo-GitHub%20Pages-00D09C?style=for-the-badge&logo=github)](https://saurabhsawarkarr.github.io/groww_mvp)
 [![Tech Stack](https://img.shields.io/badge/Tech-Vanilla%20JS%20%7C%20CSS3%20%7C%20HTML5-blue?style=for-the-badge)](index.html)
 [![Zero Dependencies](https://img.shields.io/badge/Dependencies-Zero%20(No%20Bundler)-success?style=for-the-badge)](#)
 [![Design System](https://img.shields.io/badge/Design-Groww%20Light%20Theme-00A877?style=for-the-badge)](#)
@@ -100,7 +100,7 @@ Right-click `index.html` and select **"Open with Live Server"**.
 
 1. Push this repository to GitHub:
    ```bash
-   git remote add origin https://github.com/<your-username>/groww-portfolio-mvp.git
+   git remote add origin https://github.com/saurabhsawarkarr/groww_mvp.git
    git branch -M main
    git push -u origin main
    ```
