@@ -689,27 +689,14 @@
 
           <div class="flow-divider"></div>
 
-          <!-- Section H: Fund Governance & Summary (Slide 7) -->
+          <!-- Section H: Summary & Key Takeaways (Slide 7) -->
           <div style="padding: 0 18px 30px 18px;">
-            <div class="governance-summary-card" style="margin-bottom: 12px;">
-              <div class="governance-icon-soft">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                  <polyline points="14 2 14 8 20 8"/>
-                  <line x1="16" y1="13" x2="8" y2="13"/>
-                  <line x1="16" y1="17" x2="8" y2="17"/>
-                  <polyline points="10 9 9 9 8 9"/>
-                </svg>
-              </div>
-              <h3 class="governance-main-title">${health.status}</h3>
-              <p class="governance-sub-text">${health.subtitle}</p>
+            <div class="section-title-row">
+              <h3 class="flow-section-heading">Summary & Key Takeaways</h3>
+              <span class="flow-section-sub">Overview of management continuity, costs, and peer activity</span>
             </div>
 
             <div class="takeaway-box-soft" style="margin-bottom: 14px;">
-              <div style="display: flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 700; color: var(--groww-text-primary);">
-                <svg width="18" height="18" fill="#3B82F6" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-                <span>Key Fund Facts & Indicators</span>
-              </div>
               <ul class="takeaway-list-clean">
                 ${health.takeaways.map((t, idx) => `
                   <li class="takeaway-item-clean ${idx === health.takeaways.length - 1 ? 'cohort-takeaway' : ''}">
