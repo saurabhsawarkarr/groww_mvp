@@ -822,47 +822,60 @@ body.dark-mode .fund-card-soft:hover {
   gap: 12px;
 }
 
+.context-card-soft,
 .rec-card-soft {
-  background: var(--groww-bg-subtle);
+  background: var(--groww-surface);
   border: 1px solid var(--groww-border);
   border-radius: var(--radius-md);
   padding: 14px 16px;
   display: flex;
+  align-items: flex-start;
   gap: 12px;
 }
 
+.context-icon-box,
 .rec-icon-box {
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   border-radius: 8px;
-  background: rgba(99, 102, 241, 0.12);
+  background: rgba(59, 130, 246, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #6366F1;
+  color: #2563EB;
   flex-shrink: 0;
+  margin-top: 1px;
 }
 
+.context-tag-pill,
 .rec-tag-pill {
-  font-size: 9.5px;
+  display: inline-block;
+  font-size: 10px;
   font-weight: 700;
-  color: var(--groww-green-text);
-  letter-spacing: 0.5px;
-  margin-bottom: 2px;
+  color: #2563EB;
+  background: rgba(59, 130, 246, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  padding: 1.5px 7px;
+  border-radius: 4px;
+  letter-spacing: 0.3px;
+  margin-bottom: 5px;
 }
 
+.context-title-text,
 .rec-title-text {
   font-size: 13.5px;
   font-weight: 700;
   color: var(--groww-text-primary);
   line-height: 1.4;
-  margin-bottom: 3px;
+  margin: 0 0 3px 0;
 }
 
+.context-desc-text,
 .rec-desc-text {
-  font-size: 11.5px;
+  font-size: 12px;
   color: var(--groww-text-secondary);
-  line-height: 1.4;
+  line-height: 1.45;
+  margin: 0;
 }
 
 /* SIP Accumulation Card (Styled like Return Calculator in IMG_9939.PNG) */

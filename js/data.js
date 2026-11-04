@@ -46,10 +46,10 @@ const GROWW_DATA = {
       sipAmount: 1000,
       sipFrequency: "month",
       deepDive: {
-        recommendation: {
-          tag: "MY RECOMMENDATION",
-          headline: "Your fund has experienced market fluctuations while your SIP investments have continued.",
-          subtext: "Market movements can impact your fund's value in the short term, even when your SIP is on track."
+        context: {
+          tag: "What this means for your SIP",
+          headline: "Your fund has experienced market fluctuations during your investment journey.",
+          subtext: "Review the fund's performance, investment approach and your own financial needs before making a decision."
         },
         unitAccumulation: {
           title: "Your SIP is accumulating units",
@@ -154,10 +154,10 @@ const GROWW_DATA = {
       sipAmount: 500,
       sipFrequency: "month",
       deepDive: {
-        recommendation: {
-          tag: "MY RECOMMENDATION",
-          headline: "Maintain your SIP in this top-rated long-term compounding fund.",
-          subtext: "Value investing funds experience temporary divergence from momentum rallies, followed by strong multi-year compounding."
+        context: {
+          tag: "What this means for your SIP",
+          headline: "Your fund has experienced market fluctuations during your investment journey.",
+          subtext: "Review the fund's performance, investment approach and your own financial needs before making a decision."
         },
         unitAccumulation: {
           title: "Your SIP is accumulating units",
@@ -262,10 +262,10 @@ const GROWW_DATA = {
       sipAmount: 250,
       sipFrequency: "month",
       deepDive: {
-        recommendation: {
-          tag: "MY RECOMMENDATION",
-          headline: "Continue your precious metals allocation for portfolio diversification.",
-          subtext: "Silver acts as both an industrial metal and monetary hedge with high long-term volatility and explosive breakout potential."
+        context: {
+          tag: "What this means for your SIP",
+          headline: "Your fund has experienced market fluctuations during your investment journey.",
+          subtext: "Review the fund's performance, investment approach and your own financial needs before making a decision."
         },
         unitAccumulation: {
           title: "Your SIP is accumulating units",
@@ -370,10 +370,10 @@ const GROWW_DATA = {
       sipAmount: 250,
       sipFrequency: "month",
       deepDive: {
-        recommendation: {
-          tag: "MY RECOMMENDATION",
-          headline: "Keep your gold SIP active as your portfolio's core safe haven.",
-          subtext: "Gold provides negative correlation to equity crashes, preserving capital when stock markets face severe shocks."
+        context: {
+          tag: "What this means for your SIP",
+          headline: "Your fund has experienced market fluctuations during your investment journey.",
+          subtext: "Review the fund's performance, investment approach and your own financial needs before making a decision."
         },
         unitAccumulation: {
           title: "Your SIP is accumulating units",

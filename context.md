@@ -97,10 +97,11 @@ To maintain brand consistency, the MVP adheres strictly to Groww’s mobile app 
 
 ### Slide 3: Fund Deep-Dive – SIP Unit Accumulation & Rupee-Cost Averaging
 * **Header:** Back button `←`, *"Why is my portfolio down?"*, Fund Logo & Name: *SBI Large & Midcap Fund (Direct Plan · Growth · Active SIP)*
-* **Context Card ("My Recommendation" / Context):**
-  * Light bulb icon.
-  * *"Your fund has experienced market fluctuations while your SIP investments have continued."*
-  * Explains that short-term volatility is normal and ongoing SIPs continue as scheduled.
+* **Context Card ("What this means for your SIP"):**
+  * Info icon.
+  * Headline: *"Your fund has experienced market fluctuations during your investment journey."*
+  * Subtext: *"Review the fund's performance, investment approach and your own financial needs before making a decision."*
+  * Strictly neutral and non-prescriptive, respecting investor autonomy (no advice to buy, sell, or maintain).
 * **SIP Unit Accumulation Table:**
   * Section title: *"Your SIP is accumulating units"*
   * Subtitle: *"When NAV is lower, the same SIP amount purchases more units."*

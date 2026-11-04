@@ -325,6 +325,11 @@
   function renderScreen3DeepDiveScroll() {
     const fund = getSelectedFund();
     const deep = fund.deepDive || GROWW_DATA.funds[0].deepDive;
+    const ctx = deep.context || deep.recommendation || {
+      tag: "What this means for your SIP",
+      headline: "Your fund has experienced market fluctuations during your investment journey.",
+      subtext: "Review the fund's performance, investment approach and your own financial needs before making a decision."
+    };
     const market = fund.marketImpact || GROWW_DATA.funds[0].marketImpact;
     const hist = fund.historicalPerformance || GROWW_DATA.funds[0].historicalPerformance;
     const manager = fund.fundManager || GROWW_DATA.funds[0].fundManager;
@@ -353,16 +358,20 @@
             </div>
           </div>
 
-          <!-- Section A: Recommendation Callout (Slide 3) -->
+          <!-- Section A: Context Callout (Slide 3) -->
           <div style="padding: 10px 18px 0 18px;">
-            <div class="rec-card-soft">
-              <div class="rec-icon-box">
-                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2a6 6 0 0 0-6 6c0 2.22 1.21 4.16 3 5.2V17a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-3.8c1.79-1.04 3-2.98 3-5.2a6 6 0 0 0-6-6zM9 21h6"/></svg>
+            <div class="context-card-soft">
+              <div class="context-icon-box">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10"/>
+                  <line x1="12" y1="16" x2="12" y2="12"/>
+                  <line x1="12" y1="8" x2="12.01" y2="8"/>
+                </svg>
               </div>
-              <div>
-                <div class="rec-tag-pill">${deep.recommendation.tag}</div>
-                <h4 class="rec-title-text">${deep.recommendation.headline}</h4>
-                <p class="rec-desc-text">${deep.recommendation.subtext}</p>
+              <div style="flex: 1;">
+                <div class="context-tag-pill">${ctx.tag}</div>
+                <h4 class="context-title-text">${ctx.headline}</h4>
+                <p class="context-desc-text">${ctx.subtext}</p>
               </div>
             </div>
           </div>
