@@ -261,15 +261,6 @@
 
         <div class="fund-select-compact-view">
           <div class="hero-banner-clean">
-            <div class="hero-svg-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <rect x="2" y="11" width="3.5" height="10" rx="1" fill="#6366F1"/>
-                <rect x="7.5" y="6" width="3.5" height="15" rx="1" fill="#818CF8"/>
-                <circle cx="16" cy="7" r="5" stroke="#00D09C" stroke-width="2"/>
-                <line x1="20" y1="11" x2="23" y2="14" stroke="#00D09C" stroke-width="2"/>
-                <line x1="16" y1="0.5" x2="16" y2="1.5" stroke="#00D09C" stroke-width="1.5"/>
-              </svg>
-            </div>
             <h2 class="hero-title-clean">Understand your mutual funds</h2>
             <p class="hero-sub-clean">Select a fund to see why its value has changed and how your SIP is performing.</p>
           </div>
