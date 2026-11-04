@@ -98,24 +98,22 @@ const GROWW_DATA = {
         callout: "During the 2020 market crash, this fund fell 29.4%, but recovered strongly and delivered +78.2% returns over the next 12 months as mid-caps led the rebound."
       },
       fundManager: {
-        name: "Saurabh Pant",
+        name: "Mr. R. Srinivasan",
         title: "Fund Manager · Equity",
-        tenure: "Managing since May 2019 (5+ years)",
-        verified: true,
-        performances: {
-          "1Y": { fund: "+14.8%", category: "+12.6%" },
-          "3Y": { fund: "+18.4%", category: "+15.2%" },
-          "5Y": { fund: "+20.6%", category: "+17.8%" }
-        },
-        activeTab: "3Y",
-        callout: "Lead fund manager Saurabh Pant has maintained a consistent large & midcap stock selection strategy since May 2019."
+        tenure: "Managing the fund since May 2019",
+        tenureBadge: "5+ years",
+        performancePeriod: "3-year annualised returns (as of Mar 2025)",
+        fundReturn: "12.4%",
+        categoryReturn: "10.1%",
+        investmentApproach: "Invests in a mix of large and mid-sized companies with a focus on long-term growth.",
+        disclaimer: "Past performance shows how the fund has behaved, but it does not guarantee future returns."
       },
       fundHealth: {
         status: "Fund is healthy",
         subtitle: "No significant changes in manager, strategy, cost or holdings.",
         takeaways: [
           "Decline mainly due to broader market movement (-2.6%)",
-          "No change in fund manager (Saurabh Pant, 5+ years tenure)",
+          "No change in fund manager (Mr. R. Srinivasan, 5+ years tenure)",
           "Expense ratio remains highly competitive at 0.85%",
           "Portfolio changes are disciplined and within normal range",
           "81% of Groww SIP investors in this fund continued investing through the last market dip"
@@ -206,17 +204,15 @@ const GROWW_DATA = {
         callout: "During the March 2020 crash, PPFAS fell significantly less than peers (-21.8% vs -31% category avg), then delivered a 100.1% gain in the next 12 months."
       },
       fundManager: {
-        name: "Rajeev Thakkar",
-        title: "CIO & Lead Fund Manager",
-        tenure: "Managing since Inception, May 2013 (11+ years)",
-        verified: true,
-        performances: {
-          "1Y": { fund: "+16.2%", category: "+13.4%" },
-          "3Y": { fund: "+19.8%", category: "+16.1%" },
-          "5Y": { fund: "+23.4%", category: "+18.5%" }
-        },
-        activeTab: "3Y",
-        callout: "Rajeev Thakkar has steered this flagship scheme since day one in 2013, maintaining unmatched consistency through multiple bull and bear cycles."
+        name: "Mr. Rajeev Thakkar",
+        title: "CIO & Lead Equity Manager",
+        tenure: "Managing the fund since May 2013",
+        tenureBadge: "11+ years",
+        performancePeriod: "3-year annualised returns (as of Mar 2025)",
+        fundReturn: "18.4%",
+        categoryReturn: "15.2%",
+        investmentApproach: "Focuses on value investing across large, mid, and small-cap stocks, including select international equities with strong moats.",
+        disclaimer: "Past performance shows how the fund has behaved, but it does not guarantee future returns."
       },
       fundHealth: {
         status: "Fund is exceptionally healthy",
@@ -314,17 +310,15 @@ const GROWW_DATA = {
         callout: "Commodity corrections historically present premier accumulation windows before clean industrial breakout runs."
       },
       fundManager: {
-        name: "Tapan Patel & Nitin Sharma",
-        title: "Commodities & Quant Fund Managers",
-        tenure: "Managing since Inception, Jan 2024",
-        verified: true,
-        performances: {
-          "1Y": { fund: "+24.5%", category: "+22.8%" },
-          "3Y": { fund: "+18.2%", category: "+17.1%" },
-          "5Y": { fund: "+16.4%", category: "+15.5%" }
-        },
-        activeTab: "1Y",
-        callout: "Physical silver holdings are 100% held in accredited vaults matching London Bullion Market Association (LBMA) standards."
+        name: "Mr. Tapan Patel",
+        title: "Commodities & Quant Manager",
+        tenure: "Managing the fund since Jan 2024",
+        tenureBadge: "1+ year",
+        performancePeriod: "1-year annualised returns (as of Mar 2025)",
+        fundReturn: "18.2%",
+        categoryReturn: "17.4%",
+        investmentApproach: "Direct physical silver bullion allocation conforming to LBMA standards with low tracking error.",
+        disclaimer: "Past performance shows how the fund has behaved, but it does not guarantee future returns."
       },
       fundHealth: {
         status: "Fund is healthy",
@@ -422,17 +416,15 @@ const GROWW_DATA = {
         callout: "Gold drawdowns are notoriously brief compared to equities; gold was one of the fastest assets to hit all-time highs following market panics."
       },
       fundManager: {
-        name: "Tapan Patel & Nitin Sharma",
-        title: "Precious Metals Fund Managers",
-        tenure: "Managing since Inception, Jan 2024",
-        verified: true,
-        performances: {
-          "1Y": { fund: "+13.2%", category: "+12.8%" },
-          "3Y": { fund: "+14.8%", category: "+14.1%" },
-          "5Y": { fund: "+13.9%", category: "+13.2%" }
-        },
-        activeTab: "1Y",
-        callout: "Physical gold held in accredited custodian vaults with 99.5% purity standards."
+        name: "Mr. Tapan Patel",
+        title: "Precious Metals Manager",
+        tenure: "Managing the fund since Jan 2024",
+        tenureBadge: "1+ year",
+        performancePeriod: "1-year annualised returns (as of Mar 2025)",
+        fundReturn: "14.8%",
+        categoryReturn: "14.1%",
+        investmentApproach: "Passively tracks physical gold spot prices by holding physical 99.5% pure gold bullion with accredited custodians.",
+        disclaimer: "Past performance shows how the fund has behaved, but it does not guarantee future returns."
       },
       fundHealth: {
         status: "Fund is exceptionally healthy",

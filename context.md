@@ -146,13 +146,17 @@ To maintain brand consistency, the MVP adheres strictly to Groww’s mobile app 
 
 ---
 
-### Slide 6: Fund Manager & Strategy Continuity
-* **Header:** Back button `←`, *"Fund Manager"*
-* **Profile Section:**
-  * Manager avatar & status: *"Same fund manager | Managing since May 2019 (5+ years) ✓"*
-* **Performance Comparison Chart (1Y / 3Y / 5Y):**
-  * Shows *This Fund* (+12.4% 3Y) outperforming *Category Average* (+10.1% 3Y).
-* **Takeaway Note:** Confirms that fund governance, philosophy, and management remain stable.
+### Slide 6: Fund Manager & Performance (Transparent Governance & Strategy)
+* **Header:** Back button `←`, *"Fund Manager & Performance"*
+* **Card 1 (Fund Manager Identity):**
+  * Avatar & identity: *"Mr. R. Srinivasan · Managing the fund since May 2019"* with `📅 5+ years` tenure badge.
+* **Card 2 (Performance Comparison):**
+  * *"How has the fund performed? 3-year annualised returns (as of Mar 2025)"*
+  * Fund return: `12.4%` (green) vs Category average: `10.1%` (subtle) with dual-curve wave chart.
+* **Card 3 (Investment Approach - Core Addition):**
+  * *"Invests in a mix of large and mid-sized companies with a focus on long-term growth."* Connects the fund's asset mix to market movements.
+* **Card 4 (Keep in Mind - SEBI Compliance Guardrail):**
+  * Soft blue callout: *"Past performance shows how the fund has behaved, but it does not guarantee future returns."* Transparent disclosure without false reassurance.
 
 ---
 

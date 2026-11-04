@@ -532,37 +532,125 @@
 
           <div class="flow-divider"></div>
 
-          <!-- Section F: Fund Manager & Strategy Continuity (Slide 6) -->
+          <!-- Section F: Fund Manager & Performance (Matching reference screen) -->
           <div style="padding: 0 18px;">
             <div class="section-title-row">
-              <h3 class="flow-section-heading">Fund Manager & Strategy</h3>
-              <span class="flow-section-sub">Governance continuity and management track record</span>
+              <h3 class="flow-section-heading">Fund Manager & Performance</h3>
+              <span class="flow-section-sub">Transparent governance, historical returns & investment approach</span>
             </div>
 
-            <div class="manager-card-soft" style="margin-bottom: 12px;">
-              <div class="manager-avatar-soft">
-                <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <!-- Card 1: Fund Manager Identity -->
+            <div class="manager-profile-card" style="margin-bottom: 12px;">
+              <div class="manager-avatar-purple">
+                <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+                  <circle cx="22" cy="22" r="22" fill="#D8B4FE"/>
+                  <circle cx="22" cy="16" r="7" fill="#374151"/>
+                  <path d="M11 36 C11 28, 16 26, 22 26 C28 26, 33 28, 33 36 Z" fill="#1F2937"/>
+                  <path d="M19 26 L22 31 L25 26 Z" fill="#FFFFFF"/>
+                  <path d="M21 28 L22 35 L23 28 Z" fill="#EF4444"/>
+                  <rect x="17" y="14" width="4.5" height="3" rx="1" stroke="#FFFFFF" stroke-width="0.8" fill="none"/>
+                  <rect x="22.5" y="14" width="4.5" height="3" rx="1" stroke="#FFFFFF" stroke-width="0.8" fill="none"/>
+                  <line x1="21.5" y1="15.5" x2="22.5" y2="15.5" stroke="#FFFFFF" stroke-width="0.8"/>
+                </svg>
               </div>
-              <div style="flex: 1;">
-                <h4 style="font-size: 14.5px; font-weight: 700; color: var(--groww-text-primary);">${manager.name}</h4>
-                <p style="font-size: 12px; color: var(--groww-text-secondary); margin-top: 1px;">${manager.title}</p>
-                <p style="font-size: 11.5px; color: var(--groww-text-secondary); display: flex; align-items: center; gap: 6px; margin-top: 3px;">
-                  <span>${manager.tenure}</span>
-                  ${manager.verified ? `<svg width="15" height="15" viewBox="0 0 24 24" fill="#00D09C"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4" stroke="#060709" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>` : ''}
-                </p>
+              <div class="manager-info-col">
+                <span class="manager-kicker-label">FUND MANAGER</span>
+                <h4 class="manager-fullname">${manager.name}</h4>
+                <p class="manager-tenure-desc">${manager.tenure}</p>
+              </div>
+              <div class="manager-tenure-pill">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                  <line x1="16" y1="2" x2="16" y2="6"/>
+                  <line x1="8" y1="2" x2="8" y2="6"/>
+                  <line x1="3" y1="10" x2="21" y2="10"/>
+                </svg>
+                <span>${manager.tenureBadge}</span>
               </div>
             </div>
 
-            <div class="chart-card-soft" style="margin-bottom: 12px;">
-              <h4 style="font-size: 13.5px; font-weight: 700; color: var(--groww-text-primary); margin-bottom: 4px;">Performance under manager</h4>
-              <div id="manager-chart-container">
-                ${renderManagerChart(fund, state.managerTf)}
+            <!-- Card 2: Performance Comparison & Dual Wave Chart -->
+            <div class="manager-perf-card" style="margin-bottom: 12px;">
+              <div class="perf-card-header">
+                <div class="perf-icon-badge">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <line x1="18" y1="20" x2="18" y2="10"/>
+                    <line x1="12" y1="20" x2="12" y2="4"/>
+                    <line x1="6" y1="20" x2="6" y2="14"/>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="perf-card-title">How has the fund performed?</h4>
+                  <span class="perf-card-period">${manager.performancePeriod}</span>
+                </div>
+              </div>
+
+              <div class="perf-split-row">
+                <div class="perf-metric-boxes">
+                  <div class="perf-stat-pill pill-fund">
+                    <span class="perf-pill-label">Fund return</span>
+                    <span class="perf-pill-val val-green">${manager.fundReturn}</span>
+                  </div>
+                  <div class="perf-stat-pill pill-category">
+                    <span class="perf-pill-label">Category average</span>
+                    <span class="perf-pill-val val-muted">${manager.categoryReturn}</span>
+                  </div>
+                </div>
+
+                <div class="perf-chart-side">
+                  <div class="perf-chart-svg-box">
+                    <svg viewBox="0 0 145 65" width="100%" height="55" style="overflow: visible;">
+                      <defs>
+                        <linearGradient id="fundWaveGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+                          <stop offset="0%" stop-color="#00D09C" stop-opacity="0.25"/>
+                          <stop offset="100%" stop-color="#00D09C" stop-opacity="0.0"/>
+                        </linearGradient>
+                      </defs>
+                      <path d="M 5 50 Q 25 42, 50 35 T 95 24 T 140 10 L 140 60 L 5 60 Z" fill="url(#fundWaveGlow)"/>
+                      <!-- Category average line -->
+                      <path d="M 5 54 Q 30 50, 55 44 T 95 36 T 140 28" fill="none" stroke="#94A3B8" stroke-width="1.8" stroke-linecap="round"/>
+                      <!-- Fund line -->
+                      <path d="M 5 50 Q 25 42, 50 35 T 95 24 T 140 10" fill="none" stroke="#00D09C" stroke-width="2.4" stroke-linecap="round"/>
+                      <circle cx="140" cy="10" r="3.5" fill="#00D09C" stroke="#fff" stroke-width="1.5"/>
+                      <circle cx="140" cy="28" r="3" fill="#94A3B8" stroke="#fff" stroke-width="1.2"/>
+                    </svg>
+                  </div>
+                  <div class="perf-legend-row">
+                    <span class="perf-legend-tag"><span class="legend-line green"></span> This fund</span>
+                    <span class="perf-legend-tag"><span class="legend-line gray"></span> Category avg</span>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div class="info-pill-note">
-              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4m0-4h.01"/></svg>
-              <span>${manager.callout}</span>
+            <!-- Card 3: Investment Approach -->
+            <div class="approach-card" style="margin-bottom: 12px;">
+              <div class="approach-card-header">
+                <div class="approach-icon-badge">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                    <polyline points="2 17 12 22 22 17"/>
+                    <polyline points="2 12 12 17 22 12"/>
+                  </svg>
+                </div>
+                <h4 class="approach-card-title">Investment approach</h4>
+              </div>
+              <p class="approach-card-text">${manager.investmentApproach}</p>
+            </div>
+
+            <!-- Card 4: Keep In Mind Regulatory Disclaimer -->
+            <div class="keep-in-mind-card" style="margin-bottom: 12px;">
+              <div class="keep-icon-badge">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <line x1="12" y1="16" x2="12" y2="12"/>
+                  <line x1="12" y1="8" x2="12.01" y2="8"/>
+                </svg>
+              </div>
+              <div class="keep-text-col">
+                <h4 class="keep-card-title">Keep in mind</h4>
+                <p class="keep-card-text">${manager.disclaimer}</p>
+              </div>
             </div>
           </div>
 

@@ -1154,7 +1154,10 @@ body.dark-mode .fund-card-soft:hover {
   gap: 10px;
 }
 
-.manager-card-soft {
+/* ==========================================================================
+   Fund Manager & Performance (Matching reference screen)
+   ========================================================================== */
+.manager-profile-card {
   background: var(--groww-surface);
   border: 1px solid var(--groww-border);
   border-radius: var(--radius-md);
@@ -1164,15 +1167,269 @@ body.dark-mode .fund-card-soft:hover {
   gap: 12px;
 }
 
-.manager-avatar-soft {
-  width: 40px;
-  height: 40px;
+.manager-avatar-purple {
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  background: var(--groww-surface-alt);
+  flex-shrink: 0;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.manager-info-col {
+  flex: 1;
+  min-width: 0;
+}
+
+.manager-kicker-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--groww-text-muted);
+  display: block;
+}
+
+.manager-fullname {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--groww-text-primary);
+  margin: 1px 0 0 0;
+}
+
+.manager-tenure-desc {
+  font-size: 11.5px;
   color: var(--groww-text-secondary);
+  margin: 1px 0 0 0;
+}
+
+.manager-tenure-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--groww-green-bg);
+  color: var(--groww-green-text);
+  border: 1px solid var(--groww-green-border);
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 5px 9px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+/* Performance Comparison Card */
+.manager-perf-card {
+  background: var(--groww-surface);
+  border: 1px solid var(--groww-border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.perf-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.perf-icon-badge {
+  width: 32px;
+  height: 32px;
+  background: var(--groww-green-bg);
+  color: var(--groww-green-text);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.perf-card-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--groww-text-primary);
+  margin: 0;
+  line-height: 1.25;
+}
+
+.perf-card-period {
+  font-size: 11.5px;
+  color: var(--groww-text-secondary);
+  font-weight: 500;
+  display: block;
+  margin-top: 1px;
+}
+
+.perf-split-row {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 12px;
+  align-items: center;
+}
+
+.perf-metric-boxes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.perf-stat-pill {
+  padding: 8px 12px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.perf-stat-pill.pill-fund {
+  background: var(--groww-green-bg);
+  border: 1px solid var(--groww-green-border);
+}
+
+.perf-stat-pill.pill-category {
+  background: var(--groww-surface-alt);
+  border: 1px solid var(--groww-border);
+}
+
+.perf-pill-label {
+  font-size: 11px;
+  color: var(--groww-text-secondary);
+  font-weight: 500;
+}
+
+.perf-pill-val {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.perf-pill-val.val-green {
+  color: var(--groww-green-text);
+}
+
+.perf-pill-val.val-muted {
+  color: var(--groww-text-primary);
+}
+
+.perf-chart-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.perf-chart-svg-box {
+  width: 100%;
+  height: 55px;
+}
+
+.perf-legend-row {
+  display: flex;
+  gap: 8px;
+  font-size: 10px;
+  color: var(--groww-text-secondary);
+  margin-top: 4px;
+}
+
+.legend-line {
+  display: inline-block;
+  width: 10px;
+  height: 2.5px;
+  border-radius: 2px;
+  vertical-align: middle;
+  margin-right: 3px;
+}
+
+.legend-line.green {
+  background: #00D09C;
+}
+
+.legend-line.gray {
+  background: #94A3B8;
+}
+
+/* Investment Approach Card */
+.approach-card {
+  background: var(--groww-surface);
+  border: 1px solid var(--groww-border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.approach-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.approach-icon-badge {
+  width: 32px;
+  height: 32px;
+  background: rgba(168, 85, 247, 0.12);
+  color: #A855F7;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.approach-card-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--groww-text-primary);
+  margin: 0;
+}
+
+.approach-card-text {
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--groww-text-secondary);
+  margin: 0;
+  padding-left: 42px;
+}
+
+/* Keep In Mind Disclaimer Card */
+.keep-in-mind-card {
+  background: rgba(59, 130, 246, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.22);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.keep-icon-badge {
+  color: #3B82F6;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.keep-text-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.keep-card-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--groww-text-primary);
+  margin: 0;
+}
+
+.keep-card-text {
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: var(--groww-text-secondary);
+  margin: 0;
 }
 
 /* Fund Essentials Card (Matching Groww IMG_9941.PNG) */
