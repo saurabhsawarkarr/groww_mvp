@@ -8,13 +8,13 @@ const GROWW_DATA = {
     sipExperience: "First-time investor (3 months)"
   },
   portfolio: {
-    totalInvested: 6000,
-    currentValue: 5500,
-    totalReturns: -500,
-    totalReturnsPct: -8.33,
-    dayReturns: -120,
-    dayReturnsPct: -2.10,
-    xirr: -8.10
+    totalInvested: 6500,
+    currentValue: 6160,
+    totalReturns: -340,
+    totalReturnsPct: -5.23,
+    dayReturns: -75,
+    dayReturnsPct: -1.21,
+    xirr: -5.10
   },
   insightCard: {
     title: "Why is my portfolio down?",
@@ -38,8 +38,7 @@ const GROWW_DATA = {
       expenseRatio: "0.85%",
       exitLoad: "0.10% if redeemed within 30 days; Nil after 30 days",
       invested: 3000,
-      currentValue: 2450,
-      slide2CurrentValue: 2750,
+      currentValue: 2750,
       returns: -250,
       returnsPct: -8.3,
       dayChangePct: -2.6,
@@ -111,13 +110,13 @@ const GROWW_DATA = {
         disclaimer: "Past performance shows how the fund has behaved, but it does not guarantee future returns."
       },
       fundHealth: {
-        status: "Fund is healthy",
-        subtitle: "No significant changes in manager, strategy, cost or holdings.",
+        status: "Fund governance & factsheet summary",
+        subtitle: "Key factual indicators regarding management tenure, expense ratio, and portfolio discipline.",
         takeaways: [
-          "Decline mainly due to broader market movement (-2.6%)",
-          "No change in fund manager (Mr. R. Srinivasan, 5+ years tenure)",
-          "Expense ratio remains highly competitive at 0.85%",
-          "Portfolio changes are disciplined and within normal range",
+          "Decline driven primarily by broader market benchmark movement (-2.6%)",
+          "Continuity in fund leadership with manager tenure exceeding 5 years",
+          "Direct expense ratio of 0.85% remains in line with category averages",
+          "Portfolio changes reflect periodic rebalancing within mandated large & midcap allocation",
           "81% of Groww SIP investors in this fund continued investing through the last market dip"
         ],
         cohortActivity: {
@@ -146,8 +145,7 @@ const GROWW_DATA = {
       expenseRatio: "0.69%",
       exitLoad: "2% within 365 days; 1% within 730 days; Nil after 2 years",
       invested: 2000,
-      currentValue: 1720,
-      slide2CurrentValue: 1850,
+      currentValue: 1850,
       returns: -150,
       returnsPct: -7.5,
       dayChangePct: +0.8,
@@ -219,13 +217,13 @@ const GROWW_DATA = {
         disclaimer: "Past performance shows how the fund has behaved, but it does not guarantee future returns."
       },
       fundHealth: {
-        status: "Fund is exceptionally healthy",
-        subtitle: "Industry benchmark for transparency, low turnover, and management longevity.",
+        status: "Fund governance & factsheet summary",
+        subtitle: "Overview of management continuity, portfolio turnover, and expense structure.",
         takeaways: [
-          "CIO Rajeev Thakkar managing continuously since May 2013",
-          "Category-lowest expense ratio at 0.69%",
-          "Cash & arbitrage buffer (≈14%) protects against sharp market drops",
-          "Disciplined value approach rewards patient SIP investors",
+          "CIO Rajeev Thakkar has managed the fund continuously since May 2013 (11+ years)",
+          "Direct plan expense ratio is 0.69%",
+          "Portfolio holds a ~14% cash & arbitrage allocation per latest AMC factsheet",
+          "Investment mandate follows value investing across domestic and global equities",
           "88% of Groww SIP investors in this fund continued investing through the last market dip"
         ],
         cohortActivity: {
@@ -254,8 +252,7 @@ const GROWW_DATA = {
       expenseRatio: "0.22%",
       exitLoad: "0.50% if redeemed within 15 days; Nil after 15 days",
       invested: 1000,
-      currentValue: 820,
-      slide2CurrentValue: 1050,
+      currentValue: 1050,
       returns: 50,
       returnsPct: 5.0,
       dayChangePct: -1.9,
@@ -327,13 +324,13 @@ const GROWW_DATA = {
         disclaimer: "Past performance shows how the fund has behaved, but it does not guarantee future returns."
       },
       fundHealth: {
-        status: "Fund is healthy",
-        subtitle: "Direct physical silver backing with minimal tracking error.",
+        status: "Fund governance & factsheet summary",
+        subtitle: "Overview of physical bullion backing, tracking metrics, and fund expenses.",
         takeaways: [
-          "Physical silver bullion backing with zero counterparty credit risk",
-          "Ultra-low direct expense ratio of 0.22%",
-          "Tight tracking error (<0.15%) relative to domestic spot silver",
-          "Essential portfolio diversifier with low correlation to equities",
+          "Fund holds physical silver bullion conforming to LBMA 99.9% purity standards",
+          "Direct plan expense ratio is 0.22%",
+          "Reported tracking error is 0.14% relative to domestic spot silver benchmark",
+          "Commodity allocation has historically shown low correlation with equity markets",
           "76% of Groww SIP investors in this fund continued investing through the last market dip"
         ],
         cohortActivity: {
@@ -363,7 +360,6 @@ const GROWW_DATA = {
       exitLoad: "0.50% if redeemed within 15 days; Nil after 15 days",
       invested: 500,
       currentValue: 510,
-      slide2CurrentValue: 510,
       returns: 10,
       returnsPct: 2.0,
       dayChangePct: +0.4,
@@ -435,13 +431,13 @@ const GROWW_DATA = {
         disclaimer: "Past performance shows how the fund has behaved, but it does not guarantee future returns."
       },
       fundHealth: {
-        status: "Fund is exceptionally healthy",
-        subtitle: "High-purity physical gold bullion backing with sovereign vault security.",
+        status: "Fund governance & factsheet summary",
+        subtitle: "Overview of physical bullion custody, tracking metrics, and expense structure.",
         takeaways: [
-          "Direct physical gold bullion backing with zero default risk",
-          "Ultra-low direct expense ratio of 0.24%",
-          "Negative correlation with equities provides fundamental risk protection",
-          "Steady SIP unit accumulation acts as a generational wealth hedge",
+          "Fund holds physical 99.5% pure gold bullion secured with accredited vault custodians",
+          "Direct plan expense ratio is 0.24%",
+          "Asset class has historically exhibited negative correlation with equities during market stress",
+          "Fund passively tracks domestic spot gold prices with periodic portfolio disclosure",
           "85% of Groww SIP investors in this fund continued investing through the last market dip"
         ],
         cohortActivity: {
