@@ -283,7 +283,7 @@
                         <span class="fund-name-text">${f.name}</span>
                         <div class="fund-plan-row">
                           <span>${f.plan}</span>
-                          <span class="sip-pill-tag">${f.statusBadge}</span>
+                          <span class="sip-status-pill ${f.sipStatusClass || 'status-active'}"><span class="sip-status-dot"></span>${f.sipStatus || 'Active'}</span>
                         </div>
                       </div>
                     </div>
