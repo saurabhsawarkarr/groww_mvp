@@ -154,19 +154,6 @@
     const p = GROWW_DATA.portfolio;
     return `
       <div class="screen-view non-scrolling-screen" id="screen-dashboard">
-        <!-- Groww Top App Bar -->
-        <div class="groww-appbar" style="padding: 14px 18px 8px 18px;">
-          <div style="display: flex; align-items: center; gap: 8px;">
-            <div style="width: 32px; height: 32px; border-radius: 50%; background: #E8EBF0; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: #242833;">
-              U
-            </div>
-          </div>
-          <div class="appbar-actions-right">
-            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-          </div>
-        </div>
-
         <!-- Groww Top Navigation Tabs (Matching IMG_9936) -->
         <div class="groww-top-tabs">
           <span class="groww-tab-link">Explore</span>

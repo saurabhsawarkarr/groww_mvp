@@ -374,7 +374,7 @@ body.dark-mode .back-btn:hover {
 .groww-top-tabs {
   display: flex;
   border-bottom: 1px solid var(--groww-divider);
-  padding: 0 16px;
+  padding: 14px 18px 0 18px;
   gap: 20px;
 }
 
@@ -413,20 +413,6 @@ body.dark-mode .back-btn:hover {
   flex-direction: column;
   gap: 15px;
   height: 100%;
-}
-
-.groww-appbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 2px 0 4px 0;
-}
-
-.appbar-actions-right {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  color: var(--groww-text-secondary);
 }
 
 /* Portfolio Summary - Clean, Flat */
