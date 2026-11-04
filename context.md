@@ -127,7 +127,7 @@ To maintain brand consistency, the MVP adheres strictly to Groww’s mobile app 
   * Fund's sector (e.g. IT / BFSI): `-4.1%` (Public index)
   * Fund-specific / Stock selection factors: `-2.0%` (Public fund data)
   * **Your personal entry timing:** `+0.4%` (★ **Groww Proprietary Ledger** – unique competitive moat)
-  * **Total fund portfolio change:** `-8.3%`
+  * **Net fund return:** `-8.3%`
 * **Personalized Ledger Insight Card:**
   * *"You bought 23 units at ₹85 in February — lower than the fund's average NAV that month (₹91). Your timing worked in your favour."*
 * **SEBI & Methodology Disclaimer:**

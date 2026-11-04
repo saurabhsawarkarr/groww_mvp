@@ -76,7 +76,7 @@ const GROWW_DATA = {
           { label: "Your fund's sector (IT / Financials)", changePct: -4.1, color: "#EB5B56" },
           { label: "Fund-specific stock selection", changePct: -2.0, color: "#EB5B56" },
           { label: "Your personal entry timing", changePct: +0.4, color: "#00D09C", isProprietary: true },
-          { label: "Total portfolio change", changePct: -8.3, color: "#EB5B56", isTotal: true }
+          { label: "Net fund return", changePct: -8.3, color: "#EB5B56", isTotal: true }
         ],
         timingCard: {
           title: "Proprietary Ledger Insight",
