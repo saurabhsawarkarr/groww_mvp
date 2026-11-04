@@ -118,15 +118,19 @@ To maintain brand consistency, the MVP adheres strictly to Groww’s mobile app 
 
 ---
 
-### Slide 4: Market Impact & Attribution Breakdown
+### Slide 4: Market Impact & Attribution Breakdown (Proprietary Defensibility Moat)
 * **Header:** Back button `←`, *"Market Impact"*
 * **Banner:** *"Broader market is down 2.6% this month"*
-* **Attribution Breakdown List:**
-  * Broader market (Nifty 50): `-2.6%`
-  * Fund's sector (e.g. IT / BFSI): `-4.1%`
-  * Fund-specific / Stock selection factors: `-1.6%`
+* **Attribution Breakdown List (Combining Public + Proprietary Ledger Data):**
+  * Broader market (Nifty 50): `-2.6%` (Public index)
+  * Fund's sector (e.g. IT / BFSI): `-4.1%` (Public index)
+  * Fund-specific / Stock selection factors: `-2.0%` (Public fund data)
+  * **Your personal entry timing:** `+0.4%` (★ **Groww Proprietary Ledger** – unique competitive moat)
   * **Total fund portfolio change:** `-8.3%`
-* **Explainer Note:** Info box highlighting that the majority of the drop is driven by overall macroeconomic trends rather than fundamental fund failure.
+* **Personalized Ledger Insight Card:**
+  * *"You bought 23 units at ₹85 in February — lower than the fund's average NAV that month (₹91). Your timing worked in your favour."*
+* **SEBI & Methodology Disclaimer:**
+  * *"Attribution is calculated using your actual transaction dates and NAV history. Market and sector data is sourced from public indices."*
 
 ---
 

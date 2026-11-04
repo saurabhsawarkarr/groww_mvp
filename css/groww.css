@@ -1058,6 +1058,52 @@ body.dark-mode .fund-card-soft:hover {
   font-size: 13.5px;
 }
 
+.factor-row-clean.proprietary {
+  background: var(--groww-green-bg);
+  margin: 2px -6px;
+  padding: 6px 6px;
+  border-radius: var(--radius-sm);
+  border-bottom: none !important;
+}
+
+.proprietary-tag {
+  display: inline-block;
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  background: #00D09C;
+  color: #0D0E12;
+  padding: 1px 6px;
+  border-radius: 4px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.timing-insight-card {
+  background: var(--groww-green-bg);
+  border: 1px solid var(--groww-green-border);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.timing-insight-icon {
+  color: var(--groww-green-text);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.timing-insight-text {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--groww-text-primary);
+  margin: 0;
+  font-weight: 500;
+}
+
 .info-pill-note {
   background: var(--groww-bg-subtle);
   border: 1px solid var(--groww-border);

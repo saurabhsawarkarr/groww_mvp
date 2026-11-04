@@ -31,7 +31,7 @@ First-time mutual fund investors checking their portfolio during market dips fre
 2. **Screen 2 – Fund Selection (Non-scrolling, Airy):** Displays each holding with its 3-column stats (`Invested`, `Current value`, `SIP amount / month`) and clear return badges (`-₹250 (-8.3%)`), allowing the user to select the specific fund they want to investigate.
 3. **Screen 3+ – Unified Continuous Scrolling Report:** Combines all analysis modules into a single, comprehensive vertical feed:
    * **SIP Unit Accumulation:** Illustrates Rupee-Cost Averaging through transaction tables showing how lower NAVs purchase more units (`32.87 units` vs `30.00 units` at baseline).
-   * **Market Impact Waterfall:** Separates macroeconomic factors (Nifty 50 `-2.6%`, Sector `-4.1%`) from fund-specific stock selection (`-1.6%`).
+   * **Market Impact & Attribution (Proprietary Moat):** Separates public macroeconomic factors (Nifty 50 `-2.6%`, Sector `-4.1%`, Stock selection `-2.0%`) from Groww's proprietary transaction ledger metric: **`Your personal entry timing (+0.4%)`**, demonstrating how SIP purchase discipline generated positive alpha even during a drawdown.
    * **Historical Drawdown Recovery Curve:** Shows past recovery trajectories (e.g. `-12.4%` in Mar–May 2020 followed by `+31.2%` rebound over the next 12 months).
    * **Fund Manager Continuity:** Verifies manager tenure (5+ years) with interactive `1Y`, `3Y`, and `5Y` performance benchmarks against category averages.
    * **Fund Health & Dual Action Sticky Buttons:** Presents SEBI-compliant key takeaways with Groww-style bottom buttons: `Change Fund` (mint) and `Keep SIP Active` (emerald green).

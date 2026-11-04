@@ -8,13 +8,13 @@ const GROWW_DATA = {
     sipExperience: "First-time investor (3 months)"
   },
   portfolio: {
-    totalInvested: 6500,
-    currentValue: 6160,
-    totalReturns: -340,
-    totalReturnsPct: -5.23,
-    dayReturns: -75,
-    dayReturnsPct: -1.21,
-    xirr: -5.10
+    totalInvested: 6000,
+    currentValue: 5500,
+    totalReturns: -500,
+    totalReturnsPct: -8.33,
+    dayReturns: -120,
+    dayReturnsPct: -2.10,
+    xirr: -8.10
   },
   insightCard: {
     title: "Why is my portfolio down?",
@@ -36,7 +36,7 @@ const GROWW_DATA = {
       expenseRatio: "0.85%",
       exitLoad: "0.10% if redeemed within 30 days; Nil after 30 days",
       invested: 3000,
-      currentValue: 2750,
+      currentValue: 2450,
       slide2CurrentValue: 2750,
       returns: -250,
       returnsPct: -8.3,
@@ -73,10 +73,15 @@ const GROWW_DATA = {
         factors: [
           { label: "Broader market (Nifty 50)", changePct: -2.6, color: "#EB5B56" },
           { label: "Your fund's sector (IT / Financials)", changePct: -4.1, color: "#EB5B56" },
-          { label: "Fund-specific stock selection", changePct: -1.6, color: "#EB5B56" },
+          { label: "Fund-specific stock selection", changePct: -2.0, color: "#EB5B56" },
+          { label: "Your personal entry timing", changePct: +0.4, color: "#00D09C", isProprietary: true },
           { label: "Total portfolio change", changePct: -8.3, color: "#EB5B56", isTotal: true }
         ],
-        callout: "Most of the drop (≈ 2.6%) is due to overall macroeconomic movement, while the rest reflects sector consolidation in IT and Banking."
+        timingCard: {
+          title: "Proprietary Ledger Insight",
+          text: "You bought 23 units at ₹85 in February — lower than the fund's average NAV that month (₹91). Your timing worked in your favour."
+        },
+        disclaimer: "Attribution is calculated using your actual transaction dates and NAV history. Market and sector data is sourced from public indices."
       },
       historicalPerformance: {
         heading: "How this fund behaved in past downturns",
@@ -131,7 +136,7 @@ const GROWW_DATA = {
       expenseRatio: "0.69%",
       exitLoad: "2% within 365 days; 1% within 730 days; Nil after 2 years",
       invested: 2000,
-      currentValue: 1850,
+      currentValue: 1720,
       slide2CurrentValue: 1850,
       returns: -150,
       returnsPct: -7.5,
@@ -169,9 +174,14 @@ const GROWW_DATA = {
           { label: "Domestic broader market (Nifty 500)", changePct: -2.8, color: "#EB5B56" },
           { label: "Global Tech holdings (Alphabet, Microsoft)", changePct: -3.2, color: "#EB5B56" },
           { label: "Cash & Arbitrage defensive cushion", changePct: +0.5, color: "#00D09C" },
+          { label: "Your personal entry timing", changePct: +0.3, color: "#00D09C", isProprietary: true },
           { label: "Net fund performance", changePct: -7.5, color: "#EB5B56", isTotal: true }
         ],
-        callout: "The fund holds substantial cash and arbitrage positions (≈ 14%) which act as an inherent cushion during market pullbacks."
+        timingCard: {
+          title: "Proprietary Ledger Insight",
+          text: "You bought 6 units at ₹84.20 in February — lower than the fund's average NAV that month (₹88.50). Your timing worked in your favour."
+        },
+        disclaimer: "Attribution is calculated using your actual transaction dates and NAV history. Market and sector data is sourced from public indices."
       },
       historicalPerformance: {
         heading: "Unmatched defensive track record during drawdowns",
@@ -226,7 +236,7 @@ const GROWW_DATA = {
       expenseRatio: "0.22%",
       exitLoad: "0.50% if redeemed within 15 days; Nil after 15 days",
       invested: 1000,
-      currentValue: 1050,
+      currentValue: 820,
       slide2CurrentValue: 1050,
       returns: 50,
       returnsPct: 5.0,
@@ -264,9 +274,14 @@ const GROWW_DATA = {
           { label: "US Dollar Index strength", changePct: -1.8, color: "#EB5B56" },
           { label: "Global Industrial demand fluctuations", changePct: -2.4, color: "#EB5B56" },
           { label: "Rupee vs Dollar exchange buffer", changePct: +2.3, color: "#00D09C" },
+          { label: "Your personal entry timing", changePct: +0.6, color: "#00D09C", isProprietary: true },
           { label: "Net commodity return", changePct: +5.0, color: "#00D09C", isTotal: true }
         ],
-        callout: "Silver price fluctuations are macroeconomic; domestic silver is also supported by currency hedging against the US dollar."
+        timingCard: {
+          title: "Proprietary Ledger Insight",
+          text: "You bought units at ₹22.80 during a dip — lower than the fund's average NAV that month (₹24.90). Your timing worked in your favour."
+        },
+        disclaimer: "Attribution is calculated using your actual transaction dates and NAV history. Market and sector data is sourced from public indices."
       },
       historicalPerformance: {
         heading: "Commodity cycles: Drawdowns & subsequent breakout runs",
@@ -358,10 +373,15 @@ const GROWW_DATA = {
         factors: [
           { label: "US Federal Reserve interest rates", changePct: -1.2, color: "#EB5B56" },
           { label: "Global Central Bank gold buying", changePct: +1.8, color: "#00D09C" },
-          { label: "Geopolitical risk premium", changePct: +1.4, color: "#00D09C" },
+          { label: "Geopolitical risk premium", changePct: +1.1, color: "#00D09C" },
+          { label: "Your personal entry timing", changePct: +0.3, color: "#00D09C", isProprietary: true },
           { label: "Net fund return", changePct: +2.0, color: "#00D09C", isTotal: true }
         ],
-        callout: "Central banks globally have purchased record gold reserves, providing steady structural demand and price floors."
+        timingCard: {
+          title: "Proprietary Ledger Insight",
+          text: "You bought units at ₹19.40 ahead of the monthly rally — lower than the fund's average NAV that month (₹20.60). Your timing worked in your favour."
+        },
+        disclaimer: "Attribution is calculated using your actual transaction dates and NAV history. Market and sector data is sourced from public indices."
       },
       historicalPerformance: {
         heading: "Gold resilience during global financial crises",

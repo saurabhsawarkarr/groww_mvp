@@ -276,14 +276,14 @@
 
           <div class="funds-soft-stack">
             ${GROWW_DATA.funds.map(f => {
-              const curVal = f.slide2CurrentValue || f.currentValue;
-              const isNeg = f.returns < 0;
-              const sign = isNeg ? '-' : '+';
-              const absRet = Math.abs(f.returns).toLocaleString('en-IN');
-              const absPct = Math.abs(f.returnsPct).toFixed(1);
-              const retBadge = `${sign}₹${absRet} (${sign}${absPct}%)`;
+      const curVal = f.slide2CurrentValue || f.currentValue;
+      const isNeg = f.returns < 0;
+      const sign = isNeg ? '-' : '+';
+      const absRet = Math.abs(f.returns).toLocaleString('en-IN');
+      const absPct = Math.abs(f.returnsPct).toFixed(1);
+      const retBadge = `${sign}₹${absRet} (${sign}${absPct}%)`;
 
-              return `
+      return `
                 <div class="fund-card-soft" data-select-fund="${f.id}">
                   <div class="fund-card-header">
                     <div class="fund-identity">
@@ -320,7 +320,7 @@
                   </div>
                 </div>
               `;
-            }).join('')}
+    }).join('')}
           </div>
         </div>
       </div>
@@ -472,8 +472,11 @@
             <div class="impact-breakdown-card" style="margin-bottom: 12px;">
               <h4 style="font-size: 14px; font-weight: 700; color: var(--groww-text-primary); margin-bottom: 4px;">How it impacted your portfolio</h4>
               ${market.factors.map(f => `
-                <div class="factor-row-clean ${f.isTotal ? 'total' : ''}">
-                  <span style="color: ${f.isTotal ? 'var(--groww-text-primary)' : 'var(--groww-text-secondary)'};">${f.label}</span>
+                <div class="factor-row-clean ${f.isTotal ? 'total' : ''} ${f.isProprietary ? 'proprietary' : ''}">
+                  <span style="color: ${f.isTotal ? 'var(--groww-text-primary)' : (f.isProprietary ? 'var(--groww-green-text)' : 'var(--groww-text-secondary)')}; font-weight: ${f.isProprietary ? '600' : '500'};">
+                    ${f.label}
+                    ${f.isProprietary ? '<span class="proprietary-tag">Groww Only</span>' : ''}
+                  </span>
                   <span style="color: ${f.color}; font-size: ${f.isTotal ? '15px' : '13.5px'}; font-weight: 700;">
                     ${f.changePct > 0 ? '+' : ''}${f.changePct}%
                   </span>
@@ -481,9 +484,23 @@
               `).join('')}
             </div>
 
+            ${market.timingCard ? `
+              <div class="timing-insight-card" style="margin-bottom: 12px;">
+                <div class="timing-insight-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12 6 12 12 16 14"/>
+                  </svg>
+                </div>
+                <div class="timing-insight-content">
+                  <p class="timing-insight-text">${market.timingCard.text}</p>
+                </div>
+              </div>
+            ` : ''}
+
             <div class="info-pill-note">
               <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4m0-4h.01"/></svg>
-              <span>${market.callout}</span>
+              <span>${market.disclaimer || market.callout}</span>
             </div>
           </div>
 
@@ -717,7 +734,7 @@
         const chartBox = document.getElementById("manager-chart-container");
         if (chartBox) {
           const fund = getSelectedFund();
-        chartBox.innerHTML = renderManagerChart(fund, state.managerTf);
+          chartBox.innerHTML = renderManagerChart(fund, state.managerTf);
           attachEventHandlers();
         }
       });
