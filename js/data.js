@@ -67,7 +67,7 @@ const GROWW_DATA = {
           },
           disclaimer: "More units do not guarantee positive returns."
         },
-        whatThisMeans: "Your fund has faced short-term market fluctuations, which temporarily impacted its value. At the same time, your ongoing monthly SIP purchases bought more units at lower NAVs (₹595 vs ₹680). Over the long term, these accumulated units compound wealth as markets recover."
+        whatThisMeans: "When NAV declined from ₹680 to ₹595, your ongoing monthly SIP purchases bought more units (1.68 vs 1.47 units). This lowered your average purchase cost per unit. Future returns will depend on subsequent NAV movements and market conditions."
       },
       marketImpact: {
         banner: "Broader market is down 2.6% this month",
@@ -94,9 +94,9 @@ const GROWW_DATA = {
         recoveryPoint: {
           label: "+78.2%",
           period: "Next 12M",
-          desc: "recovered and surged 78.2% in the subsequent 12-month rally."
+          desc: "subsequently recorded a 78.2% return in the following 12-month period."
         },
-        callout: "During the 2020 market crash, this fund fell 29.4%, but recovered strongly and delivered +78.2% returns over the next 12 months as mid-caps led the rebound."
+        callout: "During the 2020 market crash, this fund fell 29.4%, then delivered a 78.2% return over the next 12 months as mid-caps rebounded."
       },
       fundManager: {
         name: "Mr. R. Srinivasan",
@@ -174,7 +174,7 @@ const GROWW_DATA = {
           },
           disclaimer: "More units do not guarantee positive returns."
         },
-        whatThisMeans: "Parag Parikh Flexi Cap Fund adheres to strict value-investing criteria. The current drawdown allowed your ₹500 monthly SIP to buy units at ₹84.20 rather than ₹95.00, increasing your unit count by 6.3%."
+        whatThisMeans: "During the recent market decline, your ₹500 monthly SIP bought units at ₹84.20 rather than ₹95.00, resulting in 6.3% more units accumulated compared to a static NAV scenario. Whether this translates to capital gains depends on future NAV performance."
       },
       marketImpact: {
         banner: "Flexi Cap sector faced short-term global tech consolidation",
@@ -281,7 +281,7 @@ const GROWW_DATA = {
           },
           disclaimer: "More units do not guarantee positive returns."
         },
-        whatThisMeans: "Silver prices fluctuate based on global industrial demand (EVs, Solar PV) and currency movements. By SIPing ₹250 monthly, you bought units as low as ₹22.80, accumulating 8.5% more units than a flat NAV scenario."
+        whatThisMeans: "Silver NAVs fluctuate with spot commodity prices and currency movements. With your ₹250 monthly SIP, lower purchase NAVs (down to ₹22.80) allowed you to accumulate 8.5% more units than under a constant NAV scenario."
       },
       marketImpact: {
         banner: "Silver influenced by global manufacturing cycles & US Dollar Index",
@@ -299,7 +299,7 @@ const GROWW_DATA = {
         disclaimer: "Attribution is calculated using your actual transaction dates and NAV history. Market and sector data is sourced from public indices."
       },
       historicalPerformance: {
-        heading: "Commodity cycles: Drawdowns & subsequent breakout runs",
+        heading: "Commodity cycles: Historical drawdowns & subsequent periods",
         downturnPoint: {
           label: "-14.2%",
           period: "Rate Hike",
@@ -310,7 +310,7 @@ const GROWW_DATA = {
           period: "Next 12M",
           desc: "rebounded by 38.5% in the following industrial cycle."
         },
-        callout: "Commodity corrections historically present premier accumulation windows before clean industrial breakout runs."
+        callout: "Historical data shows commodity drawdowns followed by industrial demand cycles, though recovery timelines and magnitudes vary."
       },
       fundManager: {
         name: "Mr. Tapan Patel",
@@ -388,7 +388,7 @@ const GROWW_DATA = {
           },
           disclaimer: "More units do not guarantee positive returns."
         },
-        whatThisMeans: "Gold is the ultimate portfolio hedge. When equity markets tremble, gold retains purchasing power. Your steady ₹250 monthly SIP ensures continuous gold accumulation at fair average costs."
+        whatThisMeans: "Gold ETF FoF units track domestic physical gold spot prices. Your ongoing ₹250 monthly SIP purchases accumulated units across varying price points, averaging your acquisition cost across the investment period."
       },
       marketImpact: {
         banner: "Gold supported by sovereign central bank accumulation",
@@ -406,7 +406,7 @@ const GROWW_DATA = {
         disclaimer: "Attribution is calculated using your actual transaction dates and NAV history. Market and sector data is sourced from public indices."
       },
       historicalPerformance: {
-        heading: "Gold resilience during global financial crises",
+        heading: "Historical gold price movements during market stress",
         downturnPoint: {
           label: "-8.6%",
           period: "Tightening",
@@ -417,7 +417,7 @@ const GROWW_DATA = {
           period: "Next 12M",
           desc: "rebounded to new record highs over the next 12 months."
         },
-        callout: "Gold drawdowns are notoriously brief compared to equities; gold was one of the fastest assets to hit all-time highs following market panics."
+        callout: "During past market events, gold corrections historically differed in duration and magnitude from equities; past price movements do not predict future trends."
       },
       fundManager: {
         name: "Mr. Tapan Patel",
