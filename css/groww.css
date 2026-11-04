@@ -1339,3 +1339,154 @@ body.dark-mode .fund-card-soft:hover {
 .btn-primary-green:hover {
   opacity: 0.9;
 }
+
+/* ==========================================================================
+   Cohort Intelligence Card (Moat 2: What other Groww investors in this fund did)
+   ========================================================================== */
+.cohort-intelligence-card {
+  background: var(--groww-surface);
+  border: 1px solid var(--groww-border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cohort-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.cohort-title-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.cohort-icon-wrap {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--groww-green-bg);
+  color: var(--groww-green-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.cohort-card-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--groww-text-primary);
+  line-height: 1.3;
+  margin: 0;
+}
+
+.cohort-card-sub {
+  font-size: 11.5px;
+  color: var(--groww-text-secondary);
+  font-weight: 500;
+  display: block;
+  margin-top: 2px;
+}
+
+.cohort-bar-track {
+  width: 100%;
+  height: 7px;
+  background: var(--groww-bg-subtle);
+  border-radius: 4px;
+  display: flex;
+  overflow: hidden;
+  gap: 2px;
+}
+
+.cohort-bar-segment {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.cohort-bar-segment.segment-continued {
+  background: #00D09C;
+}
+
+.cohort-bar-segment.segment-paused {
+  background: #F59E0B;
+}
+
+.cohort-bar-segment.segment-stopped {
+  background: #EB5B56;
+}
+
+.cohort-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  padding: 4px 0 2px 0;
+}
+
+.cohort-stat-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.cohort-stat-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-top: 5px;
+  flex-shrink: 0;
+}
+
+.cohort-stat-indicator.indicator-green {
+  background: #00D09C;
+}
+
+.cohort-stat-indicator.indicator-amber {
+  background: #F59E0B;
+}
+
+.cohort-stat-indicator.indicator-red {
+  background: #EB5B56;
+}
+
+.cohort-stat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.cohort-stat-val {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--groww-text-primary);
+  line-height: 1.2;
+}
+
+.cohort-stat-label {
+  font-size: 11px;
+  color: var(--groww-text-secondary);
+  line-height: 1.25;
+  margin-top: 2px;
+}
+
+.cohort-sample-footer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--groww-divider);
+  font-size: 11.5px;
+  color: var(--groww-text-secondary);
+  font-weight: 500;
+}
+
+.cohort-takeaway {
+  font-weight: 600;
+  color: var(--groww-text-primary);
+}

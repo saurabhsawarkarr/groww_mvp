@@ -156,7 +156,7 @@ To maintain brand consistency, the MVP adheres strictly to Groww’s mobile app 
 
 ---
 
-### Slide 7: Fund Health Summary & Key Takeaways
+### Slide 7: Fund Health Summary & Key Takeaways (Proprietary Cohort Intelligence Moat)
 * **Header:** Back button `←`, *"Fund Health Summary"*
 * **Health Badge:** Shield icon with green checkmark: *"Fund is healthy – No significant changes in manager, strategy, cost or holdings."*
 * **Checklist of Key Takeaways:**
@@ -164,7 +164,12 @@ To maintain brand consistency, the MVP adheres strictly to Groww’s mobile app 
   * ✓ No change in fund manager or investment strategy
   * ✓ Expense ratio unchanged (1.10%)
   * ✓ Portfolio changes are within normal historical variance
-* **Empowering Conclusion:** Reassures the user without advising rash exits or providing illegal return guarantees.
+  * ✓ **81% of Groww SIP investors in this fund continued investing through the last market dip** (★ **Cohort Intelligence Moat**)
+* **Cohort Intelligence Card (Proprietary Network Moat):**
+  * Headline: *"What other Groww investors in this fund did during the last market dip (Feb 2025)"*
+  * Segments: `81% continued their SIP` | `12% paused temporarily` | `7% stopped`
+  * Sample size verification: `Based on 1,24,000 Groww investors in this fund`
+* **Empowering Conclusion:** Reassures the user through factual peer behavior without advising rash exits or providing illegal return guarantees.
 
 ---
 

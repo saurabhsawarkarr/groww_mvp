@@ -617,14 +617,67 @@
                 <span>Key Takeaways</span>
               </div>
               <ul class="takeaway-list-clean">
-                ${health.takeaways.map(t => `
-                  <li class="takeaway-item-clean">
+                ${health.takeaways.map((t, idx) => `
+                  <li class="takeaway-item-clean ${idx === health.takeaways.length - 1 ? 'cohort-takeaway' : ''}">
                     <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg>
                     <span>${t}</span>
                   </li>
                 `).join('')}
               </ul>
             </div>
+
+            <!-- Cohort Intelligence Card (Moat 2: What other Groww investors in this fund did) -->
+            ${health.cohortActivity ? `
+              <div class="cohort-intelligence-card" style="margin-bottom: 16px;">
+                <div class="cohort-header">
+                  <div class="cohort-title-row">
+                    <div class="cohort-icon-wrap">
+                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <div>
+                      <h4 class="cohort-card-title">What other Groww investors in this fund did</h4>
+                      <span class="cohort-card-sub">During the last market dip (${health.cohortActivity.dipPeriod})</span>
+                    </div>
+                  </div>
+                  <span class="proprietary-tag">Cohort Moat</span>
+                </div>
+
+                <div class="cohort-bar-track">
+                  <div class="cohort-bar-segment segment-continued" style="width: ${health.cohortActivity.continuedPct}%;"></div>
+                  <div class="cohort-bar-segment segment-paused" style="width: ${health.cohortActivity.pausedPct}%;"></div>
+                  <div class="cohort-bar-segment segment-stopped" style="width: ${health.cohortActivity.stoppedPct}%;"></div>
+                </div>
+
+                <div class="cohort-stats-grid">
+                  <div class="cohort-stat-item">
+                    <div class="cohort-stat-indicator indicator-green"></div>
+                    <div class="cohort-stat-info">
+                      <span class="cohort-stat-val">${health.cohortActivity.continuedPct}%</span>
+                      <span class="cohort-stat-label">continued their SIP</span>
+                    </div>
+                  </div>
+                  <div class="cohort-stat-item">
+                    <div class="cohort-stat-indicator indicator-amber"></div>
+                    <div class="cohort-stat-info">
+                      <span class="cohort-stat-val">${health.cohortActivity.pausedPct}%</span>
+                      <span class="cohort-stat-label">paused temporarily</span>
+                    </div>
+                  </div>
+                  <div class="cohort-stat-item">
+                    <div class="cohort-stat-indicator indicator-red"></div>
+                    <div class="cohort-stat-info">
+                      <span class="cohort-stat-val">${health.cohortActivity.stoppedPct}%</span>
+                      <span class="cohort-stat-label">stopped</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="cohort-sample-footer">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4m0-4h.01"/></svg>
+                  <span>Based on ${health.cohortActivity.sampleSize}</span>
+                </div>
+              </div>
+            ` : ''}
 
             <!-- Dual Action Buttons Matching Groww Fund Detail (IMG_9939) -->
             <div class="dual-bottom-actions">

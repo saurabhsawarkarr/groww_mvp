@@ -117,8 +117,16 @@ const GROWW_DATA = {
           "Decline mainly due to broader market movement (-2.6%)",
           "No change in fund manager (Saurabh Pant, 5+ years tenure)",
           "Expense ratio remains highly competitive at 0.85%",
-          "Portfolio changes are disciplined and within normal range"
-        ]
+          "Portfolio changes are disciplined and within normal range",
+          "81% of Groww SIP investors in this fund continued investing through the last market dip"
+        ],
+        cohortActivity: {
+          dipPeriod: "Feb 2025",
+          sampleSize: "1,24,000 Groww investors in this fund",
+          continuedPct: 81,
+          pausedPct: 12,
+          stoppedPct: 7
+        }
       }
     },
     {
@@ -217,8 +225,16 @@ const GROWW_DATA = {
           "CIO Rajeev Thakkar managing continuously since May 2013",
           "Category-lowest expense ratio at 0.69%",
           "Cash & arbitrage buffer (≈14%) protects against sharp market drops",
-          "Disciplined value approach rewards patient SIP investors"
-        ]
+          "Disciplined value approach rewards patient SIP investors",
+          "88% of Groww SIP investors in this fund continued investing through the last market dip"
+        ],
+        cohortActivity: {
+          dipPeriod: "Feb 2025",
+          sampleSize: "2,15,000 Groww investors in this fund",
+          continuedPct: 88,
+          pausedPct: 8,
+          stoppedPct: 4
+        }
       }
     },
     {
@@ -317,8 +333,16 @@ const GROWW_DATA = {
           "Physical silver bullion backing with zero counterparty credit risk",
           "Ultra-low direct expense ratio of 0.22%",
           "Tight tracking error (<0.15%) relative to domestic spot silver",
-          "Essential portfolio diversifier with low correlation to equities"
-        ]
+          "Essential portfolio diversifier with low correlation to equities",
+          "76% of Groww SIP investors in this fund continued investing through the last market dip"
+        ],
+        cohortActivity: {
+          dipPeriod: "Jan 2025",
+          sampleSize: "48,500 Groww investors in this fund",
+          continuedPct: 76,
+          pausedPct: 16,
+          stoppedPct: 8
+        }
       }
     },
     {
@@ -417,8 +441,16 @@ const GROWW_DATA = {
           "Direct physical gold bullion backing with zero default risk",
           "Ultra-low direct expense ratio of 0.24%",
           "Negative correlation with equities provides fundamental risk protection",
-          "Steady SIP unit accumulation acts as a generational wealth hedge"
-        ]
+          "Steady SIP unit accumulation acts as a generational wealth hedge",
+          "85% of Groww SIP investors in this fund continued investing through the last market dip"
+        ],
+        cohortActivity: {
+          dipPeriod: "Jan 2025",
+          sampleSize: "62,000 Groww investors in this fund",
+          continuedPct: 85,
+          pausedPct: 10,
+          stoppedPct: 5
+        }
       }
     }
   ]
