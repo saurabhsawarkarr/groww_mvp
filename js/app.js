@@ -750,7 +750,7 @@
             <!-- Dual Action Buttons Matching Groww Fund Detail (IMG_9939) -->
             <div class="dual-bottom-actions">
               <button class="btn-secondary-mint" id="btn-change-fund-bottom">Change Fund</button>
-              <button class="btn-primary-green" id="btn-back-to-dashboard-bottom">Keep SIP Active</button>
+              <button class="btn-primary-green" id="btn-back-to-dashboard-bottom">Back to portfolio</button>
             </div>
           </div>
         </div>
@@ -835,7 +835,7 @@
       render();
     });
 
-    // Screen 3: Bottom "Keep SIP Active" -> Back to Screen 1 (Dashboard)
+    // Screen 3: Bottom "Back to portfolio" -> Back to Screen 1 (Dashboard)
     document.getElementById("btn-back-to-dashboard-bottom")?.addEventListener("click", () => {
       state.currentView = "dashboard";
       render();
