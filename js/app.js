@@ -747,10 +747,9 @@
               </div>
             ` : ''}
 
-            <!-- Dual Action Buttons Matching Groww Fund Detail (IMG_9939) -->
-            <div class="dual-bottom-actions">
-              <button class="btn-secondary-mint" id="btn-change-fund-bottom">Change Fund</button>
-              <button class="btn-primary-green" id="btn-back-to-dashboard-bottom">Back to portfolio</button>
+            <!-- Single Action Button: Back to portfolio -->
+            <div class="single-bottom-action">
+              <button class="btn-primary-green btn-full-width" id="btn-back-to-dashboard-bottom">Back to portfolio</button>
             </div>
           </div>
         </div>

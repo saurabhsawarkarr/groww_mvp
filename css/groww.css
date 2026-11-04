@@ -1551,26 +1551,14 @@ body.dark-mode .fund-card-soft:hover {
   margin-top: 4px;
 }
 
-/* Dual Action Buttons at Bottom (Matching IMG_9939 - IMG_9941) */
-.dual-bottom-actions {
-  display: grid;
-  grid-template-columns: 1fr 1.3fr;
-  gap: 12px;
-  padding: 0 18px;
-  margin-top: 12px;
+/* Single Bottom Action Button (Back to portfolio) */
+.single-bottom-action {
+  margin-top: 16px;
 }
 
-.btn-secondary-mint {
-  background: var(--groww-green-bg);
-  color: var(--groww-green-text);
-  font-size: 14px;
-  font-weight: 700;
-  border: none;
-  border-radius: 12px;
-  padding: 13px;
-  cursor: pointer;
-  text-align: center;
-  transition: opacity 0.15s;
+.btn-full-width {
+  width: 100%;
+  display: block;
 }
 
 .btn-primary-green {
@@ -1586,7 +1574,6 @@ body.dark-mode .fund-card-soft:hover {
   transition: opacity 0.15s;
 }
 
-.btn-secondary-mint:hover,
 .btn-primary-green:hover {
   opacity: 0.9;
 }
