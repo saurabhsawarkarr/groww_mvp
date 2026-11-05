@@ -904,20 +904,6 @@
               `).join('')}
             </div>
 
-            ${market.timingCard ? `
-              <div class="timing-insight-card" style="margin-bottom: 12px;">
-                <div class="timing-insight-icon">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                    <circle cx="12" cy="12" r="10"/>
-                    <polyline points="12 6 12 12 16 14"/>
-                  </svg>
-                </div>
-                <div class="timing-insight-content">
-                  <p class="timing-insight-text">${market.timingCard.text}</p>
-                </div>
-              </div>
-            ` : ''}
-
             ${market.behavioralInsight ? `
               <div class="behavioral-insight-card" style="margin-bottom: 12px;">
                 <div class="behavioral-header-row">

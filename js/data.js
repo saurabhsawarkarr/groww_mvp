@@ -117,10 +117,6 @@ const GROWW_DATA = {
           { label: "Your personal entry timing", changePct: +0.4, color: "#00D09C", isProprietary: true },
           { label: "Net fund return", changePct: -8.3, color: "#EB5B56", isTotal: true }
         ],
-        timingCard: {
-          title: "Proprietary Ledger Insight",
-          text: "You bought 23 units at ₹85 in February — lower than the fund's average NAV that month (₹91). Your timing worked in your favour."
-        },
         behavioralInsight: {
           tag: "Based on your behaviour",
           dipAction: "Last time markets dipped, you checked your portfolio 3 times in one week but kept your SIP running.",
@@ -274,10 +270,6 @@ const GROWW_DATA = {
           { label: "Your personal entry timing", changePct: +0.3, color: "#00D09C", isProprietary: true },
           { label: "Net fund performance", changePct: -7.5, color: "#EB5B56", isTotal: true }
         ],
-        timingCard: {
-          title: "Proprietary Ledger Insight",
-          text: "You bought 6 units at ₹84.20 in February — lower than the fund's average NAV that month (₹88.50). Your timing worked in your favour."
-        },
         behavioralInsight: {
           tag: "Based on your behaviour",
           dipAction: "Last time markets dipped, you checked your portfolio 3 times in one week but kept your SIP running.",
@@ -431,10 +423,6 @@ const GROWW_DATA = {
           { label: "Your personal entry timing", changePct: +0.6, color: "#00D09C", isProprietary: true },
           { label: "Net commodity return", changePct: +5.0, color: "#00D09C", isTotal: true }
         ],
-        timingCard: {
-          title: "Proprietary Ledger Insight",
-          text: "You bought units at ₹22.80 during a dip — lower than the fund's average NAV that month (₹24.90). Your timing worked in your favour."
-        },
         disclaimer: "Attribution is calculated using your actual transaction dates and NAV history. Market and sector data is sourced from public indices."
       },
       historicalPerformance: {
@@ -577,10 +565,6 @@ const GROWW_DATA = {
           { label: "Your personal entry timing", changePct: +0.3, color: "#00D09C", isProprietary: true },
           { label: "Net fund return", changePct: +2.0, color: "#00D09C", isTotal: true }
         ],
-        timingCard: {
-          title: "Proprietary Ledger Insight",
-          text: "You bought units at ₹19.40 ahead of the monthly rally — lower than the fund's average NAV that month (₹20.60). Your timing worked in your favour."
-        },
         disclaimer: "Attribution is calculated using your actual transaction dates and NAV history. Market and sector data is sourced from public indices."
       },
       historicalPerformance: {
