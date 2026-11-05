@@ -139,6 +139,7 @@ const GROWW_DATA = {
         cohortBehavior: {
           title: "How Groww investors responded to market declines",
           subtitle: "SIP behaviour across historical market events",
+          moatBadge: "10-Year Moat",
           heroPct: 81,
           heroLabel: "continued their SIP during the February 2025 market dip",
           breakdown: [
@@ -304,6 +305,7 @@ const GROWW_DATA = {
         cohortBehavior: {
           title: "How Groww investors responded to market declines",
           subtitle: "SIP behaviour across historical market events",
+          moatBadge: "10-Year Moat",
           heroPct: 81,
           heroLabel: "continued their SIP during the February 2025 market dip",
           breakdown: [
@@ -463,6 +465,7 @@ const GROWW_DATA = {
         cohortBehavior: {
           title: "How Groww investors responded to market declines",
           subtitle: "SIP behaviour across historical market events",
+          moatBadge: "10-Year Moat",
           heroPct: 81,
           heroLabel: "continued their SIP during the February 2025 market dip",
           breakdown: [
@@ -622,6 +625,7 @@ const GROWW_DATA = {
         cohortBehavior: {
           title: "How Groww investors responded to market declines",
           subtitle: "SIP behaviour across historical market events",
+          moatBadge: "10-Year Moat",
           heroPct: 81,
           heroLabel: "continued their SIP during the February 2025 market dip",
           breakdown: [
