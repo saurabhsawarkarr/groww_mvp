@@ -174,16 +174,8 @@ const GROWW_DATA = {
           "Decline driven primarily by broader market benchmark movement (-2.6%)",
           "Continuity in fund leadership with manager tenure exceeding 5 years",
           "Direct expense ratio of 0.85% remains in line with category averages",
-          "Portfolio changes reflect periodic rebalancing within mandated large & midcap allocation",
-          "81% of Groww SIP investors in this fund continued investing through the last market dip"
-        ],
-        cohortActivity: {
-          dipPeriod: "Feb 2025",
-          sampleSize: "1,24,000 Groww investors in this fund",
-          continuedPct: 81,
-          pausedPct: 12,
-          stoppedPct: 7
-        }
+          "Portfolio changes reflect periodic rebalancing within mandated large & midcap allocation"
+        ]
       }
     },
     {
@@ -340,16 +332,8 @@ const GROWW_DATA = {
           "CIO Rajeev Thakkar has managed the fund continuously since May 2013 (11+ years)",
           "Direct plan expense ratio is 0.69%",
           "Portfolio holds a ~14% cash & arbitrage allocation per latest AMC factsheet",
-          "Investment mandate follows value investing across domestic and global equities",
-          "88% of Groww SIP investors in this fund continued investing through the last market dip"
-        ],
-        cohortActivity: {
-          dipPeriod: "Feb 2025",
-          sampleSize: "2,15,000 Groww investors in this fund",
-          continuedPct: 88,
-          pausedPct: 8,
-          stoppedPct: 4
-        }
+          "Investment mandate follows value investing across domestic and global equities"
+        ]
       }
     },
     {
@@ -500,16 +484,8 @@ const GROWW_DATA = {
           "Fund holds physical silver bullion conforming to LBMA 99.9% purity standards",
           "Direct plan expense ratio is 0.22%",
           "Reported tracking error is 0.14% relative to domestic spot silver benchmark",
-          "Commodity allocation has historically shown low correlation with equity markets",
-          "76% of Groww SIP investors in this fund continued investing through the last market dip"
-        ],
-        cohortActivity: {
-          dipPeriod: "Jan 2025",
-          sampleSize: "48,500 Groww investors in this fund",
-          continuedPct: 76,
-          pausedPct: 16,
-          stoppedPct: 8
-        }
+          "Commodity allocation has historically shown low correlation with equity markets"
+        ]
       }
     },
     {
@@ -660,16 +636,8 @@ const GROWW_DATA = {
           "Fund holds physical 99.5% pure gold bullion secured with accredited vault custodians",
           "Direct plan expense ratio is 0.24%",
           "Asset class has historically exhibited negative correlation with equities during market stress",
-          "Fund passively tracks domestic spot gold prices with periodic portfolio disclosure",
-          "85% of Groww SIP investors in this fund continued investing through the last market dip"
-        ],
-        cohortActivity: {
-          dipPeriod: "Jan 2025",
-          sampleSize: "62,000 Groww investors in this fund",
-          continuedPct: 85,
-          pausedPct: 10,
-          stoppedPct: 5
-        }
+          "Fund passively tracks domestic spot gold prices with periodic portfolio disclosure"
+        ]
       }
     }
   ]
