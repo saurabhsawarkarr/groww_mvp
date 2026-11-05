@@ -297,10 +297,10 @@
               <div class="insight-subtext">${GROWW_DATA.insightCard.subtext}</div>
             </div>
             <div class="insight-sparkline">
-              <svg width="34" height="18" viewBox="0 0 40 20" fill="none">
-                <path d="M2 14 L12 8 L22 16 L32 4 L38 10" stroke="#00D09C" stroke-width="2" stroke-linecap="round"/>
+              <svg width="26" height="16" viewBox="0 0 40 20" fill="none">
+                <path d="M2 14 L12 8 L22 16 L32 4 L38 10" stroke="#00D09C" stroke-width="2.2" stroke-linecap="round"/>
               </svg>
-              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
             </div>
           </div>
 
