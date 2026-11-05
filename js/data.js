@@ -96,12 +96,16 @@ const GROWW_DATA = {
           constantNavScenario: {
             nav: 680.00,
             units: 4.41,
-            gainPct: 7.5,
-            comparisonText: "4.74 vs 4.41 units"
+            gainPct: "7.4",
+            label: "At constant NAV of ₹680",
+            gainBadge: "+7.4%",
+            gainSubtitle: "Additional units"
           },
           disclaimer: "More units do not guarantee positive returns."
         },
-        whatThisMeans: "When NAV declined from ₹680 to ₹595, your ongoing monthly SIP purchases bought more units (1.68 vs 1.47 units). This lowered your average purchase cost per unit. Future returns will depend on subsequent NAV movements and market conditions."
+        whyTitle: "Why?",
+        whyText: "As NAV fell from ₹680 to ₹595, the same ₹1,000 SIP bought more units.",
+        whatThisMeans: "As NAV fell from ₹680 to ₹595, the same ₹1,000 SIP bought more units."
       },
       marketImpact: {
         banner: "Broader market is down 2.6% this month",
@@ -248,12 +252,16 @@ const GROWW_DATA = {
           constantNavScenario: {
             nav: 95.00,
             units: 15.79,
-            gainPct: 6.3,
-            comparisonText: "16.79 vs 15.79 units"
+            gainPct: "6.3",
+            label: "At constant NAV of ₹95",
+            gainBadge: "+6.3%",
+            gainSubtitle: "Additional units"
           },
           disclaimer: "More units do not guarantee positive returns."
         },
-        whatThisMeans: "During the recent market decline, your ₹500 monthly SIP bought units at ₹84.20 rather than ₹95.00, resulting in 6.3% more units accumulated compared to a static NAV scenario. Whether this translates to capital gains depends on future NAV performance."
+        whyTitle: "Why?",
+        whyText: "As NAV fell from ₹95 to ₹84.20, the same ₹500 SIP bought more units.",
+        whatThisMeans: "As NAV fell from ₹95 to ₹84.20, the same ₹500 SIP bought more units."
       },
       marketImpact: {
         banner: "Flexi Cap sector faced short-term global tech consolidation",
@@ -400,12 +408,16 @@ const GROWW_DATA = {
           constantNavScenario: {
             nav: 26.50,
             units: 28.30,
-            gainPct: 8.5,
-            comparisonText: "30.72 vs 28.30 units"
+            gainPct: "8.5",
+            label: "At constant NAV of ₹26.50",
+            gainBadge: "+8.5%",
+            gainSubtitle: "Additional units"
           },
           disclaimer: "More units do not guarantee positive returns."
         },
-        whatThisMeans: "Silver NAVs fluctuate with spot commodity prices and currency movements. With your ₹250 monthly SIP, lower purchase NAVs (down to ₹22.80) allowed you to accumulate 8.5% more units than under a constant NAV scenario."
+        whyTitle: "Why?",
+        whyText: "As NAV fell from ₹26.50 to ₹22.80, the same ₹250 SIP bought more units.",
+        whatThisMeans: "As NAV fell from ₹26.50 to ₹22.80, the same ₹250 SIP bought more units."
       },
       marketImpact: {
         banner: "Silver influenced by global manufacturing cycles & US Dollar Index",
@@ -541,12 +553,16 @@ const GROWW_DATA = {
           constantNavScenario: {
             nav: 22.00,
             units: 34.09,
-            gainPct: 3.9,
-            comparisonText: "35.41 vs 34.09 units"
+            gainPct: "3.9",
+            label: "At constant NAV of ₹22.00",
+            gainBadge: "+3.9%",
+            gainSubtitle: "Additional units"
           },
           disclaimer: "More units do not guarantee positive returns."
         },
-        whatThisMeans: "Gold ETF FoF units track domestic physical gold spot prices. Your ongoing ₹250 monthly SIP purchases accumulated units across varying price points, averaging your acquisition cost across the investment period."
+        whyTitle: "Why?",
+        whyText: "As NAV fell from ₹22.00 to ₹20.50, the same ₹250 SIP bought more units.",
+        whatThisMeans: "As NAV fell from ₹22.00 to ₹20.50, the same ₹250 SIP bought more units."
       },
       marketImpact: {
         banner: "Gold supported by sovereign central bank accumulation",

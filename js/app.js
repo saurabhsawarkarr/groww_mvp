@@ -852,12 +852,12 @@
               <!-- Comparison Box -->
               <div class="comparison-pill-box">
                 <div>
-                  <div class="comp-left-label">If NAV remained flat</div>
+                  <div class="comp-left-label">${deep.unitAccumulation.constantNavScenario.label || `At constant NAV of ₹${deep.unitAccumulation.constantNavScenario.nav}`}</div>
                   <div class="comp-left-units">${deep.unitAccumulation.constantNavScenario.units.toFixed(2)} units</div>
                 </div>
                 <div class="comp-pill-green">
-                  ▲ ≈ ${deep.unitAccumulation.constantNavScenario.gainPct}% more units
-                  <div style="font-size: 9.5px; font-weight: 500; opacity: 0.9;">(${deep.unitAccumulation.constantNavScenario.comparisonText})</div>
+                  <div class="comp-pill-main-pct">+${deep.unitAccumulation.constantNavScenario.gainPct}%</div>
+                  <div class="comp-pill-sub-txt">Additional units</div>
                 </div>
               </div>
 
@@ -868,15 +868,19 @@
             </div>
           </div>
 
-          <!-- Section C: What This Means (Slide 3) -->
+          <!-- Section C: Why? (Slide 3) -->
           <div style="padding: 14px 18px 0 18px;">
             <div class="what-means-soft">
               <div class="what-means-icon-box">
-                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8m8 4H8m2-8H8"/></svg>
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                  <line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
               </div>
-              <div>
-                <h4 style="font-size: 13.5px; font-weight: 700; color: var(--groww-text-primary); margin-bottom: 3px;">What this means</h4>
-                <p style="font-size: 11.5px; line-height: 1.45; color: var(--groww-text-secondary);">${deep.whatThisMeans}</p>
+              <div style="flex: 1;">
+                <h4 style="font-size: 14px; font-weight: 800; color: var(--groww-text-primary); margin-bottom: 3px;">${deep.whyTitle || 'Why?'}</h4>
+                <p style="font-size: 12px; line-height: 1.45; color: var(--groww-text-secondary); font-weight: 500;">${deep.whyText || deep.whatThisMeans}</p>
               </div>
             </div>
           </div>

@@ -984,11 +984,27 @@ body.dark-mode .fund-card-soft:hover {
   background: var(--groww-green-bg);
   border: 1px solid var(--groww-green-border);
   color: var(--groww-green-text);
-  padding: 5px 10px;
-  border-radius: var(--radius-pill);
-  font-size: 11.5px;
-  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: var(--radius-sm);
   text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.comp-pill-main-pct {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: var(--groww-green-text);
+  line-height: 1.15;
+}
+
+.comp-pill-sub-txt {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--groww-green-text);
+  opacity: 0.95;
+  margin-top: 1px;
 }
 
 .disclaimer-muted {
