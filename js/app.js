@@ -914,7 +914,6 @@
                     </svg>
                     <span>${market.behavioralInsight.tag}</span>
                   </div>
-                  <span class="proprietary-tag">AI Learning</span>
                 </div>
                 <div class="behavioral-content-body">
                   <p class="behavioral-lead-text">

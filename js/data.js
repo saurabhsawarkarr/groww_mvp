@@ -117,9 +117,9 @@ const GROWW_DATA = {
           { label: "Net fund return", changePct: -8.3, color: "#EB5B56", isTotal: true }
         ],
         behavioralInsight: {
-          tag: "Based on your behaviour",
-          dipAction: "Last time markets dipped, you checked your portfolio 3 times in one week but kept your SIP running.",
-          reassurance: "You have done this before and stayed the course."
+          tag: "Personal Insight",
+          dipAction: "During the last market dip, you kept your SIP running despite the red returns.",
+          reassurance: "You've handled market dips before. Trust your process."
         },
         disclaimer: "Market and sector data is sourced from public benchmark indices and fund fact sheets."
       },
@@ -270,9 +270,9 @@ const GROWW_DATA = {
           { label: "Net fund performance", changePct: -7.5, color: "#EB5B56", isTotal: true }
         ],
         behavioralInsight: {
-          tag: "Based on your behaviour",
-          dipAction: "Last time markets dipped, you checked your portfolio 3 times in one week but kept your SIP running.",
-          reassurance: "You have done this before and stayed the course."
+          tag: "Personal Insight",
+          dipAction: "During the last market dip, you kept your SIP running despite the red returns.",
+          reassurance: "You've handled market dips before. Trust your process."
         },
         disclaimer: "Market and sector data is sourced from public benchmark indices and fund fact sheets."
       },
