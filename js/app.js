@@ -1197,9 +1197,9 @@
               </ul>
             </div>
 
-            <!-- Single Action Button: Back to portfolio -->
+            <!-- Single Action Button: Back to Insights -->
             <div class="single-bottom-action">
-              <button class="btn-primary-green btn-full-width" id="btn-back-to-dashboard-bottom">Back to portfolio</button>
+              <button class="btn-primary-green btn-full-width" id="btn-back-to-insights-bottom">Back to Insights</button>
             </div>
           </div>
         </div>
@@ -1364,9 +1364,9 @@
       if (screenEl) screenEl.scrollTop = 0;
     });
 
-    // Screen 3: Bottom "Back to portfolio" -> Back to Screen 1 (Dashboard)
-    document.getElementById("btn-back-to-dashboard-bottom")?.addEventListener("click", () => {
-      state.currentView = "dashboard";
+    // Screen 3: Bottom "Back to Insights" -> Back to Screen 2 (Portfolio Insights / Fund Select)
+    document.getElementById("btn-back-to-insights-bottom")?.addEventListener("click", () => {
+      state.currentView = "fund-select";
       render();
       const screenEl = document.getElementById("screen-content");
       if (screenEl) screenEl.scrollTop = 0;
