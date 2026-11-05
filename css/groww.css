@@ -1007,6 +1007,19 @@ body.dark-mode .fund-card-soft:hover {
   margin-top: 1px;
 }
 
+.comp-why-inline {
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--groww-text-secondary);
+  margin-top: 10px;
+  margin-bottom: 2px;
+}
+
+.comp-why-inline strong {
+  color: var(--groww-text-primary);
+  font-weight: 700;
+}
+
 .disclaimer-muted {
   font-size: 10.5px;
   color: var(--groww-text-secondary);

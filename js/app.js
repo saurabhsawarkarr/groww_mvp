@@ -861,26 +861,14 @@
                 </div>
               </div>
 
+              <!-- Inline Reason inside the box before disclaimer -->
+              <div class="comp-why-inline">
+                <strong>Why:</strong> ${deep.whyInline || `As NAV fell from ₹680 to ₹595, your SIP bought more units.`}
+              </div>
+
               <div class="disclaimer-muted">
                 <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4m0-4h.01"/></svg>
                 <span>${deep.unitAccumulation.disclaimer}</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Section C: Why? (Slide 3) -->
-          <div style="padding: 14px 18px 0 18px;">
-            <div class="what-means-soft">
-              <div class="what-means-icon-box">
-                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-                  <circle cx="12" cy="12" r="10"/>
-                  <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-                  <line x1="12" y1="17" x2="12.01" y2="17"/>
-                </svg>
-              </div>
-              <div style="flex: 1;">
-                <h4 style="font-size: 14px; font-weight: 800; color: var(--groww-text-primary); margin-bottom: 3px;">${deep.whyTitle || 'Why?'}</h4>
-                <p style="font-size: 12px; line-height: 1.45; color: var(--groww-text-secondary); font-weight: 500;">${deep.whyText || deep.whatThisMeans}</p>
               </div>
             </div>
           </div>
