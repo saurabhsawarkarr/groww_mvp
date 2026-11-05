@@ -113,8 +113,7 @@ const GROWW_DATA = {
         factors: [
           { label: "Broader market (Nifty 50)", changePct: -2.6, color: "#EB5B56" },
           { label: "Your fund's sector (IT / Financials)", changePct: -4.1, color: "#EB5B56" },
-          { label: "Fund-specific stock selection", changePct: -2.0, color: "#EB5B56" },
-          { label: "Your personal entry timing", changePct: +0.4, color: "#00D09C", isProprietary: true },
+          { label: "Fund-specific stock selection", changePct: -1.6, color: "#EB5B56" },
           { label: "Net fund return", changePct: -8.3, color: "#EB5B56", isTotal: true }
         ],
         behavioralInsight: {
@@ -122,7 +121,7 @@ const GROWW_DATA = {
           dipAction: "Last time markets dipped, you checked your portfolio 3 times in one week but kept your SIP running.",
           reassurance: "You have done this before and stayed the course."
         },
-        disclaimer: "Attribution is calculated using your actual transaction dates and NAV history. Market and sector data is sourced from public indices."
+        disclaimer: "Market and sector data is sourced from public benchmark indices and fund fact sheets."
       },
       historicalPerformance: {
         heading: "How this fund behaved in past downturns",
@@ -265,9 +264,9 @@ const GROWW_DATA = {
         banner: "Flexi Cap sector faced short-term global tech consolidation",
         factors: [
           { label: "Domestic broader market (Nifty 500)", changePct: -2.8, color: "#EB5B56" },
-          { label: "Global Tech holdings (Alphabet, Microsoft)", changePct: -3.2, color: "#EB5B56" },
+          { label: "Global Tech holdings (Alphabet, Microsoft)", changePct: -3.5, color: "#EB5B56" },
+          { label: "Domestic stock selection & midcap drift", changePct: -1.7, color: "#EB5B56" },
           { label: "Cash & Arbitrage defensive cushion", changePct: +0.5, color: "#00D09C" },
-          { label: "Your personal entry timing", changePct: +0.3, color: "#00D09C", isProprietary: true },
           { label: "Net fund performance", changePct: -7.5, color: "#EB5B56", isTotal: true }
         ],
         behavioralInsight: {
@@ -275,7 +274,7 @@ const GROWW_DATA = {
           dipAction: "Last time markets dipped, you checked your portfolio 3 times in one week but kept your SIP running.",
           reassurance: "You have done this before and stayed the course."
         },
-        disclaimer: "Attribution is calculated using your actual transaction dates and NAV history. Market and sector data is sourced from public indices."
+        disclaimer: "Market and sector data is sourced from public benchmark indices and fund fact sheets."
       },
       historicalPerformance: {
         heading: "Unmatched defensive track record during drawdowns",
@@ -419,11 +418,10 @@ const GROWW_DATA = {
         factors: [
           { label: "US Dollar Index strength", changePct: -1.8, color: "#EB5B56" },
           { label: "Global Industrial demand fluctuations", changePct: -2.4, color: "#EB5B56" },
-          { label: "Rupee vs Dollar exchange buffer", changePct: +2.3, color: "#00D09C" },
-          { label: "Your personal entry timing", changePct: +0.6, color: "#00D09C", isProprietary: true },
+          { label: "Rupee vs Dollar exchange buffer", changePct: +9.2, color: "#00D09C" },
           { label: "Net commodity return", changePct: +5.0, color: "#00D09C", isTotal: true }
         ],
-        disclaimer: "Attribution is calculated using your actual transaction dates and NAV history. Market and sector data is sourced from public indices."
+        disclaimer: "Market and sector data is sourced from public benchmark indices and fund fact sheets."
       },
       historicalPerformance: {
         heading: "Commodity cycles: Historical drawdowns & subsequent periods",
@@ -561,11 +559,10 @@ const GROWW_DATA = {
         factors: [
           { label: "US Federal Reserve interest rates", changePct: -1.2, color: "#EB5B56" },
           { label: "Global Central Bank gold buying", changePct: +1.8, color: "#00D09C" },
-          { label: "Geopolitical risk premium", changePct: +1.1, color: "#00D09C" },
-          { label: "Your personal entry timing", changePct: +0.3, color: "#00D09C", isProprietary: true },
+          { label: "Geopolitical risk premium", changePct: +1.4, color: "#00D09C" },
           { label: "Net fund return", changePct: +2.0, color: "#00D09C", isTotal: true }
         ],
-        disclaimer: "Attribution is calculated using your actual transaction dates and NAV history. Market and sector data is sourced from public indices."
+        disclaimer: "Market and sector data is sourced from public benchmark indices and fund fact sheets."
       },
       historicalPerformance: {
         heading: "Historical gold price movements during market stress",
