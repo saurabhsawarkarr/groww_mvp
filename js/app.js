@@ -960,49 +960,74 @@
               <span>${hist.callout}</span>
             </div>
 
-            ${hist.longitudinalCycles ? `
-              <!-- Compounding Data Advantage: Longitudinal 3-Cycle Behavior Card -->
-              <div class="historical-cycles-card" style="margin-top: 14px; margin-bottom: 4px;">
-                <div class="cycles-header">
-                  <div class="cycles-header-left">
-                    <div class="cycles-icon-badge">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <polyline points="12 6 12 12 16 14"/>
-                      </svg>
-                    </div>
-                    <div>
-                      <h4 class="cycles-title">How Groww first-time investors behaved across 3 market cycles</h4>
-                      <span class="cycles-sub">Longitudinal platform data (2017 – 2024)</span>
-                    </div>
+            ${(hist.cohortBehavior || hist.longitudinalCycles) ? `
+              <!-- Compounding Data Advantage: Cohort Behavior Card (Screen 5) -->
+              <div class="cohort-behavior-card" style="margin-top: 14px; margin-bottom: 4px;">
+                <div class="cohort-header">
+                  <div class="cohort-icon-badge">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00D09C" stroke-width="2.2">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                      <circle cx="9" cy="7" r="4"/>
+                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
                   </div>
-                  <span class="proprietary-tag">7-Year Moat</span>
+                  <div>
+                    <h4 class="cohort-title">${hist.cohortBehavior?.title || "How Groww investors responded to market declines"}</h4>
+                    <span class="cohort-sub">${hist.cohortBehavior?.subtitle || "SIP behaviour across historical market events"}</span>
+                  </div>
                 </div>
 
-                <div class="cycles-list">
-                  ${hist.longitudinalCycles.map(c => `
-                    <div class="cycle-row-item">
-                      <div class="cycle-info-col">
-                        <span class="cycle-name-text">${c.name}</span>
-                        <span class="cycle-tag-muted">${c.subtext}</span>
+                <div class="cohort-hero-num">${hist.cohortBehavior?.heroPct || 81}%</div>
+                <div class="cohort-hero-label">${hist.cohortBehavior?.heroLabel || "continued their SIP during the February 2025 market dip"}</div>
+
+                <!-- Multi-segment bar -->
+                <div class="cohort-bar-track">
+                  <div class="cohort-bar-seg seg-continued" style="width: 81%;"></div>
+                  <div class="cohort-bar-seg seg-paused" style="width: 12%;"></div>
+                  <div class="cohort-bar-seg seg-stopped" style="width: 7%;"></div>
+                </div>
+
+                <!-- 3-Column Legend -->
+                <div class="cohort-stats-row">
+                  <div class="cohort-stat-col">
+                    <span class="cohort-stat-pct color-green">81%</span>
+                    <span class="cohort-stat-label">Continued SIP</span>
+                  </div>
+                  <div class="cohort-stat-col">
+                    <span class="cohort-stat-pct color-amber">12%</span>
+                    <span class="cohort-stat-label">Paused</span>
+                  </div>
+                  <div class="cohort-stat-col">
+                    <span class="cohort-stat-pct color-red">7%</span>
+                    <span class="cohort-stat-label">Stopped</span>
+                  </div>
+                </div>
+
+                <div class="cohort-hist-heading">
+                  ${hist.cohortBehavior?.historicalHeading || "SIP continuation across previous market events"}
+                </div>
+
+                <div class="cohort-events-list">
+                  ${(hist.cohortBehavior?.previousEvents || [
+                    { name: "2020 · COVID crash", pct: 67 },
+                    { name: "2022 · Rate hike correction", pct: 74 },
+                    { name: "2024 · Election volatility", pct: 81 }
+                  ]).map(ev => `
+                    <div class="prev-event-item">
+                      <div class="prev-event-meta">
+                        <span class="prev-event-name">${ev.name}</span>
+                        <span class="prev-event-pct">${ev.pct}%</span>
                       </div>
-                      <div class="cycle-stat-badge ${c.isHighlight ? 'highlight-green' : ''}">
-                        <span class="cycle-pct-val">${c.continuedPct}%</span>
-                        <span class="cycle-action-label">continued their SIP</span>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00D09C" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                      <div class="prev-event-bar-track">
+                        <div class="prev-event-bar-fill" style="width: ${ev.pct}%;"></div>
                       </div>
                     </div>
                   `).join('')}
                 </div>
 
-                <div class="cycles-footer-takeaway">
-                  <div class="trend-icon-circle">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#00D09C" stroke-width="2.5">
-                      <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
-                      <polyline points="17 6 23 6 23 12"/>
-                    </svg>
-                  </div>
-                  <span>${hist.cyclesTakeaway || 'Continuation rates are improving as investors become more informed.'}</span>
+                <div class="cohort-disclaimer">
+                  ${hist.cohortBehavior?.disclaimer || "Illustrative presentation using your supplied figures. Historical periods and the February 2025 cohort must have verified, comparable definitions and sources before publication."}
                 </div>
               </div>
             ` : ''}

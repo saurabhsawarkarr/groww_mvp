@@ -136,12 +136,24 @@ const GROWW_DATA = {
           desc: "subsequently recorded a 78.2% return in the following 12-month period."
         },
         callout: "During the 2020 market crash, this fund fell 29.4%, then delivered a 78.2% return over the next 12 months as mid-caps rebounded.",
-        longitudinalCycles: [
-          { name: "2020 COVID crash", subtext: "Severe market shock", continuedPct: 67 },
-          { name: "2022 rate hike correction", subtext: "Prolonged inflation", continuedPct: 74 },
-          { name: "2024 election volatility", subtext: "Short-term swing", continuedPct: 81, isHighlight: true }
-        ],
-        cyclesTakeaway: "Continuation rates are improving as investors become more informed."
+        cohortBehavior: {
+          title: "How Groww investors responded to market declines",
+          subtitle: "SIP behaviour across historical market events",
+          heroPct: 81,
+          heroLabel: "continued their SIP during the February 2025 market dip",
+          breakdown: [
+            { label: "Continued SIP", pct: 81, colorClass: "color-green" },
+            { label: "Paused", pct: 12, colorClass: "color-amber" },
+            { label: "Stopped", pct: 7, colorClass: "color-red" }
+          ],
+          historicalHeading: "SIP continuation across previous market events",
+          previousEvents: [
+            { name: "2020 · COVID crash", pct: 67 },
+            { name: "2022 · Rate hike correction", pct: 74 },
+            { name: "2024 · Election volatility", pct: 81 }
+          ],
+          disclaimer: "Illustrative presentation using your supplied figures. Historical periods and the February 2025 cohort must have verified, comparable definitions and sources before publication."
+        }
       },
       fundManager: {
         name: "Mr. R. Srinivasan",
@@ -289,12 +301,24 @@ const GROWW_DATA = {
           desc: "doubled with +100.1% recovery over the subsequent 12 months."
         },
         callout: "During the March 2020 crash, PPFAS fell significantly less than peers (-21.8% vs -31% category avg), then delivered a 100.1% gain in the next 12 months.",
-        longitudinalCycles: [
-          { name: "2020 COVID crash", subtext: "Severe market shock", continuedPct: 67 },
-          { name: "2022 rate hike correction", subtext: "Prolonged inflation", continuedPct: 74 },
-          { name: "2024 election volatility", subtext: "Short-term swing", continuedPct: 81, isHighlight: true }
-        ],
-        cyclesTakeaway: "Continuation rates are improving as investors become more informed."
+        cohortBehavior: {
+          title: "How Groww investors responded to market declines",
+          subtitle: "SIP behaviour across historical market events",
+          heroPct: 81,
+          heroLabel: "continued their SIP during the February 2025 market dip",
+          breakdown: [
+            { label: "Continued SIP", pct: 81, colorClass: "color-green" },
+            { label: "Paused", pct: 12, colorClass: "color-amber" },
+            { label: "Stopped", pct: 7, colorClass: "color-red" }
+          ],
+          historicalHeading: "SIP continuation across previous market events",
+          previousEvents: [
+            { name: "2020 · COVID crash", pct: 67 },
+            { name: "2022 · Rate hike correction", pct: 74 },
+            { name: "2024 · Election volatility", pct: 81 }
+          ],
+          disclaimer: "Illustrative presentation using your supplied figures. Historical periods and the February 2025 cohort must have verified, comparable definitions and sources before publication."
+        }
       },
       fundManager: {
         name: "Mr. Rajeev Thakkar",
@@ -435,7 +459,25 @@ const GROWW_DATA = {
           period: "Next 12M",
           desc: "rebounded by 38.5% in the following industrial cycle."
         },
-        callout: "Historical data shows commodity drawdowns followed by industrial demand cycles, though recovery timelines and magnitudes vary."
+        callout: "Historical data shows commodity drawdowns followed by industrial demand cycles, though recovery timelines and magnitudes vary.",
+        cohortBehavior: {
+          title: "How Groww investors responded to market declines",
+          subtitle: "SIP behaviour across historical market events",
+          heroPct: 81,
+          heroLabel: "continued their SIP during the February 2025 market dip",
+          breakdown: [
+            { label: "Continued SIP", pct: 81, colorClass: "color-green" },
+            { label: "Paused", pct: 12, colorClass: "color-amber" },
+            { label: "Stopped", pct: 7, colorClass: "color-red" }
+          ],
+          historicalHeading: "SIP continuation across previous market events",
+          previousEvents: [
+            { name: "2020 · COVID crash", pct: 67 },
+            { name: "2022 · Rate hike correction", pct: 74 },
+            { name: "2024 · Election volatility", pct: 81 }
+          ],
+          disclaimer: "Illustrative presentation using your supplied figures. Historical periods and the February 2025 cohort must have verified, comparable definitions and sources before publication."
+        }
       },
       fundManager: {
         name: "Mr. Tapan Patel",
@@ -576,7 +618,25 @@ const GROWW_DATA = {
           period: "Next 12M",
           desc: "rebounded to new record highs over the next 12 months."
         },
-        callout: "During past market events, gold corrections historically differed in duration and magnitude from equities; past price movements do not predict future trends."
+        callout: "During past market events, gold corrections historically differed in duration and magnitude from equities; past price movements do not predict future trends.",
+        cohortBehavior: {
+          title: "How Groww investors responded to market declines",
+          subtitle: "SIP behaviour across historical market events",
+          heroPct: 81,
+          heroLabel: "continued their SIP during the February 2025 market dip",
+          breakdown: [
+            { label: "Continued SIP", pct: 81, colorClass: "color-green" },
+            { label: "Paused", pct: 12, colorClass: "color-amber" },
+            { label: "Stopped", pct: 7, colorClass: "color-red" }
+          ],
+          historicalHeading: "SIP continuation across previous market events",
+          previousEvents: [
+            { name: "2020 · COVID crash", pct: 67 },
+            { name: "2022 · Rate hike correction", pct: 74 },
+            { name: "2024 · Election volatility", pct: 81 }
+          ],
+          disclaimer: "Illustrative presentation using your supplied figures. Historical periods and the February 2025 cohort must have verified, comparable definitions and sources before publication."
+        }
       },
       fundManager: {
         name: "Mr. Tapan Patel",
