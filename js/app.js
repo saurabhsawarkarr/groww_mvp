@@ -941,23 +941,7 @@
           <div style="padding: 0 18px;">
             <div class="section-title-row">
               <h3 class="flow-section-heading">Historical Performance</h3>
-              <span class="flow-section-sub">How this fund navigated past market drawdowns</span>
-            </div>
-
-            <div class="hist-tabs-pill" style="margin-bottom: 10px;">
-              <div class="hist-tab-btn active">This Fund</div>
-              <div class="hist-tab-btn">vs Category</div>
-            </div>
-
-            <div class="chart-card-soft" style="margin-bottom: 12px;">
-              <div style="width: 100%; height: 165px; position: relative;">
-                ${renderHistoricalChart(fund)}
-              </div>
-            </div>
-
-            <div class="info-pill-note">
-              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4m0-4h.01"/></svg>
-              <span>${hist.callout}</span>
+              <span class="flow-section-sub">How Groww investors navigated past market drawdowns</span>
             </div>
 
             ${(hist.cohortBehavior || hist.longitudinalCycles) ? `
