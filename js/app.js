@@ -12,16 +12,116 @@
   const scrollParam = urlParams.get('scroll');
 
   const state = {
-    // Views: 'dashboard' (Slide 1), 'fund-select' (Slide 2), 'deepdive-scroll' (Slides 3-7 combined)
+    // Views: 'dashboard' (Slide 1), 'fund-detail' (Authentic Groww Fund Screen), 'fund-select' (Slide 2), 'deepdive-scroll' (Slides 3-7 combined)
     currentView: viewParam || (slideParam === '1' ? 'dashboard' : (slideParam === '2' ? 'fund-select' : (slideParam ? 'slide-inspect' : 'dashboard'))),
     inspectSlideNum: slideParam ? parseInt(slideParam) : 3,
     selectedFundId: fundParam || "sbi-large-midcap",
-    managerTf: "3Y"
+    previousView: 'dashboard',
+    managerTf: "3Y",
+    calcMode: "sip", // "sip" | "lumpsum"
+    calcAmount: 5000,
+    calcTf: "6M", // "6M" | "1Y" | "3Y" | "5Y"
+    accordions: {
+      calc: true,
+      returns: true,
+      peers: false,
+      expense: true,
+      manager: false
+    }
   };
 
   const getSelectedFund = () => {
     return GROWW_DATA.funds.find(f => f.id === state.selectedFundId) || GROWW_DATA.funds[0];
   };
+
+  // Return Calculator Engine
+  function getCalculatorData(fund, mode, amount) {
+    const rate = fund.calcDefaultRate || 18.0;
+    const timeframes = [
+      { key: "6M", months: 6, years: 0.5 },
+      { key: "1Y", months: 12, years: 1.0 },
+      { key: "3Y", months: 36, years: 3.0 },
+      { key: "5Y", months: 60, years: 5.0 }
+    ];
+
+    const result = {};
+    let maxVal = 0;
+
+    timeframes.forEach(tf => {
+      let invested = 0;
+      let futureVal = 0;
+
+      if (mode === "sip") {
+        invested = amount * tf.months;
+        const i = (rate / 100) / 12;
+        futureVal = amount * ((Math.pow(1 + i, tf.months) - 1) / i) * (1 + i);
+      } else {
+        invested = amount;
+        const r = rate / 100;
+        futureVal = amount * Math.pow(1 + r, tf.years);
+      }
+
+      if (invested > maxVal) maxVal = invested;
+      if (futureVal > maxVal) maxVal = futureVal;
+
+      result[tf.key] = {
+        invested,
+        futureVal
+      };
+    });
+
+    // Scale to max height of 75px, minimum 10px
+    const MAX_BAR_HEIGHT = 75;
+    timeframes.forEach(tf => {
+      const item = result[tf.key];
+      item.investedHeight = Math.max(10, Math.round((item.invested / maxVal) * MAX_BAR_HEIGHT));
+      item.futureValHeight = Math.max(10, Math.round((item.futureVal / maxVal) * MAX_BAR_HEIGHT));
+    });
+
+    return result;
+  }
+
+  function updateCalculatorUI() {
+    const fund = getSelectedFund();
+    const data = getCalculatorData(fund, state.calcMode, state.calcAmount);
+    
+    // Update amount display text
+    const displayEl = document.getElementById("calc-amount-val-text");
+    if (displayEl) {
+      displayEl.textContent = `₹${state.calcAmount.toLocaleString('en-IN')}`;
+    }
+    
+    // Update slider value
+    const slider = document.getElementById("calc-slider-input");
+    if (slider) {
+      slider.value = state.calcAmount;
+    }
+    
+    // Update bars
+    ["6M", "1Y", "3Y", "5Y"].forEach(tf => {
+      const col = document.querySelector(`.calc-bar-column[data-tf="${tf}"]`);
+      if (col) {
+        col.classList.toggle("active", tf === state.calcTf);
+        const barInvested = col.querySelector(".bar-invested");
+        const barGain = col.querySelector(".bar-gain");
+        if (barInvested && barGain && data[tf]) {
+          barInvested.style.height = `${data[tf].investedHeight}px`;
+          barGain.style.height = `${data[tf].futureValHeight}px`;
+        }
+      }
+    });
+    
+    // Update summary values for selected timeframe
+    const activeData = data[state.calcTf];
+    const totalInvestedEl = document.getElementById("calc-summary-invested");
+    const wouldBecomeEl = document.getElementById("calc-summary-become");
+    if (totalInvestedEl && activeData) {
+      totalInvestedEl.textContent = `₹${Math.round(activeData.invested).toLocaleString('en-IN')}`;
+    }
+    if (wouldBecomeEl && activeData) {
+      wouldBecomeEl.textContent = `₹${Math.round(activeData.futureVal).toLocaleString('en-IN')}`;
+    }
+  }
 
   // Fund Brand Logos SVG
   function renderFundLogo(fundId, size = 36) {
@@ -228,6 +328,347 @@
               </div>
             `).join('')}
           </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // ==========================================
+  // SCREEN: AUTHENTIC GROWW MUTUAL FUND DETAILS (MATCHING IMG_9939-9941)
+  // ==========================================
+  function renderScreenFundDetails() {
+    const fund = getSelectedFund();
+    const h = fund.userHolding || {
+      invested: fund.invested,
+      currentValue: fund.currentValue,
+      totalReturns: fund.returns,
+      totalReturnsPct: fund.returnsPct,
+      dayReturns: -72,
+      dayReturnsPct: fund.dayChangePct,
+      avgNav: 632.91,
+      units: 4.74,
+      activeSipAmount: fund.sipAmount,
+      nextSipDate: "15 Nov 2026"
+    };
+
+    const calcData = getCalculatorData(fund, state.calcMode, state.calcAmount);
+    const activeCalc = calcData[state.calcTf] || calcData["6M"];
+    const isNeg = fund.returns < 0;
+
+    return `
+      <div class="fund-detail-wrapper" id="screen-fund-detail">
+        <!-- Sticky Top Navigation Bar -->
+        <div class="fund-detail-top-nav">
+          <div class="fund-nav-left">
+            <button class="back-btn" id="btn-back-to-dashboard-detail" title="Back to Dashboard">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M19 12H5m7 7-7-7 7-7"/></svg>
+            </button>
+            <div class="fund-nav-meta">
+              <span class="fund-nav-title">${fund.name}</span>
+              <div class="fund-nav-sub">
+                <span class="${fund.dayChangePct < 0 ? 'loss' : 'gain'}">
+                  ${fund.dayChangePct > 0 ? '+' : ''}${fund.dayChangePct}% · 1D
+                </span>
+                <span>•</span>
+                <span>NAV ₹${fund.nav.toFixed(2)}</span>
+              </div>
+            </div>
+          </div>
+          <div class="fund-nav-right-icons">
+            <button class="fund-nav-icon-btn" title="Save to Watchlist">
+              <svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+            <button class="fund-nav-icon-btn" title="Search">
+              <svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Scrollable Content -->
+        <div class="fund-detail-scroll">
+          <!-- Hero Header -->
+          <div class="fund-detail-header-card">
+            <div class="fund-brand-row">
+              ${renderFundLogo(fund.id, 40)}
+              <div class="fund-brand-info">
+                <h1 class="fund-brand-title">${fund.name}</h1>
+                <div class="fund-tags-pill-row">
+                  <span class="fund-badge-chip">${fund.plan}</span>
+                  <span class="fund-badge-chip">${fund.subCategory || fund.category}</span>
+                  <span class="fund-badge-chip rating-chip">${fund.rating || 5} ★</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- User Investment in this Fund -->
+          <div class="user-holding-detail-card">
+            <div class="holding-card-top">
+              <span class="holding-card-top-title">Your Investment</span>
+              <span class="sip-status-pill ${fund.sipStatusClass || 'status-active'}">
+                <span class="sip-status-dot"></span>${fund.status}
+              </span>
+            </div>
+            <div class="user-holding-metrics-grid">
+              <div class="user-holding-stat">
+                <span class="uh-label">Current value</span>
+                <span class="uh-value">₹${h.currentValue.toLocaleString('en-IN')}</span>
+              </div>
+              <div class="user-holding-stat">
+                <span class="uh-label">Total returns</span>
+                <span class="uh-value ${h.totalReturns < 0 ? 'loss' : 'gain'}">
+                  ${h.totalReturns < 0 ? '-' : '+'}₹${Math.abs(h.totalReturns).toLocaleString('en-IN')} (${h.totalReturnsPct}%)
+                </span>
+              </div>
+              <div class="user-holding-stat">
+                <span class="uh-label">Invested</span>
+                <span class="uh-value">₹${h.invested.toLocaleString('en-IN')}</span>
+              </div>
+              <div class="user-holding-stat">
+                <span class="uh-label">1D returns</span>
+                <span class="uh-value ${h.dayReturns < 0 ? 'loss' : 'gain'}">
+                  ${h.dayReturns < 0 ? '-' : '+'}₹${Math.abs(h.dayReturns)} (${h.dayReturnsPct}%)
+                </span>
+              </div>
+            </div>
+            <div class="user-holding-sub-bar">
+              <span>Avg NAV: <strong>₹${h.avgNav.toFixed(2)}</strong></span>
+              <span>Units: <strong>${h.units.toFixed(2)}</strong></span>
+              <span>SIP: <strong>₹${h.activeSipAmount}/mo</strong></span>
+            </div>
+          </div>
+
+          <!-- Contextual Bridge to Solution: "Why is this fund down?" -->
+          ${isNeg ? `
+            <div class="fund-solution-bridge-card" id="btn-jump-to-deepdive">
+              <div class="bridge-left">
+                <div class="bridge-icon-box">
+                  <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                    <line x1="12" y1="20" x2="12" y2="10"/>
+                    <line x1="18" y1="20" x2="18" y2="4"/>
+                    <line x1="6" y1="20" x2="6" y2="16"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="bridge-title">Why is this fund down?</div>
+                  <div class="bridge-sub">Understand market impact & how your SIP accumulated units</div>
+                </div>
+              </div>
+              <div class="bridge-arrow-pill">
+                <span>View Insights</span>
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+              </div>
+            </div>
+          ` : ''}
+
+          <!-- Accordion 1: Return Calculator (Matching IMG_9939.PNG) -->
+          <div class="groww-accordion-item">
+            <div class="accordion-header-row" data-acc="calc">
+              <span class="accordion-title">Return calculator</span>
+              <svg class="accordion-chevron ${state.accordions.calc ? 'open' : ''}" id="acc-chev-calc" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+            </div>
+            <div class="accordion-body-box" id="acc-body-calc" style="display: ${state.accordions.calc ? 'block' : 'none'};">
+              <div class="calc-type-segmented-control">
+                <button class="calc-type-btn ${state.calcMode === 'sip' ? 'active' : ''}" data-mode="sip">Monthly SIP</button>
+                <button class="calc-type-btn ${state.calcMode === 'lumpsum' ? 'active' : ''}" data-mode="lumpsum">One-time</button>
+              </div>
+
+              <div class="calc-amount-label">${state.calcMode === 'sip' ? 'Monthly investment' : 'One-time investment'}</div>
+              <div class="calc-amount-val-display" id="calc-amount-val-text">₹${state.calcAmount.toLocaleString('en-IN')}</div>
+
+              <div class="calc-slider-container">
+                <input type="range" 
+                  class="calc-range-slider" 
+                  id="calc-slider-input" 
+                  min="${state.calcMode === 'sip' ? 500 : 5000}" 
+                  max="${state.calcMode === 'sip' ? 50000 : 200000}" 
+                  step="${state.calcMode === 'sip' ? 500 : 5000}" 
+                  value="${state.calcAmount}">
+              </div>
+
+              <!-- Bar Chart with 4 timeframes (6M, 1Y, 3Y, 5Y) -->
+              <div class="calc-bars-display">
+                ${['6M', '1Y', '3Y', '5Y'].map(tf => {
+                  const item = calcData[tf];
+                  const isActive = tf === state.calcTf;
+                  return `
+                    <div class="calc-bar-column ${isActive ? 'active' : ''}" data-tf="${tf}">
+                      <div class="calc-bar-pair">
+                        <div class="calc-bar-fill bar-invested" style="height: ${item.investedHeight}px;"></div>
+                        <div class="calc-bar-fill bar-gain" style="height: ${item.futureValHeight}px;"></div>
+                      </div>
+                      <span class="calc-tf-pill-badge">${tf}</span>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+
+              <div class="calc-dotted-divider"></div>
+
+              <div class="calc-summary-stat-row">
+                <div class="calc-stat-key">
+                  <span class="calc-dot-indicator dot-gray"></span>
+                  <span>Total investment</span>
+                </div>
+                <span class="calc-stat-val-text" id="calc-summary-invested">₹${Math.round(activeCalc.invested).toLocaleString('en-IN')}</span>
+              </div>
+              <div class="calc-summary-stat-row">
+                <div class="calc-stat-key">
+                  <span class="calc-dot-indicator dot-purple"></span>
+                  <span>Would've become</span>
+                </div>
+                <span class="calc-stat-val-text" id="calc-summary-become">₹${Math.round(activeCalc.futureVal).toLocaleString('en-IN')}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion 2: Returns & rankings (Matching IMG_9940.PNG) -->
+          <div class="groww-accordion-item">
+            <div class="accordion-header-row" data-acc="returns">
+              <span class="accordion-title">Returns & rankings</span>
+              <svg class="accordion-chevron ${state.accordions.returns ? 'open' : ''}" id="acc-chev-returns" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+            </div>
+            <div class="accordion-body-box" id="acc-body-returns" style="display: ${state.accordions.returns ? 'block' : 'none'};">
+              <div class="returns-rankings-subline">
+                <span class="returns-cat-label">Category: ${fund.returnsTable?.categoryName || fund.category}</span>
+                <span class="returns-annualised-link">Annualised ‹›</span>
+              </div>
+
+              <table class="groww-returns-table">
+                <thead>
+                  <tr>
+                    <th></th>
+                    ${(fund.returnsTable?.periods || ['1Y', '3Y', '5Y', 'All']).map(p => `<th>${p}</th>`).join('')}
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Fund returns (%)</td>
+                    ${(fund.returnsTable?.fundReturns || ['14.8%', '21.8%', '18.2%', '16.4%']).map(v => `<td>${v}</td>`).join('')}
+                  </tr>
+                  <tr>
+                    <td>Category Avg. (%)</td>
+                    ${(fund.returnsTable?.categoryAvg || ['12.1%', '16.5%', '14.3%', '13.9%']).map(v => `<td>${v}</td>`).join('')}
+                  </tr>
+                  <tr>
+                    <td>Rank in category</td>
+                    ${(fund.returnsTable?.rankInCategory || ['4', '2', '3', '-']).map(v => `<td>${v}</td>`).join('')}
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="understand-returns-link">
+                <span>Understand returns</span>
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4m0-4h.01"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion 3: Peer Comparison (Matching IMG_9940.PNG) -->
+          <div class="groww-accordion-item">
+            <div class="accordion-header-row" data-acc="peers">
+              <span class="accordion-title">Peer Comparison</span>
+              <svg class="accordion-chevron ${state.accordions.peers ? 'open' : ''}" id="acc-chev-peers" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+            </div>
+            <div class="accordion-body-box" id="acc-body-peers" style="display: ${state.accordions.peers ? 'block' : 'none'};">
+              <div class="peer-comparison-list">
+                ${(fund.peers || [
+                  { name: "Peer Fund A", return3Y: "19.5%", expenseRatio: "0.75%" },
+                  { name: "Peer Fund B", return3Y: "18.2%", expenseRatio: "0.68%" }
+                ]).map(p => `
+                  <div class="peer-fund-item">
+                    <div class="peer-name-col">
+                      <span class="peer-title">${p.name}</span>
+                      <span class="peer-expense">Expense ratio: ${p.expenseRatio}</span>
+                    </div>
+                    <span class="peer-ret-col">${p.return3Y} (3Y)</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion 4: Expense ratio, exit load & tax (Matching IMG_9941.PNG) -->
+          <div class="groww-accordion-item">
+            <div class="accordion-header-row" data-acc="expense">
+              <span class="accordion-title">Expense ratio, exit load & tax</span>
+              <svg class="accordion-chevron ${state.accordions.expense ? 'open' : ''}" id="acc-chev-expense" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+            </div>
+            <div class="accordion-body-box" id="acc-body-expense" style="display: ${state.accordions.expense ? 'block' : 'none'};">
+              <div class="expense-tax-bullet-item">
+                <span class="bullet-square">▪</span>
+                <div class="expense-tax-content">
+                  <h5 class="expense-tax-head">Expense ratio: ${fund.expenseRatio}</h5>
+                  <p class="expense-tax-desc">${fund.taxDetails?.expenseRatioText || 'Exclusive of GST & statutory charges'}</p>
+                </div>
+              </div>
+
+              <div class="expense-tax-bullet-item">
+                <span class="bullet-square">▪</span>
+                <div class="expense-tax-content">
+                  <h5 class="expense-tax-head">Exit load</h5>
+                  <p class="expense-tax-desc">${fund.taxDetails?.exitLoadText || fund.exitLoad}</p>
+                </div>
+              </div>
+
+              <div class="expense-tax-bullet-item">
+                <span class="bullet-square">▪</span>
+                <div class="expense-tax-content">
+                  <h5 class="expense-tax-head">Stamp duty on investment</h5>
+                  <p class="expense-tax-desc">${fund.taxDetails?.stampDutyText || '0.005% (from July 1st, 2020)'}</p>
+                </div>
+              </div>
+
+              <div class="expense-tax-bullet-item">
+                <span class="bullet-square">▪</span>
+                <div class="expense-tax-content">
+                  <h5 class="expense-tax-head">Tax implication</h5>
+                  <p class="expense-tax-desc">${fund.taxDetails?.taxImplicationText || "Returns taxed per current SEBI/IT regulations."}</p>
+                </div>
+              </div>
+
+              <div class="expense-tax-footer-links">
+                <div class="understand-returns-link">
+                  <span>Understand terms</span>
+                  <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4m0-4h.01"/></svg>
+                </div>
+                <button class="check-past-data-btn">Check past data</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion 5: Fund management (Matching IMG_9940.PNG) -->
+          <div class="groww-accordion-item">
+            <div class="accordion-header-row" data-acc="manager">
+              <span class="accordion-title">Fund management</span>
+              <svg class="accordion-chevron ${state.accordions.manager ? 'open' : ''}" id="acc-chev-manager" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+            </div>
+            <div class="accordion-body-box" id="acc-body-manager" style="display: ${state.accordions.manager ? 'block' : 'none'};">
+              <div class="manager-profile-card" style="margin-bottom: 0;">
+                <div class="manager-avatar-purple">
+                  <svg width="40" height="40" viewBox="0 0 44 44" fill="none">
+                    <circle cx="22" cy="22" r="22" fill="#D8B4FE"/>
+                    <circle cx="22" cy="16" r="7" fill="#374151"/>
+                    <path d="M11 36 C11 28, 16 26, 22 26 C28 26, 33 28, 33 36 Z" fill="#1F2937"/>
+                  </svg>
+                </div>
+                <div class="manager-info-col">
+                  <span class="manager-kicker-label">LEAD MANAGER</span>
+                  <h4 class="manager-fullname">${fund.fundManager.name}</h4>
+                  <p class="manager-tenure-desc">${fund.fundManager.tenure}</p>
+                </div>
+                <div class="manager-tenure-pill">
+                  <span>${fund.fundManager.tenureBadge}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sticky Bottom Action Bar (Matching IMG_9939.PNG) -->
+        <div class="fund-detail-bottom-bar">
+          <button class="btn-onetime-groww" id="btn-fund-onetime">One-time</button>
+          <button class="btn-sip-groww" id="btn-fund-sip">Start SIP</button>
         </div>
       </div>
     `;
@@ -764,9 +1205,18 @@
     const screenEl = document.getElementById("screen-content");
     if (!screenEl) return;
 
+    // Toggle bottom nav bar visibility: show on dashboard, hide on sub-screens
+    const bottomNav = document.querySelector('.bottom-nav');
+    if (bottomNav) {
+      bottomNav.style.display = (state.currentView === 'dashboard') ? 'flex' : 'none';
+    }
+
     if (state.currentView === "dashboard") {
       screenEl.className = "screen-content view-non-scroll";
       screenEl.innerHTML = renderScreen1Dashboard();
+    } else if (state.currentView === "fund-detail") {
+      screenEl.className = "screen-content view-non-scroll";
+      screenEl.innerHTML = renderScreenFundDetails();
     } else if (state.currentView === "fund-select") {
       screenEl.className = "screen-content view-non-scroll";
       screenEl.innerHTML = renderScreen2FundSelection();
@@ -780,10 +1230,11 @@
     attachEventHandlers();
 
     if (scrollParam) {
+      const scrollTarget = screenEl.querySelector(".fund-detail-scroll") || screenEl;
       if (scrollParam === 'bottom') {
-        screenEl.scrollTop = 99999;
+        scrollTarget.scrollTop = 99999;
       } else {
-        screenEl.scrollTop = parseInt(scrollParam) || 0;
+        scrollTarget.scrollTop = parseInt(scrollParam) || 0;
       }
     }
   }
@@ -796,18 +1247,83 @@
   }
 
   function attachEventHandlers() {
-    // Screen 1: Click Insight Card -> Navigate to Screen 2 (Fund Select)
+    // Screen 1: Click Insight Card -> Navigate to Screen 2 (Portfolio Insights / Fund Select)
     document.getElementById("btn-trigger-insights")?.addEventListener("click", () => {
+      state.previousView = "dashboard";
       state.currentView = "fund-select";
       render();
+      const screenEl = document.getElementById("screen-content");
+      if (screenEl) screenEl.scrollTop = 0;
     });
 
-    // Screen 1: Click direct holding row -> Select fund & open Deep Dive Scroll
+    // Screen 1: Click direct holding row -> Select fund & open Authentic Fund Detail screen
     document.querySelectorAll(".holding-flat-row").forEach(el => {
       el.addEventListener("click", () => {
         state.selectedFundId = el.dataset.fundId;
-        state.currentView = "deepdive-scroll";
+        state.previousView = "dashboard";
+        state.currentView = "fund-detail";
         render();
+        const screenEl = document.getElementById("screen-content");
+        if (screenEl) screenEl.scrollTop = 0;
+      });
+    });
+
+    // Fund Details: Back button -> Back to Dashboard
+    document.getElementById("btn-back-to-dashboard-detail")?.addEventListener("click", () => {
+      state.currentView = "dashboard";
+      render();
+      const screenEl = document.getElementById("screen-content");
+      if (screenEl) screenEl.scrollTop = 0;
+    });
+
+    // Fund Details: Bridge card to Solution ("Why is this fund down?") -> Open Deep Dive Solution!
+    document.getElementById("btn-jump-to-deepdive")?.addEventListener("click", () => {
+      state.previousView = "fund-detail";
+      state.currentView = "deepdive-scroll";
+      render();
+      const screenEl = document.getElementById("screen-content");
+      if (screenEl) screenEl.scrollTop = 0;
+    });
+
+    // Fund Details: Accordion toggles
+    document.querySelectorAll(".accordion-header-row").forEach(header => {
+      header.addEventListener("click", () => {
+        const accKey = header.dataset.acc;
+        if (accKey) {
+          state.accordions[accKey] = !state.accordions[accKey];
+          const body = document.getElementById(`acc-body-${accKey}`);
+          const chevron = document.getElementById(`acc-chev-${accKey}`);
+          if (body && chevron) {
+            body.style.display = state.accordions[accKey] ? "block" : "none";
+            chevron.classList.toggle("open", state.accordions[accKey]);
+          }
+        }
+      });
+    });
+
+    // Fund Details: Calculator mode toggle (Monthly SIP vs One-time)
+    document.querySelectorAll(".calc-type-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        state.calcMode = btn.dataset.mode;
+        state.calcAmount = state.calcMode === "sip" ? 5000 : 25000;
+        render();
+      });
+    });
+
+    // Fund Details: Calculator slider
+    const slider = document.getElementById("calc-slider-input");
+    if (slider) {
+      slider.addEventListener("input", (e) => {
+        state.calcAmount = parseInt(e.target.value);
+        updateCalculatorUI();
+      });
+    }
+
+    // Fund Details: Calculator timeframe pills
+    document.querySelectorAll(".calc-bar-column").forEach(col => {
+      col.addEventListener("click", () => {
+        state.calcTf = col.dataset.tf;
+        updateCalculatorUI();
       });
     });
 
@@ -815,12 +1331,15 @@
     document.getElementById("btn-back-to-dashboard")?.addEventListener("click", () => {
       state.currentView = "dashboard";
       render();
+      const screenEl = document.getElementById("screen-content");
+      if (screenEl) screenEl.scrollTop = 0;
     });
 
-    // Screen 2: Click any fund -> Select fund & open Deep Dive Scroll!
+    // Screen 2: Click any fund -> Select fund & open Deep Dive Solution Report!
     document.querySelectorAll(".fund-card-soft").forEach(el => {
       el.addEventListener("click", () => {
         state.selectedFundId = el.dataset.selectFund;
+        state.previousView = "fund-select";
         state.currentView = "deepdive-scroll";
         render();
         const screenEl = document.getElementById("screen-content");
@@ -828,22 +1347,28 @@
       });
     });
 
-    // Screen 3: Back button -> Back to Screen 2 (Fund Select)
+    // Screen 3: Back button -> Back to previous view (Fund Detail or Fund Select)
     document.getElementById("btn-back-to-fundselect")?.addEventListener("click", () => {
-      state.currentView = "fund-select";
+      state.currentView = (state.previousView === "fund-detail") ? "fund-detail" : "fund-select";
       render();
+      const screenEl = document.getElementById("screen-content");
+      if (screenEl) screenEl.scrollTop = 0;
     });
 
     // Screen 3: Bottom "Back to portfolio" -> Back to Screen 1 (Dashboard)
     document.getElementById("btn-back-to-dashboard-bottom")?.addEventListener("click", () => {
       state.currentView = "dashboard";
       render();
+      const screenEl = document.getElementById("screen-content");
+      if (screenEl) screenEl.scrollTop = 0;
     });
 
     // Screen 3: Bottom "Change Fund" -> Back to Screen 2 (Fund Select)
     document.getElementById("btn-change-fund-bottom")?.addEventListener("click", () => {
       state.currentView = "fund-select";
       render();
+      const screenEl = document.getElementById("screen-content");
+      if (screenEl) screenEl.scrollTop = 0;
     });
 
     // Manager chart timeframe buttons

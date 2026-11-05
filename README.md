@@ -26,10 +26,11 @@ First-time mutual fund investors checking their portfolio during market dips fre
 * They pause or cancel active SIPs precisely when unit accumulation is cheapest.
 * They panic-sell and miss the subsequent market recovery.
 
-### The Solution: A Guided 3-Step Experience
-1. **Screen 1 – Fixed Dashboard:** Features a prominent, reassuring banner: *"Why is my portfolio down? Understand how market movements, your funds, and SIP investments are affecting your returns."*
-2. **Screen 2 – Fund Selection (Non-scrolling, Airy):** Displays each holding with its 3-column stats (`Invested`, `Current value`, `SIP amount / month`) and clear return badges (`-₹250 (-8.3%)`), allowing the user to select the specific fund they want to investigate.
-3. **Screen 3+ – Unified Continuous Scrolling Report:** Combines all analysis modules into a single, comprehensive vertical feed:
+### The Solution: A Guided Experience
+1. **Screen 1 – Fixed Dashboard:** Features portfolio return summary and a prominent insight banner: *"Why is my portfolio down? Understand how market movements, your funds, and SIP investments are affecting your returns."* Under Holdings, tapping any mutual fund takes the user to its standard Fund Details.
+2. **Screen 2 – Authentic Groww Fund Details:** Displays holding breakdown (`Invested`, `Current value`, `Total returns`, `1D returns`, `Avg NAV`, `Units`, `SIP amount`), an interactive Return Calculator (Monthly SIP / One-time toggle, custom slider, 6M/1Y/3Y/5Y bar charts), Returns & rankings category table, peer comparisons, expense ratio & tax disclosure, and bottom action bar (`One-time` & `Start SIP`). For funds that are down, a contextual bridge card allows direct exploration of why the fund dropped.
+3. **Screen 3 – Portfolio Insights Selection (Slide 2):** Triggered when clicking *"Why is my portfolio down?"* on the dashboard. Displays each holding with 3-column stats (`Invested`, `Current value`, `SIP amount / month`) and return badges (`-₹250 (-8.3%)`), allowing the user to select the specific fund they want to investigate.
+4. **Screen 4 – Unified Continuous Scrolling Report (Slides 3–7):** Combines all analysis modules into a single vertical feed:
    * **SIP Unit Accumulation:** Illustrates Rupee-Cost Averaging through transaction tables showing how lower NAVs purchase more units (`32.87 units` vs `30.00 units` at baseline).
    * **Market Impact & Attribution (Proprietary Moat):** Separates public macroeconomic factors (Nifty 50 `-2.6%`, Sector `-4.1%`, Stock selection `-2.0%`) from Groww's proprietary transaction ledger metric: **`Your personal entry timing (+0.4%)`**, demonstrating how SIP purchase discipline generated positive alpha even during a drawdown.
    * **Historical Drawdown Recovery Curve:** Shows past recovery trajectories (e.g. `-12.4%` in Mar–May 2020 followed by `+31.2%` rebound over the next 12 months).

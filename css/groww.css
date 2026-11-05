@@ -1728,3 +1728,735 @@ body.dark-mode .fund-card-soft:hover {
   font-weight: 600;
   color: var(--groww-text-primary);
 }
+
+/* ========================================================
+   AUTHENTIC GROWW MUTUAL FUND DETAILS VIEW (MATCHING APP SCREENSHOTS IMG_9939-9941)
+   ======================================================== */
+
+.fund-detail-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--groww-bg);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Sticky Top Navigation Bar */
+.fund-detail-top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: var(--groww-bg);
+  border-bottom: 1px solid var(--groww-divider);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  flex-shrink: 0;
+}
+
+.fund-nav-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.fund-nav-meta {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.fund-nav-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--groww-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: -0.15px;
+}
+
+.fund-nav-sub {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  color: var(--groww-text-secondary);
+  margin-top: 1px;
+}
+
+.fund-nav-sub .gain {
+  color: var(--groww-green-text);
+  font-weight: 600;
+}
+
+.fund-nav-sub .loss {
+  color: var(--groww-red);
+  font-weight: 600;
+}
+
+.fund-nav-right-icons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--groww-text-primary);
+  flex-shrink: 0;
+}
+
+.fund-nav-icon-btn {
+  background: transparent;
+  border: none;
+  color: var(--groww-text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 6px;
+  transition: background 0.15s ease;
+}
+
+.fund-nav-icon-btn:hover {
+  background: var(--groww-surface-alt);
+}
+
+/* Scrollable Content Container */
+.fund-detail-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 0 85px 0;
+  scrollbar-width: none;
+}
+
+.fund-detail-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hero Branding Section */
+.fund-detail-header-card {
+  padding: 16px 18px 12px 18px;
+  border-bottom: 1px solid var(--groww-divider);
+}
+
+.fund-brand-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.fund-brand-info {
+  flex: 1;
+}
+
+.fund-brand-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--groww-text-primary);
+  line-height: 1.25;
+  letter-spacing: -0.3px;
+}
+
+.fund-tags-pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.fund-badge-chip {
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: var(--groww-surface-alt);
+  color: var(--groww-text-secondary);
+  border: 1px solid var(--groww-border-light);
+}
+
+.fund-badge-chip.rating-chip {
+  background: #FEF3C7;
+  color: #B45309;
+  border-color: #FDE68A;
+}
+
+body.dark-mode .fund-badge-chip.rating-chip {
+  background: rgba(245, 158, 11, 0.15);
+  color: #FBBF24;
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+/* Your Investment Card (Since User Holds This Fund in Groww) */
+.user-holding-detail-card {
+  margin: 14px 18px;
+  background: var(--groww-surface-alt);
+  border: 1px solid var(--groww-border);
+  border-radius: 14px;
+  padding: 14px 16px;
+}
+
+.holding-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--groww-divider);
+}
+
+.holding-card-top-title {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--groww-text-secondary);
+}
+
+.user-holding-metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 12px;
+  column-gap: 16px;
+}
+
+.user-holding-stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.uh-label {
+  font-size: 11px;
+  color: var(--groww-text-secondary);
+  margin-bottom: 2px;
+}
+
+.uh-value {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--groww-text-primary);
+}
+
+.uh-value.loss {
+  color: var(--groww-red);
+}
+
+.uh-value.gain {
+  color: var(--groww-green-text);
+}
+
+.user-holding-sub-bar {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--groww-divider);
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--groww-text-secondary);
+}
+
+.user-holding-sub-bar strong {
+  color: var(--groww-text-primary);
+}
+
+/* Bridge to Solution: "Why is this fund down?" Card */
+.fund-solution-bridge-card {
+  margin: 0 18px 16px 18px;
+  background: linear-gradient(135deg, #1E1B4B 0%, #2E1065 100%);
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(46, 16, 101, 0.2);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.fund-solution-bridge-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(46, 16, 101, 0.3);
+}
+
+.bridge-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.bridge-icon-box {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #A78BFA;
+  flex-shrink: 0;
+}
+
+.bridge-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.bridge-sub {
+  font-size: 11px;
+  color: #DDD6FE;
+  margin-top: 1px;
+  line-height: 1.25;
+}
+
+.bridge-arrow-pill {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #00D09C;
+  background: rgba(0, 208, 156, 0.12);
+  padding: 4px 8px;
+  border-radius: var(--radius-pill);
+  flex-shrink: 0;
+}
+
+/* Accordion Component */
+.groww-accordion-item {
+  border-bottom: 1px solid var(--groww-divider);
+}
+
+.accordion-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px;
+  cursor: pointer;
+  user-select: none;
+  background: var(--groww-bg);
+  transition: background 0.15s ease;
+}
+
+.accordion-header-row:hover {
+  background: var(--groww-surface-alt);
+}
+
+.accordion-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--groww-text-primary);
+  letter-spacing: -0.2px;
+}
+
+.accordion-chevron {
+  color: var(--groww-text-muted);
+  transition: transform 0.25s ease;
+}
+
+.accordion-chevron.open {
+  transform: rotate(180deg);
+}
+
+.accordion-body-box {
+  padding: 0 18px 18px 18px;
+  background: var(--groww-bg);
+}
+
+/* Return Calculator (Matching IMG_9939.PNG) */
+.calc-type-segmented-control {
+  display: inline-flex;
+  background: var(--groww-surface-alt);
+  border: 1px solid var(--groww-border);
+  border-radius: var(--radius-pill);
+  padding: 3px;
+  margin-bottom: 18px;
+}
+
+.calc-type-btn {
+  background: transparent;
+  border: none;
+  padding: 6px 16px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--groww-text-secondary);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.calc-type-btn.active {
+  background: #FFFFFF;
+  color: var(--groww-text-primary);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+body.dark-mode .calc-type-btn.active {
+  background: #232838;
+  color: #FFFFFF;
+}
+
+.calc-amount-label {
+  font-size: 12px;
+  color: var(--groww-text-secondary);
+  margin-bottom: 4px;
+}
+
+.calc-amount-val-display {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--groww-text-primary);
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+}
+
+.calc-slider-container {
+  margin-bottom: 20px;
+}
+
+.calc-range-slider {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--groww-border);
+  outline: none;
+}
+
+.calc-range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--groww-green);
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 208, 156, 0.4);
+  border: 2px solid #FFFFFF;
+}
+
+.calc-range-slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--groww-green);
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 208, 156, 0.4);
+  border: 2px solid #FFFFFF;
+}
+
+/* Dynamic Bar Chart (Matching IMG_9939.PNG) */
+.calc-bars-display {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 110px;
+  padding: 10px 0 6px 0;
+  margin-bottom: 4px;
+}
+
+.calc-bar-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  width: 60px;
+}
+
+.calc-bar-pair {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 80px;
+}
+
+.calc-bar-fill {
+  width: 14px;
+  border-radius: 4px 4px 0 0;
+  transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.calc-bar-fill.bar-invested {
+  background: #E2E8F0;
+}
+
+body.dark-mode .calc-bar-fill.bar-invested {
+  background: #334155;
+}
+
+.calc-bar-fill.bar-gain {
+  background: #818CF8;
+}
+
+.calc-tf-pill-badge {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--groww-text-secondary);
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  transition: all 0.15s ease;
+}
+
+.calc-bar-column.active .calc-tf-pill-badge {
+  border-color: var(--groww-text-primary);
+  color: var(--groww-text-primary);
+  font-weight: 700;
+}
+
+.calc-dotted-divider {
+  border-bottom: 1px dashed var(--groww-divider);
+  margin: 14px 0;
+}
+
+.calc-summary-stat-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.calc-stat-key {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--groww-text-secondary);
+}
+
+.calc-dot-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.calc-dot-indicator.dot-gray {
+  background: #CBD5E1;
+}
+
+.calc-dot-indicator.dot-purple {
+  background: #818CF8;
+}
+
+.calc-stat-val-text {
+  font-weight: 700;
+  color: var(--groww-text-primary);
+  font-size: 14px;
+}
+
+/* Returns & Rankings Table (Matching IMG_9940.PNG) */
+.returns-rankings-subline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  margin-bottom: 12px;
+}
+
+.returns-cat-label {
+  color: var(--groww-text-secondary);
+  font-weight: 500;
+}
+
+.returns-annualised-link {
+  color: var(--groww-green-text);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.groww-returns-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 14px;
+}
+
+.groww-returns-table th {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--groww-text-secondary);
+  padding: 8px 4px;
+  text-align: right;
+  border-bottom: 1px solid var(--groww-divider);
+}
+
+.groww-returns-table th:first-child {
+  text-align: left;
+}
+
+.groww-returns-table td {
+  font-size: 12.5px;
+  padding: 10px 4px;
+  text-align: right;
+  color: var(--groww-text-primary);
+  font-weight: 600;
+  border-bottom: 1px solid var(--groww-divider);
+}
+
+.groww-returns-table td:first-child {
+  text-align: left;
+  font-weight: 500;
+  color: var(--groww-text-secondary);
+}
+
+.understand-returns-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--groww-text-secondary);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.understand-returns-link:hover {
+  color: var(--groww-text-primary);
+}
+
+/* Expense Ratio, Exit Load & Tax (Matching IMG_9941.PNG) */
+.expense-tax-bullet-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.bullet-square {
+  font-size: 14px;
+  color: var(--groww-text-secondary);
+  line-height: 1.2;
+}
+
+.expense-tax-content {
+  flex: 1;
+}
+
+.expense-tax-head {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--groww-text-primary);
+  margin-bottom: 2px;
+}
+
+.expense-tax-desc {
+  font-size: 12px;
+  color: var(--groww-text-secondary);
+  line-height: 1.35;
+}
+
+.expense-tax-footer-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--groww-divider);
+}
+
+.check-past-data-btn {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--groww-green-text);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* Peer Comparison Table */
+.peer-fund-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--groww-divider);
+}
+
+.peer-fund-item:last-child {
+  border-bottom: none;
+}
+
+.peer-name-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.peer-title {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--groww-text-primary);
+}
+
+.peer-expense {
+  font-size: 11px;
+  color: var(--groww-text-secondary);
+  margin-top: 1px;
+}
+
+.peer-ret-col {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--groww-text-primary);
+}
+
+/* Fixed Bottom Action Buttons Bar (Matching IMG_9939.PNG) */
+.fund-detail-bottom-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 68px;
+  background: var(--groww-bg);
+  border-top: 1px solid var(--groww-divider);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+  z-index: 100;
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.04);
+}
+
+body.dark-mode .fund-detail-bottom-bar {
+  background: #0E1015;
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.btn-onetime-groww {
+  flex: 1;
+  height: 44px;
+  background: var(--groww-green-bg);
+  color: var(--groww-green-text);
+  border: 1px solid var(--groww-green-border);
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.btn-onetime-groww:hover {
+  opacity: 0.9;
+}
+
+.btn-sip-groww {
+  flex: 1;
+  height: 44px;
+  background: var(--groww-green);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 208, 156, 0.3);
+  transition: opacity 0.15s ease;
+}
+
+.btn-sip-groww:hover {
+  opacity: 0.92;
+}
+

@@ -32,6 +32,40 @@ const GROWW_DATA = {
       sipStatus: "Active",
       sipStatusClass: "status-active",
       category: "Large & Mid Cap",
+      subCategory: "Equity Large & Mid Cap",
+      rating: 5,
+      minSip: 500,
+      userHolding: {
+        invested: 3000,
+        currentValue: 2750,
+        totalReturns: -250,
+        totalReturnsPct: -8.33,
+        dayReturns: -72,
+        dayReturnsPct: -2.6,
+        avgNav: 632.91,
+        units: 4.74,
+        activeSipAmount: 1000,
+        nextSipDate: "15 Nov 2026"
+      },
+      calcDefaultRate: 21.8,
+      returnsTable: {
+        categoryName: "Equity Large & Mid Cap",
+        periods: ["1Y", "3Y", "5Y", "All"],
+        fundReturns: ["14.8%", "21.8%", "18.2%", "16.4%"],
+        categoryAvg: ["12.1%", "16.5%", "14.3%", "13.9%"],
+        rankInCategory: ["4", "2", "3", "-"]
+      },
+      peers: [
+        { name: "Mirae Asset Large & Midcap Fund", return3Y: "19.4%", expenseRatio: "0.72%", rating: 4 },
+        { name: "Kotak Equity Opportunities Fund", return3Y: "20.1%", expenseRatio: "0.65%", rating: 5 },
+        { name: "HDFC Large and Mid Cap Fund", return3Y: "22.3%", expenseRatio: "0.81%", rating: 4 }
+      ],
+      taxDetails: {
+        expenseRatioText: "Exclusive of GST & statutory charges",
+        exitLoadText: "0.10% if redeemed within 30 days; Nil after 30 days.",
+        stampDutyText: "0.005% (from July 1st, 2020)",
+        taxImplicationText: "If you redeem within one year, returns are taxed at 20%. If you redeem after one year, returns exceeding Rs 1.25 lakh in a financial year are taxed at 12.5%."
+      },
       benchmark: "NIFTY LargeMidcap 250 TRI",
       nav: 665.40,
       aum: "₹40,498 Cr",
@@ -139,6 +173,40 @@ const GROWW_DATA = {
       sipStatus: "Active",
       sipStatusClass: "status-active",
       category: "Flexi Cap",
+      subCategory: "Equity Flexi Cap",
+      rating: 5,
+      minSip: 1000,
+      userHolding: {
+        invested: 2000,
+        currentValue: 1850,
+        totalReturns: -150,
+        totalReturnsPct: -7.50,
+        dayReturns: +14,
+        dayReturnsPct: +0.8,
+        avgNav: 89.34,
+        units: 16.79,
+        activeSipAmount: 500,
+        nextSipDate: "20 Nov 2026"
+      },
+      calcDefaultRate: 18.4,
+      returnsTable: {
+        categoryName: "Equity Flexi Cap",
+        periods: ["1Y", "3Y", "5Y", "All"],
+        fundReturns: ["16.2%", "18.4%", "21.5%", "19.8%"],
+        categoryAvg: ["13.4%", "15.2%", "16.8%", "14.7%"],
+        rankInCategory: ["3", "1", "1", "-"]
+      },
+      peers: [
+        { name: "HDFC Flexi Cap Fund", return3Y: "19.2%", expenseRatio: "0.78%", rating: 4 },
+        { name: "JM Flexicap Fund", return3Y: "21.0%", expenseRatio: "0.62%", rating: 5 },
+        { name: "UTI Flexi Cap Fund", return3Y: "14.6%", expenseRatio: "0.88%", rating: 3 }
+      ],
+      taxDetails: {
+        expenseRatioText: "Exclusive of GST & statutory charges",
+        exitLoadText: "2% within 365 days; 1% within 730 days; Nil after 2 years.",
+        stampDutyText: "0.005% (from July 1st, 2020)",
+        taxImplicationText: "If you redeem within one year, returns are taxed at 20%. If you redeem after one year, returns exceeding Rs 1.25 lakh in a financial year are taxed at 12.5%."
+      },
       benchmark: "NIFTY 500 TRI",
       nav: 89.74,
       aum: "₹75,200 Cr",
@@ -246,6 +314,40 @@ const GROWW_DATA = {
       sipStatus: "Paused",
       sipStatusClass: "status-paused",
       category: "Commodities / Silver",
+      subCategory: "Commodities Silver",
+      rating: 4,
+      minSip: 100,
+      userHolding: {
+        invested: 1000,
+        currentValue: 1050,
+        totalReturns: 50,
+        totalReturnsPct: +5.00,
+        dayReturns: -20,
+        dayReturnsPct: -1.9,
+        avgNav: 24.50,
+        units: 30.72,
+        activeSipAmount: 250,
+        nextSipDate: "05 Dec 2026"
+      },
+      calcDefaultRate: 24.8,
+      returnsTable: {
+        categoryName: "Commodities Silver",
+        periods: ["1Y", "3Y", "5Y", "All"],
+        fundReturns: ["18.2%", "24.8%", "-", "22.4%"],
+        categoryAvg: ["17.4%", "23.5%", "-", "21.0%"],
+        rankInCategory: ["2", "1", "-", "-"]
+      },
+      peers: [
+        { name: "Nippon India Silver ETF FoF", return3Y: "24.5%", expenseRatio: "0.25%", rating: 4 },
+        { name: "ICICI Prudential Silver ETF FoF", return3Y: "24.1%", expenseRatio: "0.24%", rating: 4 },
+        { name: "Aditya Birla Sun Life Silver ETF FoF", return3Y: "23.8%", expenseRatio: "0.28%", rating: 3 }
+      ],
+      taxDetails: {
+        expenseRatioText: "Exclusive of GST & statutory charges",
+        exitLoadText: "0.50% if redeemed within 15 days; Nil after 15 days.",
+        stampDutyText: "0.005% (from July 1st, 2020)",
+        taxImplicationText: "Specified mutual funds (commodities): Capital gains are added to taxable income and taxed as per your applicable income tax slab rate."
+      },
       benchmark: "Domestic Price of Silver (LBMA Spot)",
       nav: 24.85,
       aum: "₹1,250 Cr",
@@ -353,6 +455,40 @@ const GROWW_DATA = {
       sipStatus: "Active",
       sipStatusClass: "status-active",
       category: "Commodities / Gold",
+      subCategory: "Commodities Gold",
+      rating: 4,
+      minSip: 100,
+      userHolding: {
+        invested: 500,
+        currentValue: 510,
+        totalReturns: 10,
+        totalReturnsPct: +2.00,
+        dayReturns: +2,
+        dayReturnsPct: +0.4,
+        avgNav: 21.15,
+        units: 35.41,
+        activeSipAmount: 250,
+        nextSipDate: "05 Dec 2026"
+      },
+      calcDefaultRate: 15.6,
+      returnsTable: {
+        categoryName: "Commodities Gold",
+        periods: ["1Y", "3Y", "5Y", "All"],
+        fundReturns: ["14.8%", "15.6%", "13.9%", "14.1%"],
+        categoryAvg: ["14.1%", "14.9%", "13.2%", "13.5%"],
+        rankInCategory: ["2", "2", "3", "-"]
+      },
+      peers: [
+        { name: "Nippon India ETF Gold BeES", return3Y: "15.8%", expenseRatio: "0.22%", rating: 5 },
+        { name: "ICICI Prudential Regular Gold Savings", return3Y: "15.2%", expenseRatio: "0.29%", rating: 4 },
+        { name: "HDFC Gold ETF", return3Y: "15.5%", expenseRatio: "0.25%", rating: 4 }
+      ],
+      taxDetails: {
+        expenseRatioText: "Exclusive of GST & statutory charges",
+        exitLoadText: "0.50% if redeemed within 15 days; Nil after 15 days.",
+        stampDutyText: "0.005% (from July 1st, 2020)",
+        taxImplicationText: "Specified mutual funds (commodities): Capital gains are added to taxable income and taxed as per your applicable income tax slab rate."
+      },
       benchmark: "Domestic Price of Physical Gold",
       nav: 21.20,
       aum: "₹2,100 Cr",
