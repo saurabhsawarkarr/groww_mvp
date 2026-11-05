@@ -982,6 +982,53 @@
               <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4m0-4h.01"/></svg>
               <span>${hist.callout}</span>
             </div>
+
+            ${hist.longitudinalCycles ? `
+              <!-- Compounding Data Advantage: Longitudinal 3-Cycle Behavior Card -->
+              <div class="historical-cycles-card" style="margin-top: 14px; margin-bottom: 4px;">
+                <div class="cycles-header">
+                  <div class="cycles-header-left">
+                    <div class="cycles-icon-badge">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12 6 12 12 16 14"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 class="cycles-title">How Groww first-time investors behaved across 3 market cycles</h4>
+                      <span class="cycles-sub">Longitudinal platform data (2017 – 2024)</span>
+                    </div>
+                  </div>
+                  <span class="proprietary-tag">7-Year Moat</span>
+                </div>
+
+                <div class="cycles-list">
+                  ${hist.longitudinalCycles.map(c => `
+                    <div class="cycle-row-item">
+                      <div class="cycle-info-col">
+                        <span class="cycle-name-text">${c.name}</span>
+                        <span class="cycle-tag-muted">${c.subtext}</span>
+                      </div>
+                      <div class="cycle-stat-badge ${c.isHighlight ? 'highlight-green' : ''}">
+                        <span class="cycle-pct-val">${c.continuedPct}%</span>
+                        <span class="cycle-action-label">continued their SIP</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00D09C" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                      </div>
+                    </div>
+                  `).join('')}
+                </div>
+
+                <div class="cycles-footer-takeaway">
+                  <div class="trend-icon-circle">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#00D09C" stroke-width="2.5">
+                      <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                      <polyline points="17 6 23 6 23 12"/>
+                    </svg>
+                  </div>
+                  <span>${hist.cyclesTakeaway || 'Continuation rates are improving as investors become more informed.'}</span>
+                </div>
+              </div>
+            ` : ''}
           </div>
 
           <div class="flow-divider"></div>

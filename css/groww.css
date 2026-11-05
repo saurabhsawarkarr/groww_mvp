@@ -2529,4 +2529,156 @@ body.dark-mode .behavioral-tag-badge {
   line-height: 1.3;
 }
 
+/* Compounding Data Advantage: Longitudinal 3-Cycle Behavior Card (Screen 5) */
+.historical-cycles-card {
+  background: var(--groww-surface-alt);
+  border: 1px solid var(--groww-border);
+  border-radius: 14px;
+  padding: 14px 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+body.dark-mode .historical-cycles-card {
+  background: #181B23;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.cycles-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--groww-divider);
+}
+
+.cycles-header-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  flex: 1;
+}
+
+.cycles-icon-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--groww-green-bg);
+  color: var(--groww-green-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cycles-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--groww-text-primary);
+  line-height: 1.3;
+}
+
+.cycles-sub {
+  font-size: 11px;
+  color: var(--groww-text-secondary);
+  display: block;
+  margin-top: 2px;
+}
+
+.cycles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cycle-row-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 12px;
+  background: var(--groww-bg);
+  border: 1px solid var(--groww-border-light);
+  border-radius: 10px;
+  transition: all 0.15s ease;
+}
+
+body.dark-mode .cycle-row-item {
+  background: #13151D;
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+.cycle-info-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.cycle-name-text {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--groww-text-primary);
+}
+
+.cycle-tag-muted {
+  font-size: 10.5px;
+  color: var(--groww-text-secondary);
+  margin-top: 1px;
+}
+
+.cycle-stat-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--groww-surface-alt);
+  font-size: 11.5px;
+}
+
+body.dark-mode .cycle-stat-badge {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.cycle-stat-badge.highlight-green {
+  background: var(--groww-green-bg);
+  border: 1px solid var(--groww-green-border);
+}
+
+.cycle-pct-val {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--groww-green-text);
+}
+
+.cycle-action-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--groww-text-primary);
+}
+
+.cycles-footer-takeaway {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--groww-divider);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--groww-green-text);
+}
+
+.trend-icon-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--groww-green-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+
 

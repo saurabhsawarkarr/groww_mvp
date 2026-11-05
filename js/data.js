@@ -135,7 +135,13 @@ const GROWW_DATA = {
           period: "Next 12M",
           desc: "subsequently recorded a 78.2% return in the following 12-month period."
         },
-        callout: "During the 2020 market crash, this fund fell 29.4%, then delivered a 78.2% return over the next 12 months as mid-caps rebounded."
+        callout: "During the 2020 market crash, this fund fell 29.4%, then delivered a 78.2% return over the next 12 months as mid-caps rebounded.",
+        longitudinalCycles: [
+          { name: "2020 COVID crash", subtext: "Severe market shock", continuedPct: 67 },
+          { name: "2022 rate hike correction", subtext: "Prolonged inflation", continuedPct: 74 },
+          { name: "2024 election volatility", subtext: "Short-term swing", continuedPct: 81, isHighlight: true }
+        ],
+        cyclesTakeaway: "Continuation rates are improving as investors become more informed."
       },
       fundManager: {
         name: "Mr. R. Srinivasan",
@@ -281,7 +287,13 @@ const GROWW_DATA = {
           period: "Next 12M",
           desc: "doubled with +100.1% recovery over the subsequent 12 months."
         },
-        callout: "During the March 2020 crash, PPFAS fell significantly less than peers (-21.8% vs -31% category avg), then delivered a 100.1% gain in the next 12 months."
+        callout: "During the March 2020 crash, PPFAS fell significantly less than peers (-21.8% vs -31% category avg), then delivered a 100.1% gain in the next 12 months.",
+        longitudinalCycles: [
+          { name: "2020 COVID crash", subtext: "Severe market shock", continuedPct: 67 },
+          { name: "2022 rate hike correction", subtext: "Prolonged inflation", continuedPct: 74 },
+          { name: "2024 election volatility", subtext: "Short-term swing", continuedPct: 81, isHighlight: true }
+        ],
+        cyclesTakeaway: "Continuation rates are improving as investors become more informed."
       },
       fundManager: {
         name: "Mr. Rajeev Thakkar",
