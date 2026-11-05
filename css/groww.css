@@ -2460,3 +2460,73 @@ body.dark-mode .fund-detail-bottom-bar {
   opacity: 0.92;
 }
 
+/* Algorithmic Learning: Behavioral Insight Card (Screen 4) */
+.behavioral-insight-card {
+  background: var(--groww-surface-alt);
+  border: 1px solid var(--groww-border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+body.dark-mode .behavioral-insight-card {
+  background: #181B23;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.behavioral-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.behavioral-tag-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #6366F1;
+}
+
+body.dark-mode .behavioral-tag-badge {
+  color: #818CF8;
+}
+
+.behavioral-content-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.behavioral-lead-text {
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--groww-text-primary);
+  font-weight: 500;
+}
+
+.behavioral-reassurance-box {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 10px;
+  background: var(--groww-green-bg);
+  border: 1px solid var(--groww-green-border);
+  border-radius: 8px;
+  margin-top: 2px;
+}
+
+.behavioral-reassurance-text {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--groww-green-text);
+  line-height: 1.3;
+}
+
+

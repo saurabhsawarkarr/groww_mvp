@@ -926,6 +926,32 @@
               </div>
             ` : ''}
 
+            ${market.behavioralInsight ? `
+              <div class="behavioral-insight-card" style="margin-bottom: 12px;">
+                <div class="behavioral-header-row">
+                  <div class="behavioral-tag-badge">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                      <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                    <span>${market.behavioralInsight.tag}</span>
+                  </div>
+                  <span class="proprietary-tag">AI Learning</span>
+                </div>
+                <div class="behavioral-content-body">
+                  <p class="behavioral-lead-text">
+                    ${market.behavioralInsight.dipAction}
+                  </p>
+                  <div class="behavioral-reassurance-box">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#00D09C" stroke-width="2.5" style="flex-shrink: 0;">
+                      <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                    <span class="behavioral-reassurance-text">${market.behavioralInsight.reassurance}</span>
+                  </div>
+                </div>
+              </div>
+            ` : ''}
+
             <div class="info-pill-note">
               <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4m0-4h.01"/></svg>
               <span>${market.disclaimer || market.callout}</span>

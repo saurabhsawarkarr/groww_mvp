@@ -116,6 +116,11 @@ const GROWW_DATA = {
           title: "Proprietary Ledger Insight",
           text: "You bought 23 units at ₹85 in February — lower than the fund's average NAV that month (₹91). Your timing worked in your favour."
         },
+        behavioralInsight: {
+          tag: "Based on your behaviour",
+          dipAction: "Last time markets dipped, you checked your portfolio 3 times in one week but kept your SIP running.",
+          reassurance: "You have done this before and stayed the course."
+        },
         disclaimer: "Attribution is calculated using your actual transaction dates and NAV history. Market and sector data is sourced from public indices."
       },
       historicalPerformance: {
@@ -256,6 +261,11 @@ const GROWW_DATA = {
         timingCard: {
           title: "Proprietary Ledger Insight",
           text: "You bought 6 units at ₹84.20 in February — lower than the fund's average NAV that month (₹88.50). Your timing worked in your favour."
+        },
+        behavioralInsight: {
+          tag: "Based on your behaviour",
+          dipAction: "Last time markets dipped, you checked your portfolio 3 times in one week but kept your SIP running.",
+          reassurance: "You have done this before and stayed the course."
         },
         disclaimer: "Attribution is calculated using your actual transaction dates and NAV history. Market and sector data is sourced from public indices."
       },
