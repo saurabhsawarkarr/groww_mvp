@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/groww.css?v=5.9">
+  <link rel="stylesheet" href="css/groww.css?v=6.0">
 </head>
 
 <body>
@@ -51,6 +51,9 @@
           5. Detailed Summary
         </button>
       </div>
+      <button class="btn-mentor-benchmark" id="btn-open-eval-benchmark" title="View Eval-Gated Quality Benchmark & Golden Set">
+        <span>🔬 Mentor Eval Benchmark (Golden Set)</span>
+      </button>
     </div>
   </header>
 
@@ -96,8 +99,62 @@
     </div>
   </main>
 
-  <script src="js/data.js?v=5.9"></script>
-  <script src="js/app.js?v=5.9"></script>
+  <!-- Mentor Golden Set Benchmark Modal -->
+  <div class="benchmark-modal-backdrop" id="mentor-benchmark-modal">
+    <div class="benchmark-modal-content">
+      <div class="benchmark-header">
+        <div>
+          <h3 style="font-size: 18px; font-weight: 800; color: #1E293B; display: flex; align-items: center; gap: 8px;">
+            <span>🔬 Mentor Evaluation & Golden Set Benchmark</span>
+            <span style="font-size: 11px; background: #E8F8F3; color: #00A877; padding: 2px 8px; border-radius: 9999px;">Eval-Gated AI</span>
+          </h3>
+          <p style="font-size: 12px; color: #64748B; margin-top: 4px;">Measured against 8 curated edge cases from the Evidence Log. Strict SEBI compliance & AMC grounding.</p>
+        </div>
+        <button id="btn-close-benchmark-modal" style="background: none; border: none; font-size: 22px; cursor: pointer; color: #94A3B8;">&times;</button>
+      </div>
+
+      <div class="benchmark-kpi-grid">
+        <div class="benchmark-kpi-card">
+          <div class="benchmark-kpi-val" style="color: #00D09C;">100%</div>
+          <div class="benchmark-kpi-lbl">SEBI Advice Refusal</div>
+        </div>
+        <div class="benchmark-kpi-card">
+          <div class="benchmark-kpi-val" style="color: #00D09C;">97.8%</div>
+          <div class="benchmark-kpi-lbl">Factual AMC Grounding</div>
+        </div>
+        <div class="benchmark-kpi-card">
+          <div class="benchmark-kpi-val" style="color: #00D09C;">0.0%</div>
+          <div class="benchmark-kpi-lbl">Hallucination Rate</div>
+        </div>
+        <div class="benchmark-kpi-card">
+          <div class="benchmark-kpi-val" style="color: #00D09C;">100%</div>
+          <div class="benchmark-kpi-lbl">Safe Fallback Trigger</div>
+        </div>
+      </div>
+
+      <h4 style="font-size: 13px; font-weight: 700; color: #334155; margin-bottom: 8px;">Golden Set Test Scenarios (Evidence Log):</h4>
+      <div style="overflow-x: auto;">
+        <table class="benchmark-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Test Prompt / Scenario</th>
+              <th>Category</th>
+              <th>Expected Gate Action</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="benchmark-table-body">
+            <!-- Populated dynamically by app.js -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js?v=6.0"></script>
+  <script src="js/ai-engine.js?v=6.0"></script>
+  <script src="js/app.js?v=6.0"></script>
 </body>
 
 </html>

@@ -10,6 +10,7 @@
   const slideParam = urlParams.get('slide');
   const fundParam = urlParams.get('fund');
   const scrollParam = urlParams.get('scroll');
+  const aiQueryParam = urlParams.get('ai_query');
 
   const state = {
     // Views: 'dashboard' (Slide 1), 'fund-detail' (Authentic Groww Fund Screen), 'fund-select' (Slide 2), 'deepdive-scroll' (Slides 3-7 combined)
@@ -760,6 +761,110 @@
   }
 
   // ==========================================
+  // GROWW AI PORTFOLIO EXPLAINER (EVAL-GATED)
+  // ==========================================
+  function renderGrowwAICard(fund) {
+    return `
+      <div style="padding: 10px 16px 0 16px;">
+        <div class="groww-ai-sample-card">
+          <!-- Top Row: Purple Icon + Title & Beta + Subtitle -->
+          <div class="groww-ai-top-row">
+            <div class="groww-ai-icon-circle">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2L14.2 8.3L20.5 10.5L14.2 12.7L12 19L9.8 12.7L3.5 10.5L9.8 8.3L12 2Z" />
+              </svg>
+            </div>
+            <div class="groww-ai-text-col">
+              <div class="groww-ai-title-wrap">
+                <h4 class="groww-ai-card-title">Ask AI about your fund</h4>
+                <span class="groww-ai-beta-tag">Beta</span>
+              </div>
+              <p class="groww-ai-card-desc">Get a simple, personalised explanation using your portfolio data and verified market information.</p>
+            </div>
+          </div>
+
+          <!-- Input Search Field -->
+          <div class="groww-ai-input-wrap">
+            <div class="groww-ai-input-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              </svg>
+            </div>
+            <input type="text" id="groww-ai-input" class="groww-ai-input-field" placeholder="Ask a question about this fund..." autocomplete="off">
+            <button id="groww-ai-submit-btn" class="groww-ai-send-btn" title="Send question">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Quick Prompt Chips -->
+          <div class="groww-ai-chips-row">
+            <button class="groww-ai-chip" data-prompt="Why is my fund down?">Why is my fund down?</button>
+            <button class="groww-ai-chip" data-prompt="What is NAV?">What is NAV?</button>
+            <button class="groww-ai-chip" data-prompt="Why is it down more than market?">Why is it down more than market?</button>
+            <button class="groww-ai-chip trap" data-prompt="Should I stop my SIP? ⚠️" title="Test SEBI Safe Fallback">Should I stop my SIP? ⚠️</button>
+          </div>
+
+          <!-- Quality Checked & Regulatory Notice Footer -->
+          <div class="groww-ai-footer-note">
+            <span class="groww-ai-shield-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                <path d="m9 12 2 2 4-4"></path>
+              </svg>
+            </span>
+            <span>AI responses are quality-checked and are not investment advice.</span>
+          </div>
+
+          <!-- Dynamic Output Container (Expands when query is answered) -->
+          <div id="groww-ai-output-box" class="groww-ai-output-container">
+            <!-- Populated on user query -->
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  function handleAISubmit(query) {
+    if (!query || !query.trim()) return;
+    const fund = getSelectedFund();
+    if (typeof GROWW_AI_ENGINE === "undefined") return;
+
+    const response = GROWW_AI_ENGINE.generateResponse(fund.id, query.trim());
+    const container = document.getElementById("groww-ai-output-box");
+    if (!container) return;
+
+    let badgeClass = "verified";
+    if (response.status === "SAFE_FALLBACK_TRIGGERED") badgeClass = "warning";
+    if (response.status === "SAFE_FALLBACK_UNCERTAINTY") badgeClass = "uncertainty";
+
+    container.innerHTML = `
+      <div class="groww-ai-output-header">
+        <span class="groww-ai-grounding-badge ${badgeClass}">
+          ${response.badge.text}
+        </span>
+        <button id="btn-close-ai-output" class="groww-ai-close-output-btn" title="Close explanation">&times;</button>
+      </div>
+      <div class="groww-ai-output-headline">${response.headline}</div>
+      <div class="groww-ai-output-body">${response.explanation}</div>
+      <div class="groww-ai-output-source-footer">
+        <span>📄 Source: ${response.officialSource}</span>
+        <span>${response.disclaimer}</span>
+      </div>
+    `;
+    container.style.display = "block";
+
+    document.getElementById("btn-close-ai-output")?.addEventListener("click", () => {
+      container.style.display = "none";
+    });
+
+    const input = document.getElementById("groww-ai-input");
+    if (input) input.value = "";
+  }
+
+  // ==========================================
   // SCREEN 3+: THE SINGLE SCROLLING INFORMATION VIEW
   // (Combines Slides 3, 4, 5, 6, 7 after selecting a fund)
   // ==========================================
@@ -890,6 +995,9 @@
               </div>
             </div>
           </div>
+
+          <!-- Section C: Ask AI About Your Fund (Eval-Gated Explainer) -->
+          ${renderGrowwAICard(fund)}
 
           <div class="flow-divider"></div>
 
@@ -1466,6 +1574,10 @@
         scrollTarget.scrollTop = parseInt(scrollParam) || 0;
       }
     }
+
+    if (aiQueryParam) {
+      setTimeout(() => handleAISubmit(aiQueryParam), 60);
+    }
   }
 
   function updateControlsUI() {
@@ -1645,6 +1757,60 @@
           attachEventHandlers();
         }
       });
+    });
+
+    // Groww AI Explainer Card Event Handlers
+    document.querySelectorAll(".groww-ai-chip").forEach(chip => {
+      chip.addEventListener("click", () => {
+        const prompt = chip.getAttribute("data-prompt");
+        handleAISubmit(prompt);
+      });
+    });
+
+    document.getElementById("groww-ai-submit-btn")?.addEventListener("click", () => {
+      const input = document.getElementById("groww-ai-input");
+      if (input && input.value) {
+        handleAISubmit(input.value);
+      }
+    });
+
+    document.getElementById("groww-ai-input")?.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        handleAISubmit(e.target.value);
+      }
+    });
+
+    // Mentor Benchmark Modal Event Handlers
+    document.getElementById("btn-open-eval-benchmark")?.addEventListener("click", () => {
+      const modal = document.getElementById("mentor-benchmark-modal");
+      const tbody = document.getElementById("benchmark-table-body");
+      if (modal && typeof GROWW_AI_ENGINE !== "undefined") {
+        const benchmark = GROWW_AI_ENGINE.runBenchmarkSuite();
+        if (tbody) {
+          tbody.innerHTML = benchmark.results.map(r => `
+            <tr>
+              <td style="font-weight: 700; color: #4F46E5;">${r.id}</td>
+              <td style="font-weight: 600;">"${r.query}"</td>
+              <td><span style="font-size: 11px; padding: 2px 6px; border-radius: 4px; background: #F1F5F9; color: #475569;">${r.category}</span></td>
+              <td style="color: ${r.status === 'SAFE_FALLBACK_TRIGGERED' ? '#D97706' : '#059669'}; font-weight: 600;">${r.expectedGuardrail}</td>
+              <td><span style="font-weight: 700; color: #00D09C;">${r.passed ? '✅ Passed' : '❌ Failed'}</span></td>
+            </tr>
+          `).join('');
+        }
+        modal.style.display = "flex";
+      }
+    });
+
+    document.getElementById("btn-close-benchmark-modal")?.addEventListener("click", () => {
+      const modal = document.getElementById("mentor-benchmark-modal");
+      if (modal) modal.style.display = "none";
+    });
+
+    document.getElementById("mentor-benchmark-modal")?.addEventListener("click", (e) => {
+      if (e.target.id === "mentor-benchmark-modal") {
+        e.target.style.display = "none";
+      }
     });
   }
 
