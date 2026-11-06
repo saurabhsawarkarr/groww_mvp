@@ -940,28 +940,12 @@
           <!-- Section E: Historical Performance in Downturns (Slide 5) -->
           <div style="padding: 0 18px;">
             <div class="section-title-row">
-              <h3 class="flow-section-heading">Historical Performance</h3>
-              <span class="flow-section-sub">How Groww investors navigated past market drawdowns</span>
+              <h3 class="flow-section-heading">Explore how Groww SIP investors responded during past market declines</h3>
             </div>
 
             ${(hist.cohortBehavior || hist.longitudinalCycles) ? `
               <!-- Compounding Data Advantage: Cohort Behavior Card (Screen 5) -->
               <div class="cohort-behavior-card" style="margin-top: 14px; margin-bottom: 4px;">
-                <div class="cohort-header">
-                  <div class="cohort-icon-badge">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00D09C" stroke-width="2.2">
-                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                      <circle cx="9" cy="7" r="4"/>
-                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                      <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 class="cohort-title">${hist.cohortBehavior?.title || "How Groww investors responded to market declines"}</h4>
-                    <span class="cohort-sub">${hist.cohortBehavior?.subtitle || "SIP behaviour across historical market events"}</span>
-                  </div>
-                </div>
-
                 <div class="cohort-hero-header-row">
                   <div class="cohort-hero-num">${hist.cohortBehavior?.heroPct || 81}%</div>
                   <span class="cohort-moat-pill">${hist.cohortBehavior?.moatBadge || "10-Year Data"}</span>
