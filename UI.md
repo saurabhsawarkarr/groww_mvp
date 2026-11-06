@@ -388,23 +388,85 @@ A thorough inspection of production Groww screens confirms:
   - Elevated card hover/tap state with subtle border transition (`#CBD5E1`).
   - Zero raw emojis, zero exclamation marks, 100% SVG line icons.
 
-### Screen 4: Continuous Deep Dive Report (The Core Solution)
-* **Function**: Comprehensive 8-section vertical report addressing investor panic.
-* **Findings**:
-  - **Section B (SIP Unit Accumulation)**: The table showing higher unit purchases at lower NAV is the most effective psychological anchor in the entire prototype.
-  - **Section D (Market Attribution)**: The waterfall clearly demonstrates that the dip is macroeconomic rather than fund mismanagement.
-  - **Section E (Historical Drawdown & Cohorts)**: The `81% peer conviction` and `10-Year Data` pill normalize volatility.
-  - **Section F (Fund Manager Continuity)**: The new Downturn Track Record card (3 corrections, ~14 months recovery) provides concrete historical proof under the same manager.
-  - **Section H (Summary & Key Takeaways)**: The single consolidated card with 3 personalized pointers provides clear cognitive closure.
-* **Recommendations**:
-  - Combine the two disclaimers in Section F using **Option A**.
-  - Keep the bottom buffer at `88px` so the sticky CTA buttons do not overlap Section H.
+### Screen 4: Continuous Deep Dive Report (The Core Solution Engine)
 
-### Screen 5: Detailed Summary & Analysis Report
-* **Function**: Dedicated screen for analytical users who click *"Check full summary in detail →"*.
-* **Findings**:
-  - Clean 4-pillar breakdown (SIP Advantage, Market Macro, Governance, Upcoming Milestone).
-  - Gives complete transparency without cluttering the main scrolling feed.
+* **Architectural Role**: The comprehensive 8-chapter vertical scrolling report. It is the central behavioral engine of the MVP, systematically dismantling investor panic by transforming unrealized paper losses into concrete unit accumulation proof.
+* **Component-by-Component Section Architecture**:
+  1. **Sticky Top Navigation Bar (`.slide-top-nav.sticky-nav`)**:
+     - Back arrow `←` returning seamlessly to Screen 3 (Fund Select) or Screen 2 (Fund Detail).
+     - Title: *"Why is my portfolio down?"* (`--font-subhead: 16px Bold`, `#242833`).
+     - Padding: Strict `16px` outer margins (`--space-16`).
+  2. **Fund Hero Branding Header (`.fund-hero-tag`)**:
+     - Official circular AMC vector logo (38px).
+     - Fund title (`16px Bold`), `Direct Plan · Growth`, and green `SIP ACTIVE` pill badge.
+  3. **Section A: Context Callout ("What this means for your SIP")**:
+     - **Headline**: *"Market dips allow your monthly SIP to collect more units at lower prices."* (`--font-subhead: 16px Bold`).
+     - **Subtext**: *"Pausing now stops this cost-averaging advantage. Continuing your SIP lowers your average purchase price for when the market rebounds."* (`--font-body: 14px`).
+     - Soft tinted container (`.context-card-soft`) with vector info icon in soft blue box.
+  4. **Section B: SIP Unit Accumulation & Rupee-Cost Averaging**:
+     - Icon: Cylinder / coin stack vector icon.
+     - Subtitle: *"When NAV drops, your fixed SIP buys more units"*.
+     - Clean 4-Column Table: `Month`, `SIP amount`, `NAV (₹)`, `Units`.
+     - Highlight Bar: Total units accumulated (`131.58 units` / `4.74 units`).
+     - Visual Comparison Pill: Flat NAV baseline (`120.00 units`) vs. Actual accumulated ➔ **`+9.6% Additional units`** in Groww emerald `#00D09C`.
+     - Legal Microcopy: *"More units do not guarantee positive returns."* (`--font-legal: 11px`).
+  5. **Section C & D: Market Impact & Attribution Waterfall**:
+     - Header: *"Market Impact & Attribution"*, subtext: *"How market and sector movements affected your fund"*.
+     - Macro Downward Banner: *"Broader market is down 2.6% this month"* with downward polyline arrow.
+     - 5-Tier Waterfall Breakdown:
+       - Market index (Nifty LargeMidcap 250): `-2.6%`
+       - Sector headwind (IT / BFSI): `-4.1%`
+       - Fund stock selection: `-2.0%`
+       - Personal entry timing edge (Groww proprietary ledger moat): `+0.4%`
+       - Net fund return: `-8.3%`
+     - Personal Ledger Insight Card: Highlights that the investor bought at lower-than-average NAV for the month.
+  6. **Section E: Historical Downturns & Peer Cohort Conviction**:
+     - Section Title: *"Explore how Groww SIP investors responded during past market declines"*.
+     - Badge: `10-YEAR DATA` pill badge.
+     - Hero Number: **`81%`** (`--font-stat: 18px Bold`) of investors in this fund stayed invested during past corrections.
+     - Behavioral Normalization: Reassures the investor that market dips are cyclical and temporary.
+  7. **Section F: Fund Manager Continuity & Downturn Track Record**:
+     - Lead Manager Card: Mr. R. Srinivasan (`5+ years tenure`), 3Y annualized performance vs category.
+     - Downturn Track Record Card: `3 market corrections navigated` | `~14 months average recovery time`.
+     - Investment Approach Card: Concise strategy overview.
+     - **Option A Unified Bottom Footnote**: Single, consolidated footnote merging manager tenure, Groww transaction data source, and SEBI past performance advisory.
+  8. **Section G: Fund Essentials & Key Facts (`IMG_9941`)**:
+     - Direct plan disclosures: Lock-in (None), Exit Load (1% within 365 days), Stamp Duty (0.005%).
+  9. **Section H: Personalized 3-Pointer Executive Summary & Action**:
+     - Single compact card with 3 tinted icon dots:
+       - 🟢 *SIP Advantage*: `+9.6% extra units collected at lower NAV`.
+       - 🔵 *Market Driven*: `Dip is macroeconomic; fund outperforming benchmark by +1.6%`.
+       - 🟣 *Manager Continuity*: `Steered through 3 past cycles with ~14 months recovery`.
+     - Action link: *"Check full summary in detail →"* opening Screen 5.
+* **Verified Audit Polish**:
+  - Full-bleed `8px` neutral dividers (`#F6F8FA`) separating analytical chapters.
+  - Enforced `88px` bottom buffer (`--space-buffer-bottom`) so sticky bottom action buttons never overlap Section H.
+
+---
+
+### Screen 5: Detailed Summary & Analysis Report (Analytical Closure)
+
+* **Architectural Role**: A dedicated deep-dive report designed for analytical investors who require complete, structured closure before exiting the experience.
+* **Component-by-Component Hierarchy**:
+  1. **Top Navigation (`.slide-top-nav.sticky-nav`)**:
+     - Pinned back button returning directly to Screen 4 (Fund Deep Dive).
+     - Title: *"Detailed Fund Summary"*.
+  2. **Executive Status Banner (`.detailed-status-banner`)**:
+     - Status Tag: `SIP ON TRACK · ACCUMULATING DISCOUNTED UNITS` (`--font-legal: 11px Bold`).
+     - Headline: *"Your investment strategy is working as intended"* (`--font-stat: 18px Bold`).
+     - Subtext: *"Temporary market dips are an inherent part of equity cycles. Your ongoing SIP acts as an automated cost-averaging mechanism."* (`--font-body: 14px`).
+  3. **The 4 Analytical Deep-Dive Pillars**:
+     - **Pillar 1: SIP Unit Accumulation Advantage** (Green): Total units acquired, Average purchase NAV vs. initial NAV, and cost-averaging narrative.
+     - **Pillar 2: Market & Macro Attribution** (Blue): Fund return vs. Benchmark return, demonstrating relative alpha outperformance (`+1.6%`).
+     - **Pillar 3: Governance & Manager Precedent** (Purple): 5+ years manager continuity and ~14 months average recovery proof across 3 cycles.
+     - **Pillar 4: Upcoming Milestone & Execution** (Amber): Next auto-debit date, monthly SIP amount, and 3/3 installment streak (100% on time).
+  4. **Dual Primary Action Buttons**:
+     - Button 1: *"Back to Portfolio Insights"* (`.btn-primary-green`) returning to the multi-fund triage hub.
+     - Button 2: *"Back to Fund Report"* (`.btn-secondary-mint`) returning to the continuous scroll.
+* **Verified Audit Polish**:
+  - Responsive card grid layout with 16px outer margins.
+  - Zero raw emojis, 100% monochrome vector line iconography.
+  - Container padding bottom set to `88px` for smooth mobile scrolling.
 
 ---
 
