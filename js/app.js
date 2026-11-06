@@ -680,7 +680,7 @@
   function renderScreen2FundSelection() {
     return `
       <div class="screen-view non-scrolling-screen" id="screen-fund-selection">
-        <div class="slide-top-nav" style="padding: 12px 18px 4px 18px;">
+        <div class="slide-top-nav" style="padding: 12px 16px 4px 16px;">
           <button class="back-btn" id="btn-back-to-dashboard">
             <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M19 12H5m7 7-7-7 7-7"/></svg>
           </button>
@@ -766,7 +766,7 @@
     return `
       <div class="screen-view scrolling-deepdive-screen" id="screen-deepdive-scroll">
         <!-- Sticky Top Navigation -->
-        <div class="slide-top-nav sticky-nav" style="padding: 12px 18px;">
+        <div class="slide-top-nav sticky-nav" style="padding: 12px 16px;">
           <button class="back-btn" id="btn-back-to-fundselect">
             <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M19 12H5m7 7-7-7 7-7"/></svg>
           </button>
@@ -775,7 +775,7 @@
 
         <div class="deep-dive-scroll-content">
           <!-- Fund Header -->
-          <div class="fund-hero-tag" style="padding: 6px 18px 2px 18px;">
+          <div class="fund-hero-tag" style="padding: 6px 16px 2px 16px;">
             ${renderFundLogo(fund.id, 38)}
             <div class="fund-name-block">
               <span class="fund-name-text" style="font-size: 16px;">${fund.name}</span>
@@ -787,7 +787,7 @@
           </div>
 
           <!-- Section A: Context Callout (Slide 3) -->
-          <div style="padding: 10px 18px 0 18px;">
+          <div style="padding: 10px 16px 0 16px;">
             <div class="context-card-soft">
               <div class="context-icon-box">
                 <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
@@ -805,7 +805,7 @@
           </div>
 
           <!-- Section B: SIP Unit Accumulation (Slide 3) -->
-          <div style="padding: 14px 18px 0 18px;">
+          <div style="padding: 14px 16px 0 16px;">
             <div class="accumulation-container">
               <div class="acc-header">
                 <div class="acc-icon-badge">
@@ -876,7 +876,7 @@
           <div class="flow-divider"></div>
 
           <!-- Section D: Market Impact Attribution (Slide 4) -->
-          <div style="padding: 0 18px;">
+          <div style="padding: 0 16px;">
             <div class="section-title-row">
               <h3 class="flow-section-heading">Market Impact & Attribution</h3>
               <span class="flow-section-sub">Why broader market factors affect your returns</span>
@@ -938,7 +938,7 @@
           <div class="flow-divider"></div>
 
           <!-- Section E: Historical Performance in Downturns (Slide 5) -->
-          <div style="padding: 0 18px;">
+          <div style="padding: 0 16px;">
             <div class="section-title-row">
               <h3 class="flow-section-heading">Explore how Groww SIP investors responded during past market declines</h3>
             </div>
@@ -1007,7 +1007,7 @@
           <div class="flow-divider"></div>
 
           <!-- Section F: Fund Manager & Performance (Matching reference screen) -->
-          <div style="padding: 0 18px;">
+          <div style="padding: 0 16px;">
             <div class="section-title-row">
               <h3 class="flow-section-heading">Fund Manager & Performance</h3>
               <span class="flow-section-sub">Transparent governance, historical returns & investment approach</span>
@@ -1169,7 +1169,7 @@
           <div class="flow-divider"></div>
 
           <!-- Section G: Fund Essentials & Key Facts (Matching Groww IMG_9941.PNG) -->
-          <div style="padding: 0 18px;">
+          <div style="padding: 0 16px;">
             <div class="section-title-row">
               <h3 class="flow-section-heading">Fund Essentials & Details</h3>
               <span class="flow-section-sub">Direct plan facts sourced from AMC factsheet</span>
@@ -1194,7 +1194,7 @@
           <div class="flow-divider"></div>
 
           <!-- Section H: Summary & Key Takeaways (Slide 7) -->
-          <div style="padding: 0 18px 30px 18px;">
+          <div style="padding: 0 16px 20px 16px;">
             <div class="section-title-row">
               <h3 class="flow-section-heading">Summary & Key Takeaways</h3>
               <span class="flow-section-sub">Overview of management continuity, costs, and peer activity</span>
@@ -1282,7 +1282,7 @@
     return `
       <div class="screen-view detailed-summary-screen" id="screen-detailed-summary">
         <!-- Sticky Top Navigation -->
-        <div class="slide-top-nav sticky-nav" style="padding: 12px 18px;">
+        <div class="slide-top-nav sticky-nav" style="padding: 12px 16px;">
           <button class="back-btn" id="btn-back-from-summary">
             <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M19 12H5m7 7-7-7 7-7"/></svg>
           </button>
@@ -1291,7 +1291,7 @@
 
         <div class="deep-dive-scroll-content">
           <!-- Fund Header -->
-          <div class="fund-hero-tag" style="padding: 6px 18px 8px 18px;">
+          <div class="fund-hero-tag" style="padding: 6px 16px 8px 16px;">
             ${renderFundLogo(fund.id, 38)}
             <div class="fund-name-block">
               <span class="fund-name-text" style="font-size: 16px;">${fund.name}</span>
@@ -1302,7 +1302,7 @@
             </div>
           </div>
 
-          <div style="padding: 6px 18px 24px 18px;">
+          <div style="padding: 6px 16px 24px 16px;">
             <!-- Executive Status Banner -->
             <div class="detailed-status-banner">
               <span class="detailed-status-pill">${detail.bannerTag || 'SIP ON TRACK · ACCUMULATING DISCOUNTED UNITS'}</span>

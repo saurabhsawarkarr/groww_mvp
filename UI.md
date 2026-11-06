@@ -125,25 +125,81 @@ Applied specifically to the high-impact **Section A Hero Card** (*"What this mea
 
 ## 3. Audit Area 2: Spacing, Padding & Mobile Vertical Rhythm
 
-### Current Spacing Inconsistencies
-* Screen side padding fluctuates between `16px` and `18px`.
-* Card internal padding varies from `10px 12px` to `14px 16px`.
-* Section H bottom padding was set to `padding: 0 18px 30px 18px;`, which leaves insufficient clearance when sticky bottom buttons are present.
+### Benchmark: Authentic Groww Mobile Layout Rhythm
+Groww adheres to an uncompromising **8pt Spatial Grid System** (with a `4px` half-step micro-unit). On standard mobile viewports (390px–412px), screen edges maintain a strict, invariant `16px` outer gutter. Major content blocks are segmented by full-bleed `8px` neutral bands (`#F6F8FA`), while cards maintain a unified `14px` interior padding with `12px` inter-card vertical gaps.
 
-### Section Divider Strategy
-* **Current**: Continuous `6px` grey bar (`.flow-divider`).
-* **Authentic Groww Standard**:
-  - **Full-bleed section breaks**: `8px` neutral band (`#F6F8FA`).
-  - **Internal card separators**: `1px` subtle hairline borders (`#EEF2F6`).
+### Current Codebase Finding: Layout Inconsistencies
+An audit of `css/groww.css` and `js/app.js` reveals three structural spacing defects:
+1. **Gutter Fluctuation (`16px` vs `18px`)**:
+   - Navigation bars, hero headers, and Section A–H containers in `js/app.js` use inline `padding: 0 18px;` or `padding: 12px 18px;`, while base CSS cards assume `16px`. This creates a visible 2px horizontal "step" when users transition between dashboard views and fund deep-dives.
+2. **Inconsistent Internal Card Padding (`10px`–`18px`)**:
+   - Card internal paddings vary from `10px 12px` up to `18px 16px`, distorting content density across adjacent modules.
+3. **Improper Section Divider Architecture**:
+   - `.flow-divider` was styled as a narrow 1px hairline with horizontal margins (`margin: 16px 18px;`). Authentic Groww uses edge-to-edge, full-bleed `8px` neutral structural bands (`#F6F8FA`) with zero horizontal margin to clearly separate analytical chapters.
+4. **Bottom Sticky CTA Clipping Risk**:
+   - The final summary section (Section H) used `padding: 0 18px 30px 18px;`. When fixed/sticky action buttons or bottom navigation pills are rendered, this 30px bottom clearance is insufficient, causing UI overlap on compact phone screens.
 
-### Recommended 8pt Spacing Grid
+---
+
+### Standardized 8pt Spacing Token System (PM Recommendation)
+
+All margins, paddings, and structural dividers across the MVP are standardized into an 8-token spacing scale:
+
+| Token | CSS Variable | Value | Usage in Groww MVP |
+| :---: | :--- | :---: | :--- |
+| **Micro** | `--space-4` | `4px` | Pill badges, dot separators, icon-to-label inline gaps |
+| **Tight** | `--space-8` | `8px` | Full-bleed section divider band height (`#F6F8FA`), chip spacing, metric row gaps |
+| **Compact** | `--space-12` | `12px` | Vertical spacing between consecutive cards, icon box margins |
+| **Card Base** | `--space-14` | `14px` | Standard interior card padding (top/bottom/sides) |
+| **Gutter** | `--space-16` | `16px` | Invariant outer screen horizontal margin (`padding-left` / `padding-right`) |
+| **Section** | `--space-20` | `20px` | Vertical spacing preceding and succeeding major section titles |
+| **Spacious** | `--space-24` | `24px` | Major card grouping gaps, modal top/bottom buffers |
+| **CTA Buffer**| `--space-buffer-bottom` | `88px` | Invariant bottom clearance on all scrolling views (`.deep-dive-scroll-content`) |
+
+---
+
+### Component-by-Component Layout Specification
+
 ```
-Screen Outer Horizontal Margin:  16px
-Standard Card Internal Padding:  14px
-Inter-Card Vertical Gap:         12px
-Section Divider Height:          8px (#F6F8FA)
-Bottom Sticky CTA Buffer:        88px padding-bottom on scrollable views
+┌────────────────────────────────────────────────────────┐
+│ Outer Screen Container (Viewport: 412px Max)          │
+│ ◀── 16px ──▶ [ Top Sticky Nav Bar ] ◀── 16px ──▶       │
+├────────────────────────────────────────────────────────┤
+│ ◀── 16px ──▶ [ Fund Hero Tag ]       ◀── 16px ──▶       │
+│                                                        │
+│ ◀── 16px ──▶ ┌────────────────────────┐ ◀── 16px ──▶   │
+│              │ Section A Hero Card    │                │
+│              │ (Padding: 14px 16px)   │                │
+│              └────────────────────────┘                │
+│                       ▼ (12px Gap)                     │
+│ ◀── 16px ──▶ ┌────────────────────────┐ ◀── 16px ──▶   │
+│              │ Section B Accumulation │                │
+│              │ (Padding: 14px 16px)   │                │
+│              └────────────────────────┘                │
+├────────────────────────────────────────────────────────┤
+│ ◀══════════ FULL-BLEED DIVIDER: 8px (#F6F8FA) ═══════▶ │
+├────────────────────────────────────────────────────────┤
+│ ◀── 16px ──▶ [ Section C: Market Attribution ]         │
+│                       ▼                                │
+│ ◀── 16px ──▶ [ Section H: Summary Card ]               │
+│                                                        │
+│ ◀══════════ INVARIANT BOTTOM BUFFER: 88px ═══════════▶ │
+│ [ Sticky Bottom Actions / Floating Bar Clearance Area] │
+└────────────────────────────────────────────────────────┘
 ```
+
+---
+
+### Implementation Migration Matrix (Codebase Updates)
+
+1. **Outer Screen Horizontal Margins**:
+   - Replaced all inline `padding: ... 18px;` in `js/app.js` and `css/groww.css` with unified `16px`.
+2. **Section Divider (`.flow-divider`)**:
+   - Updated from `height: 1px; margin: 16px 18px;` to `height: 8px; background: #F6F8FA; margin: 20px 0; width: 100%; border: none;` for authentic full-bleed visual chaptering.
+3. **Scroll Container Bottom Clearance**:
+   - Enforced `padding-bottom: 88px;` on `.deep-dive-scroll-content` and `.detailed-summary-scroll-content` to prevent sticky button clipping.
+4. **Card Padding Normalization**:
+   - Standardized internal card padding across `.context-card-soft`, `.accumulation-container`, `.waterfall-container`, and `.downturn-card` to `14px 16px`.
 
 ---
 
