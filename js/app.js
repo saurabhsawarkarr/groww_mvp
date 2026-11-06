@@ -215,7 +215,7 @@
     const catRet = perf.category;
 
     return `
-      <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px; margin-bottom: 6px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; font-size: var(--font-caption); margin-bottom: 6px;">
         <div style="display: flex; align-items: center; gap: 6px;">
           <span style="width: 8px; height: 8px; border-radius: 50%; background: #6366F1; flex-shrink: 0;"></span>
           <span style="color: var(--groww-text-secondary); font-weight: 500;">This Fund</span>
@@ -278,7 +278,7 @@
               <span class="metric-val-flat neutral">₹${p.totalInvested.toLocaleString('en-IN')}</span>
             </div>
             <div class="metric-line">
-              <span class="metric-label-flat">XIRR <span style="font-size:11px;">⌄</span></span>
+              <span class="metric-label-flat">XIRR <span style="font-size: var(--font-legal);">⌄</span></span>
               <span class="metric-val-flat loss">${p.xirr}%</span>
             </div>
           </div>
@@ -778,7 +778,7 @@
           <div class="fund-hero-tag" style="padding: 6px 16px 2px 16px;">
             ${renderFundLogo(fund.id, 38)}
             <div class="fund-name-block">
-              <span class="fund-name-text" style="font-size: 16px;">${fund.name}</span>
+              <span class="fund-name-text" style="font-size: var(--font-subhead);">${fund.name}</span>
               <div class="fund-plan-row">
                 <span>${fund.plan}</span>
                 <span class="sip-pill-tag">${fund.status}</span>
@@ -890,7 +890,7 @@
             </div>
 
             <div class="impact-breakdown-card" style="margin-bottom: 12px;">
-              <h4 style="font-size: 14px; font-weight: 700; color: var(--groww-text-primary); margin-bottom: 4px;">How it impacted your portfolio</h4>
+              <h4 style="font-size: var(--font-body); font-weight: 700; color: var(--groww-text-primary); margin-bottom: 4px;">How it impacted your portfolio</h4>
               ${market.factors.map(f => `
                 <div class="factor-row-clean ${f.isTotal ? 'total' : ''} ${f.isProprietary ? 'proprietary' : ''}">
                   <span style="color: ${f.isTotal ? 'var(--groww-text-primary)' : (f.isProprietary ? 'var(--groww-green-text)' : 'var(--groww-text-secondary)')}; font-weight: ${f.isProprietary ? '600' : '500'};">
@@ -1282,7 +1282,7 @@
           <div class="fund-hero-tag" style="padding: 6px 16px 8px 16px;">
             ${renderFundLogo(fund.id, 38)}
             <div class="fund-name-block">
-              <span class="fund-name-text" style="font-size: 16px;">${fund.name}</span>
+              <span class="fund-name-text" style="font-size: var(--font-subhead);">${fund.name}</span>
               <div class="fund-plan-row">
                 <span>${fund.plan}</span>
                 <span class="sip-pill-tag">${fund.status}</span>
