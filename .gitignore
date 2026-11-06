@@ -25,6 +25,7 @@ ehthumbs.db
 *.swp
 *.swo
 
-# Logs
+# Logs & Scratch
 *.log
+scratch_*
 

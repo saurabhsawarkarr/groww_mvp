@@ -316,7 +316,7 @@
               <div class="holding-flat-row" data-fund-id="${f.id}">
                 <div class="holding-left">
                   <span class="holding-fund-name">${f.planLine1 || f.name}</span>
-                  ${f.planLine2 ? `<span style="font-size: 13px; font-weight: 600; color: var(--groww-text-primary);">${f.planLine2}</span>` : ''}
+                  ${f.planLine2 ? `<span style="font-size: var(--font-body); font-weight: 600; color: var(--groww-text-primary);">${f.planLine2}</span>` : ''}
                   <span class="holding-sip-badge">${f.statusBadge}</span>
                 </div>
                 <div class="holding-right-val">

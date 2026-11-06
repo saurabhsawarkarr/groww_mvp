@@ -33,6 +33,15 @@
   --radius-pill: 9999px;
 
   --font-family: -apple-system, BlinkMacSystemFont, "Inter", "SF Pro Display", Roboto, sans-serif;
+
+  /* 7-Tier Standardized Typography Scale (Audit Area 1) */
+  --font-legal: 11px;
+  --font-caption: 12px;
+  --font-body: 14px;
+  --font-subhead: 16px;
+  --font-stat: 18px;
+  --font-title: 20px;
+  --font-hero: 24px;
 }
 
 /* Optional Dark Mode Token Overrides */
@@ -110,14 +119,14 @@ body.dark-mode .pres-header {
 }
 
 .brand-title {
-  font-size: 14px;
+  font-size: var(--font-body);
   font-weight: 700;
   letter-spacing: -0.2px;
   color: var(--groww-text-primary);
 }
 
 .brand-tag {
-  font-size: 10px;
+  font-size: var(--font-legal);
   font-weight: 700;
   padding: 2px 8px;
   border-radius: var(--radius-pill);
@@ -145,7 +154,7 @@ body.dark-mode .pres-header {
   background: transparent;
   border: none;
   color: var(--groww-text-secondary);
-  font-size: 12px;
+  font-size: var(--font-caption);
   font-weight: 600;
   padding: 6px 14px;
   border-radius: var(--radius-pill);
@@ -171,7 +180,7 @@ body.dark-mode .mode-btn.active {
   background: transparent;
   border: 1px solid var(--groww-border);
   color: var(--groww-text-primary);
-  font-size: 12px;
+  font-size: var(--font-caption);
   font-weight: 600;
   padding: 6px 12px;
   border-radius: var(--radius-pill);
@@ -214,7 +223,7 @@ body.dark-mode .phone-frame {
   justify-content: space-between;
   align-items: center;
   padding: 12px 20px 6px 20px;
-  font-size: 13px;
+  font-size: var(--font-body);
   font-weight: 600;
   color: var(--groww-text-primary);
   background: var(--groww-bg);
@@ -289,7 +298,7 @@ body.dark-mode .bottom-nav {
   align-items: center;
   gap: 3px;
   color: var(--groww-text-secondary);
-  font-size: 10px;
+  font-size: var(--font-legal);
   font-weight: 500;
   text-decoration: none;
   cursor: pointer;
@@ -368,7 +377,7 @@ body.dark-mode .back-btn:hover {
 }
 
 .slide-nav-title {
-  font-size: 16px;
+  font-size: var(--font-subhead);
   font-weight: 700;
   color: var(--groww-text-primary);
   letter-spacing: -0.2px;
@@ -384,7 +393,7 @@ body.dark-mode .back-btn:hover {
 }
 
 .groww-tab-link {
-  font-size: 14px;
+  font-size: var(--font-body);
   font-weight: 500;
   color: var(--groww-text-secondary);
   padding: 10px 0 12px 0;
@@ -435,13 +444,13 @@ body.dark-mode .back-btn:hover {
 }
 
 .metric-label-flat {
-  font-size: 14px;
+  font-size: var(--font-body);
   color: var(--groww-text-secondary);
   font-weight: 400;
 }
 
 .metric-val-flat {
-  font-size: 15px;
+  font-size: var(--font-subhead);
   font-weight: 600;
   letter-spacing: -0.2px;
 }
@@ -492,7 +501,7 @@ body.dark-mode .back-btn:hover {
 }
 
 .insight-title {
-  font-size: 13.5px;
+  font-size: var(--font-body);
   font-weight: 700;
   color: #FFFFFF;
   margin-bottom: 3px;
@@ -501,7 +510,7 @@ body.dark-mode .back-btn:hover {
 }
 
 .insight-subtext {
-  font-size: 11.5px;
+  font-size: var(--font-caption);
   line-height: 1.35;
   color: #D1D5DB;
   font-weight: 400;
@@ -525,7 +534,7 @@ body.dark-mode .back-btn:hover {
 }
 
 .sort-pill-flat {
-  font-size: 12px;
+  font-size: var(--font-caption);
   color: var(--groww-text-secondary);
   cursor: pointer;
 }
@@ -556,7 +565,7 @@ body.dark-mode .back-btn:hover {
 }
 
 .holding-fund-name {
-  font-size: 14px;
+  font-size: var(--font-body);
   font-weight: 500;
   color: var(--groww-text-primary);
   line-height: 1.35;
@@ -564,7 +573,7 @@ body.dark-mode .back-btn:hover {
 }
 
 .holding-sip-badge {
-  font-size: 11.5px;
+  font-size: var(--font-caption);
   color: var(--groww-text-muted);
   font-weight: 400;
   margin-top: 2px;
@@ -578,13 +587,13 @@ body.dark-mode .back-btn:hover {
 }
 
 .holding-curr-amount {
-  font-size: 14.5px;
+  font-size: var(--font-body);
   font-weight: 600;
   color: var(--groww-text-primary);
 }
 
 .holding-pct {
-  font-size: 12px;
+  font-size: var(--font-caption);
   font-weight: 600;
 }
 
@@ -612,7 +621,7 @@ body.dark-mode .back-btn:hover {
 }
 
 .hero-title-clean {
-  font-size: 20px;
+  font-size: var(--font-title);
   font-weight: 700;
   margin-bottom: 5px;
   color: var(--groww-text-primary);
@@ -621,7 +630,7 @@ body.dark-mode .back-btn:hover {
 }
 
 .hero-sub-clean {
-  font-size: 13px;
+  font-size: var(--font-body);
   color: var(--groww-text-secondary);
   line-height: 1.45;
   margin: 0;
@@ -680,7 +689,7 @@ body.dark-mode .fund-card-soft:hover {
 }
 
 .fund-name-text {
-  font-size: 13.5px;
+  font-size: var(--font-body);
   font-weight: 600;
   color: var(--groww-text-primary);
   letter-spacing: -0.2px;
@@ -691,7 +700,7 @@ body.dark-mode .fund-card-soft:hover {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 11.5px;
+  font-size: var(--font-caption);
   color: var(--groww-text-secondary);
 }
 
@@ -700,7 +709,7 @@ body.dark-mode .fund-card-soft:hover {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  font-size: 10px;
+  font-size: var(--font-legal);
   font-weight: 700;
   padding: 1.5px 6.5px;
   border-radius: 4px;
@@ -756,7 +765,7 @@ body.dark-mode .fund-card-soft:hover {
 }
 
 .fund-ret-label {
-  font-size: 13.5px;
+  font-size: var(--font-body);
   font-weight: 600;
   letter-spacing: -0.2px;
   white-space: nowrap;
@@ -788,13 +797,13 @@ body.dark-mode .fund-card-soft:hover {
 }
 
 .stat-label-muted {
-  font-size: 11px;
+  font-size: var(--font-legal);
   color: var(--groww-text-secondary);
   font-weight: 400;
 }
 
 .stat-val-bold {
-  font-size: 13.5px;
+  font-size: var(--font-body);
   font-weight: 600;
   color: var(--groww-text-primary);
   letter-spacing: -0.2px;
@@ -843,7 +852,7 @@ body.dark-mode .fund-card-soft:hover {
 .context-tag-pill,
 .rec-tag-pill {
   display: inline-block;
-  font-size: 10px;
+  font-size: var(--font-legal);
   font-weight: 700;
   color: #2563EB;
   background: rgba(59, 130, 246, 0.08);
@@ -856,7 +865,7 @@ body.dark-mode .fund-card-soft:hover {
 
 .context-title-text,
 .rec-title-text {
-  font-size: 13.5px;
+  font-size: var(--font-body);
   font-weight: 700;
   color: var(--groww-text-primary);
   line-height: 1.4;
@@ -865,7 +874,7 @@ body.dark-mode .fund-card-soft:hover {
 
 .context-desc-text,
 .rec-desc-text {
-  font-size: 12px;
+  font-size: var(--font-caption);
   color: var(--groww-text-secondary);
   line-height: 1.45;
   margin: 0;
@@ -902,14 +911,14 @@ body.dark-mode .fund-card-soft:hover {
 }
 
 .acc-title-main {
-  font-size: 15px;
+  font-size: var(--font-subhead);
   font-weight: 700;
   color: var(--groww-text-primary);
   margin-bottom: 2px;
 }
 
 .acc-sub-caption {
-  font-size: 11.5px;
+  font-size: var(--font-caption);
   color: var(--groww-text-secondary);
 }
 
@@ -920,7 +929,7 @@ body.dark-mode .fund-card-soft:hover {
 }
 
 .sip-table-clean th {
-  font-size: 11px;
+  font-size: var(--font-legal);
   color: var(--groww-text-secondary);
   font-weight: 600;
   text-align: right;
@@ -933,7 +942,7 @@ body.dark-mode .fund-card-soft:hover {
 }
 
 .sip-table-clean td {
-  font-size: 13px;
+  font-size: var(--font-body);
   color: var(--groww-text-primary);
   padding: 9px 4px;
   text-align: right;
@@ -953,13 +962,13 @@ body.dark-mode .fund-card-soft:hover {
 }
 
 .units-lbl {
-  font-size: 13.5px;
+  font-size: var(--font-body);
   font-weight: 600;
   color: var(--groww-text-primary);
 }
 
 .units-big-num {
-  font-size: 26px;
+  font-size: var(--font-hero);
   font-weight: 800;
   color: var(--groww-green-text);
   letter-spacing: -0.5px;
@@ -977,12 +986,12 @@ body.dark-mode .fund-card-soft:hover {
 }
 
 .comp-left-label {
-  font-size: 11.5px;
+  font-size: var(--font-caption);
   color: var(--groww-text-secondary);
 }
 
 .comp-left-units {
-  font-size: 13.5px;
+  font-size: var(--font-body);
   font-weight: 700;
   color: var(--groww-text-primary);
 }
@@ -1000,14 +1009,14 @@ body.dark-mode .fund-card-soft:hover {
 }
 
 .comp-pill-main-pct {
-  font-size: 13.5px;
+  font-size: var(--font-body);
   font-weight: 800;
   color: var(--groww-green-text);
   line-height: 1.15;
 }
 
 .comp-pill-sub-txt {
-  font-size: 10.5px;
+  font-size: var(--font-legal);
   font-weight: 600;
   color: var(--groww-green-text);
   opacity: 0.95;
@@ -1015,7 +1024,7 @@ body.dark-mode .fund-card-soft:hover {
 }
 
 .comp-why-inline {
-  font-size: 11px;
+  font-size: var(--font-legal);
   line-height: 1.4;
   color: var(--groww-text-secondary);
   margin-top: 10px;
@@ -1028,7 +1037,7 @@ body.dark-mode .fund-card-soft:hover {
 }
 
 .disclaimer-muted {
-  font-size: 10.5px;
+  font-size: var(--font-legal);
   color: var(--groww-text-secondary);
   display: flex;
   align-items: center;
@@ -1070,13 +1079,13 @@ body.dark-mode .fund-card-soft:hover {
 }
 
 .flow-section-heading {
-  font-size: 15px;
+  font-size: var(--font-subhead);
   font-weight: 700;
   color: var(--groww-text-primary);
 }
 
 .flow-section-sub {
-  font-size: 11.5px;
+  font-size: var(--font-caption);
   color: var(--groww-text-secondary);
 }
 
@@ -1091,7 +1100,7 @@ body.dark-mode .fund-card-soft:hover {
 }
 
 .alert-banner-title {
-  font-size: 14.5px;
+  font-size: var(--font-body);
   font-weight: 700;
   color: var(--groww-red);
 }
@@ -1111,7 +1120,7 @@ body.dark-mode .fund-card-soft:hover {
   justify-content: space-between;
   align-items: center;
   padding: 6px 0;
-  font-size: 13px;
+  font-size: var(--font-body);
 }
 
 .factor-row-clean:not(:last-child) {
@@ -1122,7 +1131,7 @@ body.dark-mode .fund-card-soft:hover {
   border-top: 1px solid var(--groww-border);
   padding-top: 10px;
   font-weight: 700;
-  font-size: 13.5px;
+  font-size: var(--font-body);
 }
 
 .factor-row-clean.proprietary {
@@ -1135,7 +1144,7 @@ body.dark-mode .fund-card-soft:hover {
 
 .proprietary-tag {
   display: inline-block;
-  font-size: 9.5px;
+  font-size: var(--font-legal);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.3px;
@@ -1164,7 +1173,7 @@ body.dark-mode .fund-card-soft:hover {
 }
 
 .timing-insight-text {
-  font-size: 12.5px;
+  font-size: var(--font-caption);
   line-height: 1.5;
   color: var(--groww-text-primary);
   margin: 0;
@@ -1179,7 +1188,7 @@ body.dark-mode .fund-card-soft:hover {
   display: flex;
   gap: 8px;
   align-items: flex-start;
-  font-size: 11.5px;
+  font-size: var(--font-caption);
   line-height: 1.4;
   color: var(--groww-text-secondary);
 }
@@ -1198,7 +1207,7 @@ body.dark-mode .fund-card-soft:hover {
   color: var(--groww-text-secondary);
   padding: 4px 14px;
   border-radius: var(--radius-pill);
-  font-size: 11.5px;
+  font-size: var(--font-caption);
   font-weight: 600;
   cursor: pointer;
   transition: all 0.15s;
@@ -1251,7 +1260,7 @@ body.dark-mode .fund-card-soft:hover {
 }
 
 .manager-kicker-label {
-  font-size: 10px;
+  font-size: var(--font-legal);
   font-weight: 700;
   letter-spacing: 0.6px;
   text-transform: uppercase;
@@ -1260,14 +1269,14 @@ body.dark-mode .fund-card-soft:hover {
 }
 
 .manager-fullname {
-  font-size: 15px;
+  font-size: var(--font-subhead);
   font-weight: 700;
   color: var(--groww-text-primary);
   margin: 1px 0 0 0;
 }
 
 .manager-tenure-desc {
-  font-size: 11.5px;
+  font-size: var(--font-caption);
   color: var(--groww-text-secondary);
   margin: 1px 0 0 0;
 }
@@ -1279,7 +1288,7 @@ body.dark-mode .fund-card-soft:hover {
   background: var(--groww-green-bg);
   color: var(--groww-green-text);
   border: 1px solid var(--groww-green-border);
-  font-size: 11.5px;
+  font-size: var(--font-caption);
   font-weight: 700;
   padding: 5px 9px;
   border-radius: 8px;
@@ -1316,7 +1325,7 @@ body.dark-mode .fund-card-soft:hover {
 }
 
 .perf-card-title {
-  font-size: 13.5px;
+  font-size: var(--font-body);
   font-weight: 700;
   color: var(--groww-text-primary);
   margin: 0;
@@ -1324,7 +1333,7 @@ body.dark-mode .fund-card-soft:hover {
 }
 
 .perf-card-period {
-  font-size: 11.5px;
+  font-size: var(--font-caption);
   color: var(--groww-text-secondary);
   font-weight: 500;
   display: block;
@@ -1363,13 +1372,13 @@ body.dark-mode .fund-card-soft:hover {
 }
 
 .perf-pill-label {
-  font-size: 11px;
+  font-size: var(--font-legal);
   color: var(--groww-text-secondary);
   font-weight: 500;
 }
 
 .perf-pill-val {
-  font-size: 16px;
+  font-size: var(--font-subhead);
   font-weight: 800;
 }
 
@@ -1396,7 +1405,7 @@ body.dark-mode .fund-card-soft:hover {
 .perf-legend-row {
   display: flex;
   gap: 8px;
-  font-size: 10px;
+  font-size: var(--font-legal);
   color: var(--groww-text-secondary);
   margin-top: 4px;
 }
@@ -1458,7 +1467,7 @@ body.dark-mode .correction-icon-trend {
 }
 
 .correction-card-title {
-  font-size: 13.5px;
+  font-size: var(--font-body);
   font-weight: 700;
   color: var(--groww-text-primary);
   margin: 0;
@@ -1484,7 +1493,7 @@ body.dark-mode .correction-icon-trend {
 }
 
 .correction-stat-num {
-  font-size: 24px;
+  font-size: var(--font-hero);
   font-weight: 800;
   color: #00875A;
   line-height: 1;
@@ -1495,7 +1504,7 @@ body.dark-mode .correction-stat-num {
 }
 
 .correction-stat-lbl {
-  font-size: 11px;
+  font-size: var(--font-legal);
   color: var(--groww-text-secondary);
   font-weight: 500;
   line-height: 1.25;
@@ -1513,7 +1522,7 @@ body.dark-mode .correction-stat-num {
 }
 
 .correction-stat-val {
-  font-size: 19px;
+  font-size: var(--font-stat);
   font-weight: 800;
   color: #00875A;
   line-height: 1.1;
@@ -1524,7 +1533,7 @@ body.dark-mode .correction-stat-val {
 }
 
 .correction-stat-sub {
-  font-size: 11px;
+  font-size: var(--font-legal);
   color: var(--groww-text-secondary);
   font-weight: 500;
   margin-top: 2px;
@@ -1534,7 +1543,7 @@ body.dark-mode .correction-stat-val {
   display: flex;
   align-items: flex-start;
   gap: 6px;
-  font-size: 10.5px;
+  font-size: var(--font-legal);
   color: var(--groww-text-secondary);
   line-height: 1.35;
 }
@@ -1574,14 +1583,14 @@ body.dark-mode .correction-stat-val {
 }
 
 .approach-card-title {
-  font-size: 13.5px;
+  font-size: var(--font-body);
   font-weight: 700;
   color: var(--groww-text-primary);
   margin: 0;
 }
 
 .approach-card-text {
-  font-size: 12.5px;
+  font-size: var(--font-caption);
   line-height: 1.45;
   color: var(--groww-text-secondary);
   margin: 0;
@@ -1612,14 +1621,14 @@ body.dark-mode .correction-stat-val {
 }
 
 .keep-card-title {
-  font-size: 12.5px;
+  font-size: var(--font-caption);
   font-weight: 700;
   color: var(--groww-text-primary);
   margin: 0;
 }
 
 .keep-card-text {
-  font-size: 11.5px;
+  font-size: var(--font-caption);
   line-height: 1.4;
   color: var(--groww-text-secondary);
   margin: 0;
@@ -1642,7 +1651,7 @@ body.dark-mode .correction-stat-val {
   align-items: flex-start;
   gap: 12px;
   padding: 8px 0;
-  font-size: 13px;
+  font-size: var(--font-body);
 }
 
 .essential-row:not(:last-child) {
@@ -1651,7 +1660,7 @@ body.dark-mode .correction-stat-val {
 
 .essential-label {
   color: var(--groww-text-secondary);
-  font-size: 12.5px;
+  font-size: var(--font-caption);
   flex-shrink: 0;
 }
 
@@ -1659,7 +1668,7 @@ body.dark-mode .correction-stat-val {
   color: var(--groww-text-primary);
   font-weight: 600;
   text-align: right;
-  font-size: 12.5px;
+  font-size: var(--font-caption);
 }
 
 .essential-val.highlight {
@@ -1668,7 +1677,7 @@ body.dark-mode .correction-stat-val {
 }
 
 .essential-val.note {
-  font-size: 11.5px;
+  font-size: var(--font-caption);
   font-weight: 500;
   line-height: 1.35;
   color: var(--groww-text-secondary);
@@ -1676,7 +1685,7 @@ body.dark-mode .correction-stat-val {
 }
 
 .essential-val.muted {
-  font-size: 11.5px;
+  font-size: var(--font-caption);
   color: var(--groww-text-secondary);
   max-width: 200px;
 }
@@ -1702,7 +1711,7 @@ body.dark-mode .correction-stat-val {
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  font-size: 12.5px;
+  font-size: var(--font-caption);
   line-height: 1.45;
   color: var(--groww-text-primary);
 }
@@ -1724,7 +1733,7 @@ body.dark-mode .correction-stat-val {
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  font-size: 12px;
+  font-size: var(--font-caption);
   line-height: 1.45;
   color: var(--groww-text-secondary);
 }
@@ -1771,7 +1780,7 @@ body.dark-mode .takeaway-dot-icon.purple { background: rgba(147, 51, 234, 0.15);
   padding: 0;
   cursor: pointer;
   color: #00A877;
-  font-size: 12px;
+  font-size: var(--font-caption);
   font-weight: 700;
   display: inline-flex;
   align-items: center;
@@ -1809,7 +1818,7 @@ body.dark-mode .detailed-status-banner {
 }
 
 .detailed-status-pill {
-  font-size: 10px;
+  font-size: var(--font-legal);
   font-weight: 800;
   color: #00875A;
   background: #DCFCE7;
@@ -1822,14 +1831,14 @@ body.dark-mode .detailed-status-banner {
 }
 
 .detailed-banner-title {
-  font-size: 15px;
+  font-size: var(--font-subhead);
   font-weight: 700;
   color: var(--groww-text-primary);
   margin: 0 0 4px 0;
 }
 
 .detailed-banner-desc {
-  font-size: 12px;
+  font-size: var(--font-caption);
   color: var(--groww-text-secondary);
   line-height: 1.45;
   margin: 0;
@@ -1862,7 +1871,7 @@ body.dark-mode .detailed-status-banner {
 }
 
 .detailed-card-title {
-  font-size: 13.5px;
+  font-size: var(--font-body);
   font-weight: 700;
   color: var(--groww-text-primary);
   margin: 0;
@@ -1883,7 +1892,7 @@ body.dark-mode .detailed-status-banner {
 }
 
 .detailed-stat-val {
-  font-size: 15px;
+  font-size: var(--font-subhead);
   font-weight: 800;
   color: var(--groww-text-primary);
   line-height: 1.2;
@@ -1893,7 +1902,7 @@ body.dark-mode .detailed-status-banner {
 .detailed-stat-val.red { color: #EB5B56; }
 
 .detailed-stat-lbl {
-  font-size: 10.5px;
+  font-size: var(--font-legal);
   color: var(--groww-text-secondary);
   margin-top: 2px;
 }
@@ -1903,7 +1912,7 @@ body.dark-mode .detailed-status-banner {
   border-left: 3px solid #00D09C;
   padding: 8px 12px;
   border-radius: 0 6px 6px 0;
-  font-size: 11.5px;
+  font-size: var(--font-caption);
   color: var(--groww-text-secondary);
   line-height: 1.45;
 }
@@ -1921,7 +1930,7 @@ body.dark-mode .detailed-status-banner {
 .btn-primary-green {
   background: var(--groww-green);
   color: #FFFFFF;
-  font-size: 14px;
+  font-size: var(--font-body);
   font-weight: 700;
   border: none;
   border-radius: 12px;
@@ -1975,7 +1984,7 @@ body.dark-mode .detailed-status-banner {
 }
 
 .cohort-card-title {
-  font-size: 13.5px;
+  font-size: var(--font-body);
   font-weight: 700;
   color: var(--groww-text-primary);
   line-height: 1.3;
@@ -1983,7 +1992,7 @@ body.dark-mode .detailed-status-banner {
 }
 
 .cohort-card-sub {
-  font-size: 11.5px;
+  font-size: var(--font-caption);
   color: var(--groww-text-secondary);
   font-weight: 500;
   display: block;
@@ -2057,14 +2066,14 @@ body.dark-mode .detailed-status-banner {
 }
 
 .cohort-stat-val {
-  font-size: 14px;
+  font-size: var(--font-body);
   font-weight: 700;
   color: var(--groww-text-primary);
   line-height: 1.2;
 }
 
 .cohort-stat-label {
-  font-size: 11px;
+  font-size: var(--font-legal);
   color: var(--groww-text-secondary);
   line-height: 1.25;
   margin-top: 2px;
@@ -2076,7 +2085,7 @@ body.dark-mode .detailed-status-banner {
   gap: 6px;
   padding-top: 8px;
   border-top: 1px dashed var(--groww-divider);
-  font-size: 11.5px;
+  font-size: var(--font-caption);
   color: var(--groww-text-secondary);
   font-weight: 500;
 }
@@ -2128,7 +2137,7 @@ body.dark-mode .detailed-status-banner {
 }
 
 .fund-nav-title {
-  font-size: 13.5px;
+  font-size: var(--font-body);
   font-weight: 700;
   color: var(--groww-text-primary);
   white-space: nowrap;
@@ -2141,7 +2150,7 @@ body.dark-mode .detailed-status-banner {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 11.5px;
+  font-size: var(--font-caption);
   color: var(--groww-text-secondary);
   margin-top: 1px;
 }
@@ -2210,7 +2219,7 @@ body.dark-mode .detailed-status-banner {
 }
 
 .fund-brand-title {
-  font-size: 17px;
+  font-size: var(--font-stat);
   font-weight: 800;
   color: var(--groww-text-primary);
   line-height: 1.25;
@@ -2225,7 +2234,7 @@ body.dark-mode .detailed-status-banner {
 }
 
 .fund-badge-chip {
-  font-size: 10.5px;
+  font-size: var(--font-legal);
   font-weight: 600;
   padding: 3px 8px;
   border-radius: 4px;
@@ -2265,7 +2274,7 @@ body.dark-mode .fund-badge-chip.rating-chip {
 }
 
 .holding-card-top-title {
-  font-size: 12px;
+  font-size: var(--font-caption);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -2285,13 +2294,13 @@ body.dark-mode .fund-badge-chip.rating-chip {
 }
 
 .uh-label {
-  font-size: 11px;
+  font-size: var(--font-legal);
   color: var(--groww-text-secondary);
   margin-bottom: 2px;
 }
 
 .uh-value {
-  font-size: 15px;
+  font-size: var(--font-subhead);
   font-weight: 700;
   color: var(--groww-text-primary);
 }
@@ -2310,7 +2319,7 @@ body.dark-mode .fund-badge-chip.rating-chip {
   border-top: 1px dashed var(--groww-divider);
   display: flex;
   justify-content: space-between;
-  font-size: 11px;
+  font-size: var(--font-legal);
   color: var(--groww-text-secondary);
 }
 
@@ -2358,13 +2367,13 @@ body.dark-mode .fund-badge-chip.rating-chip {
 }
 
 .bridge-title {
-  font-size: 13px;
+  font-size: var(--font-body);
   font-weight: 700;
   color: #FFFFFF;
 }
 
 .bridge-sub {
-  font-size: 11px;
+  font-size: var(--font-legal);
   color: #DDD6FE;
   margin-top: 1px;
   line-height: 1.25;
@@ -2374,7 +2383,7 @@ body.dark-mode .fund-badge-chip.rating-chip {
   display: flex;
   align-items: center;
   gap: 3px;
-  font-size: 11px;
+  font-size: var(--font-legal);
   font-weight: 700;
   color: #00D09C;
   background: rgba(0, 208, 156, 0.12);
@@ -2404,7 +2413,7 @@ body.dark-mode .fund-badge-chip.rating-chip {
 }
 
 .accordion-title {
-  font-size: 15px;
+  font-size: var(--font-subhead);
   font-weight: 700;
   color: var(--groww-text-primary);
   letter-spacing: -0.2px;
@@ -2438,7 +2447,7 @@ body.dark-mode .fund-badge-chip.rating-chip {
   background: transparent;
   border: none;
   padding: 6px 16px;
-  font-size: 12.5px;
+  font-size: var(--font-caption);
   font-weight: 600;
   color: var(--groww-text-secondary);
   border-radius: var(--radius-pill);
@@ -2458,13 +2467,13 @@ body.dark-mode .calc-type-btn.active {
 }
 
 .calc-amount-label {
-  font-size: 12px;
+  font-size: var(--font-caption);
   color: var(--groww-text-secondary);
   margin-bottom: 4px;
 }
 
 .calc-amount-val-display {
-  font-size: 26px;
+  font-size: var(--font-hero);
   font-weight: 800;
   color: var(--groww-text-primary);
   letter-spacing: -0.5px;
@@ -2552,7 +2561,7 @@ body.dark-mode .calc-bar-fill.bar-invested {
 }
 
 .calc-tf-pill-badge {
-  font-size: 11.5px;
+  font-size: var(--font-caption);
   font-weight: 600;
   color: var(--groww-text-secondary);
   padding: 3px 9px;
@@ -2577,7 +2586,7 @@ body.dark-mode .calc-bar-fill.bar-invested {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 8px;
-  font-size: 13px;
+  font-size: var(--font-body);
 }
 
 .calc-stat-key {
@@ -2604,7 +2613,7 @@ body.dark-mode .calc-bar-fill.bar-invested {
 .calc-stat-val-text {
   font-weight: 700;
   color: var(--groww-text-primary);
-  font-size: 14px;
+  font-size: var(--font-body);
 }
 
 /* Returns & Rankings Table (Matching IMG_9940.PNG) */
@@ -2612,7 +2621,7 @@ body.dark-mode .calc-bar-fill.bar-invested {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 12px;
+  font-size: var(--font-caption);
   margin-bottom: 12px;
 }
 
@@ -2634,7 +2643,7 @@ body.dark-mode .calc-bar-fill.bar-invested {
 }
 
 .groww-returns-table th {
-  font-size: 11.5px;
+  font-size: var(--font-caption);
   font-weight: 600;
   color: var(--groww-text-secondary);
   padding: 8px 4px;
@@ -2647,7 +2656,7 @@ body.dark-mode .calc-bar-fill.bar-invested {
 }
 
 .groww-returns-table td {
-  font-size: 12.5px;
+  font-size: var(--font-caption);
   padding: 10px 4px;
   text-align: right;
   color: var(--groww-text-primary);
@@ -2665,7 +2674,7 @@ body.dark-mode .calc-bar-fill.bar-invested {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  font-size: 12px;
+  font-size: var(--font-caption);
   color: var(--groww-text-secondary);
   cursor: pointer;
   text-decoration: none;
@@ -2684,7 +2693,7 @@ body.dark-mode .calc-bar-fill.bar-invested {
 }
 
 .bullet-square {
-  font-size: 14px;
+  font-size: var(--font-body);
   color: var(--groww-text-secondary);
   line-height: 1.2;
 }
@@ -2694,14 +2703,14 @@ body.dark-mode .calc-bar-fill.bar-invested {
 }
 
 .expense-tax-head {
-  font-size: 13.5px;
+  font-size: var(--font-body);
   font-weight: 700;
   color: var(--groww-text-primary);
   margin-bottom: 2px;
 }
 
 .expense-tax-desc {
-  font-size: 12px;
+  font-size: var(--font-caption);
   color: var(--groww-text-secondary);
   line-height: 1.35;
 }
@@ -2716,7 +2725,7 @@ body.dark-mode .calc-bar-fill.bar-invested {
 }
 
 .check-past-data-btn {
-  font-size: 12px;
+  font-size: var(--font-caption);
   font-weight: 600;
   color: var(--groww-green-text);
   background: transparent;
@@ -2743,19 +2752,19 @@ body.dark-mode .calc-bar-fill.bar-invested {
 }
 
 .peer-title {
-  font-size: 12.5px;
+  font-size: var(--font-caption);
   font-weight: 600;
   color: var(--groww-text-primary);
 }
 
 .peer-expense {
-  font-size: 11px;
+  font-size: var(--font-legal);
   color: var(--groww-text-secondary);
   margin-top: 1px;
 }
 
 .peer-ret-col {
-  font-size: 13px;
+  font-size: var(--font-body);
   font-weight: 700;
   color: var(--groww-text-primary);
 }
@@ -2789,7 +2798,7 @@ body.dark-mode .fund-detail-bottom-bar {
   color: var(--groww-green-text);
   border: 1px solid var(--groww-green-border);
   border-radius: 8px;
-  font-size: 13.5px;
+  font-size: var(--font-body);
   font-weight: 700;
   cursor: pointer;
   transition: opacity 0.15s ease;
@@ -2806,7 +2815,7 @@ body.dark-mode .fund-detail-bottom-bar {
   color: #FFFFFF;
   border: none;
   border-radius: 8px;
-  font-size: 13.5px;
+  font-size: var(--font-body);
   font-weight: 700;
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(0, 208, 156, 0.3);
@@ -2844,7 +2853,7 @@ body.dark-mode .behavioral-insight-card {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 11px;
+  font-size: var(--font-legal);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.4px;
@@ -2862,7 +2871,7 @@ body.dark-mode .behavioral-tag-badge {
 }
 
 .behavioral-lead-text {
-  font-size: 12.5px;
+  font-size: var(--font-caption);
   line-height: 1.45;
   color: var(--groww-text-primary);
   font-weight: 500;
@@ -2880,7 +2889,7 @@ body.dark-mode .behavioral-tag-badge {
 }
 
 .behavioral-reassurance-text {
-  font-size: 11.5px;
+  font-size: var(--font-caption);
   font-weight: 700;
   color: var(--groww-green-text);
   line-height: 1.3;
@@ -2921,14 +2930,14 @@ body.dark-mode .cohort-behavior-card {
 }
 
 .cohort-title {
-  font-size: 13.5px;
+  font-size: var(--font-body);
   font-weight: 700;
   color: var(--groww-text-primary);
   line-height: 1.3;
 }
 
 .cohort-sub {
-  font-size: 11px;
+  font-size: var(--font-legal);
   color: var(--groww-text-secondary);
   display: block;
   margin-top: 2px;
@@ -2942,7 +2951,7 @@ body.dark-mode .cohort-behavior-card {
 }
 
 .cohort-moat-pill {
-  font-size: 10.5px;
+  font-size: var(--font-legal);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.4px;
@@ -2954,7 +2963,7 @@ body.dark-mode .cohort-behavior-card {
 }
 
 .cohort-hero-num {
-  font-size: 18px;
+  font-size: var(--font-stat);
   font-weight: 700;
   color: #00D09C;
   line-height: 1.2;
@@ -2962,7 +2971,7 @@ body.dark-mode .cohort-behavior-card {
 }
 
 .cohort-hero-label {
-  font-size: 13px;
+  font-size: var(--font-body);
   font-weight: 700;
   color: var(--groww-text-primary);
   line-height: 1.35;
@@ -3011,7 +3020,7 @@ body.dark-mode .cohort-behavior-card {
 }
 
 .cohort-stat-pct {
-  font-size: 16px;
+  font-size: var(--font-subhead);
   font-weight: 800;
   line-height: 1.2;
 }
@@ -3029,13 +3038,13 @@ body.dark-mode .cohort-behavior-card {
 }
 
 .cohort-stat-label {
-  font-size: 11px;
+  font-size: var(--font-legal);
   color: var(--groww-text-secondary);
   font-weight: 500;
 }
 
 .cohort-hist-heading {
-  font-size: 13px;
+  font-size: var(--font-body);
   font-weight: 700;
   color: var(--groww-text-primary);
   margin-bottom: 12px;
@@ -3057,14 +3066,14 @@ body.dark-mode .cohort-behavior-card {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 11.5px;
+  font-size: var(--font-caption);
   color: var(--groww-text-secondary);
 }
 
 .prev-event-pct {
   font-weight: 700;
   color: var(--groww-text-primary);
-  font-size: 12.5px;
+  font-size: var(--font-caption);
 }
 
 .prev-event-bar-track {
@@ -3085,7 +3094,7 @@ body.dark-mode .prev-event-bar-track {
 }
 
 .cohort-disclaimer {
-  font-size: 9.5px;
+  font-size: var(--font-legal);
   line-height: 1.45;
   color: var(--groww-text-secondary);
   margin-top: 14px;
