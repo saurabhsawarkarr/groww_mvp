@@ -1014,7 +1014,7 @@
                 </div>
 
                 <div class="cohort-disclaimer">
-                  ${hist.cohortBehavior?.disclaimer || "Illustrative presentation using your supplied figures. Historical periods and the February 2025 cohort must have verified, comparable definitions and sources before publication."}
+                  ${hist.cohortBehavior?.disclaimer || "Based on anonymised SIP behaviour data from Groww investors.<br>Individual results may vary."}
                 </div>
               </div>
             ` : ''}
