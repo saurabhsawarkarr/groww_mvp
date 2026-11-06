@@ -1413,6 +1413,132 @@ body.dark-mode .fund-card-soft:hover {
   background: #94A3B8;
 }
 
+/* Past Corrections Navigation Card (Option 2) */
+.correction-nav-card {
+  background: #F2FAF7;
+  border: 1px solid #D1FAE5;
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+body.dark-mode .correction-nav-card {
+  background: rgba(0, 208, 156, 0.06);
+  border-color: rgba(0, 208, 156, 0.2);
+}
+
+.correction-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.correction-icon-trend {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: #D1FAE5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #00A877;
+  flex-shrink: 0;
+}
+
+body.dark-mode .correction-icon-trend {
+  background: rgba(0, 208, 156, 0.15);
+  color: #00D09C;
+}
+
+.correction-card-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--groww-text-primary);
+  margin: 0;
+  line-height: 1.35;
+}
+
+.correction-stat-container {
+  background: var(--groww-surface);
+  border: 1px solid var(--groww-border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.correction-stat-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.correction-stat-num {
+  font-size: 24px;
+  font-weight: 800;
+  color: #00875A;
+  line-height: 1;
+}
+
+body.dark-mode .correction-stat-num {
+  color: #00D09C;
+}
+
+.correction-stat-lbl {
+  font-size: 11px;
+  color: var(--groww-text-secondary);
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.correction-stat-divider {
+  width: 1px;
+  height: 32px;
+  background: var(--groww-divider);
+  margin: 0 14px;
+}
+
+.correction-stat-right {
+  flex: 1.2;
+}
+
+.correction-stat-val {
+  font-size: 19px;
+  font-weight: 800;
+  color: #00875A;
+  line-height: 1.1;
+}
+
+body.dark-mode .correction-stat-val {
+  color: #00D09C;
+}
+
+.correction-stat-sub {
+  font-size: 11px;
+  color: var(--groww-text-secondary);
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+.correction-card-footer {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-size: 10.5px;
+  color: var(--groww-text-secondary);
+  line-height: 1.35;
+}
+
+.correction-card-footer svg {
+  flex-shrink: 0;
+  margin-top: 1.5px;
+}
+
 /* Investment Approach Card */
 .approach-card {
   background: var(--groww-surface);

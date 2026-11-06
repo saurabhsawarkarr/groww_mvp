@@ -164,6 +164,12 @@ const GROWW_DATA = {
         performancePeriod: "3-year annualised returns (as of Mar 2025)",
         fundReturn: "12.4%",
         categoryReturn: "10.1%",
+        downturnTrackRecord: {
+          title: "How this fund navigated past corrections",
+          correctionsCount: 3,
+          recoveryTime: "~14 months",
+          sourceNote: "Managed by Mr. R. Srinivasan since 2019 · Groww transaction data."
+        },
         investmentApproach: "Invests in a mix of large and mid-sized companies with a focus on long-term growth.",
         disclaimer: "Past performance shows how the fund has behaved, but it does not guarantee future returns."
       },
@@ -322,6 +328,12 @@ const GROWW_DATA = {
         performancePeriod: "3-year annualised returns (as of Mar 2025)",
         fundReturn: "18.4%",
         categoryReturn: "15.2%",
+        downturnTrackRecord: {
+          title: "How this fund navigated past corrections",
+          correctionsCount: 4,
+          recoveryTime: "~11 months",
+          sourceNote: "Managed by Mr. Rajeev Thakkar since 2013 · Groww transaction data."
+        },
         investmentApproach: "Focuses on value investing across large, mid, and small-cap stocks, including select international equities with strong moats.",
         disclaimer: "Past performance shows how the fund has behaved, but it does not guarantee future returns."
       },
@@ -474,6 +486,12 @@ const GROWW_DATA = {
         performancePeriod: "1-year annualised returns (as of Mar 2025)",
         fundReturn: "18.2%",
         categoryReturn: "17.4%",
+        downturnTrackRecord: {
+          title: "How this fund navigated past corrections",
+          correctionsCount: 2,
+          recoveryTime: "~8 months",
+          sourceNote: "Based on historical commodity cycles · Groww transaction data."
+        },
         investmentApproach: "Direct physical silver bullion allocation conforming to LBMA standards with low tracking error.",
         disclaimer: "Past performance shows how the fund has behaved, but it does not guarantee future returns."
       },
@@ -626,6 +644,12 @@ const GROWW_DATA = {
         performancePeriod: "1-year annualised returns (as of Mar 2025)",
         fundReturn: "14.8%",
         categoryReturn: "14.1%",
+        downturnTrackRecord: {
+          title: "How this fund navigated past corrections",
+          correctionsCount: 3,
+          recoveryTime: "~6 months",
+          sourceNote: "Based on historical gold bullion cycles · Groww transaction data."
+        },
         investmentApproach: "Passively tracks physical gold spot prices by holding physical 99.5% pure gold bullion with accredited custodians.",
         disclaimer: "Past performance shows how the fund has behaved, but it does not guarantee future returns."
       },

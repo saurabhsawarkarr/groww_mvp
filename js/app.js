@@ -1097,6 +1097,44 @@
               </div>
             </div>
 
+            ${manager.downturnTrackRecord ? `
+            <!-- Card 2B: Downturn Track Record (Groww Proprietary Data) -->
+            <div class="correction-nav-card" style="margin-bottom: 12px;">
+              <div class="correction-card-header">
+                <div class="correction-icon-trend">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00A877" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                    <polyline points="17 6 23 6 23 12"/>
+                  </svg>
+                </div>
+                <div style="flex: 1;">
+                  <h4 class="correction-card-title">${manager.downturnTrackRecord.title}</h4>
+                </div>
+              </div>
+
+              <div class="correction-stat-container">
+                <div class="correction-stat-left">
+                  <span class="correction-stat-num">${manager.downturnTrackRecord.correctionsCount}</span>
+                  <span class="correction-stat-lbl">market<br>corrections</span>
+                </div>
+                <div class="correction-stat-divider"></div>
+                <div class="correction-stat-right">
+                  <div class="correction-stat-val">${manager.downturnTrackRecord.recoveryTime}</div>
+                  <div class="correction-stat-sub">average time to recover</div>
+                </div>
+              </div>
+
+              <div class="correction-card-footer">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <line x1="12" y1="16" x2="12" y2="12"/>
+                  <line x1="12" y1="8" x2="12.01" y2="8"/>
+                </svg>
+                <span>${manager.downturnTrackRecord.sourceNote}</span>
+              </div>
+            </div>
+            ` : ''}
+
             <!-- Card 3: Investment Approach -->
             <div class="approach-card" style="margin-bottom: 12px;">
               <div class="approach-card-header">
