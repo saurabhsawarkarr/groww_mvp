@@ -1208,77 +1208,61 @@
               <span class="flow-section-sub">Overview of management continuity, costs, and peer activity</span>
             </div>
 
-            <!-- 3 Personalized Highlight Cards -->
-            <div class="summary-highlights-list">
-              ${(health.personalizedHighlights || [
-                {
-                  badge: "SIP UNIT ADVANTAGE",
-                  badgeClass: "mint",
-                  title: "+9.6% extra units accumulated",
-                  desc: "Your ₹2,000 monthly SIP purchased 131.58 units at an average cost of ₹45.60 vs ₹50.00 initial NAV by investing through the dip."
-                },
-                {
-                  badge: "MARKET ATTRIBUTION",
-                  badgeClass: "blue",
-                  title: "Outperforming category benchmark",
-                  desc: "The decline is category-wide, but your fund held up stronger at -4.2% compared to Nifty LargeMidcap 250 (-5.8%)."
-                },
-                {
-                  badge: "HISTORICAL & PEER DISCIPLINE",
-                  badgeClass: "purple",
-                  title: "Proven recovery record · 81% peer conviction",
-                  desc: "Manager steered through past corrections; 81% of Groww investors in this fund kept their SIP active."
-                }
-              ]).map((hl, idx) => `
-                <div class="summary-hl-card">
-                  <div class="summary-hl-icon ${hl.badgeClass}">
-                    ${idx === 0 ? `
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
-                        <polyline points="17 6 23 6 23 12"/>
-                      </svg>
-                    ` : idx === 1 ? `
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                      </svg>
-                    ` : `
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                        <circle cx="9" cy="7" r="4"/>
-                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                      </svg>
-                    `}
+            <!-- Compact Single Card Summary (Like previous one with little more space) -->
+            <div class="takeaway-box-soft" style="margin-bottom: 14px; margin-top: 12px;">
+              <div class="takeaway-rich-list">
+                ${(health.personalizedHighlights || [
+                  {
+                    badgeClass: "mint",
+                    title: "+9.6% extra units accumulated:",
+                    desc: "Your ₹2,000 monthly SIP purchased 131.58 units at an average cost of ₹45.60 vs ₹50.00 initial NAV."
+                  },
+                  {
+                    badgeClass: "blue",
+                    title: "Outperforming category benchmark:",
+                    desc: "Fund held up stronger at -4.2% compared to Nifty LargeMidcap 250 (-5.8%)."
+                  },
+                  {
+                    badgeClass: "purple",
+                    title: "Proven recovery record · 81% peer conviction:",
+                    desc: "3 past corrections navigated (~14 mo avg recovery); 81% of Groww investors in this fund kept their SIP active."
+                  }
+                ]).map((hl, idx) => `
+                  <div class="takeaway-item-rich">
+                    <div class="takeaway-dot-icon ${hl.badgeClass}">
+                      ${idx === 0 ? `
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                          <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                          <polyline points="17 6 23 6 23 12"/>
+                        </svg>
+                      ` : idx === 1 ? `
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                      ` : `
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                          <circle cx="9" cy="7" r="4"/>
+                          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                      `}
+                    </div>
+                    <div>
+                      <span class="takeaway-rich-title">${hl.title.endsWith(':') ? hl.title : hl.title + ':'}</span>
+                      <span class="takeaway-rich-desc"> ${hl.desc}</span>
+                    </div>
                   </div>
-                  <div style="flex: 1;">
-                    <span class="summary-hl-badge ${hl.badgeClass}">${hl.badge}</span>
-                    <h4 class="summary-hl-title">${hl.title}</h4>
-                    <p class="summary-hl-desc">${hl.desc}</p>
-                  </div>
-                </div>
-              `).join('')}
-            </div>
+                `).join('')}
+              </div>
 
-            <!-- Clickable Link Button: Open Detailed Summary Analysis Screen -->
-            <div class="summary-detail-link-box">
-              <button class="btn-summary-detail-link" id="btn-open-detailed-summary">
-                <div class="summary-link-left">
-                  <div class="summary-link-icon-box">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                      <polyline points="14 2 14 8 20 8"/>
-                      <line x1="16" y1="13" x2="8" y2="13"/>
-                      <line x1="16" y1="17" x2="8" y2="17"/>
-                      <polyline points="10 9 9 9 8 9"/>
-                    </svg>
-                  </div>
-                  <div class="summary-link-text-group">
-                    <span class="summary-link-main">View detailed summary & analysis</span>
-                    <span class="summary-link-sub">Full breakdown of accumulation, attribution & governance</span>
-                  </div>
-                </div>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-              </button>
+              <!-- In-Card Footer Link to Full Detailed Analysis -->
+              <div class="takeaway-card-footer-link">
+                <button class="btn-text-summary-link" id="btn-open-detailed-summary">
+                  <span>View detailed summary analysis</span>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
+              </div>
             </div>
 
             <!-- Single Action Button: Back to Insights -->

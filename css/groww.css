@@ -1713,29 +1713,26 @@ body.dark-mode .correction-stat-val {
   margin-top: 4px;
 }
 
-/* Personalized Summary Highlights & Detailed Summary Screen */
-.summary-highlights-list {
+/* Compact Single Card Summary (Like previous one with little more space) */
+.takeaway-rich-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-bottom: 14px;
+  gap: 11px;
 }
 
-.summary-hl-card {
-  background: var(--groww-surface);
-  border: 1px solid var(--groww-border);
-  border-radius: var(--radius-md);
-  padding: 13px 15px;
+.takeaway-item-rich {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  gap: 10px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--groww-text-secondary);
 }
 
-.summary-hl-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
+.takeaway-dot-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1743,127 +1740,52 @@ body.dark-mode .correction-stat-val {
   margin-top: 1px;
 }
 
-.summary-hl-icon.mint {
-  background: #E8F8F3;
-  color: #00A877;
-}
+.takeaway-dot-icon.mint { background: #E8F8F3; color: #00A877; }
+.takeaway-dot-icon.blue { background: #EFF6FF; color: #2563EB; }
+.takeaway-dot-icon.purple { background: #FAF5FF; color: #7E22CE; }
 
-.summary-hl-icon.blue {
-  background: #EFF6FF;
-  color: #2563EB;
-}
+body.dark-mode .takeaway-dot-icon.mint { background: rgba(0, 208, 156, 0.15); color: #00D09C; }
+body.dark-mode .takeaway-dot-icon.blue { background: rgba(37, 99, 235, 0.15); color: #60A5FA; }
+body.dark-mode .takeaway-dot-icon.purple { background: rgba(147, 51, 234, 0.15); color: #C084FC; }
 
-.summary-hl-icon.purple {
-  background: #FAF5FF;
-  color: #7E22CE;
-}
-
-.summary-hl-badge {
-  font-size: 9.5px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.4px;
-  margin-bottom: 3px;
-  display: inline-block;
-}
-
-.summary-hl-badge.mint { color: #00875A; }
-.summary-hl-badge.blue { color: #1D4ED8; }
-.summary-hl-badge.purple { color: #6B21A8; }
-
-.summary-hl-title {
-  font-size: 13.5px;
+.takeaway-rich-title {
   font-weight: 700;
   color: var(--groww-text-primary);
-  line-height: 1.35;
-  margin: 0 0 3px 0;
+  display: inline;
 }
 
-.summary-hl-desc {
-  font-size: 11.5px;
+.takeaway-rich-desc {
   color: var(--groww-text-secondary);
-  line-height: 1.45;
-  margin: 0;
+  display: inline;
 }
 
-/* Clickable Link to Detailed Summary Page */
-.summary-detail-link-box {
-  margin-bottom: 14px;
+.takeaway-card-footer-link {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--groww-divider);
 }
 
-.btn-summary-detail-link {
-  width: 100%;
-  background: #F0FDF4;
-  border: 1.5px solid #BBF7D0;
-  border-radius: var(--radius-md);
-  padding: 13px 14px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.btn-text-summary-link {
+  background: none;
+  border: none;
+  padding: 0;
   cursor: pointer;
-  text-align: left;
-  transition: all 0.2s ease;
-  color: #14532D;
-}
-
-body.dark-mode .btn-summary-detail-link {
-  background: rgba(0, 208, 156, 0.08);
-  border-color: rgba(0, 208, 156, 0.25);
-  color: #A7F3D0;
-}
-
-.btn-summary-detail-link:hover {
-  background: #DCFCE7;
-  border-color: #86EFAC;
-  transform: translateY(-1px);
-}
-
-.summary-link-left {
-  display: flex;
+  color: #00A877;
+  font-size: 12px;
+  font-weight: 700;
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 4px;
+  transition: opacity 0.15s;
 }
 
-.summary-link-icon-box {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  background: #DCFCE7;
-  color: #00875A;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-body.dark-mode .summary-link-icon-box {
-  background: rgba(0, 208, 156, 0.2);
+body.dark-mode .btn-text-summary-link {
   color: #00D09C;
 }
 
-.summary-link-text-group {
-  display: flex;
-  flex-direction: column;
-}
-
-.summary-link-main {
-  font-size: 13px;
-  font-weight: 700;
-  color: #14532D;
-}
-
-body.dark-mode .summary-link-main {
-  color: #F0FDF4;
-}
-
-.summary-link-sub {
-  font-size: 11px;
-  color: #166534;
-  margin-top: 2px;
-}
-
-body.dark-mode .summary-link-sub {
-  color: #86EFAC;
+.btn-text-summary-link:hover {
+  opacity: 0.85;
+  text-decoration: underline;
 }
 
 /* Detailed Summary Analysis Screen Styles */
