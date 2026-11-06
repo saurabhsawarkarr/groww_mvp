@@ -19,7 +19,8 @@
     previousView: 'dashboard',
     managerTf: "3Y",
     calcMode: "sip", // "sip" | "lumpsum"
-    calcAmount: 5000,
+    calcAmount: 1000,
+    _userTouchedCalc: false,
     calcTf: "6M", // "6M" | "1Y" | "3Y" | "5Y"
     accordions: {
       calc: true,
@@ -84,19 +85,19 @@
   function updateCalculatorUI() {
     const fund = getSelectedFund();
     const data = getCalculatorData(fund, state.calcMode, state.calcAmount);
-    
+
     // Update amount display text
     const displayEl = document.getElementById("calc-amount-val-text");
     if (displayEl) {
       displayEl.textContent = `₹${state.calcAmount.toLocaleString('en-IN')}`;
     }
-    
+
     // Update slider value
     const slider = document.getElementById("calc-slider-input");
     if (slider) {
       slider.value = state.calcAmount;
     }
-    
+
     // Update bars
     ["6M", "1Y", "3Y", "5Y"].forEach(tf => {
       const col = document.querySelector(`.calc-bar-column[data-tf="${tf}"]`);
@@ -110,7 +111,7 @@
         }
       }
     });
-    
+
     // Update summary values for selected timeframe
     const activeData = data[state.calcTf];
     const totalInvestedEl = document.getElementById("calc-summary-invested");
@@ -252,6 +253,10 @@
   // ==========================================
   function renderScreen1Dashboard() {
     const p = GROWW_DATA.portfolio;
+    const isPortNeg = p.totalReturns < 0;
+    const insightTitle = isPortNeg ? (GROWW_DATA.insightCard.title || "Why is my portfolio down?") : "How is your portfolio performing?";
+    const insightSubtext = isPortNeg ? (GROWW_DATA.insightCard.subtext || "Understand how market movements, your funds, and SIP investments are affecting your returns.") : "Understand what's driving your gains, your fund performance, and how your SIP is compounding.";
+
     return `
       <div class="screen-view non-scrolling-screen" id="screen-dashboard">
         <!-- Groww Top Navigation Tabs (Matching IMG_9936) -->
@@ -283,7 +288,7 @@
             </div>
           </div>
 
-          <!-- Highlight Action Card: "Why is my portfolio down?" -->
+          <!-- Highlight Action Card: "Why is my portfolio down?" or "How is your portfolio performing?" -->
           <div class="insight-trigger-card" id="btn-trigger-insights">
             <div class="insight-icon-box">
               <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
@@ -293,8 +298,8 @@
               </svg>
             </div>
             <div class="insight-text-box">
-              <div class="insight-title">${GROWW_DATA.insightCard.title}</div>
-              <div class="insight-subtext">${GROWW_DATA.insightCard.subtext}</div>
+              <div class="insight-title">${insightTitle}</div>
+              <div class="insight-subtext">${insightSubtext}</div>
             </div>
             <div class="insight-sparkline">
               <svg width="26" height="16" viewBox="0 0 40 20" fill="none">
@@ -338,6 +343,9 @@
   // ==========================================
   function renderScreenFundDetails() {
     const fund = getSelectedFund();
+    if (!state._userTouchedCalc && fund.userHolding?.activeSipAmount) {
+      state.calcAmount = fund.userHolding.activeSipAmount;
+    }
     const h = fund.userHolding || {
       invested: fund.invested,
       currentValue: fund.currentValue,
@@ -438,28 +446,33 @@
             </div>
           </div>
 
-          <!-- Contextual Bridge to Solution: "Why is this fund down?" -->
-          ${isNeg ? `
-            <div class="fund-solution-bridge-card" id="btn-jump-to-deepdive">
-              <div class="bridge-left">
-                <div class="bridge-icon-box">
+          <!-- Contextual Bridge to Solution: Down or Up -->
+          <div class="fund-solution-bridge-card ${isNeg ? 'bridge-card-down' : 'bridge-card-positive'}" id="btn-jump-to-deepdive">
+            <div class="bridge-left">
+              <div class="bridge-icon-box ${isNeg ? '' : 'positive-icon-box'}">
+                ${isNeg ? `
                   <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
                     <line x1="12" y1="20" x2="12" y2="10"/>
                     <line x1="18" y1="20" x2="18" y2="4"/>
                     <line x1="6" y1="20" x2="6" y2="16"/>
                   </svg>
-                </div>
-                <div>
-                  <div class="bridge-title">Why is this fund down?</div>
-                  <div class="bridge-sub">Understand market impact & how your SIP accumulated units</div>
-                </div>
+                ` : `
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                    <polyline points="17 6 23 6 23 12"/>
+                  </svg>
+                `}
               </div>
-              <div class="bridge-arrow-pill">
-                <span>View Insights</span>
-                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+              <div>
+                <div class="bridge-title">${isNeg ? 'Why is this fund down?' : "What's driving this fund's growth?"}</div>
+                <div class="bridge-sub">${isNeg ? 'Understand market impact & how your SIP accumulated units' : 'Understand market tailwinds & how your SIP is compounding'}</div>
               </div>
             </div>
-          ` : ''}
+            <div class="bridge-arrow-pill">
+              <span>View Insights</span>
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+            </div>
+          </div>
 
           <!-- Accordion 1: Return Calculator (Matching IMG_9939.PNG) -->
           <div class="groww-accordion-item">
@@ -489,9 +502,9 @@
               <!-- Bar Chart with 4 timeframes (6M, 1Y, 3Y, 5Y) -->
               <div class="calc-bars-display">
                 ${['6M', '1Y', '3Y', '5Y'].map(tf => {
-                  const item = calcData[tf];
-                  const isActive = tf === state.calcTf;
-                  return `
+      const item = calcData[tf];
+      const isActive = tf === state.calcTf;
+      return `
                     <div class="calc-bar-column ${isActive ? 'active' : ''}" data-tf="${tf}">
                       <div class="calc-bar-pair">
                         <div class="calc-bar-fill bar-invested" style="height: ${item.investedHeight}px;"></div>
@@ -500,7 +513,7 @@
                       <span class="calc-tf-pill-badge">${tf}</span>
                     </div>
                   `;
-                }).join('')}
+    }).join('')}
               </div>
 
               <div class="calc-dotted-divider"></div>
@@ -573,9 +586,9 @@
             <div class="accordion-body-box" id="acc-body-peers" style="display: ${state.accordions.peers ? 'block' : 'none'};">
               <div class="peer-comparison-list">
                 ${(fund.peers || [
-                  { name: "Peer Fund A", return3Y: "19.5%", expenseRatio: "0.75%" },
-                  { name: "Peer Fund B", return3Y: "18.2%", expenseRatio: "0.68%" }
-                ]).map(p => `
+        { name: "Peer Fund A", return3Y: "19.5%", expenseRatio: "0.75%" },
+        { name: "Peer Fund B", return3Y: "18.2%", expenseRatio: "0.68%" }
+      ]).map(p => `
                   <div class="peer-fund-item">
                     <div class="peer-name-col">
                       <span class="peer-title">${p.name}</span>
@@ -752,11 +765,16 @@
   // ==========================================
   function renderScreen3DeepDiveScroll() {
     const fund = getSelectedFund();
+    const isNeg = fund.returns < 0;
     const deep = fund.deepDive || GROWW_DATA.funds[0].deepDive;
     const ctx = deep.context || deep.recommendation || {
       tag: "What this means for your SIP",
-      headline: "Market dips allow your monthly SIP to collect more units at lower prices.",
-      subtext: "Pausing now stops this cost-averaging advantage. Continuing your SIP lowers your average purchase price for when the market rebounds."
+      headline: isNeg
+        ? "Market dips allow your monthly SIP to collect more units at lower prices."
+        : "Your accumulated units are gaining value and compounding.",
+      subtext: isNeg
+        ? "Pausing now stops this cost-averaging advantage. Continuing your SIP lowers your average purchase price for when the market rebounds."
+        : "Continuing your regular monthly SIP ensures steady wealth accumulation without trying to time market peaks."
     };
     const market = fund.marketImpact || GROWW_DATA.funds[0].marketImpact;
     const hist = fund.historicalPerformance || GROWW_DATA.funds[0].historicalPerformance;
@@ -770,7 +788,7 @@
           <button class="back-btn" id="btn-back-to-fundselect">
             <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M19 12H5m7 7-7-7 7-7"/></svg>
           </button>
-          <span class="slide-nav-title">Why is my portfolio down?</span>
+          <span class="slide-nav-title">${isNeg ? "Why is this fund down?" : "Fund Growth Insights"}</span>
         </div>
 
         <div class="deep-dive-scroll-content">
@@ -879,12 +897,19 @@
           <div style="padding: 0 16px;">
             <div class="section-title-row">
               <h3 class="flow-section-heading">Market Impact & Attribution</h3>
-              <span class="flow-section-sub">Why broader market factors affect your returns</span>
+              <span class="flow-section-sub">${isNeg ? "Why broader market factors affect your returns" : "How market tailwinds and asset performance generated your gains"}</span>
             </div>
 
-            <div class="alert-banner-pill" style="margin-bottom: 12px;">
-              <div style="color: var(--groww-red);">
-                <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M7 7l10 10m0-10v10H7"/></svg>
+            <div class="alert-banner-pill ${isNeg ? '' : 'positive-alert-banner'}" style="margin-bottom: 12px;">
+              <div style="color: ${isNeg ? 'var(--groww-red)' : 'var(--groww-green)'};">
+                ${isNeg ? `
+                  <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M7 7l10 10m0-10v10H7"/></svg>
+                ` : `
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                    <polyline points="17 6 23 6 23 12"/>
+                  </svg>
+                `}
               </div>
               <h4 class="alert-banner-title">${market.banner}</h4>
             </div>
@@ -920,9 +945,6 @@
                     ${market.behavioralInsight.dipAction}
                   </p>
                   <div class="behavioral-reassurance-box">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#00D09C" stroke-width="2.5" style="flex-shrink: 0;">
-                      <polyline points="20 6 9 17 4 12"/>
-                    </svg>
                     <span class="behavioral-reassurance-text">${market.behavioralInsight.reassurance}</span>
                   </div>
                 </div>
@@ -940,7 +962,7 @@
           <!-- Section E: Historical Performance in Downturns (Slide 5) -->
           <div style="padding: 0 16px;">
             <div class="section-title-row">
-              <h3 class="flow-section-heading">Explore how Groww SIP investors responded during past market declines</h3>
+              <h3 class="flow-section-heading">${isNeg ? "Explore how Groww SIP investors responded during past market declines" : "Explore how Groww SIP investors stayed disciplined across cycles"}</h3>
             </div>
 
             ${(hist.cohortBehavior || hist.longitudinalCycles) ? `
@@ -981,10 +1003,10 @@
 
                 <div class="cohort-events-list">
                   ${(hist.cohortBehavior?.previousEvents || [
-                    { name: "2020 · COVID crash", pct: 67 },
-                    { name: "2022 · Rate hike correction", pct: 74 },
-                    { name: "2024 · Election volatility", pct: 81 }
-                  ]).map(ev => `
+          { name: "2020 · COVID crash", pct: 67 },
+          { name: "2022 · Rate hike correction", pct: 74 },
+          { name: "2024 · Election volatility", pct: 81 }
+        ]).map(ev => `
                     <div class="prev-event-item">
                       <div class="prev-event-meta">
                         <span class="prev-event-name">${ev.name}</span>
@@ -998,7 +1020,7 @@
                 </div>
 
                 <div class="cohort-disclaimer">
-                  ${hist.cohortBehavior?.disclaimer || "Based on anonymised SIP behaviour data from Groww investors.<br>Individual results may vary."}
+                  ${hist.cohortBehavior?.disclaimer || "Based on anonymised SIP behaviour data from Groww investors. Individual results may vary."}
                 </div>
               </div>
             ` : ''}
@@ -1185,29 +1207,29 @@
           <div style="padding: 0 16px 20px 16px;">
             <div class="section-title-row">
               <h3 class="flow-section-heading">Summary & Key Takeaways</h3>
-              <span class="flow-section-sub">Overview of management continuity, costs, and peer activity</span>
+              <span class="flow-section-sub">${isNeg ? "Overview of management continuity, costs, and peer activity" : "Overview of returns, portfolio contribution, and peer activity"}</span>
             </div>
 
             <!-- Compact Single Card Summary (Like previous one with little more space) -->
             <div class="takeaway-box-soft" style="margin-bottom: 14px; margin-top: 12px;">
               <div class="takeaway-rich-list">
                 ${(health.personalizedHighlights || [
-                  {
-                    badgeClass: "mint",
-                    title: "+9.6% extra units accumulated:",
-                    desc: "Your ₹2,000 monthly SIP purchased 131.58 units at an average cost of ₹45.60 vs ₹50.00 initial NAV."
-                  },
-                  {
-                    badgeClass: "blue",
-                    title: "Outperforming category benchmark:",
-                    desc: "Fund held up stronger at -4.2% compared to Nifty LargeMidcap 250 (-5.8%)."
-                  },
-                  {
-                    badgeClass: "purple",
-                    title: "Proven recovery record · 81% peer conviction:",
-                    desc: "3 past corrections navigated (~14 mo avg recovery); 81% of Groww investors in this fund kept their SIP active."
-                  }
-                ]).map((hl, idx) => `
+        {
+          badgeClass: "mint",
+          title: "+9.6% extra units accumulated:",
+          desc: "SIP bought 131.58 units at avg NAV ₹45.60 (vs ₹50 initial) by investing through the dip."
+        },
+        {
+          badgeClass: "blue",
+          title: "Outperforming category benchmark:",
+          desc: "Decline is market-wide; fund held up stronger at -4.2% vs benchmark (-5.8%)."
+        },
+        {
+          badgeClass: "purple",
+          title: "Proven recovery record · 81% peer conviction:",
+          desc: "Manager steered 3 past recoveries (~14 mo avg); 81% of Groww investors kept their SIP active."
+        }
+      ]).map((hl, idx) => `
                   <div class="takeaway-item-rich">
                     <div class="takeaway-dot-icon ${hl.badgeClass}">
                       ${idx === 0 ? `
@@ -1260,6 +1282,7 @@
   // ==========================================
   function renderScreenDetailedSummary() {
     const fund = getSelectedFund();
+    const isNeg = fund.returns < 0;
     const health = fund.fundHealth || GROWW_DATA.funds[0].fundHealth;
     const detail = health.detailedAnalysis || {};
     const acc = detail.accumulation || {};
@@ -1274,7 +1297,7 @@
           <button class="back-btn" id="btn-back-from-summary">
             <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M19 12H5m7 7-7-7 7-7"/></svg>
           </button>
-          <span class="slide-nav-title">Summary & Analysis Report</span>
+          <span class="slide-nav-title">${isNeg ? "Summary & Drawdown Report" : "Summary & Growth Report"}</span>
         </div>
 
         <div class="deep-dive-scroll-content">
@@ -1292,10 +1315,10 @@
 
           <div style="padding: 6px 16px 24px 16px;">
             <!-- Executive Status Banner -->
-            <div class="detailed-status-banner">
-              <span class="detailed-status-pill">${detail.bannerTag || 'SIP ON TRACK · ACCUMULATING DISCOUNTED UNITS'}</span>
-              <h3 class="detailed-banner-title">${detail.bannerTitle || 'Your investment strategy is working as intended'}</h3>
-              <p class="detailed-banner-desc">${detail.bannerDesc || 'Temporary market dips are an inherent part of equity cycles. Your ongoing SIP acts as an automated cost-averaging mechanism.'}</p>
+            <div class="detailed-status-banner ${isNeg ? '' : 'positive-banner'}">
+              <span class="detailed-status-pill ${isNeg ? '' : 'positive-pill'}">${detail.bannerTag || (isNeg ? 'SIP ON TRACK · ACCUMULATING DISCOUNTED UNITS' : 'SIP ON TRACK · CAPITAL APPRECIATION')}</span>
+              <h3 class="detailed-banner-title">${detail.bannerTitle || (isNeg ? 'Your investment strategy is working as intended' : 'Your investment strategy is generating positive returns')}</h3>
+              <p class="detailed-banner-desc">${detail.bannerDesc || (isNeg ? 'Temporary market dips are an inherent part of equity cycles. Your ongoing SIP acts as an automated cost-averaging mechanism.' : 'Regular monthly investments accumulated units systematically, positioning your portfolio for capital compounding.')}</p>
             </div>
 
             <!-- Section 1: SIP Accumulation Breakdown -->
@@ -1304,7 +1327,7 @@
                 <div class="detailed-card-icon" style="background: #E8F8F3; color: #00A877;">
                   <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
                 </div>
-                <h4 class="detailed-card-title">${acc.title || '1. SIP Unit Accumulation Advantage'}</h4>
+                <h4 class="detailed-card-title">${acc.title || (isNeg ? '1. SIP Unit Accumulation Advantage' : '1. SIP Unit Accumulation & Capital Growth')}</h4>
               </div>
               <div class="detailed-stat-grid">
                 <div class="detailed-stat-cell">
@@ -1331,8 +1354,8 @@
               </div>
               <div class="detailed-stat-grid">
                 <div class="detailed-stat-cell">
-                  <div class="detailed-stat-val red">${attr.fundReturn || '-4.2%'}</div>
-                  <div class="detailed-stat-lbl">Fund Return (vs ${attr.benchmarkReturn || '-5.8%'})</div>
+                  <div class="detailed-stat-val ${String(attr.fundReturn).startsWith('+') ? 'green' : (String(attr.fundReturn).startsWith('-') ? 'red' : 'green')}">${attr.fundReturn || (isNeg ? '-4.2%' : '+5.0%')}</div>
+                  <div class="detailed-stat-lbl">Fund Return (vs ${attr.benchmarkReturn || (isNeg ? '-5.8%' : '+4.2%')})</div>
                 </div>
                 <div class="detailed-stat-cell">
                   <div class="detailed-stat-val green">${attr.alpha || '+1.6%'}</div>
@@ -1466,6 +1489,7 @@
     document.querySelectorAll(".holding-flat-row").forEach(el => {
       el.addEventListener("click", () => {
         state.selectedFundId = el.dataset.fundId;
+        state._userTouchedCalc = false;
         state.previousView = "dashboard";
         state.currentView = "fund-detail";
         render();
@@ -1520,6 +1544,7 @@
     const slider = document.getElementById("calc-slider-input");
     if (slider) {
       slider.addEventListener("input", (e) => {
+        state._userTouchedCalc = true;
         state.calcAmount = parseInt(e.target.value);
         updateCalculatorUI();
       });

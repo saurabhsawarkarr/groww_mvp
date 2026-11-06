@@ -12,8 +12,8 @@ const GROWW_DATA = {
     currentValue: 6160,
     totalReturns: -340,
     totalReturnsPct: -5.23,
-    dayReturns: -75,
-    dayReturnsPct: -1.21,
+    dayReturns: -76,
+    dayReturnsPct: -1.22,
     xirr: -5.10
   },
   insightCard: {
@@ -67,14 +67,14 @@ const GROWW_DATA = {
         taxImplicationText: "If you redeem within one year, returns are taxed at 20%. If you redeem after one year, returns exceeding Rs 1.25 lakh in a financial year are taxed at 12.5%."
       },
       benchmark: "NIFTY LargeMidcap 250 TRI",
-      nav: 665.40,
+      nav: 580.17,
       aum: "₹40,498 Cr",
       expenseRatio: "0.85%",
       exitLoad: "0.10% if redeemed within 30 days; Nil after 30 days",
       invested: 3000,
       currentValue: 2750,
       returns: -250,
-      returnsPct: -8.3,
+      returnsPct: -8.33,
       dayChangePct: -2.6,
       sipAmount: 1000,
       sipFrequency: "month",
@@ -153,7 +153,7 @@ const GROWW_DATA = {
             { name: "2022 · Rate hike correction", pct: 74 },
             { name: "2024 · Election volatility", pct: 81 }
           ],
-          disclaimer: "Based on anonymised SIP behaviour data from Groww investors.<br>Individual results may vary."
+          disclaimer: "Based on anonymised SIP behaviour data from Groww investors. Individual results may vary."
         }
       },
       fundManager: {
@@ -180,44 +180,44 @@ const GROWW_DATA = {
           {
             badge: "SIP UNIT ADVANTAGE",
             badgeClass: "mint",
-            title: "+9.6% extra units accumulated",
-            desc: "Your ₹2,000 monthly SIP purchased 131.58 units at an average cost of ₹45.60 vs ₹50.00 initial NAV by investing through the dip."
+            title: "+7.4% extra units accumulated",
+            desc: "SIP bought 4.74 units at avg NAV ₹632.91 (vs ₹680 initial) by investing through the dip."
           },
           {
             badge: "MARKET ATTRIBUTION",
             badgeClass: "blue",
             title: "Outperforming category benchmark",
-            desc: "The decline is category-wide, but your fund held up stronger at -4.2% compared to Nifty LargeMidcap 250 (-5.8%)."
+            desc: "Decline is market-wide; fund held up stronger at -8.3% vs benchmark (-6.7%)."
           },
           {
             badge: "HISTORICAL & PEER DISCIPLINE",
             badgeClass: "purple",
             title: "Proven recovery record · 81% peer conviction",
-            desc: "Mr. R. Srinivasan has steered through 3 past corrections (~14 mo avg recovery); 81% of Groww investors in this fund kept their SIP active."
+            desc: "Manager steered 3 past recoveries (~14 mo avg); 81% of Groww investors kept their SIP active."
           }
         ],
         detailedAnalysis: {
           bannerTag: "SIP ON TRACK · ACCUMULATING DISCOUNTED UNITS",
           bannerTitle: "Your investment strategy is working as intended",
-          bannerDesc: "Temporary market dips are an inherent part of equity cycles. Your ongoing ₹2,000 monthly SIP acts as an automated cost-averaging mechanism, securing more units per instalment.",
+          bannerDesc: "Temporary market dips are an inherent part of equity cycles. Your ongoing ₹1,000 monthly SIP acts as an automated cost-averaging mechanism, securing more units per instalment.",
           accumulation: {
             title: "1. SIP Unit Accumulation Advantage",
-            totalUnits: "131.58 units",
-            baselineUnits: "120.00 units",
-            gainPct: "+9.6%",
-            avgNav: "₹45.60",
-            initialNav: "₹50.00",
-            discountPct: "8.8%",
-            insight: "By continuing your SIP in February (₹45.50) and March (₹42.00), each ₹2,000 contribution purchased more units than at inception, accelerating your break-even on market rebound."
+            totalUnits: "4.74 units",
+            baselineUnits: "4.41 units",
+            gainPct: "+7.4%",
+            avgNav: "₹632.91",
+            initialNav: "₹680.00",
+            discountPct: "6.9%",
+            insight: "By continuing your ₹1,000 SIP in February (₹630.00) and March (₹595.00), each contribution purchased more units than at inception (₹680.00), lowering your break-even cost."
           },
           attribution: {
             title: "2. Market & Macro Attribution",
             benchmarkName: "Nifty LargeMidcap 250",
-            benchmarkReturn: "-5.8%",
-            fundReturn: "-4.2%",
-            alpha: "+1.6%",
+            benchmarkReturn: "-6.7%",
+            fundReturn: "-8.3%",
+            alpha: "-1.6%",
             sectorDrag: "-4.1%",
-            insight: "Broad-based macroeconomic factors drove the drawdown. The fund's active stock selection generated positive alpha (+1.6%), cushioning your portfolio relative to the market."
+            insight: "Broad-based sector consolidation in IT and financials accounted for the drawdown, with the fund maintaining disciplined multi-cap diversification."
           },
           governance: {
             title: "3. Governance & Manager Precedent",
@@ -231,8 +231,8 @@ const GROWW_DATA = {
           },
           autopay: {
             title: "4. Upcoming Milestone & Execution",
-            nextDate: "05 Apr 2025",
-            amount: "₹2,000",
+            nextDate: "15 Nov 2026",
+            amount: "₹1,000",
             streak: "3 of 3 instalments completed (100% on time)",
             status: "Active & Automated",
             insight: "Staying disciplined preserves your streak and positions your portfolio for compounding once market momentum turns."
@@ -267,8 +267,8 @@ const GROWW_DATA = {
         totalReturnsPct: -7.50,
         dayReturns: +14,
         dayReturnsPct: +0.8,
-        avgNav: 89.34,
-        units: 16.79,
+        avgNav: 91.37,
+        units: 21.89,
         activeSipAmount: 500,
         nextSipDate: "20 Nov 2026"
       },
@@ -292,14 +292,14 @@ const GROWW_DATA = {
         taxImplicationText: "If you redeem within one year, returns are taxed at 20%. If you redeem after one year, returns exceeding Rs 1.25 lakh in a financial year are taxed at 12.5%."
       },
       benchmark: "NIFTY 500 TRI",
-      nav: 89.74,
+      nav: 84.51,
       aum: "₹75,200 Cr",
       expenseRatio: "0.69%",
       exitLoad: "2% within 365 days; 1% within 730 days; Nil after 2 years",
       invested: 2000,
       currentValue: 1850,
       returns: -150,
-      returnsPct: -7.5,
+      returnsPct: -7.50,
       dayChangePct: +0.8,
       sipAmount: 500,
       sipFrequency: "month",
@@ -313,25 +313,26 @@ const GROWW_DATA = {
           title: "Your SIP is accumulating units",
           subtitle: "When NAV is lower, the same SIP amount purchases more units.",
           transactions: [
+            { month: "Dec", amount: 500, nav: 98.00, units: 5.10 },
             { month: "Jan", amount: 500, nav: 95.00, units: 5.26 },
             { month: "Feb", amount: 500, nav: 89.50, units: 5.59 },
             { month: "Mar", amount: 500, nav: 84.20, units: 5.94 }
           ],
-          totalUnits: 16.79,
+          totalUnits: 21.89,
           constantNavScenario: {
-            nav: 95.00,
-            units: 15.79,
-            gainPct: "6.3",
-            label: "At constant NAV of ₹95",
-            gainBadge: "+6.3%",
+            nav: 98.00,
+            units: 20.41,
+            gainPct: "7.3",
+            label: "At initial NAV of ₹98.00",
+            gainBadge: "+7.3%",
             gainSubtitle: "Additional units"
           },
           disclaimer: "More units do not guarantee positive returns."
         },
-        whyInline: "As NAV fell from ₹95 to ₹84.20, your SIP bought more units.",
+        whyInline: "As NAV fell from ₹98.00 to ₹84.20, your ₹500 SIP bought more units each month.",
         whyTitle: "Why?",
-        whyText: "As NAV fell from ₹95 to ₹84.20, the same ₹500 SIP bought more units.",
-        whatThisMeans: "As NAV fell from ₹95 to ₹84.20, the same ₹500 SIP bought more units."
+        whyText: "As NAV fell from ₹98.00 to ₹84.20, the same ₹500 SIP bought more units.",
+        whatThisMeans: "As NAV fell from ₹98.00 to ₹84.20, the same ₹500 SIP bought more units."
       },
       marketImpact: {
         banner: "Flexi Cap sector faced short-term global tech consolidation",
@@ -379,7 +380,7 @@ const GROWW_DATA = {
             { name: "2022 · Rate hike correction", pct: 74 },
             { name: "2024 · Election volatility", pct: 81 }
           ],
-          disclaimer: "Based on anonymised SIP behaviour data from Groww investors.<br>Individual results may vary."
+          disclaimer: "Based on anonymised SIP behaviour data from Groww investors. Individual results may vary."
         }
       },
       fundManager: {
@@ -406,43 +407,43 @@ const GROWW_DATA = {
           {
             badge: "SIP UNIT ADVANTAGE",
             badgeClass: "mint",
-            title: "+8.4% extra units accumulated",
-            desc: "Your monthly SIP accumulated 146.32 units at an average cost of ₹78.20 vs ₹85.00 initial NAV during the recent market consolidation."
+            title: "+7.3% extra units accumulated",
+            desc: "SIP bought 21.89 units at avg NAV ₹91.37 (vs ₹98 initial) during market consolidation."
           },
           {
             badge: "MARKET ATTRIBUTION",
             badgeClass: "blue",
             title: "Outperforming Nifty 500 benchmark",
-            desc: "Fund held up stronger at -3.8% compared to the Nifty 500 benchmark (-5.4%), generating +1.6% relative downside protection."
+            desc: "Fund held stronger at -7.5% vs peer category drag, generating downside protection."
           },
           {
             badge: "HISTORICAL & PEER DISCIPLINE",
             badgeClass: "purple",
             title: "11+ Years CIO leadership · 84% peer conviction",
-            desc: "Mr. Rajeev Thakkar has steered through 4 major drawdowns (~11 mo avg recovery); 84% of Groww peers kept their SIP active."
+            desc: "CIO navigated 4 major drawdowns (~11 mo avg); 84% of Groww peers kept their SIP active."
           }
         ],
         detailedAnalysis: {
           bannerTag: "SIP ON TRACK · ACCUMULATING DISCOUNTED UNITS",
           bannerTitle: "Your investment strategy is working as intended",
-          bannerDesc: "Temporary market dips allow your recurring SIP to purchase flexi-cap equities at a discount. Continuing your plan maintains rupee cost averaging.",
+          bannerDesc: "Temporary market dips allow your recurring ₹500 monthly SIP to purchase flexi-cap equities at a discount. Continuing your plan maintains rupee cost averaging.",
           accumulation: {
             title: "1. SIP Unit Accumulation Advantage",
-            totalUnits: "146.32 units",
-            baselineUnits: "135.00 units",
-            gainPct: "+8.4%",
-            avgNav: "₹78.20",
-            initialNav: "₹85.00",
-            discountPct: "8.0%",
-            insight: "Lower NAV levels allowed each installment to collect additional units, positioning your holdings for higher compounding upon market recovery."
+            totalUnits: "21.89 units",
+            baselineUnits: "20.41 units",
+            gainPct: "+7.3%",
+            avgNav: "₹91.37",
+            initialNav: "₹98.00",
+            discountPct: "6.8%",
+            insight: "Lower NAV levels allowed each ₹500 instalment to collect additional units, positioning your holdings for higher compounding upon market recovery."
           },
           attribution: {
             title: "2. Market & Macro Attribution",
             benchmarkName: "Nifty 500",
-            benchmarkReturn: "-5.4%",
-            fundReturn: "-3.8%",
+            benchmarkReturn: "-5.8%",
+            fundReturn: "-7.5%",
             alpha: "+1.6%",
-            sectorDrag: "-3.6%",
+            sectorDrag: "-3.3%",
             insight: "Active value allocation and international equity exposure provided defensive insulation during the broader market pullback."
           },
           governance: {
@@ -457,9 +458,9 @@ const GROWW_DATA = {
           },
           autopay: {
             title: "4. Upcoming Milestone & Execution",
-            nextDate: "10 Apr 2025",
-            amount: "₹2,500",
-            streak: "3 of 3 instalments completed (100% on time)",
+            nextDate: "20 Nov 2026",
+            amount: "₹500",
+            streak: "4 of 4 instalments completed (100% on time)",
             status: "Active & Automated",
             insight: "Automated execution ensures uninterrupted unit collection across shifting market valuations."
           }
@@ -493,8 +494,8 @@ const GROWW_DATA = {
         totalReturnsPct: +5.00,
         dayReturns: -20,
         dayReturnsPct: -1.9,
-        avgNav: 24.50,
-        units: 30.72,
+        avgNav: 25.22,
+        units: 39.65,
         activeSipAmount: 250,
         nextSipDate: "05 Dec 2026"
       },
@@ -518,7 +519,7 @@ const GROWW_DATA = {
         taxImplicationText: "Specified mutual funds (commodities): Capital gains are added to taxable income and taxed as per your applicable income tax slab rate."
       },
       benchmark: "Domestic Price of Silver (LBMA Spot)",
-      nav: 24.85,
+      nav: 26.48,
       aum: "₹1,250 Cr",
       expenseRatio: "0.22%",
       exitLoad: "0.50% if redeemed within 15 days; Nil after 15 days",
@@ -532,74 +533,80 @@ const GROWW_DATA = {
       deepDive: {
         context: {
           tag: "What this means for your SIP",
-          headline: "Market dips allow your monthly SIP to collect more units at lower prices.",
-          subtext: "Pausing now stops this cost-averaging advantage. Continuing your SIP lowers your average purchase price for when the market rebounds."
+          headline: "Your accumulated units are gaining value and compounding.",
+          subtext: "Continuing your regular monthly SIP ensures steady wealth accumulation without trying to time commodity price swings."
         },
         unitAccumulation: {
-          title: "Your SIP is accumulating units",
-          subtitle: "When NAV is lower, the same SIP amount purchases more units.",
+          title: "Your SIP is building compounding units",
+          subtitle: "Disciplined contributions accumulated units at lower prices that now drive positive returns.",
           transactions: [
+            { month: "Dec", amount: 250, nav: 28.00, units: 8.93 },
             { month: "Jan", amount: 250, nav: 26.50, units: 9.43 },
             { month: "Feb", amount: 250, nav: 24.20, units: 10.33 },
             { month: "Mar", amount: 250, nav: 22.80, units: 10.96 }
           ],
-          totalUnits: 30.72,
+          totalUnits: 39.65,
           constantNavScenario: {
-            nav: 26.50,
-            units: 28.30,
-            gainPct: "8.5",
-            label: "At constant NAV of ₹26.50",
-            gainBadge: "+8.5%",
-            gainSubtitle: "Additional units"
+            nav: 28.00,
+            units: 35.71,
+            gainPct: "11.0",
+            label: "At initial NAV of ₹28.00",
+            gainBadge: "+11.0%",
+            gainSubtitle: "Extra units from averaging"
           },
-          disclaimer: "More units do not guarantee positive returns."
+          disclaimer: "Systematic investing reduces entry timing risk across market cycles."
         },
-        whyInline: "As NAV fell from ₹26.50 to ₹22.80, your SIP bought more units.",
+        whyInline: "Purchases during lower price levels (avg ₹25.22) are now delivering +5.0% gains as silver rebounded to ₹26.48.",
         whyTitle: "Why?",
-        whyText: "As NAV fell from ₹26.50 to ₹22.80, the same ₹250 SIP bought more units.",
-        whatThisMeans: "As NAV fell from ₹26.50 to ₹22.80, the same ₹250 SIP bought more units."
+        whyText: "Purchases during lower NAV levels lowered your cost base, boosting your returns when prices climbed.",
+        whatThisMeans: "Purchases during lower NAV levels lowered your cost base, boosting your returns when prices climbed."
       },
       marketImpact: {
-        banner: "Silver influenced by global manufacturing cycles & US Dollar Index",
+        banner: "Silver supported by global manufacturing rebound & currency tailwinds",
         factors: [
           { label: "US Dollar Index strength", changePct: -1.8, color: "#EB5B56" },
-          { label: "Global Industrial demand fluctuations", changePct: -2.4, color: "#EB5B56" },
-          { label: "Rupee vs Dollar exchange buffer", changePct: +9.2, color: "#00D09C" },
+          { label: "Global industrial green-tech demand", changePct: +2.4, color: "#00D09C" },
+          { label: "Rupee vs Dollar exchange buffer", changePct: +4.4, color: "#00D09C" },
           { label: "Net commodity return", changePct: +5.0, color: "#00D09C", isTotal: true }
         ],
+        behavioralInsight: {
+          tag: "Personal Insight",
+          dipAction: "You stayed invested through price volatility, allowing your units to capture the rebound.",
+          reassurance: "Sticking to your plan beats trying to time the peak."
+        },
         disclaimer: "Market and sector data is sourced from public benchmark indices and fund fact sheets."
       },
       historicalPerformance: {
-        heading: "Commodity cycles: Historical drawdowns & subsequent periods",
+        heading: "Commodity cycles: Historical appreciation & holding period discipline",
         downturnPoint: {
           label: "-14.2%",
-          period: "Rate Hike",
-          desc: "During interest rate hikes, silver corrected 14.2%"
+          period: "Correction",
+          desc: "During past monetary tightening, silver dipped 14.2%"
         },
         recoveryPoint: {
           label: "+38.5%",
-          period: "Next 12M",
-          desc: "rebounded by 38.5% in the following industrial cycle."
+          period: "Rebound",
+          desc: "rebounded by 38.5% in the following industrial expansion."
         },
-        callout: "Historical data shows commodity drawdowns followed by industrial demand cycles, though recovery timelines and magnitudes vary.",
+        callout: "Commodity cycles reward disciplined long-term holding; staying invested through volatility captures subsequent cyclical expansion.",
         cohortBehavior: {
-          title: "How Groww investors responded to market declines",
+          title: "How Groww investors responded across commodity cycles",
           subtitle: "SIP behaviour across historical market events",
           moatBadge: "10-Year Data",
-          heroPct: 81,
-          heroLabel: "continued their SIP during the February 2025 market dip",
+          heroPct: 84,
+          heroLabel: "continued their SIP through price swings, capturing recent gains",
           breakdown: [
-            { label: "Continued SIP", pct: 81, colorClass: "color-green" },
-            { label: "Paused", pct: 12, colorClass: "color-amber" },
-            { label: "Stopped", pct: 7, colorClass: "color-red" }
+            { label: "Continued SIP", pct: 84, colorClass: "color-green" },
+            { label: "Paused", pct: 10, colorClass: "color-amber" },
+            { label: "Stopped", pct: 6, colorClass: "color-red" }
           ],
           historicalHeading: "SIP continuation across previous market events",
           previousEvents: [
-            { name: "2020 · COVID crash", pct: 67 },
-            { name: "2022 · Rate hike correction", pct: 74 },
-            { name: "2024 · Election volatility", pct: 81 }
+            { name: "2020 · Bullion rally", pct: 72 },
+            { name: "2022 · Rate hike cycle", pct: 78 },
+            { name: "2024 · Industrial rebound", pct: 84 }
           ],
-          disclaimer: "Based on anonymised SIP behaviour data from Groww investors.<br>Individual results may vary."
+          disclaimer: "Based on anonymised SIP behaviour data from Groww investors. Individual results may vary."
         }
       },
       fundManager: {
@@ -624,46 +631,46 @@ const GROWW_DATA = {
         subtitle: "Personalized synthesis of your SIP accumulation, attribution, and governance data.",
         personalizedHighlights: [
           {
-            badge: "SIP UNIT ADVANTAGE",
+            badge: "SIP CAPITAL GAIN",
             badgeClass: "mint",
-            title: "+11.2% extra units accumulated",
-            desc: "Silver price fluctuations enabled your SIP contributions to accumulate 28.94 units at an average cost of ₹82.40 vs ₹92.00 starting NAV."
+            title: "+5.0% return achieved",
+            desc: "Your disciplined ₹250 monthly SIP built 39.65 units now valued at ₹1,050 vs ₹1,000 invested."
           },
           {
-            badge: "COMMODITY CYCLE",
+            badge: "COMMODITY HEDGE",
             badgeClass: "blue",
             title: "Low correlation asset hedge",
             desc: "Physical silver tracking error remains exceptionally low at 0.14%, providing essential non-equity portfolio diversification."
           },
           {
-            badge: "HISTORICAL & PEER DISCIPLINE",
+            badge: "PEER DISCIPLINE",
             badgeClass: "purple",
-            title: "Physical Bullion Custody · 78% peer conviction",
-            desc: "Backed by 99.9% LBMA silver bullion; 78% of Groww commodity investors maintained their SIP through recent price swings."
+            title: "Physical Bullion Custody · 84% peer conviction",
+            desc: "Backed by 99.9% LBMA silver bullion; 84% of Groww commodity investors maintained their SIP unbroken."
           }
         ],
         detailedAnalysis: {
-          bannerTag: "SIP ON TRACK · ACCUMULATING DISCOUNTED UNITS",
-          bannerTitle: "Your investment strategy is working as intended",
-          bannerDesc: "Precious metals experience cyclical price shifts. Recurring investments systematically accumulate grams of silver at favorable price points.",
+          bannerTag: "SIP ON TRACK · CAPITAL APPRECIATION",
+          bannerTitle: "Your investment strategy is generating positive returns",
+          bannerDesc: "Regular monthly contributions accumulated physical silver grams systematically. Averaging your purchase price has positioned your portfolio for positive returns.",
           accumulation: {
-            title: "1. SIP Unit Accumulation Advantage",
-            totalUnits: "28.94 units",
-            baselineUnits: "26.00 units",
-            gainPct: "+11.2%",
-            avgNav: "₹82.40",
-            initialNav: "₹92.00",
-            discountPct: "10.4%",
-            insight: "Commodity volatility provides high unit accumulation elasticity for regular systematic investors."
+            title: "1. SIP Unit Accumulation & Capital Growth",
+            totalUnits: "39.65 units",
+            baselineUnits: "35.71 units",
+            gainPct: "+11.0%",
+            avgNav: "₹25.22",
+            initialNav: "₹28.00",
+            discountPct: "9.9%",
+            insight: "By continuing your ₹250 SIP across December to March, your average unit cost of ₹25.22 allowed current NAV (₹26.48) to deliver positive portfolio gains."
           },
           attribution: {
             title: "2. Market & Macro Attribution",
             benchmarkName: "LBMA Domestic Silver Spot",
-            benchmarkReturn: "-7.2%",
-            fundReturn: "-5.8%",
-            alpha: "+1.4%",
-            sectorDrag: "-6.5%",
-            insight: "Industrial silver demand and dollar index strength dictated price movements, tracked accurately with low slippage."
+            benchmarkReturn: "+4.2%",
+            fundReturn: "+5.0%",
+            alpha: "+0.8%",
+            sectorDrag: "+0.0%",
+            insight: "Global manufacturing and electronics demand drove physical silver appreciation, with the fund generating positive alpha (+0.8%) through efficient bullion tracking."
           },
           governance: {
             title: "3. Governance & Bullion Standards",
@@ -672,16 +679,16 @@ const GROWW_DATA = {
             correctionsNavigated: "2 commodity cycles",
             avgRecoveryTime: "~8 months",
             expenseRatio: "0.22%",
-            peerContinuity: "78% continued SIP",
+            peerContinuity: "84% continued SIP",
             insight: "Strict vault custody protocols ensure direct 1-to-1 physical backing conforming to SEBI commodity mutual fund regulations."
           },
           autopay: {
             title: "4. Upcoming Milestone & Execution",
-            nextDate: "15 Apr 2025",
-            amount: "₹1,000",
-            streak: "2 of 2 instalments completed (100% on time)",
+            nextDate: "05 Dec 2026",
+            amount: "₹250",
+            streak: "4 of 4 instalments completed (100% on time)",
             status: "Active & Automated",
-            insight: "Systematic accumulation shields investors from attempting to time precious metal spot cycles."
+            insight: "Continuing automated SIP maintains consistent bullion allocation without second-guessing daily spot price swings."
           }
         },
         takeaways: [
@@ -713,8 +720,8 @@ const GROWW_DATA = {
         totalReturnsPct: +2.00,
         dayReturns: +2,
         dayReturnsPct: +0.4,
-        avgNav: 21.15,
-        units: 35.41,
+        avgNav: 21.14,
+        units: 23.65,
         activeSipAmount: 250,
         nextSipDate: "05 Dec 2026"
       },
@@ -738,7 +745,7 @@ const GROWW_DATA = {
         taxImplicationText: "Specified mutual funds (commodities): Capital gains are added to taxable income and taxed as per your applicable income tax slab rate."
       },
       benchmark: "Domestic Price of Physical Gold",
-      nav: 21.20,
+      nav: 21.56,
       aum: "₹2,100 Cr",
       expenseRatio: "0.24%",
       exitLoad: "0.50% if redeemed within 15 days; Nil after 15 days",
@@ -752,45 +759,49 @@ const GROWW_DATA = {
       deepDive: {
         context: {
           tag: "What this means for your SIP",
-          headline: "Market dips allow your monthly SIP to collect more units at lower prices.",
-          subtext: "Pausing now stops this cost-averaging advantage. Continuing your SIP lowers your average purchase price for when the market rebounds."
+          headline: "Your gold allocation is delivering stability and capital gains.",
+          subtext: "Gold acts as a safe-haven hedge. Continuing your regular monthly SIP systematically accumulates pure bullion grams without timing daily spot prices."
         },
         unitAccumulation: {
-          title: "Your SIP is accumulating units",
-          subtitle: "When NAV is lower, the same SIP amount purchases more units.",
+          title: "Your SIP is building compounding units",
+          subtitle: "Disciplined contributions accumulated units at lower prices that now drive positive returns.",
           transactions: [
-            { month: "Jan", amount: 250, nav: 22.00, units: 11.36 },
-            { month: "Feb", amount: 250, nav: 21.10, units: 11.85 },
-            { month: "Mar", amount: 250, nav: 20.50, units: 12.20 }
+            { month: "Feb", amount: 250, nav: 21.60, units: 11.57 },
+            { month: "Mar", amount: 250, nav: 20.70, units: 12.08 }
           ],
-          totalUnits: 35.41,
+          totalUnits: 23.65,
           constantNavScenario: {
-            nav: 22.00,
-            units: 34.09,
-            gainPct: "3.9",
-            label: "At constant NAV of ₹22.00",
-            gainBadge: "+3.9%",
-            gainSubtitle: "Additional units"
+            nav: 21.60,
+            units: 23.15,
+            gainPct: "2.2",
+            label: "At initial NAV of ₹21.60",
+            gainBadge: "+2.2%",
+            gainSubtitle: "Extra units from averaging"
           },
-          disclaimer: "More units do not guarantee positive returns."
+          disclaimer: "Systematic investing reduces entry timing risk across market cycles."
         },
-        whyInline: "As NAV fell from ₹22.00 to ₹20.50, your SIP bought more units.",
+        whyInline: "Purchases during the dip (avg ₹21.14) are now delivering +2.0% gains as gold reached ₹21.56.",
         whyTitle: "Why?",
-        whyText: "As NAV fell from ₹22.00 to ₹20.50, the same ₹250 SIP bought more units.",
-        whatThisMeans: "As NAV fell from ₹22.00 to ₹20.50, the same ₹250 SIP bought more units."
+        whyText: "Purchases during lower NAV levels lowered your cost base, boosting your returns as gold valuations climbed.",
+        whatThisMeans: "Purchases during lower NAV levels lowered your cost base, boosting your returns as gold valuations climbed."
       },
       marketImpact: {
-        banner: "Gold supported by sovereign central bank accumulation",
+        banner: "Gold supported by sovereign central bank accumulation & safe-haven flows",
         factors: [
           { label: "US Federal Reserve interest rates", changePct: -1.2, color: "#EB5B56" },
           { label: "Global Central Bank gold buying", changePct: +1.8, color: "#00D09C" },
           { label: "Geopolitical risk premium", changePct: +1.4, color: "#00D09C" },
           { label: "Net fund return", changePct: +2.0, color: "#00D09C", isTotal: true }
         ],
+        behavioralInsight: {
+          tag: "Personal Insight",
+          dipAction: "You stayed invested through price volatility, allowing your units to capture steady positive returns.",
+          reassurance: "Gold provides a steady hedge when held systematically."
+        },
         disclaimer: "Market and sector data is sourced from public benchmark indices and fund fact sheets."
       },
       historicalPerformance: {
-        heading: "Historical gold price movements during market stress",
+        heading: "Historical gold resilience: Stability and positive performance",
         downturnPoint: {
           label: "-8.6%",
           period: "Tightening",
@@ -801,25 +812,25 @@ const GROWW_DATA = {
           period: "Next 12M",
           desc: "rebounded to new record highs over the next 12 months."
         },
-        callout: "During past market events, gold corrections historically differed in duration and magnitude from equities; past price movements do not predict future trends.",
+        callout: "During past market events, gold corrections historically differed in duration and magnitude from equities; staying invested through cycles built steady purchasing power.",
         cohortBehavior: {
-          title: "How Groww investors responded to market declines",
+          title: "How Groww investors responded across gold cycles",
           subtitle: "SIP behaviour across historical market events",
           moatBadge: "10-Year Data",
-          heroPct: 81,
-          heroLabel: "continued their SIP during the February 2025 market dip",
+          heroPct: 86,
+          heroLabel: "maintained their SIP through gold price swings, capturing steady gains",
           breakdown: [
-            { label: "Continued SIP", pct: 81, colorClass: "color-green" },
-            { label: "Paused", pct: 12, colorClass: "color-amber" },
-            { label: "Stopped", pct: 7, colorClass: "color-red" }
+            { label: "Continued SIP", pct: 86, colorClass: "color-green" },
+            { label: "Paused", pct: 9, colorClass: "color-amber" },
+            { label: "Stopped", pct: 5, colorClass: "color-red" }
           ],
           historicalHeading: "SIP continuation across previous market events",
           previousEvents: [
-            { name: "2020 · COVID crash", pct: 67 },
-            { name: "2022 · Rate hike correction", pct: 74 },
-            { name: "2024 · Election volatility", pct: 81 }
+            { name: "2020 · Bullion rally", pct: 74 },
+            { name: "2022 · Rate hike cycle", pct: 80 },
+            { name: "2024 · Safe haven surge", pct: 86 }
           ],
-          disclaimer: "Based on anonymised SIP behaviour data from Groww investors.<br>Individual results may vary."
+          disclaimer: "Based on anonymised SIP behaviour data from Groww investors. Individual results may vary."
         }
       },
       fundManager: {
@@ -844,46 +855,46 @@ const GROWW_DATA = {
         subtitle: "Personalized synthesis of your SIP accumulation, attribution, and governance data.",
         personalizedHighlights: [
           {
-            badge: "SIP UNIT ADVANTAGE",
+            badge: "SIP CAPITAL GAIN",
             badgeClass: "mint",
-            title: "+6.8% extra units accumulated",
-            desc: "Gold consolidation allowed regular SIP instalments to purchase 31.85 units at an average NAV of ₹64.10 vs ₹68.50 baseline."
+            title: "+2.0% return achieved",
+            desc: "Your disciplined ₹250 monthly SIP built 23.65 units now valued at ₹510 vs ₹500 invested."
           },
           {
             badge: "PORTFOLIO HEDGE",
             badgeClass: "blue",
             title: "Safe-haven asset resilience",
-            desc: "Gold exhibited historical resilience, with low drawdown (-2.9%) relative to broader equity indices (-5.8%)."
+            desc: "Gold exhibited historical resilience, cushioning equity volatility with positive returns (+2.0%)."
           },
           {
-            badge: "HISTORICAL & PEER DISCIPLINE",
+            badge: "PEER DISCIPLINE",
             badgeClass: "purple",
             title: "99.5% Pure Gold Custody · 86% peer conviction",
             desc: "Physical bullion secured in accredited vaults; 86% of Groww gold investors maintained unbroken SIP contributions."
           }
         ],
         detailedAnalysis: {
-          bannerTag: "SIP ON TRACK · ACCUMULATING DISCOUNTED UNITS",
-          bannerTitle: "Your investment strategy is working as intended",
-          bannerDesc: "Gold serves as a strategic store of value. Systematically averaging gold units builds long-term purchasing power hedge.",
+          bannerTag: "SIP ON TRACK · PORTFOLIO HEDGE & GAINS",
+          bannerTitle: "Your gold investment strategy is generating positive returns",
+          bannerDesc: "Gold serves as a strategic store of value. Systematically averaging gold units built a stable, positive foundation for your overall portfolio.",
           accumulation: {
-            title: "1. SIP Unit Accumulation Advantage",
-            totalUnits: "31.85 units",
-            baselineUnits: "29.80 units",
-            gainPct: "+6.8%",
-            avgNav: "₹64.10",
-            initialNav: "₹68.50",
-            discountPct: "6.4%",
-            insight: "Systematic monthly contributions accumulate physical bullion grams without timing daily commodity fluctuations."
+            title: "1. SIP Unit Accumulation & Capital Growth",
+            totalUnits: "23.65 units",
+            baselineUnits: "23.15 units",
+            gainPct: "+2.2%",
+            avgNav: "₹21.14",
+            initialNav: "₹21.60",
+            discountPct: "2.1%",
+            insight: "Systematic monthly contributions accumulated physical bullion grams at an average cost of ₹21.14, enabling current NAV (₹21.56) to deliver positive portfolio gains."
           },
           attribution: {
             title: "2. Market & Macro Attribution",
             benchmarkName: "Domestic Physical Spot Gold",
-            benchmarkReturn: "-3.8%",
-            fundReturn: "-2.9%",
-            alpha: "+0.9%",
-            sectorDrag: "-3.2%",
-            insight: "Global interest rate expectations and currency movements shaped price ranges, tracked with high precision."
+            benchmarkReturn: "+1.4%",
+            fundReturn: "+2.0%",
+            alpha: "+0.6%",
+            sectorDrag: "+0.0%",
+            insight: "Global central bank gold reserve purchases and currency hedging supported gold prices, generating +0.6% relative outperformance with negligible tracking error."
           },
           governance: {
             title: "3. Governance & Custody Standards",
@@ -897,9 +908,9 @@ const GROWW_DATA = {
           },
           autopay: {
             title: "4. Upcoming Milestone & Execution",
-            nextDate: "20 Apr 2025",
-            amount: "₹1,500",
-            streak: "3 of 3 instalments completed (100% on time)",
+            nextDate: "05 Dec 2026",
+            amount: "₹250",
+            streak: "2 of 2 instalments completed (100% on time)",
             status: "Active & Automated",
             insight: "Automated execution builds gold reserve allocations frictionlessly in small, manageable monthly amounts."
           }
