@@ -964,7 +964,7 @@
 
                 <div class="cohort-hero-header-row">
                   <div class="cohort-hero-num">${hist.cohortBehavior?.heroPct || 81}%</div>
-                  <span class="cohort-moat-pill">${hist.cohortBehavior?.moatBadge || "10-Year Moat"}</span>
+                  <span class="cohort-moat-pill">${hist.cohortBehavior?.moatBadge || "10-Year Data"}</span>
                 </div>
                 <div class="cohort-hero-label">${hist.cohortBehavior?.heroLabel || "continued their SIP during the February 2025 market dip"}</div>
 
