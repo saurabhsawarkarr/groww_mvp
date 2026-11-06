@@ -81,8 +81,8 @@ const GROWW_DATA = {
       deepDive: {
         context: {
           tag: "What this means for your SIP",
-          headline: "Your fund has experienced market fluctuations during your investment journey.",
-          subtext: "Review the fund's performance, investment approach and your own financial needs before making a decision."
+          headline: "Market dips allow your monthly SIP to collect more units at lower prices.",
+          subtext: "Pausing now stops this cost-averaging advantage. Continuing your SIP lowers your average purchase price for when the market rebounds."
         },
         unitAccumulation: {
           title: "Your SIP is accumulating units",
@@ -306,8 +306,8 @@ const GROWW_DATA = {
       deepDive: {
         context: {
           tag: "What this means for your SIP",
-          headline: "Your fund has experienced market fluctuations during your investment journey.",
-          subtext: "Review the fund's performance, investment approach and your own financial needs before making a decision."
+          headline: "Market dips allow your monthly SIP to collect more units at lower prices.",
+          subtext: "Pausing now stops this cost-averaging advantage. Continuing your SIP lowers your average purchase price for when the market rebounds."
         },
         unitAccumulation: {
           title: "Your SIP is accumulating units",
@@ -532,8 +532,8 @@ const GROWW_DATA = {
       deepDive: {
         context: {
           tag: "What this means for your SIP",
-          headline: "Your fund has experienced market fluctuations during your investment journey.",
-          subtext: "Review the fund's performance, investment approach and your own financial needs before making a decision."
+          headline: "Market dips allow your monthly SIP to collect more units at lower prices.",
+          subtext: "Pausing now stops this cost-averaging advantage. Continuing your SIP lowers your average purchase price for when the market rebounds."
         },
         unitAccumulation: {
           title: "Your SIP is accumulating units",
@@ -752,8 +752,8 @@ const GROWW_DATA = {
       deepDive: {
         context: {
           tag: "What this means for your SIP",
-          headline: "Your fund has experienced market fluctuations during your investment journey.",
-          subtext: "Review the fund's performance, investment approach and your own financial needs before making a decision."
+          headline: "Market dips allow your monthly SIP to collect more units at lower prices.",
+          subtext: "Pausing now stops this cost-averaging advantage. Continuing your SIP lowers your average purchase price for when the market rebounds."
         },
         unitAccumulation: {
           title: "Your SIP is accumulating units",
