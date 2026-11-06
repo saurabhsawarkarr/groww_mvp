@@ -17,8 +17,8 @@ const GROWW_DATA = {
     xirr: -5.10
   },
   insightCard: {
-    title: "Understand your portfolio status",
-    subtext: "Explore your fund performance, track SIP activity and understand changes in your investments."
+    title: "Why is my portfolio down?",
+    subtext: "Understand how market movements, your funds, and SIP investments are affecting your returns."
   },
   funds: [
     {

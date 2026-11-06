@@ -299,14 +299,34 @@ A thorough inspection of production Groww screens confirms:
 
 ## 6. Audit Area 5: Screen-by-Screen Deep Dive
 
-### Screen 1: Mutual Funds Dashboard
-* **Function**: Primary home view displaying portfolio health and the trigger entry point.
-* **Findings**:
-  - The banner *"Why is my portfolio down?"* sits naturally right below the overall portfolio return card.
-  - The CTA button (*Understand Portfolio*) has strong visual contrast and invites curiosity rather than alarm.
-* **Recommendations**:
-  - Maintain the `16px` border radius on the hero balance card.
-  - Ensure the trigger card does not flash or animate abruptly on mobile reload.
+### Screen 1: Mutual Funds Dashboard (Entry Point & Gateway)
+
+* **Architectural Role**: The primary landing view in Groww where first-time investors encounter their overall portfolio performance. It serves as the psychological gateway converting mark-to-market anxiety into constructive curiosity.
+* **Component-by-Component Hierarchy**:
+  1. **Top Navigation Tabs (`.groww-top-tabs`)**:
+     - Tabs: `Explore`, `Dashboard` (Active with Groww emerald underline `#00D09C`), `SIPs`, `Watchlist`.
+     - Typography: `--font-caption` (`12px Medium` / `600 Semi-bold`).
+  2. **Flat Portfolio Metric Lines (`.portfolio-summary-flat`)**:
+     - Metrics: `1D returns` (`-₹120 / -2.1%`), `Total returns` (`-₹500 / -8.33%`), `Invested` (`₹6,000`), and `XIRR` (`-8.1% ⌄`).
+     - Styling: High-contrast charcoal `#242833` labels, Alert Coral `#EB5B56` for drawdown figures, and neutral dark gray for invested principal.
+     - Spacing: Invariant `16px` outer horizontal margins (`--space-16`).
+  3. **The "Hook" — Insight Trigger Card (`#btn-trigger-insights`)**:
+     - Positioned immediately beneath the portfolio summary and above the holdings list.
+     - **Container**: Deep indigo gradient (`linear-gradient(135deg, #1C1938 0%, #16152B 60%, #151A2C 100%)`) with violet border (`rgba(139, 92, 246, 0.4)`), `16px` border radius (`--radius-md`).
+     - **Vector Icon**: 3-bar vertical chart inside rounded violet box (`rgba(139, 92, 246, 0.25)`), strictly matching authentic Groww app bar icon style.
+     - **Title**: *"Why is my portfolio down?"* (`--font-subhead: 16px Bold`, crisp white `#FFFFFF`). Aligned directly with the user's immediate mental query.
+     - **Subtitle**: *"Understand how market movements, your funds, and SIP investments are affecting your returns."* (`--font-caption: 12px`, `#D1D5DB`).
+     - **Interactive Sparkline & Chevron**: Emerald micro-trendline (`stroke: #00D09C`) with an SVG navigation chevron `›` indicating actionable 1-tap entry.
+  4. **Holdings Preview Rows (`.holdings-flat-list`)**:
+     - Non-scrolling, flat borderless row items matching authentic Groww `IMG_9938.PNG`.
+     - Includes status badge `SIP ACTIVE` in mint green (`#E8F8F3`, text `#00A877`).
+  5. **Groww Bottom Navigation Bar (`.bottom-nav`)**:
+     - `Stocks`, `Mutual Funds` (Active with `#00D09C`), `Pay/UPI`, `Loans`.
+* **Verified Audit Polish**:
+  - Gutter strictly locked to `16px` (`--space-16`).
+  - Font sizes mapped to standardized tokens (`--font-subhead`, `--font-caption`, `--font-stat`).
+  - Zero raw emojis, zero exclamation marks, 100% SVG line iconography.
+  - Full tap target across the entire trigger container for seamless mobile interaction.
 
 ### Screen 2: Standard Groww Fund Details (`IMG_9939`–`IMG_9941`)
 * **Function**: Replicates the authentic Groww fund page for baseline comparison.
