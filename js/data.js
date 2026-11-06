@@ -174,8 +174,70 @@ const GROWW_DATA = {
         disclaimer: "Past performance shows how the fund has behaved, but it does not guarantee future returns."
       },
       fundHealth: {
-        status: "Fund governance & factsheet summary",
-        subtitle: "Key factual indicators regarding management tenure, expense ratio, and portfolio discipline.",
+        status: "Summary & Key Takeaways",
+        subtitle: "Personalized synthesis of your SIP accumulation, attribution, and governance data.",
+        personalizedHighlights: [
+          {
+            badge: "SIP UNIT ADVANTAGE",
+            badgeClass: "mint",
+            title: "+9.6% extra units accumulated",
+            desc: "Your ₹2,000 monthly SIP purchased 131.58 units at an average cost of ₹45.60 vs ₹50.00 initial NAV by investing through the dip."
+          },
+          {
+            badge: "MARKET ATTRIBUTION",
+            badgeClass: "blue",
+            title: "Outperforming category benchmark",
+            desc: "The decline is category-wide, but your fund held up stronger at -4.2% compared to Nifty LargeMidcap 250 (-5.8%)."
+          },
+          {
+            badge: "HISTORICAL & PEER DISCIPLINE",
+            badgeClass: "purple",
+            title: "Proven recovery record · 81% peer conviction",
+            desc: "Mr. R. Srinivasan has steered through 3 past corrections (~14 mo avg recovery); 81% of Groww investors in this fund kept their SIP active."
+          }
+        ],
+        detailedAnalysis: {
+          bannerTag: "SIP ON TRACK · ACCUMULATING DISCOUNTED UNITS",
+          bannerTitle: "Your investment strategy is working as intended",
+          bannerDesc: "Temporary market dips are an inherent part of equity cycles. Your ongoing ₹2,000 monthly SIP acts as an automated cost-averaging mechanism, securing more units per instalment.",
+          accumulation: {
+            title: "1. SIP Unit Accumulation Advantage",
+            totalUnits: "131.58 units",
+            baselineUnits: "120.00 units",
+            gainPct: "+9.6%",
+            avgNav: "₹45.60",
+            initialNav: "₹50.00",
+            discountPct: "8.8%",
+            insight: "By continuing your SIP in February (₹45.50) and March (₹42.00), each ₹2,000 contribution purchased more units than at inception, accelerating your break-even on market rebound."
+          },
+          attribution: {
+            title: "2. Market & Macro Attribution",
+            benchmarkName: "Nifty LargeMidcap 250",
+            benchmarkReturn: "-5.8%",
+            fundReturn: "-4.2%",
+            alpha: "+1.6%",
+            sectorDrag: "-4.1%",
+            insight: "Broad-based macroeconomic factors drove the drawdown. The fund's active stock selection generated positive alpha (+1.6%), cushioning your portfolio relative to the market."
+          },
+          governance: {
+            title: "3. Governance & Manager Precedent",
+            managerName: "Mr. R. Srinivasan",
+            tenure: "5+ years (since May 2019)",
+            correctionsNavigated: "3 market corrections",
+            avgRecoveryTime: "~14 months",
+            expenseRatio: "0.85%",
+            peerContinuity: "81% continued SIP",
+            insight: "Experienced fund leadership with multi-cycle stability conforming strictly to SEBI large & midcap rebalancing mandates."
+          },
+          autopay: {
+            title: "4. Upcoming Milestone & Execution",
+            nextDate: "05 Apr 2025",
+            amount: "₹2,000",
+            streak: "3 of 3 instalments completed (100% on time)",
+            status: "Active & Automated",
+            insight: "Staying disciplined preserves your streak and positions your portfolio for compounding once market momentum turns."
+          }
+        },
         takeaways: [
           "Decline driven primarily by broader market benchmark movement (-2.6%)",
           "Continuity in fund leadership with manager tenure exceeding 5 years",
@@ -338,8 +400,70 @@ const GROWW_DATA = {
         disclaimer: "Past performance shows how the fund has behaved, but it does not guarantee future returns."
       },
       fundHealth: {
-        status: "Fund governance & factsheet summary",
-        subtitle: "Overview of management continuity, portfolio turnover, and expense structure.",
+        status: "Summary & Key Takeaways",
+        subtitle: "Personalized synthesis of your SIP accumulation, attribution, and governance data.",
+        personalizedHighlights: [
+          {
+            badge: "SIP UNIT ADVANTAGE",
+            badgeClass: "mint",
+            title: "+8.4% extra units accumulated",
+            desc: "Your monthly SIP accumulated 146.32 units at an average cost of ₹78.20 vs ₹85.00 initial NAV during the recent market consolidation."
+          },
+          {
+            badge: "MARKET ATTRIBUTION",
+            badgeClass: "blue",
+            title: "Outperforming Nifty 500 benchmark",
+            desc: "Fund held up stronger at -3.8% compared to the Nifty 500 benchmark (-5.4%), generating +1.6% relative downside protection."
+          },
+          {
+            badge: "HISTORICAL & PEER DISCIPLINE",
+            badgeClass: "purple",
+            title: "11+ Years CIO leadership · 84% peer conviction",
+            desc: "Mr. Rajeev Thakkar has steered through 4 major drawdowns (~11 mo avg recovery); 84% of Groww peers kept their SIP active."
+          }
+        ],
+        detailedAnalysis: {
+          bannerTag: "SIP ON TRACK · ACCUMULATING DISCOUNTED UNITS",
+          bannerTitle: "Your investment strategy is working as intended",
+          bannerDesc: "Temporary market dips allow your recurring SIP to purchase flexi-cap equities at a discount. Continuing your plan maintains rupee cost averaging.",
+          accumulation: {
+            title: "1. SIP Unit Accumulation Advantage",
+            totalUnits: "146.32 units",
+            baselineUnits: "135.00 units",
+            gainPct: "+8.4%",
+            avgNav: "₹78.20",
+            initialNav: "₹85.00",
+            discountPct: "8.0%",
+            insight: "Lower NAV levels allowed each installment to collect additional units, positioning your holdings for higher compounding upon market recovery."
+          },
+          attribution: {
+            title: "2. Market & Macro Attribution",
+            benchmarkName: "Nifty 500",
+            benchmarkReturn: "-5.4%",
+            fundReturn: "-3.8%",
+            alpha: "+1.6%",
+            sectorDrag: "-3.6%",
+            insight: "Active value allocation and international equity exposure provided defensive insulation during the broader market pullback."
+          },
+          governance: {
+            title: "3. Governance & Manager Precedent",
+            managerName: "Mr. Rajeev Thakkar",
+            tenure: "11+ years (since May 2013)",
+            correctionsNavigated: "4 market corrections",
+            avgRecoveryTime: "~11 months",
+            expenseRatio: "0.69%",
+            peerContinuity: "84% continued SIP",
+            insight: "Longest unbroken track record in the flexi-cap category with conservative cash management (~14% cash & arbitrage buffer)."
+          },
+          autopay: {
+            title: "4. Upcoming Milestone & Execution",
+            nextDate: "10 Apr 2025",
+            amount: "₹2,500",
+            streak: "3 of 3 instalments completed (100% on time)",
+            status: "Active & Automated",
+            insight: "Automated execution ensures uninterrupted unit collection across shifting market valuations."
+          }
+        },
         takeaways: [
           "CIO Rajeev Thakkar has managed the fund continuously since May 2013 (11+ years)",
           "Direct plan expense ratio is 0.69%",
@@ -496,8 +620,70 @@ const GROWW_DATA = {
         disclaimer: "Past performance shows how the fund has behaved, but it does not guarantee future returns."
       },
       fundHealth: {
-        status: "Fund governance & factsheet summary",
-        subtitle: "Overview of physical bullion backing, tracking metrics, and fund expenses.",
+        status: "Summary & Key Takeaways",
+        subtitle: "Personalized synthesis of your SIP accumulation, attribution, and governance data.",
+        personalizedHighlights: [
+          {
+            badge: "SIP UNIT ADVANTAGE",
+            badgeClass: "mint",
+            title: "+11.2% extra units accumulated",
+            desc: "Silver price fluctuations enabled your SIP contributions to accumulate 28.94 units at an average cost of ₹82.40 vs ₹92.00 starting NAV."
+          },
+          {
+            badge: "COMMODITY CYCLE",
+            badgeClass: "blue",
+            title: "Low correlation asset hedge",
+            desc: "Physical silver tracking error remains exceptionally low at 0.14%, providing essential non-equity portfolio diversification."
+          },
+          {
+            badge: "HISTORICAL & PEER DISCIPLINE",
+            badgeClass: "purple",
+            title: "Physical Bullion Custody · 78% peer conviction",
+            desc: "Backed by 99.9% LBMA silver bullion; 78% of Groww commodity investors maintained their SIP through recent price swings."
+          }
+        ],
+        detailedAnalysis: {
+          bannerTag: "SIP ON TRACK · ACCUMULATING DISCOUNTED UNITS",
+          bannerTitle: "Your investment strategy is working as intended",
+          bannerDesc: "Precious metals experience cyclical price shifts. Recurring investments systematically accumulate grams of silver at favorable price points.",
+          accumulation: {
+            title: "1. SIP Unit Accumulation Advantage",
+            totalUnits: "28.94 units",
+            baselineUnits: "26.00 units",
+            gainPct: "+11.2%",
+            avgNav: "₹82.40",
+            initialNav: "₹92.00",
+            discountPct: "10.4%",
+            insight: "Commodity volatility provides high unit accumulation elasticity for regular systematic investors."
+          },
+          attribution: {
+            title: "2. Market & Macro Attribution",
+            benchmarkName: "LBMA Domestic Silver Spot",
+            benchmarkReturn: "-7.2%",
+            fundReturn: "-5.8%",
+            alpha: "+1.4%",
+            sectorDrag: "-6.5%",
+            insight: "Industrial silver demand and dollar index strength dictated price movements, tracked accurately with low slippage."
+          },
+          governance: {
+            title: "3. Governance & Bullion Standards",
+            managerName: "Mr. Tapan Patel",
+            tenure: "1+ year (Commodities specialist)",
+            correctionsNavigated: "2 commodity cycles",
+            avgRecoveryTime: "~8 months",
+            expenseRatio: "0.22%",
+            peerContinuity: "78% continued SIP",
+            insight: "Strict vault custody protocols ensure direct 1-to-1 physical backing conforming to SEBI commodity mutual fund regulations."
+          },
+          autopay: {
+            title: "4. Upcoming Milestone & Execution",
+            nextDate: "15 Apr 2025",
+            amount: "₹1,000",
+            streak: "2 of 2 instalments completed (100% on time)",
+            status: "Active & Automated",
+            insight: "Systematic accumulation shields investors from attempting to time precious metal spot cycles."
+          }
+        },
         takeaways: [
           "Fund holds physical silver bullion conforming to LBMA 99.9% purity standards",
           "Direct plan expense ratio is 0.22%",
@@ -654,8 +840,70 @@ const GROWW_DATA = {
         disclaimer: "Past performance shows how the fund has behaved, but it does not guarantee future returns."
       },
       fundHealth: {
-        status: "Fund governance & factsheet summary",
-        subtitle: "Overview of physical bullion custody, tracking metrics, and expense structure.",
+        status: "Summary & Key Takeaways",
+        subtitle: "Personalized synthesis of your SIP accumulation, attribution, and governance data.",
+        personalizedHighlights: [
+          {
+            badge: "SIP UNIT ADVANTAGE",
+            badgeClass: "mint",
+            title: "+6.8% extra units accumulated",
+            desc: "Gold consolidation allowed regular SIP instalments to purchase 31.85 units at an average NAV of ₹64.10 vs ₹68.50 baseline."
+          },
+          {
+            badge: "PORTFOLIO HEDGE",
+            badgeClass: "blue",
+            title: "Safe-haven asset resilience",
+            desc: "Gold exhibited historical resilience, with low drawdown (-2.9%) relative to broader equity indices (-5.8%)."
+          },
+          {
+            badge: "HISTORICAL & PEER DISCIPLINE",
+            badgeClass: "purple",
+            title: "99.5% Pure Gold Custody · 86% peer conviction",
+            desc: "Physical bullion secured in accredited vaults; 86% of Groww gold investors maintained unbroken SIP contributions."
+          }
+        ],
+        detailedAnalysis: {
+          bannerTag: "SIP ON TRACK · ACCUMULATING DISCOUNTED UNITS",
+          bannerTitle: "Your investment strategy is working as intended",
+          bannerDesc: "Gold serves as a strategic store of value. Systematically averaging gold units builds long-term purchasing power hedge.",
+          accumulation: {
+            title: "1. SIP Unit Accumulation Advantage",
+            totalUnits: "31.85 units",
+            baselineUnits: "29.80 units",
+            gainPct: "+6.8%",
+            avgNav: "₹64.10",
+            initialNav: "₹68.50",
+            discountPct: "6.4%",
+            insight: "Systematic monthly contributions accumulate physical bullion grams without timing daily commodity fluctuations."
+          },
+          attribution: {
+            title: "2. Market & Macro Attribution",
+            benchmarkName: "Domestic Physical Spot Gold",
+            benchmarkReturn: "-3.8%",
+            fundReturn: "-2.9%",
+            alpha: "+0.9%",
+            sectorDrag: "-3.2%",
+            insight: "Global interest rate expectations and currency movements shaped price ranges, tracked with high precision."
+          },
+          governance: {
+            title: "3. Governance & Custody Standards",
+            managerName: "Mr. Tapan Patel",
+            tenure: "1+ year (Precious metals manager)",
+            correctionsNavigated: "3 gold price cycles",
+            avgRecoveryTime: "~6 months",
+            expenseRatio: "0.24%",
+            peerContinuity: "86% continued SIP",
+            insight: "Physical gold bars meeting LBMA 995 fineness stored with accredited independent custodians, audited regularly."
+          },
+          autopay: {
+            title: "4. Upcoming Milestone & Execution",
+            nextDate: "20 Apr 2025",
+            amount: "₹1,500",
+            streak: "3 of 3 instalments completed (100% on time)",
+            status: "Active & Automated",
+            insight: "Automated execution builds gold reserve allocations frictionlessly in small, manageable monthly amounts."
+          }
+        },
         takeaways: [
           "Fund holds physical 99.5% pure gold bullion secured with accredited vault custodians",
           "Direct plan expense ratio is 0.24%",

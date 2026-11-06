@@ -1208,20 +1208,228 @@
               <span class="flow-section-sub">Overview of management continuity, costs, and peer activity</span>
             </div>
 
-            <div class="takeaway-box-soft" style="margin-bottom: 14px;">
-              <ul class="takeaway-list-clean">
-                ${health.takeaways.map((t, idx) => `
-                  <li class="takeaway-item-clean ${idx === health.takeaways.length - 1 ? 'cohort-takeaway' : ''}">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="none"><circle cx="12" cy="12" r="4.5"/></svg>
-                    <span>${t}</span>
-                  </li>
-                `).join('')}
-              </ul>
+            <!-- 3 Personalized Highlight Cards -->
+            <div class="summary-highlights-list">
+              ${(health.personalizedHighlights || [
+                {
+                  badge: "SIP UNIT ADVANTAGE",
+                  badgeClass: "mint",
+                  title: "+9.6% extra units accumulated",
+                  desc: "Your ₹2,000 monthly SIP purchased 131.58 units at an average cost of ₹45.60 vs ₹50.00 initial NAV by investing through the dip."
+                },
+                {
+                  badge: "MARKET ATTRIBUTION",
+                  badgeClass: "blue",
+                  title: "Outperforming category benchmark",
+                  desc: "The decline is category-wide, but your fund held up stronger at -4.2% compared to Nifty LargeMidcap 250 (-5.8%)."
+                },
+                {
+                  badge: "HISTORICAL & PEER DISCIPLINE",
+                  badgeClass: "purple",
+                  title: "Proven recovery record · 81% peer conviction",
+                  desc: "Manager steered through past corrections; 81% of Groww investors in this fund kept their SIP active."
+                }
+              ]).map((hl, idx) => `
+                <div class="summary-hl-card">
+                  <div class="summary-hl-icon ${hl.badgeClass}">
+                    ${idx === 0 ? `
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                        <polyline points="17 6 23 6 23 12"/>
+                      </svg>
+                    ` : idx === 1 ? `
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                      </svg>
+                    ` : `
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                      </svg>
+                    `}
+                  </div>
+                  <div style="flex: 1;">
+                    <span class="summary-hl-badge ${hl.badgeClass}">${hl.badge}</span>
+                    <h4 class="summary-hl-title">${hl.title}</h4>
+                    <p class="summary-hl-desc">${hl.desc}</p>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+
+            <!-- Clickable Link Button: Open Detailed Summary Analysis Screen -->
+            <div class="summary-detail-link-box">
+              <button class="btn-summary-detail-link" id="btn-open-detailed-summary">
+                <div class="summary-link-left">
+                  <div class="summary-link-icon-box">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                      <polyline points="14 2 14 8 20 8"/>
+                      <line x1="16" y1="13" x2="8" y2="13"/>
+                      <line x1="16" y1="17" x2="8" y2="17"/>
+                      <polyline points="10 9 9 9 8 9"/>
+                    </svg>
+                  </div>
+                  <div class="summary-link-text-group">
+                    <span class="summary-link-main">View detailed summary & analysis</span>
+                    <span class="summary-link-sub">Full breakdown of accumulation, attribution & governance</span>
+                  </div>
+                </div>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
             </div>
 
             <!-- Single Action Button: Back to Insights -->
             <div class="single-bottom-action">
               <button class="btn-primary-green btn-full-width" id="btn-back-to-insights-bottom">Back to Insights</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // ==========================================
+  // SCREEN 4: DETAILED SUMMARY ANALYSIS SCREEN
+  // ==========================================
+  function renderScreenDetailedSummary() {
+    const fund = getSelectedFund();
+    const health = fund.fundHealth || GROWW_DATA.funds[0].fundHealth;
+    const detail = health.detailedAnalysis || {};
+    const acc = detail.accumulation || {};
+    const attr = detail.attribution || {};
+    const gov = detail.governance || {};
+    const auto = detail.autopay || {};
+
+    return `
+      <div class="screen-view detailed-summary-screen" id="screen-detailed-summary">
+        <!-- Sticky Top Navigation -->
+        <div class="slide-top-nav sticky-nav" style="padding: 12px 18px;">
+          <button class="back-btn" id="btn-back-from-summary">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M19 12H5m7 7-7-7 7-7"/></svg>
+          </button>
+          <span class="slide-nav-title">Summary & Analysis Report</span>
+        </div>
+
+        <div class="deep-dive-scroll-content">
+          <!-- Fund Header -->
+          <div class="fund-hero-tag" style="padding: 6px 18px 8px 18px;">
+            ${renderFundLogo(fund.id, 38)}
+            <div class="fund-name-block">
+              <span class="fund-name-text" style="font-size: 16px;">${fund.name}</span>
+              <div class="fund-plan-row">
+                <span>${fund.plan}</span>
+                <span class="sip-pill-tag">${fund.status}</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="padding: 6px 18px 24px 18px;">
+            <!-- Executive Status Banner -->
+            <div class="detailed-status-banner">
+              <span class="detailed-status-pill">${detail.bannerTag || 'SIP ON TRACK · ACCUMULATING DISCOUNTED UNITS'}</span>
+              <h3 class="detailed-banner-title">${detail.bannerTitle || 'Your investment strategy is working as intended'}</h3>
+              <p class="detailed-banner-desc">${detail.bannerDesc || 'Temporary market dips are an inherent part of equity cycles. Your ongoing SIP acts as an automated cost-averaging mechanism.'}</p>
+            </div>
+
+            <!-- Section 1: SIP Accumulation Breakdown -->
+            <div class="detailed-analysis-card">
+              <div class="detailed-card-header">
+                <div class="detailed-card-icon" style="background: #E8F8F3; color: #00A877;">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                </div>
+                <h4 class="detailed-card-title">${acc.title || '1. SIP Unit Accumulation Advantage'}</h4>
+              </div>
+              <div class="detailed-stat-grid">
+                <div class="detailed-stat-cell">
+                  <div class="detailed-stat-val green">${acc.totalUnits || '131.58'}</div>
+                  <div class="detailed-stat-lbl">Total Units (${acc.gainPct || '+9.6%'} extra)</div>
+                </div>
+                <div class="detailed-stat-cell">
+                  <div class="detailed-stat-val">${acc.avgNav || '₹45.60'}</div>
+                  <div class="detailed-stat-lbl">Average NAV (vs ${acc.initialNav || '₹50.00'})</div>
+                </div>
+              </div>
+              <div class="detailed-insight-callout">
+                ${acc.insight || ''}
+              </div>
+            </div>
+
+            <!-- Section 2: Market & Macro Attribution -->
+            <div class="detailed-analysis-card">
+              <div class="detailed-card-header">
+                <div class="detailed-card-icon" style="background: #EFF6FF; color: #2563EB;">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <h4 class="detailed-card-title">${attr.title || '2. Market & Macro Attribution'}</h4>
+              </div>
+              <div class="detailed-stat-grid">
+                <div class="detailed-stat-cell">
+                  <div class="detailed-stat-val red">${attr.fundReturn || '-4.2%'}</div>
+                  <div class="detailed-stat-lbl">Fund Return (vs ${attr.benchmarkReturn || '-5.8%'})</div>
+                </div>
+                <div class="detailed-stat-cell">
+                  <div class="detailed-stat-val green">${attr.alpha || '+1.6%'}</div>
+                  <div class="detailed-stat-lbl">Relative Alpha Outperformance</div>
+                </div>
+              </div>
+              <div class="detailed-insight-callout">
+                ${attr.insight || ''}
+              </div>
+            </div>
+
+            <!-- Section 3: Governance & Historical Precedent -->
+            <div class="detailed-analysis-card">
+              <div class="detailed-card-header">
+                <div class="detailed-card-icon" style="background: #FAF5FF; color: #7E22CE;">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                <h4 class="detailed-card-title">${gov.title || '3. Governance & Manager Precedent'}</h4>
+              </div>
+              <div class="detailed-stat-grid">
+                <div class="detailed-stat-cell">
+                  <div class="detailed-stat-val">${gov.tenure || '5+ years'}</div>
+                  <div class="detailed-stat-lbl">Manager (${gov.managerName || 'Mr. R. Srinivasan'})</div>
+                </div>
+                <div class="detailed-stat-cell">
+                  <div class="detailed-stat-val green">${gov.avgRecoveryTime || '~14 months'}</div>
+                  <div class="detailed-stat-lbl">Avg Recovery (${gov.correctionsNavigated || '3 drawdowns'})</div>
+                </div>
+              </div>
+              <div class="detailed-insight-callout">
+                ${gov.insight || ''}
+              </div>
+            </div>
+
+            <!-- Section 4: Upcoming Milestone & Execution -->
+            <div class="detailed-analysis-card">
+              <div class="detailed-card-header">
+                <div class="detailed-card-icon" style="background: #FFF7ED; color: #EA580C;">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                </div>
+                <h4 class="detailed-card-title">${auto.title || '4. Upcoming Milestone & Execution'}</h4>
+              </div>
+              <div class="detailed-stat-grid">
+                <div class="detailed-stat-cell">
+                  <div class="detailed-stat-val green">${auto.nextDate || '05 Apr 2025'}</div>
+                  <div class="detailed-stat-lbl">Next SIP Date (${auto.amount || '₹2,000'})</div>
+                </div>
+                <div class="detailed-stat-cell">
+                  <div class="detailed-stat-val" style="color: #EA580C;">3 / 3</div>
+                  <div class="detailed-stat-lbl">Instalment Streak (100% on time)</div>
+                </div>
+              </div>
+              <div class="detailed-insight-callout">
+                ${auto.insight || ''}
+              </div>
+            </div>
+
+            <!-- Bottom Actions -->
+            <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 14px;">
+              <button class="btn-primary-green btn-full-width" id="btn-back-to-insights-from-summary">Back to Portfolio Insights</button>
+              <button class="btn-secondary-mint btn-full-width" id="btn-back-to-deepdive-bottom">Back to Fund Report</button>
             </div>
           </div>
         </div>
@@ -1251,6 +1459,9 @@
     } else if (state.currentView === "fund-select") {
       screenEl.className = "screen-content view-non-scroll";
       screenEl.innerHTML = renderScreen2FundSelection();
+    } else if (state.currentView === "detailed-summary") {
+      screenEl.className = "screen-content view-deepdive-scroll";
+      screenEl.innerHTML = renderScreenDetailedSummary();
     } else {
       // 'deepdive-scroll': Single scrolling container combining all deep dive information
       screenEl.className = "screen-content view-deepdive-scroll";
@@ -1388,6 +1599,37 @@
 
     // Screen 3: Bottom "Back to Insights" -> Back to Screen 2 (Portfolio Insights / Fund Select)
     document.getElementById("btn-back-to-insights-bottom")?.addEventListener("click", () => {
+      state.currentView = "fund-select";
+      render();
+      const screenEl = document.getElementById("screen-content");
+      if (screenEl) screenEl.scrollTop = 0;
+    });
+
+    // Screen 3: Open Detailed Summary Analysis Screen
+    document.getElementById("btn-open-detailed-summary")?.addEventListener("click", () => {
+      state.previousView = "deepdive-scroll";
+      state.currentView = "detailed-summary";
+      render();
+      const screenEl = document.getElementById("screen-content");
+      if (screenEl) screenEl.scrollTop = 0;
+    });
+
+    // Screen 4: Back from Detailed Summary Screen
+    document.getElementById("btn-back-from-summary")?.addEventListener("click", () => {
+      state.currentView = "deepdive-scroll";
+      render();
+      const screenEl = document.getElementById("screen-content");
+      if (screenEl) screenEl.scrollTop = 0;
+    });
+
+    document.getElementById("btn-back-to-deepdive-bottom")?.addEventListener("click", () => {
+      state.currentView = "deepdive-scroll";
+      render();
+      const screenEl = document.getElementById("screen-content");
+      if (screenEl) screenEl.scrollTop = 0;
+    });
+
+    document.getElementById("btn-back-to-insights-from-summary")?.addEventListener("click", () => {
       state.currentView = "fund-select";
       render();
       const screenEl = document.getElementById("screen-content");
