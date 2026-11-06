@@ -103,7 +103,7 @@ const GROWW_DATA = {
           },
           disclaimer: "More units do not guarantee positive returns."
         },
-        whyInline: "As NAV fell ₹680 → ₹595, your SIP bought more units.",
+        whyInline: "As NAV fell from ₹680 to ₹595, your SIP bought more units.",
         whyTitle: "Why?",
         whyText: "As NAV fell from ₹680 to ₹595, the same ₹1,000 SIP bought more units.",
         whatThisMeans: "As NAV fell from ₹680 to ₹595, the same ₹1,000 SIP bought more units."
@@ -328,7 +328,7 @@ const GROWW_DATA = {
           },
           disclaimer: "More units do not guarantee positive returns."
         },
-        whyInline: "As NAV fell ₹95 → ₹84.20, your SIP bought more units.",
+        whyInline: "As NAV fell from ₹95 to ₹84.20, your SIP bought more units.",
         whyTitle: "Why?",
         whyText: "As NAV fell from ₹95 to ₹84.20, the same ₹500 SIP bought more units.",
         whatThisMeans: "As NAV fell from ₹95 to ₹84.20, the same ₹500 SIP bought more units."
@@ -554,7 +554,7 @@ const GROWW_DATA = {
           },
           disclaimer: "More units do not guarantee positive returns."
         },
-        whyInline: "As NAV fell ₹26.50 → ₹22.80, your SIP bought more units.",
+        whyInline: "As NAV fell from ₹26.50 to ₹22.80, your SIP bought more units.",
         whyTitle: "Why?",
         whyText: "As NAV fell from ₹26.50 to ₹22.80, the same ₹250 SIP bought more units.",
         whatThisMeans: "As NAV fell from ₹26.50 to ₹22.80, the same ₹250 SIP bought more units."
@@ -774,7 +774,7 @@ const GROWW_DATA = {
           },
           disclaimer: "More units do not guarantee positive returns."
         },
-        whyInline: "As NAV fell ₹22.00 → ₹20.50, your SIP bought more units.",
+        whyInline: "As NAV fell from ₹22.00 to ₹20.50, your SIP bought more units.",
         whyTitle: "Why?",
         whyText: "As NAV fell from ₹22.00 to ₹20.50, the same ₹250 SIP bought more units.",
         whatThisMeans: "As NAV fell from ₹22.00 to ₹20.50, the same ₹250 SIP bought more units."
