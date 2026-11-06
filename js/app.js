@@ -1181,14 +1181,6 @@
                 <span class="essential-val">₹${fund.nav.toFixed(2)}</span>
               </div>
               <div class="essential-row">
-                <span class="essential-label">Fund Size (AUM)</span>
-                <span class="essential-val">${fund.aum}</span>
-              </div>
-              <div class="essential-row">
-                <span class="essential-label">Expense Ratio</span>
-                <span class="essential-val highlight">${fund.expenseRatio}</span>
-              </div>
-              <div class="essential-row">
                 <span class="essential-label">Exit Load</span>
                 <span class="essential-val note">${fund.exitLoad}</span>
               </div>
