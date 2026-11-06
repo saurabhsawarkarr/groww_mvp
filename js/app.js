@@ -2,7 +2,7 @@
 // Flow:
 // Screen 1 (Dashboard) - Non-scrolling
 // Screen 2 (Fund Selection) - Non-scrolling
-// Screen 3+ (Fund Deep Dive) - Combines Slides 3 to 7 into a single continuous scrolling experience!
+// Screen 3+ (Fund Deep Dive) - Combines Slides 3 to 7 into a single continuous scrolling experience.
 
 (function () {
   const urlParams = new URLSearchParams(window.location.search);
@@ -1482,7 +1482,7 @@
       if (screenEl) screenEl.scrollTop = 0;
     });
 
-    // Fund Details: Bridge card to Solution ("Why is this fund down?") -> Open Deep Dive Solution!
+    // Fund Details: Bridge card to Solution ("Why is this fund down?") -> Open Deep Dive Solution.
     document.getElementById("btn-jump-to-deepdive")?.addEventListener("click", () => {
       state.previousView = "fund-detail";
       state.currentView = "deepdive-scroll";
@@ -1541,7 +1541,7 @@
       if (screenEl) screenEl.scrollTop = 0;
     });
 
-    // Screen 2: Click any fund -> Select fund & open Deep Dive Solution Report!
+    // Screen 2: Click any fund -> Select fund & open Deep Dive Solution Report.
     document.querySelectorAll(".fund-card-soft").forEach(el => {
       el.addEventListener("click", () => {
         state.selectedFundId = el.dataset.selectFund;
