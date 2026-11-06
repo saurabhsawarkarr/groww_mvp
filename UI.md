@@ -328,19 +328,65 @@ A thorough inspection of production Groww screens confirms:
   - Zero raw emojis, zero exclamation marks, 100% SVG line iconography.
   - Full tap target across the entire trigger container for seamless mobile interaction.
 
-### Screen 2: Standard Groww Fund Details (`IMG_9939`–`IMG_9941`)
-* **Function**: Replicates the authentic Groww fund page for baseline comparison.
-* **Findings**:
-  - Accurately mirrors production with Return Calculator, Returns & Rankings, Peer Comparison, and Expense Ratio accordions.
-  - The contextual banner (*"Why is this fund down?"*) placed between the user's investment summary and fund facts provides a natural on-ramp to the Deep Dive.
+### Screen 2: Standard Groww Fund Details (The Production Baseline)
 
-### Screen 3: Portfolio Insights / Fund Select
-* **Function**: Allows users with multiple funds to pick which fund to investigate.
-* **Findings**:
-  - 3-column stats (`Invested`, `Current Value`, `Monthly SIP`) are easy to scan.
-  - The `-₹250 (-8.3%)` return badge gives immediate clarity without visual clutter.
-* **Recommendations**:
-  - Ensure the entire fund card row is clickable as a single touch target.
+* **Architectural Role**: Replicates the authentic single mutual fund details view (`IMG_9939`–`IMG_9941`) to establish baseline user trust and provide a contextual, in-situ on-ramp for users investigating a specific declining fund.
+* **Component-by-Component Hierarchy**:
+  1. **Sticky Top Navigation Bar (`.fund-detail-top-nav`)**:
+     - Left: Back arrow button `←`, fund name (`--font-body: 14px Bold`), 1D change (`-2.6% · 1D`), and current NAV (`₹42.00`).
+     - Right: Vector action icons for Watchlist (bookmark SVG) and Search (magnifying glass SVG).
+     - Surface: Pinned with `backdrop-filter: blur(8px)` and hairline divider `#F1F3F6`.
+  2. **Fund Brand Identity Header (`.fund-detail-header-card`)**:
+     - Official circular AMC logo (40px) with high-contrast badge geometry.
+     - Fund title (`--font-stat: 18px Bold`, `#242833`) with metadata chips: `Direct Plan · Growth`, `Large & MidCap`, and Amber star rating chip (`5 ★`).
+  3. **User Holding Summary Card (`.user-holding-detail-card`)**:
+     - Renders if the investor holds units in this fund.
+     - 2×2 key financial metric grid: `Current value`, `Total returns` (with semantic loss color `#EB5B56`), `Invested`, and `1D returns`.
+     - Sub-metric baseline strip: `Avg NAV` (`₹632.91`), `Units` (`4.74`), and `Active SIP` (`₹1,000/mo`).
+  4. **The Contextual On-Ramp Bridge (`#btn-jump-to-deepdive`)**:
+     - Dynamic trigger appearing when `totalReturns < 0`.
+     - Container: Deep purple gradient card (`linear-gradient(135deg, #1E1B4B 0%, #2E1065 100%)`) with soft violet glow.
+     - Copy: *"Why is this fund down? Understand market impact & how your SIP accumulated units"*.
+     - Action pill: *"View Insights ›"* providing an immediate jump to Screen 4 (Continuous Deep Dive).
+  5. **Authentic Groww Production Accordions**:
+     - **Return Calculator**: Interactive SIP vs. One-Time segmented toggle with live investment amount range slider and 4-timeframe dynamic projection bars (`6M`, `1Y`, `3Y`, `5Y`).
+     - **Returns & Rankings**: Fund annualised percentage comparison against category benchmark.
+     - **Peer Comparison**: Direct comparison against category rivals (e.g., Mirae Asset, Canara Robeco).
+     - **Expense Ratio & Details**: Accurate AMC fee disclosures and stamp duty rules.
+* **Verified Audit Polish**:
+  - Full mobile clearance with bottom navigation padding (`85px`).
+  - Standardized font tokens (`--font-subhead`, `--font-caption`, `--font-legal`).
+  - Zero raw emojis, 100% vector SVG line iconography.
+
+---
+
+### Screen 3: Portfolio Insights / Fund Select (Multi-Fund Health Triage)
+
+* **Architectural Role**: Acts as the portfolio triage hub when an investor enters from the Dashboard insight card. It provides a clean, single-glance overview of all active SIP holdings so the investor can select which fund to investigate.
+* **Component-by-Component Hierarchy**:
+  1. **Top Navigation (`.slide-top-nav`)**:
+     - Left: Back arrow button `←` returning seamlessly to Screen 1 (Dashboard).
+     - Title: *"Portfolio Insights"* (`--font-subhead: 16px Bold`).
+     - Spacing: Strict `16px` outer horizontal gutter (`--space-16`).
+  2. **Hero Header Banner (`.hero-banner-clean`)**:
+     - Title: *"Understand your mutual funds"* (`--font-title: 20px Bold`, `#242833`).
+     - Subtitle: *"Select a fund to see why its value has changed and how your SIP is performing."* (`--font-body: 14px Regular`, `#7C828D`).
+  3. **Multi-Fund Holdings Cards Stack (`.funds-soft-stack`)**:
+     - Vertical stack of elevated fund cards (`.fund-card-soft`) with `12px` inter-card spacing (`--space-12`).
+     - **Card Header Row**:
+       - 34px circular AMC logo (SBI blue, Parag Parikh emerald, Tata burgundy/gold).
+       - Fund title with Direct Plan Growth label and green `SIP ACTIVE` status pill.
+       - Return badge prominently displaying net return with semantic loss/gain color (e.g., `-₹250 (-8.3%)`).
+       - Right chevron `›` SVG indicating clickability.
+     - **3-Column Financial Metric Strip (`.fund-stats-row`)**:
+       - Column 1: `Invested` (e.g., `₹3,000`).
+       - Column 2: `Current value` (e.g., `₹2,750`).
+       - Column 3: `SIP amount` (e.g., `₹1,000 / month`).
+       - Labels styled with `--font-caption` (`12px Medium`), values styled with `--font-subhead` (`14px Bold`).
+* **Verified Audit Polish**:
+  - Entire card surface is wired as a single 1-tap touch target (`data-select-fund="${f.id}"`).
+  - Elevated card hover/tap state with subtle border transition (`#CBD5E1`).
+  - Zero raw emojis, zero exclamation marks, 100% SVG line icons.
 
 ### Screen 4: Continuous Deep Dive Report (The Core Solution)
 * **Function**: Comprehensive 8-section vertical report addressing investor panic.
