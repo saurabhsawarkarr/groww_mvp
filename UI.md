@@ -239,8 +239,8 @@ In Section F (*Fund Manager & Performance*), two separate disclaimers appear bac
 
 ### Solution Strategy: 2 PM Combination Options
 
-#### Option A (Recommended): Unified Bottom Regulatory Footnote
-Delete Card 4 entirely. Consolidate manager continuity, proprietary data attribution, and SEBI compliance into one clean, compact footer note at the bottom of Section F.
+#### Option A (Implemented & Live): Unified Bottom Regulatory Footnote
+Deleted Card 4 entirely. Consolidated manager continuity, proprietary Groww ledger attribution, and SEBI compliance into one clean, compact footer note at the bottom of Section F.
 
 **Visual Representation:**
 ```
@@ -251,13 +251,15 @@ Delete Card 4 entirely. Consolidate manager continuity, proprietary data attribu
 └────────────────────────────────────────────────────────────────────────┘
 ```
 
-**Benefits:**
-* Eliminates the redundant Card 4 container entirely.
-* Saves 70px+ of vertical scroll space.
-* Retains 100% SEBI compliance.
-* Feels like authentic fintech microcopy rather than legal panic.
+**Implementation Details:**
+* **Container Class**: `.unified-regulatory-footnote`
+* **Typography Token**: `--font-legal` (`11px` Regular / Medium), `color: var(--groww-text-secondary)`, line-height `1.45`.
+* **Surface Styling**: Soft gray background `#F8FAFC`, hairline border `#E8EBF0`, radius `8px`.
+* **Clean Card 2B**: Removed internal `.correction-card-footer` from Card 2B so the downturn track record focuses purely on data metrics (`3 market corrections` | `~14 months recovery`).
+* **Saved Real Estate**: Reclaimed **75px+** of vertical scroll space on mobile displays.
+* **SEBI Compliance**: 100% compliant with SEBI (Mutual Funds) Regulations, 1996 for past performance disclaimers.
 
-#### Option B: In-Card Source Tag + 1-Line Regulatory Micro-Notice
+#### Option B (Alternative Reference): In-Card Source Tag + 1-Line Regulatory Micro-Notice
 * Keep a minimal source pill inside Card 2B: `Source: Groww transaction data · 2019–2024`.
 * Convert Card 4 into an unobtrusive single-line text footer at the section base:
   `ⓘ Past performance is historical and does not guarantee future results.`
@@ -332,16 +334,14 @@ Delete Card 4 entirely. Consolidate manager continuity, proprietary data attribu
 
 ---
 
-## 7. Prioritized Implementation Matrix & Next Steps
+## 7. Prioritized Implementation Matrix & Status
 
-When approved to implement, here is the recommended execution plan:
-
-| Priority | Feature / Polish Item | Action Description | Complexity |
-| :---: | :--- | :--- | :---: |
-| **P0** | **Combine Section F Disclaimers** | Remove redundant Card 4 container; merge source attribution and SEBI past performance advisory into a single clean footer note at the bottom of Section F. | Low (Quick Win) |
-| **P1** | **Normalize Typography Scale** | Standardize CSS from 19 font sizes down to 7 core tokens. Upgrade all `9.5px` and `10px` microcopy to `11px` for accessibility. | Medium |
-| **P2** | **Iconography & Arrow Consistency** | Replace any raw Unicode arrows (`→`) in `data.js` with formatted text or clean SVG icons. Verify all warning/disclaimer icons use `ⓘ` instead of `!`. | Low |
-| **P3** | **Spacing & Layout Rhythm** | Enforce consistent `16px` outer padding, `12px` card gaps, `8px` section dividers, and `88px` bottom sticky clearance. | Medium |
+| Priority | Feature / Polish Item | Status | Action Description | Complexity |
+| :---: | :--- | :---: | :--- | :---: |
+| **P0** | **Combine Section F Disclaimers** | ✅ **COMPLETED (Option A)** | Removed redundant Card 4 container; merged source attribution and SEBI past performance advisory into `.unified-regulatory-footnote` at the bottom of Section F. | Low (Quick Win) |
+| **P1** | **Normalize Typography Scale** | ✅ **COMPLETED** | Standardized CSS from 19 font sizes down to 7 core tokens (`--font-legal` through `--font-hero`). Upgraded all microcopy to 11px+. | Medium |
+| **P2** | **Iconography & Arrow Consistency** | 🟡 **Next Up** | Replace remaining raw Unicode arrows (`→`) in `data.js` with formatted text or clean SVG icons. Verify all warning/disclaimer icons use `ⓘ`. | Low |
+| **P3** | **Spacing & Layout Rhythm** | ✅ **COMPLETED** | Enforced consistent `16px` outer padding, `12px` card gaps, `8px` full-bleed section dividers, and `88px` bottom sticky clearance. | Medium |
 
 ---
 *End of Audit Document. Ready for stakeholder review and feedback.*

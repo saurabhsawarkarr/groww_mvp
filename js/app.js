@@ -1123,20 +1123,11 @@
                   <div class="correction-stat-sub">average time to recover</div>
                 </div>
               </div>
-
-              <div class="correction-card-footer">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"/>
-                  <line x1="12" y1="16" x2="12" y2="12"/>
-                  <line x1="12" y1="8" x2="12.01" y2="8"/>
-                </svg>
-                <span>${manager.downturnTrackRecord.sourceNote}</span>
-              </div>
             </div>
             ` : ''}
 
             <!-- Card 3: Investment Approach -->
-            <div class="approach-card" style="margin-bottom: 12px;">
+            <div class="approach-card" style="margin-bottom: 10px;">
               <div class="approach-card-header">
                 <div class="approach-icon-badge">
                   <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
@@ -1150,19 +1141,16 @@
               <p class="approach-card-text">${manager.investmentApproach}</p>
             </div>
 
-            <!-- Card 4: Keep In Mind Regulatory Disclaimer -->
-            <div class="keep-in-mind-card" style="margin-bottom: 12px;">
-              <div class="keep-icon-badge">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                  <circle cx="12" cy="12" r="10"/>
-                  <line x1="12" y1="16" x2="12" y2="12"/>
-                  <line x1="12" y1="8" x2="12.01" y2="8"/>
-                </svg>
-              </div>
-              <div class="keep-text-col">
-                <h4 class="keep-card-title">Keep in mind</h4>
-                <p class="keep-card-text">${manager.disclaimer}</p>
-              </div>
+            <!-- Section F: Unified Bottom Regulatory Footnote (Audit Area 3 - Option A) -->
+            <div class="unified-regulatory-footnote">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="unified-footnote-icon">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="16" x2="12" y2="12"/>
+                <line x1="12" y1="8" x2="12.01" y2="8"/>
+              </svg>
+              <span class="unified-footnote-text">
+                ${manager.downturnTrackRecord ? `${manager.downturnTrackRecord.sourceNote} ` : ''}${manager.disclaimer}
+              </span>
             </div>
           </div>
 

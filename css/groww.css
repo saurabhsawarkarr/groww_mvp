@@ -1609,7 +1609,33 @@ body.dark-mode .correction-stat-val {
   padding-left: 42px;
 }
 
-/* Keep In Mind Disclaimer Card */
+/* Section F: Unified Bottom Regulatory Footnote (Audit Area 3 - Option A) */
+.unified-regulatory-footnote {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px 12px;
+  background: var(--groww-bg-subtle, #F8FAFC);
+  border: 1px solid var(--groww-border, #E8EBF0);
+  border-radius: var(--radius-sm, 8px);
+  margin-top: 4px;
+  margin-bottom: var(--space-8, 8px);
+}
+
+.unified-footnote-icon {
+  flex-shrink: 0;
+  margin-top: 1.5px;
+  color: var(--groww-text-secondary);
+}
+
+.unified-footnote-text {
+  font-size: var(--font-legal);
+  line-height: 1.45;
+  color: var(--groww-text-secondary);
+  margin: 0;
+}
+
+/* Keep In Mind Disclaimer Card (Legacy) */
 .keep-in-mind-card {
   background: rgba(59, 130, 246, 0.08);
   border: 1px solid rgba(59, 130, 246, 0.22);
