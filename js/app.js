@@ -680,6 +680,9 @@
           </div>
         </div>
 
+        <!-- Section: Ask AI About Fund Details -->
+        ${renderGrowwAICard(fund, 'fund-details')}
+
         <!-- Sticky Bottom Action Bar (Matching IMG_9939.PNG) -->
         <div class="fund-detail-bottom-bar">
           <button class="btn-onetime-groww" id="btn-fund-onetime">One-time</button>
@@ -773,11 +776,140 @@
       .replace(/"/g, "&quot;");
   }
 
-  function getSmartFollowUps(query) {
+  function getContextualQuestions(fund, pageContext = 'deepdive') {
+    if (pageContext === 'dashboard' || !fund) {
+      return {
+        title: "Ask AI about your portfolio",
+        desc: "Instant breakdown of overall portfolio movement and total SIP unit accumulation.",
+        placeholder: "Ask about your portfolio returns...",
+        chips: [
+          { text: "💡 Why is my portfolio down?", prompt: "Why is my portfolio down?" },
+          { text: "📊 Which fund dragged returns most?", prompt: "Which fund impacted my returns the most?" },
+          { text: "📈 How did SIP help my portfolio?", prompt: "How did SIP unit accumulation help my portfolio?" },
+          { text: "❓ Should I pause any SIP? ⚠️", prompt: "Should I pause any of my SIPs? ⚠️", trap: true }
+        ]
+      };
+    }
+
+    if (pageContext === 'summary') {
+      if (fund.id === "parag-parikh-flexi") {
+        return {
+          title: "Ask AI about this summary",
+          desc: "Audit of Neil Parag Parikh's strategy, US tech exposure, and compounding track record.",
+          placeholder: "Ask about this summary...",
+          chips: [
+            { text: "📊 What is my unit accumulation advantage?", prompt: "What is my unit accumulation advantage in Parag Parikh Flexi Cap?" },
+            { text: "⚖️ How does this fund compare to Nifty 500?", prompt: "How does Parag Parikh Flexi Cap compare to Nifty 500?" },
+            { text: "🛡️ What is the fund manager's long-term precedent?", prompt: "What is the fund manager precedent and strategy in Parag Parikh?" },
+            { text: "❓ Should I double my SIP amount? ⚠️", prompt: "Is this the right time to double my SIP amount? ⚠️", trap: true }
+          ]
+        };
+      }
+      return {
+        title: "Ask AI about this summary",
+        desc: "Plain-English audit of historical precedents, manager track record, and accumulation.",
+        placeholder: "Ask about this summary...",
+        chips: [
+          { text: "📊 How does +7.4% bonus units work?", prompt: "How does my +7.4% bonus unit accumulation work in SBI Large & Midcap?" },
+          { text: "⚖️ How does this fund compare to Nifty 50?", prompt: "How does this fund compare to its benchmark index?" },
+          { text: "🛡️ Has the manager navigated past dips?", prompt: "How has the fund manager navigated past drawdowns?" },
+          { text: "❓ Should I switch to another fund? ⚠️", prompt: "Which fund should I switch to for guaranteed returns? ⚠️", trap: true }
+        ]
+      };
+    }
+
+    // Fund Deep-Dive & Fund Details Contexts
+    const isCommodity = fund.category?.toLowerCase().includes("silver") || fund.category?.toLowerCase().includes("gold") || fund.category?.toLowerCase().includes("commodity");
+    if (isCommodity) {
+      const metal = fund.name.includes("Gold") ? "Gold" : "Silver";
+      return {
+        title: `Ask AI about ${metal} ETF`,
+        desc: `Plain-English insights on physical commodity NAV, spot prices, and SIP units.`,
+        placeholder: `Ask a question about ${fund.name}...`,
+        chips: [
+          { text: `🪙 What moved ${metal} NAV recently?`, prompt: `What market factors moved ${metal} NAV recently?` },
+          { text: `📊 How does this fund track ${metal}?`, prompt: `How does this fund track physical ${metal} prices?` },
+          { text: `📈 Did my monthly SIP buy more units?`, prompt: `Did my monthly SIP accumulate more units during price dips?` },
+          { text: `❓ Should I pause my ${metal} SIP? ⚠️`, prompt: `Should I pause my ${metal} SIP? ⚠️`, trap: true }
+        ]
+      };
+    }
+
+    if (fund.id === "parag-parikh-flexi") {
+      return {
+        title: "Ask AI about Parag Parikh Flexi",
+        desc: "Analysis of foreign equity (Alphabet/Meta), domestic holdings & currency impact.",
+        placeholder: "Ask about Alphabet, Meta, or Indian equities...",
+        chips: [
+          { text: "🌍 How are Alphabet & Meta affecting returns?", prompt: "How are Alphabet and Meta affecting this fund's returns?" },
+          { text: "📈 Did my SIP benefit from the dip?", prompt: "Did my SIP benefit from the dip in Parag Parikh Flexi Cap?" },
+          { text: "💵 How does USD/INR movement impact NAV?", prompt: "How does USD/INR currency fluctuation impact this fund's NAV?" },
+          { text: "❓ Should I stop my SIP? ⚠️", prompt: "Should I stop my SIP in Parag Parikh? ⚠️", trap: true }
+        ]
+      };
+    }
+
+    const isNeg = (fund.userHolding?.totalReturns < 0) || (fund.returns < 0);
+    if (isNeg) {
+      const topStock = fund.id === "sbi-large-midcap" ? "HDFC Bank" : "top holdings";
+      return {
+        title: "Ask AI about your fund",
+        desc: "Instant, plain-English breakdown of market dips and your SIP unit accumulation.",
+        placeholder: `Ask a question about ${fund.name}...`,
+        chips: [
+          { text: "💡 Why is my fund down?", prompt: `Why is ${fund.name} down?` },
+          { text: "📈 Did my SIP benefit from the dip?", prompt: "Did my SIP benefit from the dip?" },
+          { text: `🏦 Did ${topStock} cause this drop?`, prompt: `Did ${topStock} cause this drop?` },
+          { text: "❓ Should I stop my SIP? ⚠️", prompt: "Should I stop my SIP? ⚠️", trap: true }
+        ]
+      };
+    }
+
+    // Default Positive / Growth Fund
+    return {
+      title: "Ask AI about your fund",
+      desc: "Instant breakdown of market drivers, compounding returns, and portfolio allocation.",
+      placeholder: `Ask a question about ${fund.name}...`,
+      chips: [
+        { text: "🚀 What is driving this fund's returns?", prompt: `What is driving ${fund.name}'s returns?` },
+        { text: "📈 How is my regular SIP compounding?", prompt: "How is my regular SIP compounding in this fund?" },
+        { text: "⚖️ How does it compare to its benchmark?", prompt: `How does ${fund.name} compare to its benchmark index?` },
+        { text: "❓ Should I increase my SIP amount? ⚠️", prompt: "Is this the right time to double my SIP amount? ⚠️", trap: true }
+      ]
+    };
+  }
+
+  function getSmartFollowUps(query, fund) {
     const q = (query || "").toLowerCase();
+    const fundId = fund?.id || "sbi-large-midcap";
+
+    if (fundId === "parag-parikh-flexi") {
+      if (q.includes("alphabet") || q.includes("meta") || q.includes("tech") || q.includes("us")) {
+        return [
+          { text: "💵 How does USD/INR movement impact NAV?", prompt: "How does USD/INR currency fluctuation impact this fund's NAV?" },
+          { text: "📈 Did my SIP benefit from rupee cost averaging?", prompt: "Did my SIP benefit from rupee cost averaging in Parag Parikh?" },
+          { text: "❓ Should I stop my SIP? ⚠️", prompt: "Should I stop my SIP in Parag Parikh? ⚠️" }
+        ];
+      }
+      return [
+        { text: "🌍 How are Alphabet & Meta affecting returns?", prompt: "How are Alphabet and Meta affecting this fund's returns?" },
+        { text: "💵 How does USD/INR movement impact NAV?", prompt: "How does USD/INR currency fluctuation impact this fund's NAV?" },
+        { text: "❓ Should I stop my SIP? ⚠️", prompt: "Should I stop my SIP in Parag Parikh? ⚠️" }
+      ];
+    }
+
+    if (fundId.includes("silver") || fundId.includes("gold")) {
+      return [
+        { text: "📊 How does this fund track commodity NAV?", prompt: "How does this fund track physical commodity prices?" },
+        { text: "📈 Did my monthly SIP buy more units at lower prices?", prompt: "Did my monthly SIP accumulate more units during price dips?" },
+        { text: "❓ Should I pause my commodity SIP? ⚠️", prompt: "Should I pause my commodity SIP? ⚠️" }
+      ];
+    }
+
+    // Default SBI Large & Midcap
     if (q.includes("hdfc") || q.includes("stock") || q.includes("company")) {
       return [
-        { text: "📈 Did my SIP benefit from this dip?", prompt: "Did my SIP benefit from the dip?" },
+        { text: "📈 Did my SIP benefit from the dip?", prompt: "Did my SIP benefit from the dip?" },
         { text: "💡 Why is the overall fund down?", prompt: "Why is my fund down?" },
         { text: "❓ Should I stop my SIP? ⚠️", prompt: "Should I stop my SIP? ⚠️" }
       ];
@@ -786,12 +918,6 @@
         { text: "💡 Why is the fund down -8.4%?", prompt: "Why is my fund down?" },
         { text: "🏦 Did HDFC Bank cause this drop?", prompt: "Did HDFC Bank cause this drop?" },
         { text: "❓ Should I stop my SIP? ⚠️", prompt: "Should I stop my SIP? ⚠️" }
-      ];
-    } else if (q.includes("stop") || q.includes("pause") || q.includes("sell")) {
-      return [
-        { text: "📈 Did my SIP benefit from the dip?", prompt: "Did my SIP benefit from the dip?" },
-        { text: "💡 Why is my fund down?", prompt: "Why is my fund down?" },
-        { text: "🏦 Did HDFC Bank cause this drop?", prompt: "Did HDFC Bank cause this drop?" }
       ];
     } else {
       return [
@@ -802,8 +928,13 @@
     }
   }
 
-  function renderGrowwAICard(fund) {
-    const mode = state.llmMode || "auto";
+  function renderGrowwAICard(fund, pageContext = 'deepdive') {
+    const currentFund = fund || getSelectedFund();
+    const config = getContextualQuestions(currentFund, pageContext);
+    const chipsHtml = config.chips.map(c => `
+      <button class="groww-ai-chip ${c.trap ? 'trap' : ''}" data-prompt="${c.prompt}">${c.text}</button>
+    `).join('');
+
     return `
       <div style="padding: 10px 16px 0 16px;">
         <div class="groww-ai-sample-card" id="groww-ai-card-wrapper">
@@ -816,10 +947,10 @@
             </div>
             <div class="groww-ai-text-col">
               <div class="groww-ai-title-wrap">
-                <h4 class="groww-ai-card-title">Ask AI about your fund</h4>
+                <h4 class="groww-ai-card-title">${config.title}</h4>
                 <span class="groww-ai-beta-tag">Live RAG</span>
               </div>
-              <p class="groww-ai-card-desc">Instant, plain-English breakdown of market dips and your SIP unit accumulation.</p>
+              <p class="groww-ai-card-desc">${config.desc}</p>
             </div>
           </div>
 
@@ -832,7 +963,7 @@
                   <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                 </svg>
               </div>
-              <input type="text" id="groww-ai-input" class="groww-ai-input-field" placeholder="Ask a question about this fund..." autocomplete="off">
+              <input type="text" id="groww-ai-input" class="groww-ai-input-field" placeholder="${config.placeholder}" autocomplete="off">
               <button id="groww-ai-submit-btn" class="groww-ai-send-btn" title="Send question">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="22" y1="2" x2="11" y2="13"></line>
@@ -841,12 +972,9 @@
               </button>
             </div>
 
-            <!-- Quick Prompt Chips -->
+            <!-- Quick Prompt Chips - Horizontal Scroll Carousel -->
             <div class="groww-ai-chips-row">
-              <button class="groww-ai-chip" data-prompt="Why is my fund down?">Why is my fund down?</button>
-              <button class="groww-ai-chip" data-prompt="Did my SIP benefit from the dip?">Did my SIP benefit from the dip?</button>
-              <button class="groww-ai-chip" data-prompt="Did HDFC Bank cause this drop?">Did HDFC Bank cause this drop?</button>
-              <button class="groww-ai-chip trap" data-prompt="Should I stop my SIP? ⚠️" title="Test SEBI Safe Fallback">Should I stop my SIP? ⚠️</button>
+              ${chipsHtml}
             </div>
 
             <!-- Quality Checked & Regulatory Notice Footer -->
@@ -921,8 +1049,8 @@
         `;
       }
 
-      // Contextual Smart Follow-up Chips based on the query
-      const followUpChips = getSmartFollowUps(query);
+      // Contextual Smart Follow-up Chips based on the query and fund
+      const followUpChips = getSmartFollowUps(query, fund);
       const followUpChipsHtml = followUpChips.map(fc => `
         <button class="groww-ai-chip followup-chip" data-prompt="${fc.prompt}">${fc.text}</button>
       `).join('');
@@ -1173,7 +1301,7 @@
           </div>
 
           <!-- Section C: Ask AI About Your Fund (Eval-Gated Explainer) -->
-          ${renderGrowwAICard(fund)}
+          ${renderGrowwAICard(fund, 'deepdive')}
 
           <div class="flow-divider"></div>
 
@@ -1696,6 +1824,9 @@
                 ${auto.insight || ''}
               </div>
             </div>
+
+            <!-- Section 5: Ask AI About This Summary -->
+            ${renderGrowwAICard(fund, 'summary')}
 
             <!-- Bottom Actions -->
             <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 14px;">
