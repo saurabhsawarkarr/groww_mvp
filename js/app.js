@@ -1350,7 +1350,6 @@
           <div style="padding: 0 16px;">
             <div class="section-title-row">
               <h3 class="flow-section-heading">Market Impact & Attribution</h3>
-              <span class="flow-section-sub">${isNeg ? "Why broader market factors affect your returns" : "How market tailwinds and asset performance generated your gains"}</span>
             </div>
 
             <div class="alert-banner-pill ${isNeg ? '' : 'positive-alert-banner'}" style="margin-bottom: 12px;">
