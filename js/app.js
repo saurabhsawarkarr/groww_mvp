@@ -163,93 +163,6 @@
     `;
   }
 
-  // Historical SVG Chart
-  function renderHistoricalChart(fund) {
-    const currentFund = fund || getSelectedFund();
-    const hist = currentFund?.historicalPerformance || GROWW_DATA.funds[0].historicalPerformance;
-    const drop = hist.downturnPoint;
-    const rec = hist.recoveryPoint;
-
-    return `
-      <svg viewBox="0 0 340 160" width="100%" height="100%" style="overflow: visible;">
-        <defs>
-          <linearGradient id="chartGlow" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#00D09C" stop-opacity="0.22"/>
-            <stop offset="100%" stop-color="#00D09C" stop-opacity="0.0"/>
-          </linearGradient>
-        </defs>
-
-        <line x1="10" y1="85" x2="330" y2="85" stroke="#E5E7EB" stroke-dasharray="3,3"/>
-
-        <path d="M 80 80 Q 95 98, 110 118 Q 150 95, 190 75 T 260 45 T 310 22 L 310 145 L 110 145 Z" 
-              fill="url(#chartGlow)" opacity="0.6"/>
-
-        <path d="M 20 75 Q 50 60, 80 80 T 110 118 Q 150 95, 190 75 T 260 45 T 310 22" 
-              fill="none" stroke="#00D09C" stroke-width="2.5" stroke-linecap="round"/>
-        
-        <path d="M 80 80 Q 95 98, 110 118 Q 130 108, 150 95" 
-              fill="none" stroke="#EB5B56" stroke-width="2.5" stroke-linecap="round"/>
-
-        <circle cx="110" cy="118" r="4.5" fill="#EB5B56" stroke="#fff" stroke-width="1.8"/>
-        <circle cx="310" cy="22" r="4.5" fill="#00D09C" stroke="#fff" stroke-width="1.8"/>
-
-        <g transform="translate(40, 126)">
-          <rect x="-4" y="0" width="128" height="20" rx="4" fill="#FEE2E2" stroke="#FCA5A5" stroke-width="1"/>
-          <text x="60" y="14" fill="#DC2626" font-size="9.5" font-weight="700" text-anchor="middle">${drop.label} (${drop.period})</text>
-        </g>
-
-        <g transform="translate(182, 10)">
-          <rect x="0" y="0" width="134" height="20" rx="4" fill="#D1FAE5" stroke="#6EE7B7" stroke-width="1"/>
-          <text x="67" y="14" fill="#065F46" font-size="9.5" font-weight="700" text-anchor="middle">${rec.label} (${rec.period})</text>
-        </g>
-
-        <text x="20" y="156" fill="#6B7280" font-size="10" font-weight="500">Jan 2020</text>
-        <text x="110" y="156" fill="#6B7280" font-size="10" font-weight="500" text-anchor="middle">May 2020</text>
-        <text x="310" y="156" fill="#6B7280" font-size="10" font-weight="500" text-anchor="end">May 2021</text>
-      </svg>
-    `;
-  }
-
-  function renderManagerChart(fund, tf = "3Y") {
-    const currentFund = fund || getSelectedFund();
-    const manager = currentFund?.fundManager || GROWW_DATA.funds[0].fundManager;
-    const perf = manager.performances[tf] || { fund: "+14.8%", category: "+12.6%" };
-    const fundRet = perf.fund;
-    const catRet = perf.category;
-
-    return `
-      <div style="display: flex; justify-content: space-between; align-items: center; font-size: var(--font-caption); margin-bottom: 6px;">
-        <div style="display: flex; align-items: center; gap: 6px;">
-          <span style="width: 8px; height: 8px; border-radius: 50%; background: #6366F1; flex-shrink: 0;"></span>
-          <span style="color: var(--groww-text-secondary); font-weight: 500;">This Fund</span>
-          <strong style="color: #6366F1; font-weight: 700;">${fundRet} (${tf})</strong>
-        </div>
-        <div style="display: flex; align-items: center; gap: 6px;">
-          <span style="width: 8px; height: 8px; border-radius: 50%; background: #94A3B8; flex-shrink: 0;"></span>
-          <span style="color: var(--groww-text-secondary); font-weight: 500;">Category Avg</span>
-          <strong style="color: var(--groww-text-primary); font-weight: 700;">${catRet} (${tf})</strong>
-        </div>
-      </div>
-
-      <div style="height: 120px; margin-top: 4px;">
-        <svg viewBox="0 0 340 125" width="100%" height="100%" style="overflow: visible;">
-          <path d="M 10 105 Q 70 92, 120 82 T 200 62 T 270 52 T 330 42" 
-                fill="none" stroke="#94A3B8" stroke-width="2" stroke-linecap="round"/>
-          <path d="M 10 105 Q 60 84, 120 68 T 200 45 T 270 28 T 330 16" 
-                fill="none" stroke="#6366F1" stroke-width="2.5" stroke-linecap="round"/>
-          <circle cx="330" cy="16" r="4.5" fill="#6366F1" stroke="#fff" stroke-width="2"/>
-          <circle cx="330" cy="42" r="4" fill="#94A3B8" stroke="#fff" stroke-width="1.5"/>
-        </svg>
-      </div>
-
-      <div class="timeframe-pill-selector">
-        <button class="tf-pill-btn ${tf === '1Y' ? 'active' : ''}" data-tf="1Y">1Y</button>
-        <button class="tf-pill-btn ${tf === '3Y' ? 'active' : ''}" data-tf="3Y">3Y</button>
-        <button class="tf-pill-btn ${tf === '5Y' ? 'active' : ''}" data-tf="5Y">5Y</button>
-      </div>
-    `;
-  }
-
   // ==========================================
   // SCREEN 1: DASHBOARD (ALIGNED WITH GROWW DESIGN SYSTEM)
   // ==========================================
@@ -1506,7 +1419,7 @@
               </div>
             </div>
 
-            <!-- Card 2: Performance Comparison & Dual Wave Chart -->
+            <!-- Card 2: Performance Comparison (Side-by-Side) -->
             <div class="manager-perf-card" style="margin-bottom: 12px;">
               <div class="perf-card-header">
                 <div class="perf-icon-badge">
@@ -2075,20 +1988,6 @@
       render();
       const screenEl = document.getElementById("screen-content");
       if (screenEl) screenEl.scrollTop = 0;
-    });
-
-    // Manager chart timeframe buttons
-    document.querySelectorAll(".tf-pill-btn").forEach(btn => {
-      btn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        state.managerTf = btn.dataset.tf;
-        const chartBox = document.getElementById("manager-chart-container");
-        if (chartBox) {
-          const fund = getSelectedFund();
-          chartBox.innerHTML = renderManagerChart(fund, state.managerTf);
-          attachEventHandlers();
-        }
-      });
     });
 
     // Groww AI Explainer Card Event Handlers

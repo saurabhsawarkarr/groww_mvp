@@ -7,11 +7,21 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
+  <script>
+    (function () {
+      var LATEST_VERSION = "10.0";
+      var url = new URL(window.location.href);
+      if (url.searchParams.get("v") !== LATEST_VERSION) {
+        url.searchParams.set("v", LATEST_VERSION);
+        window.location.replace(url.toString());
+      }
+    })();
+  </script>
   <title>Groww – Portfolio Understanding MVP</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/groww.css?v=9.2">
+  <link rel="stylesheet" href="css/groww.css?v=10.0">
 </head>
 
 <body>
@@ -295,29 +305,29 @@
     </div>
   </div>
 
-  <script src="js/data.js?v=9.2"></script>
-  <script src="js/rag/knowledge-store.js?v=9.2"></script>
-  <script src="js/rag/math-engine.js?v=9.2"></script>
-  <script src="js/rag/test-math-engine.js?v=9.2"></script>
-  <script src="js/rag/security-gateway.js?v=9.2"></script>
-  <script src="js/rag/guardrails-pre.js?v=9.2"></script>
-  <script src="js/rag/fallbacks.js?v=9.2"></script>
-  <script src="js/rag/test-security-guardrails.js?v=9.2"></script>
-  <script src="js/rag/rag-retriever.js?v=9.2"></script>
-  <script src="js/rag/test-retrieval-sandboxing.js?v=9.2"></script>
-  <script src="js/rag/llm-provider.js?v=9.2"></script>
-  <script src="js/rag/rag-generator.js?v=9.2"></script>
-  <script src="js/rag/test-attribution-generation.js?v=9.2"></script>
-  <script src="js/rag/eval-engine.js?v=9.2"></script>
-  <script src="js/rag/test-output-defense.js?v=9.2"></script>
-  <script src="js/rag/audit-logger.js?v=9.2"></script>
-  <script src="js/rag/canary-router.js?v=9.2"></script>
-  <script src="js/rag/retention-metrics.js?v=9.2"></script>
-  <script src="js/rag/test-canary-retention.js?v=9.2"></script>
-  <script src="js/rag/eval-benchmark.js?v=9.2"></script>
-  <script src="js/rag/index.js?v=9.2"></script>
-  <script src="js/ai-engine.js?v=9.2"></script>
-  <script src="js/app.js?v=9.2"></script>
+  <script src="js/data.js?v=10.0"></script>
+  <script src="js/rag/knowledge-store.js?v=10.0"></script>
+  <script src="js/rag/math-engine.js?v=10.0"></script>
+  <script src="js/rag/test-math-engine.js?v=10.0"></script>
+  <script src="js/rag/security-gateway.js?v=10.0"></script>
+  <script src="js/rag/guardrails-pre.js?v=10.0"></script>
+  <script src="js/rag/fallbacks.js?v=10.0"></script>
+  <script src="js/rag/test-security-guardrails.js?v=10.0"></script>
+  <script src="js/rag/rag-retriever.js?v=10.0"></script>
+  <script src="js/rag/test-retrieval-sandboxing.js?v=10.0"></script>
+  <script src="js/rag/llm-provider.js?v=10.0"></script>
+  <script src="js/rag/rag-generator.js?v=10.0"></script>
+  <script src="js/rag/test-attribution-generation.js?v=10.0"></script>
+  <script src="js/rag/eval-engine.js?v=10.0"></script>
+  <script src="js/rag/test-output-defense.js?v=10.0"></script>
+  <script src="js/rag/audit-logger.js?v=10.0"></script>
+  <script src="js/rag/canary-router.js?v=10.0"></script>
+  <script src="js/rag/retention-metrics.js?v=10.0"></script>
+  <script src="js/rag/test-canary-retention.js?v=10.0"></script>
+  <script src="js/rag/eval-benchmark.js?v=10.0"></script>
+  <script src="js/rag/index.js?v=10.0"></script>
+  <script src="js/ai-engine.js?v=10.0"></script>
+  <script src="js/app.js?v=10.0"></script>
 </body>
 
 </html>
