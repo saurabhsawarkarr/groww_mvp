@@ -3199,20 +3199,20 @@ body.dark-mode .prev-event-bar-track {
    GROWW AI PORTFOLIO EXPLAINER - SAMPLE MATCHING COMPONENT
    ======================================================== */
 .groww-ai-sample-card {
-  background: #FAF8FE;
-  border: 1.5px solid #EBE4FA;
+  background: #F8FAFC;
+  border: 1.5px solid #E2E8F0;
   border-radius: var(--radius-lg);
   padding: 16px 16px;
   margin-top: 14px;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.04);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 body.dark-mode .groww-ai-sample-card {
-  background: #181524;
-  border-color: #2F2A45;
+  background: #141721;
+  border-color: #262B3D;
 }
 
 .groww-ai-top-row {
@@ -3225,13 +3225,13 @@ body.dark-mode .groww-ai-sample-card {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #7C3AED 0%, #9333EA 100%);
-  color: #FFFFFF;
+  background: #18172E;
+  color: #00D09C;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  box-shadow: 0 4px 10px rgba(124, 58, 237, 0.25);
+  box-shadow: 0 4px 10px rgba(0, 208, 156, 0.2);
 }
 
 .groww-ai-text-col {
@@ -3254,16 +3254,18 @@ body.dark-mode .groww-ai-sample-card {
 
 .groww-ai-beta-tag {
   font-size: 11px;
-  font-weight: 600;
-  color: #6D28D9;
-  background: #EDE9FE;
+  font-weight: 700;
+  color: #00A877;
+  background: #E8F8F3;
   padding: 2px 8px;
   border-radius: var(--radius-pill);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
 }
 
 body.dark-mode .groww-ai-beta-tag {
-  background: #2E1065;
-  color: #C4B5FD;
+  background: #064E3B;
+  color: #6EE7B7;
 }
 
 .groww-ai-card-desc {
@@ -3286,10 +3288,14 @@ body.dark-mode .groww-ai-beta-tag {
 .groww-ai-engine-label {
   font-size: 11px;
   font-weight: 700;
-  color: #6D28D9;
+  color: #0F172A;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   flex-shrink: 0;
+}
+
+body.dark-mode .groww-ai-engine-label {
+  color: #E2E8F0;
 }
 
 .groww-ai-engine-pills {
@@ -3303,35 +3309,36 @@ body.dark-mode .groww-ai-beta-tag {
   font-weight: 600;
   padding: 4px 10px;
   border-radius: var(--radius-pill);
-  border: 1px solid #D8D2EB;
+  border: 1px solid #E2E8F0;
   background: #FFFFFF;
-  color: #4B5563;
+  color: #475569;
   cursor: pointer;
   white-space: nowrap;
   transition: all 0.15s ease;
 }
 
 .groww-ai-pill:hover {
-  border-color: #8B5CF6;
-  color: #6D28D9;
+  border-color: #00D09C;
+  color: #00A877;
 }
 
 .groww-ai-pill.active {
-  background: #7C3AED;
-  color: #FFFFFF;
-  border-color: #7C3AED;
-  box-shadow: 0 2px 6px rgba(124, 58, 237, 0.25);
+  background: #18172E;
+  color: #00D09C;
+  border-color: #18172E;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 body.dark-mode .groww-ai-pill {
-  background: #14131E;
-  border-color: #38334E;
-  color: #9CA3AF;
+  background: #141721;
+  border-color: #262B3D;
+  color: #94A3B8;
 }
 
 body.dark-mode .groww-ai-pill.active {
-  background: #8B5CF6;
-  color: #FFFFFF;
+  background: #00D09C;
+  color: #0D0E12;
+  border-color: #00D09C;
 }
 
 @keyframes spin {
@@ -3342,7 +3349,7 @@ body.dark-mode .groww-ai-pill.active {
 /* AI Pill Input Field */
 .groww-ai-input-wrap {
   background: #FFFFFF;
-  border: 1.2px solid #D8D2EB;
+  border: 1.2px solid #E2E8F0;
   border-radius: var(--radius-pill);
   padding: 8px 14px;
   display: flex;
@@ -3353,17 +3360,17 @@ body.dark-mode .groww-ai-pill.active {
 }
 
 .groww-ai-input-wrap:focus-within {
-  border-color: #7C3AED;
-  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+  border-color: #00D09C;
+  box-shadow: 0 0 0 3px rgba(0, 208, 156, 0.15);
 }
 
 body.dark-mode .groww-ai-input-wrap {
-  background: #14131E;
-  border-color: #38334E;
+  background: #141721;
+  border-color: #262B3D;
 }
 
 .groww-ai-input-icon {
-  color: #8B5CF6;
+  color: #00D09C;
   display: flex;
   align-items: center;
   flex-shrink: 0;
@@ -3387,7 +3394,7 @@ body.dark-mode .groww-ai-input-wrap {
   background: none;
   border: none;
   cursor: pointer;
-  color: #7C3AED;
+  color: #00D09C;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3398,7 +3405,7 @@ body.dark-mode .groww-ai-input-wrap {
 
 .groww-ai-send-btn:hover {
   transform: scale(1.1);
-  color: #6D28D9;
+  color: #00A877;
 }
 
 /* Prompt Chips */
@@ -3410,8 +3417,8 @@ body.dark-mode .groww-ai-input-wrap {
 
 .groww-ai-chip {
   background: #FFFFFF;
-  border: 1px solid #DCD5F2;
-  color: #4338CA;
+  border: 1px solid #E2E8F0;
+  color: #334155;
   font-size: 12px;
   font-weight: 500;
   border-radius: var(--radius-pill);
@@ -3425,8 +3432,9 @@ body.dark-mode .groww-ai-input-wrap {
 }
 
 .groww-ai-chip:hover {
-  background: #EDE9FE;
-  border-color: #7C3AED;
+  background: #E8F8F3;
+  border-color: #00D09C;
+  color: #00A877;
   transform: translateY(-1px);
 }
 
@@ -3836,13 +3844,13 @@ body.dark-mode .groww-gr1-sheet-header {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #7C3AED 0%, #9333EA 100%);
-  color: #FFFFFF;
+  background: #18172E;
+  color: #00D09C;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 208, 156, 0.25);
 }
 
 .groww-gr1-sheet-title {
@@ -3856,8 +3864,8 @@ body.dark-mode .groww-gr1-sheet-header {
 .groww-gr1-badge {
   font-size: 10px;
   font-weight: 700;
-  background: #EDE9FE;
-  color: #6D28D9;
+  background: #E8F8F3;
+  color: #00A877;
   padding: 2px 6px;
   border-radius: 9999px;
   text-transform: uppercase;
@@ -3865,8 +3873,8 @@ body.dark-mode .groww-gr1-sheet-header {
 }
 
 body.dark-mode .groww-gr1-badge {
-  background: #2E1065;
-  color: #DDD6FE;
+  background: #064E3B;
+  color: #6EE7B7;
 }
 
 .groww-gr1-sheet-sub {
