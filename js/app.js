@@ -1633,7 +1633,6 @@
           <div style="padding: 0 16px;">
             <div class="section-title-row">
               <h3 class="flow-section-heading">Fund Essentials & Details</h3>
-              <span class="flow-section-sub">Direct plan facts sourced from AMC factsheet</span>
             </div>
 
             <div class="fund-essentials-card" style="margin-bottom: 12px;">
