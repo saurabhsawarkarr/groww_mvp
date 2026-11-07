@@ -1879,7 +1879,6 @@
             <!-- Bottom Actions -->
             <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 14px;">
               <button class="btn-primary-green btn-full-width" id="btn-back-to-insights-from-summary">Back to Portfolio Insights</button>
-              <button class="btn-secondary-mint btn-full-width" id="btn-back-to-deepdive-bottom">Back to Fund Report</button>
             </div>
           </div>
         </div>
