@@ -155,7 +155,9 @@ Follow these rules strictly:
    [Direct 1-2 sentence answer]
    • [Emoji] **[Factor Title]:** [1-sentence plain-English explanation]
    • [Emoji] **[Factor Title]:** [1-sentence plain-English explanation]
-   • 💡 **The SIP Advantage:** [1 sentence explaining how monthly SIP bought units at lower NAV ₹${bundle.frozenMath.avgNav}, giving +${bundle.frozenMath.bonusUnitsPct}% extra units].
+   ${/down|fall|dip|loss|negative|drop|why|return|sip|benefit|unit|accumulat|average|cost|rupee|add|more|invest|stop|pause/i.test(query || "")
+     ? `• 💡 **The SIP Advantage:** [1 sentence explaining how monthly SIP bought units at lower NAV ₹${bundle.frozenMath.avgNav}, giving +${bundle.frozenMath.bonusUnitsPct}% extra units].`
+     : `• [Emoji] **[Key Takeaway]:** [1-sentence plain-English contextual summary relevant to the question].`}
 3. Formatting: Every bullet MUST have the emoji and title on the SAME line. Never place an emoji on a separate line.
 4. Jargon: Translate every financial term in simple terms.
 5. Numbers: Cite ONLY the exact numbers in <frozen_math_anchors>.
@@ -611,10 +613,14 @@ ${query}
     const contextBundle = buildContextBundle(fundId, query, intent, mathData);
     const prompt = assemblePrompt(fundId, query, intent, mathData);
 
+    const qLower = (query || "").toLowerCase();
+    const isDipOrSipQuery = /down|fall|dip|loss|negative|drop|why|return|sip|benefit|unit|accumulat|average|cost|rupee|add|more|invest|stop|pause/i.test(qLower);
+
     const systemInstruction = `You are GR-1, Groww's educational AI co-pilot for first-time mutual fund investors.
 STRICT RESPONSE RULES & OUTPUT CONTRACT:
 RULE 1 (DIRECT RELEVANCE):
 - Answer the user's EXACT query directly in your opening 1-2 sentences.
+- If asked about fund manager, fees, or scheme details, focus entirely on that subject.
 - If asked about adding money or market timing, address the mechanics of lump-sum vs. SIP averaging. Do NOT blindly copy-paste banking drop factors if unrelated.
 
 RULE 2 (SEBI REGULATORY COMPLIANCE):
@@ -628,8 +634,9 @@ Your entire response MUST follow this exact structure:
 CRITICAL FORMATTING: Each bullet MUST be on ONE single line formatted as:
 • [Emoji] **[Factor Title]:** [Simple 1-sentence explanation]
 NEVER put an emoji on its own line! The emoji MUST be immediately followed by the bold title.
-[Block 3: SIP Advantage]
-• 💡 **The SIP Advantage:** [1 sentence explaining how monthly SIP bought units at lower NAV ₹${mathData.avgPurchaseNav}, accumulating +${mathData.constantNavScenario.bonusUnitsPct}% extra units].
+${isDipOrSipQuery ? `[Block 3: SIP Advantage]
+• 💡 **The SIP Advantage:** [1 sentence explaining how monthly SIP bought units at lower NAV ₹${mathData.avgPurchaseNav}, accumulating +${mathData.constantNavScenario.bonusUnitsPct}% extra units].` : `[Block 3: Summary Takeaway]
+• 📌 **Summary:** [1-sentence helpful takeaway for the investor].`}
 
 RULE 4 (PLAIN ENGLISH & TRANSLATION):
 - Translate every technical term immediately in parentheses:
@@ -660,19 +667,22 @@ RULE 6 (BREVITY): Keep total output under 130 words.`;
       const tokenCount = llmResult.usage?.total_tokens || llmResult.usage?.totalTokenCount || "~";
 
       // Adaptive headline matching query intent
-      let headline = `Why ${mathData.fundName} is down ${mathData.totalReturnsPct}%:`;
-      const qLower = (query || "").toLowerCase();
-      if (qLower.includes("add") || qLower.includes("invest") || qLower.includes("more") || qLower.includes("money") || qLower.includes("stop") || qLower.includes("pause") || qLower.includes("double")) {
+      let headline = `Scheme Overview & Insights:`;
+      if (qLower.includes("manager") || qLower.includes("who")) {
+        headline = `Fund Management & Scheme Governance:`;
+      } else if (qLower.includes("add") || qLower.includes("invest") || qLower.includes("more") || qLower.includes("money") || qLower.includes("stop") || qLower.includes("pause") || qLower.includes("double")) {
         headline = `Educational Guidance: Factors Influencing Your Decision`;
       } else if (qLower.includes("hdfc") || qLower.includes("stock")) {
         headline = `Portfolio Holdings & Performance Breakdown:`;
+      } else if (qLower.includes("down") || qLower.includes("fall") || qLower.includes("drop") || qLower.includes("loss") || qLower.includes("why")) {
+        headline = `Why ${mathData.fundName} is down ${mathData.totalReturnsPct}%:`;
       } else if (mathData.totalReturnsPct > 0) {
         headline = `What is driving ${mathData.fundName}'s +${mathData.totalReturnsPct}% gains:`;
       }
 
-      // Check if LLM already generated a silver lining box to avoid duplicate
+      // Check if LLM already generated a silver lining box or if not relevant to SIP/dip
       const alreadyHasSilverLining = /silver lining|💡/i.test(llmResult.text);
-      const extraSilverLiningHtml = alreadyHasSilverLining ? "" : `
+      const extraSilverLiningHtml = (!isDipOrSipQuery || alreadyHasSilverLining) ? "" : `
         <div class="ai-factor-item" style="margin-top: 10px; background: #F0FDF4; border: 1px solid #DCFCE7; padding: 10px 12px; border-radius: 8px; display: flex; gap: 10px; align-items: flex-start;">
           <div class="ai-factor-icon sip" style="font-size: 16px; margin-top: 2px;">💡</div>
           <div>
