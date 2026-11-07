@@ -3750,3 +3750,191 @@ body.dark-mode .ai-safe-fallback-box {
   border-bottom: 1px solid #F1F5F9;
   color: #1E293B;
 }
+
+/* ========================================================
+   GROWW GR-1 NATIVE BOTTOM SHEET DRAWER
+   ======================================================== */
+.groww-gr1-sheet-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(3px);
+  z-index: 120;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  border-radius: 36px;
+}
+
+.groww-gr1-sheet-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.groww-gr1-sheet-panel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-height: 85%;
+  background: #FFFFFF;
+  border-radius: 24px 24px 0 0;
+  z-index: 125;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(105%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.18);
+  border-top: 1px solid #F1F5F9;
+}
+
+.groww-gr1-sheet-panel.active {
+  transform: translateY(0);
+}
+
+body.dark-mode .groww-gr1-sheet-panel {
+  background: #13141C;
+  border-top-color: #262938;
+}
+
+.groww-gr1-sheet-handle {
+  width: 44px;
+  height: 4.5px;
+  background: #CBD5E1;
+  border-radius: 999px;
+  margin: 10px auto 4px auto;
+  flex-shrink: 0;
+}
+
+body.dark-mode .groww-gr1-sheet-handle {
+  background: #334155;
+}
+
+.groww-gr1-sheet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px 10px 16px;
+  border-bottom: 1px solid #F1F5F9;
+  flex-shrink: 0;
+}
+
+body.dark-mode .groww-gr1-sheet-header {
+  border-bottom-color: #1E2230;
+}
+
+.groww-gr1-sheet-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.groww-ai-icon-circle-sm {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7C3AED 0%, #9333EA 100%);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);
+}
+
+.groww-gr1-sheet-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--groww-text-primary);
+  margin: 0;
+  letter-spacing: -0.2px;
+}
+
+.groww-gr1-badge {
+  font-size: 10px;
+  font-weight: 700;
+  background: #EDE9FE;
+  color: #6D28D9;
+  padding: 2px 6px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+body.dark-mode .groww-gr1-badge {
+  background: #2E1065;
+  color: #DDD6FE;
+}
+
+.groww-gr1-sheet-sub {
+  font-size: 11px;
+  color: #64748B;
+  display: block;
+  margin-top: 1px;
+}
+
+.groww-gr1-close-btn {
+  background: #F1F5F9;
+  border: none;
+  font-size: 20px;
+  line-height: 1;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #64748B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.groww-gr1-close-btn:hover {
+  background: #E2E8F0;
+  color: #1E293B;
+}
+
+body.dark-mode .groww-gr1-close-btn {
+  background: #1E2230;
+  color: #94A3B8;
+}
+
+.groww-gr1-sheet-body {
+  padding: 14px 16px 16px 16px;
+  overflow-y: auto;
+  flex: 1;
+  -webkit-overflow-scrolling: touch;
+}
+
+.groww-gr1-sheet-footer {
+  padding: 10px 16px 14px 16px;
+  border-top: 1px solid #F1F5F9;
+  background: #FFFFFF;
+  flex-shrink: 0;
+}
+
+body.dark-mode .groww-gr1-sheet-footer {
+  background: #13141C;
+  border-top-color: #1E2230;
+}
+
+.groww-gr1-done-btn {
+  width: 100%;
+  background: #00D09C;
+  color: #FFFFFF;
+  border: none;
+  padding: 11px 0;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  box-shadow: 0 4px 12px rgba(0, 208, 156, 0.25);
+}
+
+.groww-gr1-done-btn:hover {
+  background: #00B98A;
+}

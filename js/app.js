@@ -846,8 +846,10 @@
     const fund = getSelectedFund();
     if (typeof GROWW_AI_ENGINE === "undefined") return;
 
-    const container = document.getElementById("groww-ai-output-box");
-    if (!container) return;
+    const inlineContainer = document.getElementById("groww-ai-output-box");
+    const sheet = document.getElementById("groww-gr1-sheet");
+    const sheetBackdrop = document.getElementById("groww-gr1-sheet-backdrop");
+    const sheetBody = document.getElementById("groww-gr1-sheet-body");
 
     const modeLabels = {
       auto: "Auto Engine (Groq / Gemini)",
@@ -858,15 +860,32 @@
     };
     const activeLabel = modeLabels[state.llmMode || "auto"] || "Live Engine";
 
-    // Show loading state
-    container.innerHTML = `
-      <div class="groww-ai-loading-box" style="padding: 16px; text-align: center; background: #F8FAFC; border-radius: 8px; border: 1px dashed #CBD5E1;">
-        <div class="ai-spin-icon" style="font-size: 20px; animation: spin 1s infinite linear; display: inline-block;">⚡</div>
-        <div style="margin-top: 6px; font-weight: 700; font-size: 13px; color: #1E293B;">Analyzing with ${activeLabel}...</div>
-        <div style="font-size: 11px; color: #64748B; margin-top: 2px;">Checking frozen math anchors and verifying AMC disclosures</div>
+    const loadingHtml = `
+      <div class="groww-ai-loading-box" style="padding: 24px 16px; text-align: center; background: #F8FAFC; border-radius: 12px; border: 1px dashed #CBD5E1;">
+        <div class="ai-spin-icon" style="font-size: 24px; animation: spin 1s infinite linear; display: inline-block;">⚡</div>
+        <div style="margin-top: 10px; font-weight: 700; font-size: 14px; color: #1E293B;">Analyzing with ${activeLabel}...</div>
+        <div style="font-size: 12px; color: #64748B; margin-top: 4px;">Checking frozen math anchors and verifying AMC disclosures</div>
       </div>
     `;
-    container.style.display = "block";
+
+    // Activate Native GR-1 Bottom Sheet
+    if (sheet && sheetBackdrop && sheetBody) {
+      sheetBody.innerHTML = loadingHtml;
+      sheet.classList.add("active");
+      sheetBackdrop.classList.add("active");
+    } else if (inlineContainer) {
+      inlineContainer.innerHTML = loadingHtml;
+      inlineContainer.style.display = "block";
+    }
+
+    function closeGr1Sheet() {
+      sheet?.classList.remove("active");
+      sheetBackdrop?.classList.remove("active");
+    }
+
+    document.getElementById("btn-close-gr1-sheet")?.addEventListener("click", closeGr1Sheet);
+    document.getElementById("groww-gr1-sheet-backdrop")?.addEventListener("click", closeGr1Sheet);
+    document.getElementById("btn-done-gr1-sheet")?.addEventListener("click", closeGr1Sheet);
 
     try {
       const response = await GROWW_AI_ENGINE.generateResponseAsync(fund.id, query.trim(), [], { mode: state.llmMode || "auto" });
@@ -881,7 +900,7 @@
       if (response.llmTelemetry && response.llmTelemetry.provider) {
         const tokens = response.llmTelemetry.usage?.total_tokens || response.llmTelemetry.usage?.totalTokenCount || "~";
         telemetryHtml = `
-          <div class="groww-ai-telemetry-chip" style="margin: 6px 0 10px 0; font-size: 11px; padding: 4px 8px; background: #F1F5F9; border-radius: 4px; color: #475569; display: flex; gap: 8px; flex-wrap: wrap;">
+          <div class="groww-ai-telemetry-chip" style="margin: 4px 0 10px 0; font-size: 11px; padding: 4px 8px; background: #F1F5F9; border-radius: 6px; color: #475569; display: flex; gap: 8px; flex-wrap: wrap;">
             <span>⚡ <strong>${response.llmTelemetry.provider}</strong> (${response.llmTelemetry.model})</span>
             <span>• <strong>${tokens}</strong> tokens</span>
             <span>• <strong>${response.llmTelemetry.latencyMs}</strong>ms</span>
@@ -890,41 +909,41 @@
         `;
       }
 
-      container.innerHTML = `
-        <div class="groww-ai-output-header">
+      const contentHtml = `
+        <div class="groww-ai-output-header" style="margin-bottom: 8px;">
           <span class="groww-ai-grounding-badge ${badgeClass}">
             ${response.badge.text}
           </span>
-          <button id="btn-close-ai-output" class="groww-ai-close-output-btn" title="Close explanation">&times;</button>
         </div>
         ${telemetryHtml}
-        <div class="groww-ai-output-headline">${response.headline}</div>
+        <div class="groww-ai-output-headline" style="font-size: 16px; font-weight: 800; color: #1E293B; margin-bottom: 8px;">${response.headline}</div>
         <div class="groww-ai-output-body">${response.explanation}</div>
-        <div class="groww-ai-output-source-footer">
+        <div class="groww-ai-output-source-footer" style="margin-top: 14px; padding-top: 10px; border-top: 1px solid #F1F5F9; font-size: 11px; color: #64748B; display: flex; flex-direction: column; gap: 2px;">
           <span>📄 Source: ${response.officialSource}</span>
           <span>${response.disclaimer}</span>
         </div>
       `;
-      container.style.display = "block";
 
-      document.getElementById("btn-close-ai-output")?.addEventListener("click", () => {
-        container.style.display = "none";
-      });
+      if (sheetBody) {
+        sheetBody.innerHTML = contentHtml;
+      }
+      if (inlineContainer) {
+        inlineContainer.innerHTML = contentHtml;
+        inlineContainer.style.display = "block";
+      }
 
       const input = document.getElementById("groww-ai-input");
       if (input) input.value = "";
     } catch (err) {
       console.error("AI Generation Error:", err);
-      container.innerHTML = `
+      const errHtml = `
         <div class="groww-ai-output-header">
           <span class="groww-ai-grounding-badge warning">⚠️ Generation Notice</span>
-          <button id="btn-close-ai-output" class="groww-ai-close-output-btn">&times;</button>
         </div>
         <p style="padding: 10px; font-size: 13px; color: #DC2626;">Network connectivity issue. Please try again or switch to Offline mode.</p>
       `;
-      document.getElementById("btn-close-ai-output")?.addEventListener("click", () => {
-        container.style.display = "none";
-      });
+      if (sheetBody) sheetBody.innerHTML = errHtml;
+      if (inlineContainer) inlineContainer.innerHTML = errHtml;
     }
   }
 
