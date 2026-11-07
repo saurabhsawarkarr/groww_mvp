@@ -2401,7 +2401,7 @@ body.dark-mode .detailed-status-banner {
 .fund-detail-scroll {
   flex: 1;
   overflow-y: auto;
-  padding: 0 0 85px 0;
+  padding: 0 0 110px 0;
   scrollbar-width: none;
 }
 

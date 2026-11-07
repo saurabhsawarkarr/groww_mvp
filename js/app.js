@@ -604,6 +604,9 @@
             </div>
           </div>
 
+          <!-- Section: Ask AI About Fund Details (Inside Scroll Container) -->
+          ${renderGrowwAICard(fund, 'fund-details')}
+
           <!-- Accordion 2: Returns & rankings (Matching IMG_9940.PNG) -->
           <div class="groww-accordion-item">
             <div class="accordion-header-row" data-acc="returns">
@@ -746,9 +749,6 @@
             </div>
           </div>
         </div>
-
-        <!-- Section: Ask AI About Fund Details -->
-        ${renderGrowwAICard(fund, 'fund-details')}
 
         <!-- Sticky Bottom Action Bar (Matching IMG_9939.PNG) -->
         <div class="fund-detail-bottom-bar">
@@ -1003,7 +1003,7 @@
     `).join('');
 
     return `
-      <div style="padding: 10px 16px 0 16px;">
+      <div style="padding: 10px 16px 14px 16px;">
         <div class="groww-ai-sample-card" id="groww-ai-card-wrapper">
           <!-- Top Row: Icon + Title & Beta + Subtitle -->
           <div class="groww-ai-top-row">
@@ -1077,6 +1077,7 @@
     // Transition card to Active state inline (Pure In-Flow, No Bottom Sheet)
     if (initialWrap) initialWrap.style.display = "none";
     outputBox.style.display = "block";
+    outputBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
 
     const modeLabels = {
       auto: "Auto Engine (Groq / Gemini)",
