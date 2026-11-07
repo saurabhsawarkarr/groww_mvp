@@ -251,17 +251,33 @@
   }
 
   // ==========================================
-  // SCREEN 1: DASHBOARD (NON-SCROLLING)
+  // SCREEN 1: DASHBOARD (ALIGNED WITH GROWW DESIGN SYSTEM)
   // ==========================================
   function renderScreen1Dashboard() {
     const p = GROWW_DATA.portfolio;
     const isPortNeg = p.totalReturns < 0;
     const insightTitle = isPortNeg ? (GROWW_DATA.insightCard.title || "Why is my portfolio down?") : "How is your portfolio performing?";
-    const insightSubtext = isPortNeg ? (GROWW_DATA.insightCard.subtext || "Understand how market movements, your funds, and SIP investments are affecting your returns.") : "Understand what's driving your gains, your fund performance, and how your SIP is compounding.";
+    const insightSubtext = isPortNeg ? (GROWW_DATA.insightCard.subtext || "Understand market movements, your funds & SIP compounding.") : "Understand what's driving your gains, your fund performance & SIP compounding.";
 
     return `
       <div class="screen-view non-scrolling-screen" id="screen-dashboard">
-        <!-- Groww Top Navigation Tabs (Matching IMG_9936) -->
+        <!-- Groww Mobile Top App Header Bar -->
+        <div class="groww-top-app-bar">
+          <div class="groww-app-bar-left">
+            <div class="user-avatar-circle">SS</div>
+            <span class="groww-app-bar-title">Mutual Funds</span>
+          </div>
+          <div class="groww-app-bar-right">
+            <button class="app-bar-icon-btn" title="Search Mutual Funds">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            </button>
+            <button class="app-bar-icon-btn" title="Notifications">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Groww Top Navigation Tabs (Matching Authentic Groww App) -->
         <div class="groww-top-tabs">
           <span class="groww-tab-link">Explore</span>
           <span class="groww-tab-link active">Dashboard</span>
@@ -269,71 +285,127 @@
           <span class="groww-tab-link">Watchlist</span>
         </div>
 
-        <div class="dashboard-compact-view" style="padding-top: 8px;">
-          <!-- Portfolio Summary - FLAT, BORDERLESS -->
-          <div class="portfolio-summary-flat">
-            <div class="metric-line">
-              <span class="metric-label-flat">1D returns</span>
-              <span class="metric-val-flat loss">-₹${Math.abs(p.dayReturns)} (${p.dayReturnsPct}%)</span>
+        <div class="dashboard-compact-view">
+          <!-- Portfolio Overview Card - Aligned with Screen 2 'YOUR INVESTMENT' card -->
+          <div class="fund-detail-card" style="padding: 16px; background: #FFFFFF; border: 1px solid var(--groww-border-light); border-radius: 16px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+              <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.6px; color: #8B94A5;">PORTFOLIO OVERVIEW</span>
+              <span class="sip-status-pill status-active"><span class="sip-status-dot"></span>4 Funds · Active SIPs</span>
             </div>
-            <div class="metric-line">
-              <span class="metric-label-flat">Total returns</span>
-              <span class="metric-val-flat loss">-₹${Math.abs(p.totalReturns)} (${p.totalReturnsPct}%)</span>
-            </div>
-            <div class="metric-line">
-              <span class="metric-label-flat">Invested</span>
-              <span class="metric-val-flat neutral">₹${p.totalInvested.toLocaleString('en-IN')}</span>
-            </div>
-            <div class="metric-line">
-              <span class="metric-label-flat">XIRR <span style="font-size: var(--font-legal);">⌄</span></span>
-              <span class="metric-val-flat loss">${p.xirr}%</span>
-            </div>
-          </div>
 
-          <!-- Highlight Action Card: "Why is my portfolio down?" or "How is your portfolio performing?" -->
-          <div class="insight-trigger-card" id="btn-trigger-insights">
-            <div class="insight-icon-box">
-              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                <rect x="3" y="10" width="4" height="11" rx="1"/>
-                <rect x="10" y="5" width="4" height="16" rx="1"/>
-                <rect x="17" y="13" width="4" height="8" rx="1"/>
-              </svg>
-            </div>
-            <div class="insight-text-box">
-              <div class="insight-title">${insightTitle}</div>
-              <div class="insight-subtext">${insightSubtext}</div>
-            </div>
-            <div class="insight-sparkline">
-              <svg width="26" height="16" viewBox="0 0 40 20" fill="none">
-                <path d="M2 14 L12 8 L22 16 L32 4 L38 10" stroke="#00D09C" stroke-width="2.2" stroke-linecap="round"/>
-              </svg>
-              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
-            </div>
-          </div>
-
-          <!-- Holdings Header -->
-          <div class="holdings-header-flat">
-            <span><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M3 18h6v-2H3v2zM3 6v2h18V6H3zm0 7h12v-2H3v2z"/></svg></span>
-            <span class="sort-pill-flat">‹ › Day Change (%)</span>
-          </div>
-
-          <!-- Holdings List (Non-scrolling, fits in screen) -->
-          <div class="holdings-flat-list">
-            ${GROWW_DATA.funds.map(f => `
-              <div class="holding-flat-row" data-fund-id="${f.id}">
-                <div class="holding-left">
-                  <span class="holding-fund-name">${f.planLine1 || f.name}</span>
-                  ${f.planLine2 ? `<span style="font-size: var(--font-body); font-weight: 600; color: var(--groww-text-primary);">${f.planLine2}</span>` : ''}
-                  <span class="holding-sip-badge">${f.statusBadge}</span>
-                </div>
-                <div class="holding-right-val">
-                  <span class="holding-curr-amount">₹${f.currentValue.toLocaleString('en-IN')}</span>
-                  <span class="holding-pct ${f.dayChangePct < 0 ? 'loss' : 'gain'}">
-                    ${f.dayChangePct > 0 ? '+' : ''}${f.dayChangePct}%
-                  </span>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px 16px; margin-bottom: 14px;">
+              <div>
+                <div style="font-size: 12px; color: #8B94A5; margin-bottom: 2px;">Current value</div>
+                <div style="font-size: 18px; font-weight: 700; color: #1E293B;">₹${p.currentValue.toLocaleString('en-IN')}</div>
+              </div>
+              <div>
+                <div style="font-size: 12px; color: #8B94A5; margin-bottom: 2px;">Total returns</div>
+                <div style="font-size: 18px; font-weight: 700; color: ${isPortNeg ? '#EB5B56' : '#00A877'};">
+                  ${isPortNeg ? '-' : '+'}₹${Math.abs(p.totalReturns).toLocaleString('en-IN')} (${p.totalReturnsPct}%)
                 </div>
               </div>
-            `).join('')}
+              <div>
+                <div style="font-size: 12px; color: #8B94A5; margin-bottom: 2px;">Invested</div>
+                <div style="font-size: 15px; font-weight: 700; color: #1E293B;">₹${p.totalInvested.toLocaleString('en-IN')}</div>
+              </div>
+              <div>
+                <div style="font-size: 12px; color: #8B94A5; margin-bottom: 2px;">1D returns</div>
+                <div style="font-size: 15px; font-weight: 700; color: ${p.dayReturns < 0 ? '#EB5B56' : '#00A877'};">
+                  ${p.dayReturns < 0 ? '-' : '+'}₹${Math.abs(p.dayReturns).toLocaleString('en-IN')} (${p.dayReturnsPct}%)
+                </div>
+              </div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 10px; border-top: 1px dashed #E2E8F0; font-size: 12px; color: #64748B;">
+              <span>Portfolio XIRR</span>
+              <span style="font-weight: 700; color: ${parseFloat(p.xirr) < 0 ? '#EB5B56' : '#00A877'};">${p.xirr}%</span>
+            </div>
+          </div>
+
+          <!-- Highlight Action Card: "Why is my portfolio down?" - Aligned with Screen 2 Bridge Card -->
+          <div class="fund-solution-bridge-card ${isPortNeg ? 'bridge-card-down' : 'bridge-card-positive'}" id="btn-trigger-insights" style="margin: 0; flex-shrink: 0;">
+            <div class="bridge-left">
+              <div class="bridge-icon-box ${isPortNeg ? '' : 'positive-icon-box'}">
+                ${isPortNeg ? `
+                  <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                    <line x1="12" y1="20" x2="12" y2="10"/>
+                    <line x1="18" y1="20" x2="18" y2="4"/>
+                    <line x1="6" y1="20" x2="6" y2="16"/>
+                  </svg>
+                ` : `
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                    <polyline points="17 6 23 6 23 12"/>
+                  </svg>
+                `}
+              </div>
+              <div class="bridge-text">
+                <div class="bridge-title">${insightTitle}</div>
+                <div class="bridge-sub">${insightSubtext}</div>
+              </div>
+            </div>
+            <div class="bridge-arrow-pill">
+              <span>View Insights</span>
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+            </div>
+          </div>
+
+          <!-- Holdings Section Header -->
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 2px 2px;">
+            <h4 style="font-size: 14px; font-weight: 700; color: #1E293B; margin: 0;">Your Investments (${GROWW_DATA.funds.length})</h4>
+            <span style="font-size: 11.5px; color: #7C828D; font-weight: 500;">‹ › Day Change (%)</span>
+          </div>
+
+          <!-- Holdings Cards Stack (Aligned with Screen 3 'fund-card-soft') -->
+          <div class="funds-soft-stack">
+            ${GROWW_DATA.funds.map(f => {
+              const curVal = f.currentValue;
+              const isNeg = f.returns < 0;
+              const sign = isNeg ? '-' : '+';
+              const absRet = Math.abs(f.returns).toLocaleString('en-IN');
+              const absPct = Math.abs(f.returnsPct).toFixed(1);
+              const retBadge = `${sign}₹${absRet} (${sign}${absPct}%)`;
+
+              return `
+                <div class="fund-card-soft dashboard-fund-card" data-fund-id="${f.id}">
+                  <div class="fund-card-header">
+                    <div class="fund-identity">
+                      ${renderFundLogo(f.id, 34)}
+                      <div class="fund-name-block">
+                        <span class="fund-name-text">${f.name}</span>
+                        <div class="fund-plan-row">
+                          <span>${f.plan}</span>
+                          <span class="sip-status-pill ${f.sipStatusClass || 'status-active'}"><span class="sip-status-dot"></span>${f.sipStatus || 'Active'}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="fund-header-right">
+                      <span class="fund-ret-label ${isNeg ? 'loss' : 'gain'}">
+                        ${retBadge}
+                      </span>
+                      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" style="color: #9AA1AE;"><path d="m9 18 6-6-6-6"/></svg>
+                    </div>
+                  </div>
+
+                  <div class="fund-stats-row">
+                    <div class="stat-item">
+                      <span class="stat-label-muted">Invested</span>
+                      <span class="stat-val-bold">₹${f.invested.toLocaleString('en-IN')}</span>
+                    </div>
+                    <div class="stat-item">
+                      <span class="stat-label-muted">Current value</span>
+                      <span class="stat-val-bold">₹${curVal.toLocaleString('en-IN')}</span>
+                    </div>
+                    <div class="stat-item">
+                      <span class="stat-label-muted">1D return</span>
+                      <span class="stat-val-bold" style="color: ${f.dayChangePct < 0 ? '#EB5B56' : '#00A877'};">
+                        ${f.dayChangePct > 0 ? '+' : ''}${f.dayChangePct}%
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              `;
+            }).join('')}
           </div>
         </div>
       </div>
@@ -1881,7 +1953,7 @@
     });
 
     // Screen 1: Click direct holding row -> Select fund & open Authentic Fund Detail screen
-    document.querySelectorAll(".holding-flat-row").forEach(el => {
+    document.querySelectorAll(".dashboard-fund-card, .holding-flat-row").forEach(el => {
       el.addEventListener("click", () => {
         state.selectedFundId = el.dataset.fundId;
         state._userTouchedCalc = false;
