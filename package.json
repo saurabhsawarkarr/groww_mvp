@@ -4,7 +4,9 @@
   "description": "SEBI-compliant, Hallucination-Gated AI Portfolio Understanding & Rupee-Cost Averaging Engine for Groww Mutual Funds",
   "main": "js/rag/index.js",
   "scripts": {
+    "start": "node server.js",
     "test": "node js/rag/run-all-tests.js",
+    "test:live": "node js/rag/test-live-llm.js",
     "test:math": "node js/rag/test-math-engine.js",
     "test:security": "node js/rag/test-security-guardrails.js",
     "test:retrieval": "node js/rag/test-retrieval-sandboxing.js",

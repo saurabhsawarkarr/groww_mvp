@@ -33,6 +33,21 @@ const GROWW_AI_ENGINE = (function () {
   }
 
   /**
+   * Generates response asynchronously with Live LLM (Groq low-token / Gemini deep reasoning / Dual-LLM)
+   */
+  async function generateResponseAsync(fundId, query, history = [], options = {}) {
+    if (typeof GROWW_RAG_PIPELINE !== "undefined" && typeof GROWW_RAG_PIPELINE.processQueryAsync === "function") {
+      const resp = await GROWW_RAG_PIPELINE.processQueryAsync(fundId, query, history, options);
+      return {
+        ...resp,
+        explanation: resp.explanationHtml,
+        disclaimer: resp.complianceDisclaimer
+      };
+    }
+    return generateResponse(fundId, query, history);
+  }
+
+  /**
    * Runs the 20-Question Golden Benchmark Suite
    */
   function runBenchmarkSuite() {
@@ -61,6 +76,8 @@ const GROWW_AI_ENGINE = (function () {
     getSecurityGateway: () => typeof GROWW_SECURITY_GATEWAY !== "undefined" ? GROWW_SECURITY_GATEWAY : null,
     processSecureQuery: (req) => typeof GROWW_RAG_PIPELINE !== "undefined" ? GROWW_RAG_PIPELINE.processSecureQuery(req) : null,
     generateResponse,
+    generateResponseAsync,
+    getLlmProvider: () => typeof GROWW_LLM_PROVIDER !== "undefined" ? GROWW_LLM_PROVIDER : null,
     runBenchmarkSuite
   };
 })();

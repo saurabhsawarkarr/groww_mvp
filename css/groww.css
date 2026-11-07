@@ -3273,6 +3273,72 @@ body.dark-mode .groww-ai-beta-tag {
   margin-top: 4px;
 }
 
+/* Engine / Model Selector Bar */
+.groww-ai-engine-selector-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 2px 0 4px 0;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+
+.groww-ai-engine-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #6D28D9;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+.groww-ai-engine-pills {
+  display: flex;
+  gap: 6px;
+  flex-wrap: nowrap;
+}
+
+.groww-ai-pill {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  border: 1px solid #D8D2EB;
+  background: #FFFFFF;
+  color: #4B5563;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.groww-ai-pill:hover {
+  border-color: #8B5CF6;
+  color: #6D28D9;
+}
+
+.groww-ai-pill.active {
+  background: #7C3AED;
+  color: #FFFFFF;
+  border-color: #7C3AED;
+  box-shadow: 0 2px 6px rgba(124, 58, 237, 0.25);
+}
+
+body.dark-mode .groww-ai-pill {
+  background: #14131E;
+  border-color: #38334E;
+  color: #9CA3AF;
+}
+
+body.dark-mode .groww-ai-pill.active {
+  background: #8B5CF6;
+  color: #FFFFFF;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 /* AI Pill Input Field */
 .groww-ai-input-wrap {
   background: #FFFFFF;

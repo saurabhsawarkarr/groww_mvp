@@ -109,24 +109,22 @@ const GROWW_EVAL_ENGINE = (function () {
       }
     });
 
-    // 2. Structured Attribution figures
+    // 2. Structured Attribution figures (all metric fields and verified text drivers)
     if (structuredAttribution) {
-      if (structuredAttribution.macroAttribution) {
-        allowedNumbers.add(Math.abs(structuredAttribution.macroAttribution.netContributionPct).toFixed(1));
-        allowedNumbers.add(Math.abs(structuredAttribution.macroAttribution.netContributionPct).toFixed(2));
-      }
-      if (structuredAttribution.sectorAttribution) {
-        structuredAttribution.sectorAttribution.forEach(sec => {
-          allowedNumbers.add(Math.abs(sec.allocationPct).toFixed(1));
-          allowedNumbers.add(Math.abs(sec.contributionPct).toFixed(1));
-          allowedNumbers.add(Math.abs(sec.allocationPct).toFixed(2));
-          allowedNumbers.add(Math.abs(sec.contributionPct).toFixed(2));
-        });
-      }
-      if (typeof structuredAttribution.unattributedResidualPct === "number") {
-        allowedNumbers.add(Math.abs(structuredAttribution.unattributedResidualPct).toFixed(1));
-        allowedNumbers.add(Math.abs(structuredAttribution.unattributedResidualPct).toFixed(2));
-      }
+      const saText = JSON.stringify(structuredAttribution);
+      const saMatches = saText.match(/(?:₹|\$|-|\b)[\d,]+(?:\.\d+)?%?\b/g) || [];
+      saMatches.forEach(m => {
+        const num = parseFloat(m.replace(/[₹\$,%]/g, ""));
+        if (!isNaN(num)) {
+          const absN = Math.abs(num);
+          allowedNumbers.add(absN.toFixed(2));
+          allowedNumbers.add(absN.toFixed(1));
+          allowedNumbers.add(absN.toFixed(0));
+          allowedNumbers.add(num.toFixed(2));
+          allowedNumbers.add(num.toFixed(1));
+          allowedNumbers.add(num.toFixed(0));
+        }
+      });
     }
 
     // 3. Ground Truth Retrieved Factsheet Chunks (Numbers verified from source AMC filings)

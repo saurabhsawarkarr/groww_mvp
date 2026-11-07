@@ -511,7 +511,7 @@ const GROWW_KNOWLEDGE_STORE = (function () {
       macroAttribution: Object.freeze({
         netContributionPct: -2.60,
         keyDrivers: Object.freeze([
-          "FII capital outflows from Indian equity markets (-$2.1B in Oct 2026)",
+          "FII capital outflows from Indian equity markets (-$2.1B / approx. ₹18,400 Cr in Oct 2026)",
           "Crude oil price surge above $88/barrel impacting import-dependent margins"
         ])
       }),

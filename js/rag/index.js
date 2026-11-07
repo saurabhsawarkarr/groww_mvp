@@ -62,6 +62,13 @@ const GROWW_RAG_PIPELINE = (function () {
     if (typeof require !== "undefined") return require("./retention-metrics.js");
     return null;
   }
+  function getLlmProvider() {
+    if (typeof GROWW_LLM_PROVIDER !== "undefined") return GROWW_LLM_PROVIDER;
+    if (typeof require !== "undefined") {
+      try { return require("./llm-provider.js"); } catch (e) { }
+    }
+    return null;
+  }
 
   /**
    * Main query processor
@@ -187,6 +194,140 @@ const GROWW_RAG_PIPELINE = (function () {
   }
 
   /**
+   * Asynchronous query processor with Live LLM routing (Groq low-token / Gemini deep reasoning / Dual-LLM)
+   */
+  async function processQueryAsync(fundId = "sbi-large-midcap", query = "Why is my fund down?", history = [], options = {}) {
+    const traceId = options.traceId || `tr_${Date.now()}_${Math.random().toString(36).substr(2, 6)}`;
+    const startTime = Date.now();
+
+    const ks = getKnowledgeStore();
+    const me = getMathEngine();
+    const pg = getPreGuardrails();
+    const rg = getRagGenerator();
+    const ee = getEvalEngine();
+    const fb = getFallbacks();
+    const al = getAuditLogger();
+    const sg = getSecurityGateway();
+
+    // 0. Authorization & IDOR Check
+    if (sg && options.sessionToken) {
+      const authResult = sg.sanitizeAndAuthorizeRequest({
+        fundId,
+        query,
+        conversationHistory: history,
+        sessionToken: options.sessionToken,
+        traceId
+      });
+
+      if (!authResult.isAuthorized) {
+        if (al) {
+          al.logInteraction({
+            traceId,
+            fundId,
+            rawQuery: query,
+            preGuardrail: { action: "SECURITY_GATEWAY_BLOCKED", riskLevel: "HIGH", guardrailName: "IDOR Prevention" },
+            retrievedChunkIds: [],
+            frozenMath: null,
+            evalMetrics: { groundednessScore: 0, advisoryRiskScore: 0, latencyMs: Date.now() - startTime },
+            finalStatus: authResult.denialResponse.status,
+            servedHeadline: authResult.denialResponse.headline,
+            disclaimerShown: authResult.denialResponse.complianceDisclaimer
+          });
+        }
+        return authResult.denialResponse;
+      }
+    }
+
+    // 1. Fetch Structured Ledger & Compute Frozen Math
+    const ledger = ks.getLedger(fundId);
+    const mathData = me.computePortfolioMath(ledger);
+
+    // 2. Pre-LLM Guardrail & Intent Classification (0 Tokens on Advisory Traps)
+    const preGuardrail = pg.inspectQuery(query, history);
+    let finalResponse;
+
+    if (preGuardrail.action === "TRIGGER_TIER_1_REFUSAL") {
+      finalResponse = fb.createTier1AdvisoryRefusal(mathData, query, traceId, preGuardrail);
+    } else if (preGuardrail.action === "TRIGGER_TIER_1_PREDICTION") {
+      finalResponse = fb.createTier1PredictionUncertainty(mathData, query, traceId, preGuardrail);
+    } else if (preGuardrail.action === "TRIGGER_TIER_2_CLARIFICATION") {
+      finalResponse = fb.createTier2Clarification(mathData, query, traceId);
+    } else {
+      // 3. Execute Live or Grounded Generator
+      let candidateResponse;
+      if (rg && typeof rg.generateLive === "function" && options.mode !== "deterministic") {
+        candidateResponse = await rg.generateLive(fundId, query, preGuardrail, mathData, traceId, options);
+      } else {
+        candidateResponse = rg.generate(fundId, query, preGuardrail, mathData, traceId);
+      }
+
+      // 4. Post-Generation Evaluation Engine Gate
+      const evalVerdict = ee.evaluate(candidateResponse, candidateResponse.contextBundle, query);
+
+      // Dual-LLM Critic check if requested
+      let criticResult = null;
+      const llmProv = getLlmProvider();
+      if (options.mode === "dual" && llmProv) {
+        try {
+          criticResult = await llmProv.auditWithCritic(
+            candidateResponse.explanationHtml,
+            candidateResponse.contextBundle.frozenMath,
+            candidateResponse.contextBundle.retrievedChunks
+          );
+        } catch (e) { }
+      }
+
+      const passedAll = evalVerdict.passed && (!criticResult || criticResult.compliant);
+
+      if (passedAll) {
+        finalResponse = {
+          ...candidateResponse,
+          evaluationMetrics: {
+            groundednessScore: evalVerdict.groundednessScore,
+            factualAccuracyScore: evalVerdict.factualAccuracyScore,
+            relevanceScore: evalVerdict.relevanceScore,
+            advisoryRiskScore: evalVerdict.advisoryRiskScore,
+            latencyMs: Date.now() - startTime
+          },
+          dualCriticAudit: criticResult
+        };
+      } else {
+        if (evalVerdict.advisoryRiskScore > 0 || (criticResult && !criticResult.compliant)) {
+          finalResponse = fb.createTier1AdvisoryRefusal(mathData, query, traceId, preGuardrail);
+        } else {
+          finalResponse = rg.generate(fundId, query, preGuardrail, mathData, traceId);
+        }
+        if (candidateResponse && candidateResponse.llmTelemetry) {
+          finalResponse.llmTelemetry = {
+            ...candidateResponse.llmTelemetry,
+            evalFallbackTriggered: true,
+            rejectionReason: evalVerdict.rejectionReason || "Critic compliance rejection"
+          };
+        }
+      }
+    }
+
+    // 5. Audit Logging
+    if (al) {
+      al.logInteraction({
+        traceId,
+        fundId,
+        rawQuery: query,
+        preGuardrail,
+        retrievedChunkIds: finalResponse.retrievedChunkIds || [],
+        frozenMath: mathData,
+        evalMetrics: finalResponse.evaluationMetrics,
+        finalStatus: finalResponse.status,
+        servedHeadline: finalResponse.headline,
+        disclaimerShown: finalResponse.complianceDisclaimer,
+        llmTelemetry: finalResponse.llmTelemetry || null
+      });
+    }
+
+    return finalResponse;
+  }
+
+  /**
    * Secure ingress endpoint enforcing cryptographically signed session tokens
    * @param {Object} rawRequest - Client API request payload
    * @returns {Object} SEBI-Compliant Response
@@ -212,6 +353,7 @@ const GROWW_RAG_PIPELINE = (function () {
 
   return {
     processQuery,
+    processQueryAsync,
     processSecureQuery,
     runBenchmarkSuite: () => getGoldenBenchmark().runSuite(processQuery),
     getAuditLogs: () => getAuditLogger()?.getLogs() || [],

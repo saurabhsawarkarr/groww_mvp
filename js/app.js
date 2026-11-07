@@ -21,6 +21,7 @@
     managerTf: "3Y",
     calcMode: "sip", // "sip" | "lumpsum"
     calcAmount: 1000,
+    llmMode: "auto", // "auto" (Groq for low token) | "groq" | "gemini" | "dual" | "deterministic"
     _userTouchedCalc: false,
     calcTf: "6M", // "6M" | "1Y" | "3Y" | "5Y"
     accordions: {
@@ -764,6 +765,7 @@
   // GROWW AI PORTFOLIO EXPLAINER (EVAL-GATED)
   // ==========================================
   function renderGrowwAICard(fund) {
+    const mode = state.llmMode || "auto";
     return `
       <div style="padding: 10px 16px 0 16px;">
         <div class="groww-ai-sample-card">
@@ -777,9 +779,21 @@
             <div class="groww-ai-text-col">
               <div class="groww-ai-title-wrap">
                 <h4 class="groww-ai-card-title">Ask AI about your fund</h4>
-                <span class="groww-ai-beta-tag">Beta</span>
+                <span class="groww-ai-beta-tag" style="background: #E0E7FF; color: #4338CA;">Live RAG</span>
               </div>
-              <p class="groww-ai-card-desc">Get a simple, personalised explanation using your portfolio data and verified market information.</p>
+              <p class="groww-ai-card-desc">Grounded analysis powered by verified AMC filings, frozen math anchors, and live token routing.</p>
+            </div>
+          </div>
+
+          <!-- Live Model & Engine Selector Pills -->
+          <div class="groww-ai-engine-selector-bar">
+            <span class="groww-ai-engine-label">Model:</span>
+            <div class="groww-ai-engine-pills">
+              <button class="groww-ai-pill ${mode === 'auto' ? 'active' : ''}" data-mode="auto" title="Token optimizer: routes low-token queries to Groq, deep reasoning to Gemini">⚡ Auto (Groq / Gemini)</button>
+              <button class="groww-ai-pill ${mode === 'groq' ? 'active' : ''}" data-mode="groq" title="Groq Qwen 27B: Ultra-fast generation & minimal tokens">🚀 Groq (Fast)</button>
+              <button class="groww-ai-pill ${mode === 'gemini' ? 'active' : ''}" data-mode="gemini" title="Google Gemini 3.5 Flash: Deep analytical reasoning">✨ Gemini 3.5</button>
+              <button class="groww-ai-pill ${mode === 'dual' ? 'active' : ''}" data-mode="dual" title="Dual-LLM: Groq Generator + Gemini Compliance Critic">🛡️ Dual-LLM</button>
+              <button class="groww-ai-pill ${mode === 'deterministic' ? 'active' : ''}" data-mode="deterministic" title="Offline deterministic math engine (0 tokens)">🔒 Offline</button>
             </div>
           </div>
 
@@ -827,43 +841,91 @@
     `;
   }
 
-  function handleAISubmit(query) {
+  async function handleAISubmit(query) {
     if (!query || !query.trim()) return;
     const fund = getSelectedFund();
     if (typeof GROWW_AI_ENGINE === "undefined") return;
 
-    const response = GROWW_AI_ENGINE.generateResponse(fund.id, query.trim());
     const container = document.getElementById("groww-ai-output-box");
     if (!container) return;
 
-    let badgeClass = "verified";
-    if (response.status === "SAFE_FALLBACK_TRIGGERED") badgeClass = "warning";
-    if (response.status === "SAFE_FALLBACK_UNCERTAINTY") badgeClass = "uncertainty";
-    if (response.status === "CLARIFICATION_REQUIRED") badgeClass = "uncertainty";
-    if (response.status === "PARTIALLY_GROUNDED_SUCCESS") badgeClass = "warning";
+    const modeLabels = {
+      auto: "Auto Engine (Groq / Gemini)",
+      groq: "Groq Qwen 27B (Fast)",
+      gemini: "Gemini 3.5 Flash (Deep)",
+      dual: "Dual-LLM (Groq + Gemini Critic)",
+      deterministic: "Offline Math Engine"
+    };
+    const activeLabel = modeLabels[state.llmMode || "auto"] || "Live Engine";
 
+    // Show loading state
     container.innerHTML = `
-      <div class="groww-ai-output-header">
-        <span class="groww-ai-grounding-badge ${badgeClass}">
-          ${response.badge.text}
-        </span>
-        <button id="btn-close-ai-output" class="groww-ai-close-output-btn" title="Close explanation">&times;</button>
-      </div>
-      <div class="groww-ai-output-headline">${response.headline}</div>
-      <div class="groww-ai-output-body">${response.explanation}</div>
-      <div class="groww-ai-output-source-footer">
-        <span>📄 Source: ${response.officialSource}</span>
-        <span>${response.disclaimer}</span>
+      <div class="groww-ai-loading-box" style="padding: 16px; text-align: center; background: #F8FAFC; border-radius: 8px; border: 1px dashed #CBD5E1;">
+        <div class="ai-spin-icon" style="font-size: 20px; animation: spin 1s infinite linear; display: inline-block;">⚡</div>
+        <div style="margin-top: 6px; font-weight: 700; font-size: 13px; color: #1E293B;">Analyzing with ${activeLabel}...</div>
+        <div style="font-size: 11px; color: #64748B; margin-top: 2px;">Checking frozen math anchors and verifying AMC disclosures</div>
       </div>
     `;
     container.style.display = "block";
 
-    document.getElementById("btn-close-ai-output")?.addEventListener("click", () => {
-      container.style.display = "none";
-    });
+    try {
+      const response = await GROWW_AI_ENGINE.generateResponseAsync(fund.id, query.trim(), [], { mode: state.llmMode || "auto" });
 
-    const input = document.getElementById("groww-ai-input");
-    if (input) input.value = "";
+      let badgeClass = "verified";
+      if (response.status === "SAFE_FALLBACK_TRIGGERED") badgeClass = "warning";
+      if (response.status === "SAFE_FALLBACK_UNCERTAINTY") badgeClass = "uncertainty";
+      if (response.status === "CLARIFICATION_REQUIRED") badgeClass = "uncertainty";
+      if (response.status === "PARTIALLY_GROUNDED_SUCCESS") badgeClass = "warning";
+
+      let telemetryHtml = "";
+      if (response.llmTelemetry && response.llmTelemetry.provider) {
+        const tokens = response.llmTelemetry.usage?.total_tokens || response.llmTelemetry.usage?.totalTokenCount || "~";
+        telemetryHtml = `
+          <div class="groww-ai-telemetry-chip" style="margin: 6px 0 10px 0; font-size: 11px; padding: 4px 8px; background: #F1F5F9; border-radius: 4px; color: #475569; display: flex; gap: 8px; flex-wrap: wrap;">
+            <span>⚡ <strong>${response.llmTelemetry.provider}</strong> (${response.llmTelemetry.model})</span>
+            <span>• <strong>${tokens}</strong> tokens</span>
+            <span>• <strong>${response.llmTelemetry.latencyMs}</strong>ms</span>
+            ${response.llmTelemetry.routingReason ? `<span style="color: #047857;">• ${response.llmTelemetry.routingReason}</span>` : ""}
+          </div>
+        `;
+      }
+
+      container.innerHTML = `
+        <div class="groww-ai-output-header">
+          <span class="groww-ai-grounding-badge ${badgeClass}">
+            ${response.badge.text}
+          </span>
+          <button id="btn-close-ai-output" class="groww-ai-close-output-btn" title="Close explanation">&times;</button>
+        </div>
+        ${telemetryHtml}
+        <div class="groww-ai-output-headline">${response.headline}</div>
+        <div class="groww-ai-output-body">${response.explanation}</div>
+        <div class="groww-ai-output-source-footer">
+          <span>📄 Source: ${response.officialSource}</span>
+          <span>${response.disclaimer}</span>
+        </div>
+      `;
+      container.style.display = "block";
+
+      document.getElementById("btn-close-ai-output")?.addEventListener("click", () => {
+        container.style.display = "none";
+      });
+
+      const input = document.getElementById("groww-ai-input");
+      if (input) input.value = "";
+    } catch (err) {
+      console.error("AI Generation Error:", err);
+      container.innerHTML = `
+        <div class="groww-ai-output-header">
+          <span class="groww-ai-grounding-badge warning">⚠️ Generation Notice</span>
+          <button id="btn-close-ai-output" class="groww-ai-close-output-btn">&times;</button>
+        </div>
+        <p style="padding: 10px; font-size: 13px; color: #DC2626;">Network connectivity issue. Please try again or switch to Offline mode.</p>
+      `;
+      document.getElementById("btn-close-ai-output")?.addEventListener("click", () => {
+        container.style.display = "none";
+      });
+    }
   }
 
   // ==========================================
@@ -1758,6 +1820,16 @@
           chartBox.innerHTML = renderManagerChart(fund, state.managerTf);
           attachEventHandlers();
         }
+      });
+    });
+
+    // Groww AI Explainer Model Selector Pills
+    document.querySelectorAll(".groww-ai-pill").forEach(pill => {
+      pill.addEventListener("click", () => {
+        const mode = pill.getAttribute("data-mode");
+        state.llmMode = mode;
+        document.querySelectorAll(".groww-ai-pill").forEach(p => p.classList.remove("active"));
+        pill.classList.add("active");
       });
     });
 
