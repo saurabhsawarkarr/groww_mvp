@@ -604,9 +604,6 @@
             </div>
           </div>
 
-          <!-- Section: Ask AI About Fund Details (Inside Scroll Container) -->
-          ${renderGrowwAICard(fund, 'fund-details')}
-
           <!-- Accordion 2: Returns & rankings (Matching IMG_9940.PNG) -->
           <div class="groww-accordion-item">
             <div class="accordion-header-row" data-acc="returns">
