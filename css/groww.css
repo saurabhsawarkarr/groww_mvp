@@ -630,6 +630,44 @@ body.dark-mode .user-avatar-circle {
 }
 
 /* Holdings Open Flat List (Matching IMG_9938.PNG) */
+.holdings-header-clickable {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 6px;
+  padding: 3px 6px 3px 2px;
+  transition: all 0.15s ease;
+}
+
+.holdings-header-clickable:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.holdings-header-clickable:hover svg {
+  color: var(--groww-primary, #00D09C) !important;
+  transform: translateX(2px);
+}
+
+.holdings-header-clickable:active {
+  transform: scale(0.98);
+}
+
+body.dark-mode .holdings-header-clickable:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.clickable-overview-card {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.clickable-overview-card:hover {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  border-color: #CBD5E1;
+}
+
 .holdings-header-flat {
   display: flex;
   justify-content: space-between;
@@ -3446,8 +3484,13 @@ body.dark-mode .groww-ai-pill.active {
 }
 
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* AI Pill Input Field */
@@ -4225,6 +4268,7 @@ body.dark-mode .groww-gr1-sheet-footer {
   .pres-header {
     display: none !important;
   }
+
   .app-container {
     padding: 0 !important;
     margin: 0 !important;
@@ -4232,6 +4276,7 @@ body.dark-mode .groww-gr1-sheet-footer {
     height: 100vh !important;
     height: 100dvh !important;
   }
+
   .phone-frame {
     max-width: 100% !important;
     width: 100% !important;
@@ -4243,4 +4288,3 @@ body.dark-mode .groww-gr1-sheet-footer {
     border: none !important;
   }
 }
-

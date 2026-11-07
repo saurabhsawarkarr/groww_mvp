@@ -279,7 +279,7 @@
 
         <div class="dashboard-compact-view">
           <!-- Portfolio Overview Card - Aligned with Screen 2 'YOUR INVESTMENT' card -->
-          <div class="fund-detail-card" style="padding: 16px; background: #FFFFFF; border: 1px solid var(--groww-border-light); border-radius: 16px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);">
+          <div id="btn-portfolio-overview-card" class="fund-detail-card" style="padding: 16px; background: #FFFFFF; border: 1px solid var(--groww-border-light); border-radius: 16px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02); cursor: pointer;" title="View Fund Details">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
               <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.6px; color: #8B94A5;">PORTFOLIO OVERVIEW</span>
               <span class="sip-status-pill status-active"><span class="sip-status-dot"></span>4 Funds · Active SIPs</span>
@@ -342,9 +342,12 @@
             </div>
           </div>
 
-          <!-- Holdings Section Header -->
-          <div style="display: flex; justify-content: space-between; align-items: center; padding: 2px 2px;">
-            <h4 style="font-size: 14px; font-weight: 700; color: #1E293B; margin: 0;">Your Investments (${GROWW_DATA.funds.length})</h4>
+          <!-- Holdings Section Header (Clickable to open Fund Details) -->
+          <div class="holdings-header-row" style="display: flex; justify-content: space-between; align-items: center; padding: 4px 2px;">
+            <div class="holdings-header-clickable" id="btn-your-investments-header" style="display: inline-flex; align-items: center; gap: 6px; cursor: pointer; user-select: none;" title="View Fund Details">
+              <h4 style="font-size: 14px; font-weight: 700; color: #1E293B; margin: 0;">Your Investments (${GROWW_DATA.funds.length})</h4>
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" style="color: #9AA1AE; transition: transform 0.15s ease;"><path d="m9 18 6-6-6-6"/></svg>
+            </div>
             <span style="font-size: 11.5px; color: #7C828D; font-weight: 500;">‹ › Day Change (%)</span>
           </div>
 
@@ -1943,6 +1946,28 @@
       if (screenEl) screenEl.scrollTop = 0;
     });
 
+    // Screen 1: Click "Your Investments (4)" header -> Navigate to Screen 2 (Fund Details)
+    document.getElementById("btn-your-investments-header")?.addEventListener("click", () => {
+      state.previousView = "dashboard";
+      state.selectedFundId = state.selectedFundId || GROWW_DATA.funds[0].id;
+      state._userTouchedCalc = false;
+      state.currentView = "fund-detail";
+      render();
+      const screenEl = document.getElementById("screen-content");
+      if (screenEl) screenEl.scrollTop = 0;
+    });
+
+    // Screen 1: Click Portfolio Overview card -> Also navigate to Screen 2 (Fund Details)
+    document.getElementById("btn-portfolio-overview-card")?.addEventListener("click", () => {
+      state.previousView = "dashboard";
+      state.selectedFundId = state.selectedFundId || GROWW_DATA.funds[0].id;
+      state._userTouchedCalc = false;
+      state.currentView = "fund-detail";
+      render();
+      const screenEl = document.getElementById("screen-content");
+      if (screenEl) screenEl.scrollTop = 0;
+    });
+
     // Screen 1: Click direct holding row -> Select fund & open Authentic Fund Detail screen
     document.querySelectorAll(".dashboard-fund-card, .holding-flat-row").forEach(el => {
       el.addEventListener("click", () => {
@@ -2024,8 +2049,8 @@
       if (screenEl) screenEl.scrollTop = 0;
     });
 
-    // Screen 2: Click any fund -> Select fund & open Deep Dive Solution Report.
-    document.querySelectorAll(".fund-card-soft").forEach(el => {
+    // Screen 3 (Insights Select): Click any fund -> Select fund & open Deep Dive Solution Report
+    document.querySelectorAll("[data-select-fund]").forEach(el => {
       el.addEventListener("click", () => {
         state.selectedFundId = el.dataset.selectFund;
         state.previousView = "fund-select";
