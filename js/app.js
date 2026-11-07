@@ -1209,54 +1209,6 @@
     }
   }
 
-  function getPerformanceWaveSvg(manager) {
-    const fRetVal = parseFloat(manager?.fundReturn) || 12.4;
-    const cRetVal = parseFloat(manager?.categoryReturn) || 10.1;
-    const isOutperforming = fRetVal >= cRetVal;
-    const diff = Math.abs(fRetVal - cRetVal);
-
-    // Compute end Y coords (SVG viewBox 0 0 145 65, lower Y = higher return)
-    let fundEndY, catEndY;
-    if (isOutperforming) {
-      fundEndY = Math.max(8, Math.round(18 - Math.min(diff * 2.5, 10)));
-      catEndY = Math.min(38, Math.round(fundEndY + 10 + Math.min(diff * 2.5, 12)));
-    } else {
-      catEndY = Math.max(8, Math.round(18 - Math.min(diff * 2.5, 10)));
-      fundEndY = Math.min(38, Math.round(catEndY + 10 + Math.min(diff * 2.5, 12)));
-    }
-
-    const fundMid1Y = Math.round(50 - (50 - fundEndY) * 0.4);
-    const fundMid2Y = Math.round(50 - (50 - fundEndY) * 0.75);
-    const catMid1Y = Math.round(54 - (54 - catEndY) * 0.4);
-    const catMid2Y = Math.round(54 - (54 - catEndY) * 0.75);
-
-    const fundColor = isOutperforming ? "#00D09C" : "#EB5B56";
-
-    return {
-      fundValClass: isOutperforming ? "val-green" : "val-red",
-      fundEndY,
-      catEndY,
-      fundColor,
-      svgHtml: `
-        <svg viewBox="0 0 145 65" width="100%" height="55" style="overflow: visible;">
-          <defs>
-            <linearGradient id="fundWaveGlow" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stop-color="${fundColor}" stop-opacity="0.25"/>
-              <stop offset="100%" stop-color="${fundColor}" stop-opacity="0.0"/>
-            </linearGradient>
-          </defs>
-          <path d="M 5 50 Q 30 ${fundMid1Y}, 65 ${fundMid2Y} T 140 ${fundEndY} L 140 60 L 5 60 Z" fill="url(#fundWaveGlow)"/>
-          <!-- Category average line -->
-          <path d="M 5 54 Q 30 ${catMid1Y}, 65 ${catMid2Y} T 140 ${catEndY}" fill="none" stroke="#94A3B8" stroke-width="1.8" stroke-linecap="round"/>
-          <!-- Fund line -->
-          <path d="M 5 50 Q 30 ${fundMid1Y}, 65 ${fundMid2Y} T 140 ${fundEndY}" fill="none" stroke="${fundColor}" stroke-width="2.4" stroke-linecap="round"/>
-          <circle cx="140" cy="${fundEndY}" r="3.5" fill="${fundColor}" stroke="#fff" stroke-width="1.5"/>
-          <circle cx="140" cy="${catEndY}" r="3" fill="#94A3B8" stroke="#fff" stroke-width="1.2"/>
-        </svg>
-      `
-    };
-  }
-
   // ==========================================
   // SCREEN 3+: THE SINGLE SCROLLING INFORMATION VIEW
   // (Combines Slides 3, 4, 5, 6, 7 after selecting a fund)
@@ -1269,7 +1221,9 @@
     const hist = fund.historicalPerformance || GROWW_DATA.funds[0].historicalPerformance;
     const manager = fund.fundManager || GROWW_DATA.funds[0].fundManager;
     const health = fund.fundHealth || GROWW_DATA.funds[0].fundHealth;
-    const perfWave = getPerformanceWaveSvg(manager);
+    const fRetVal = parseFloat(manager.fundReturn) || 0;
+    const cRetVal = parseFloat(manager.categoryReturn) || 0;
+    const fundValClass = fRetVal >= cRetVal ? 'val-green' : 'val-red';
 
     const cohort = hist.cohortBehavior || {};
     const heroPct = cohort.heroPct || 81;
@@ -1568,26 +1522,14 @@
                 </div>
               </div>
 
-              <div class="perf-split-row">
-                <div class="perf-metric-boxes">
-                  <div class="perf-stat-pill pill-fund">
-                    <span class="perf-pill-label">Fund return</span>
-                    <span class="perf-pill-val ${perfWave.fundValClass}">${manager.fundReturn}</span>
-                  </div>
-                  <div class="perf-stat-pill pill-category">
-                    <span class="perf-pill-label">Category average</span>
-                    <span class="perf-pill-val val-muted">${manager.categoryReturn}</span>
-                  </div>
+              <div class="perf-metric-grid">
+                <div class="perf-stat-pill pill-fund">
+                  <span class="perf-pill-label">Fund return</span>
+                  <span class="perf-pill-val ${fundValClass}">${manager.fundReturn}</span>
                 </div>
-
-                <div class="perf-chart-side">
-                  <div class="perf-chart-svg-box">
-                    ${perfWave.svgHtml}
-                  </div>
-                  <div class="perf-legend-row">
-                    <span class="perf-legend-tag"><span class="legend-line green"></span> This fund</span>
-                    <span class="perf-legend-tag"><span class="legend-line gray"></span> Category avg</span>
-                  </div>
+                <div class="perf-stat-pill pill-category">
+                  <span class="perf-pill-label">Category average</span>
+                  <span class="perf-pill-val val-muted">${manager.categoryReturn}</span>
                 </div>
               </div>
             </div>
