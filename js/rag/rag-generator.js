@@ -519,31 +519,31 @@ ${query}
     if (!text) return "";
     let lines = text.split("\n");
     let html = "";
-    let inList = false;
 
     for (let line of lines) {
       let trimmed = line.trim();
       if (!trimmed) continue;
 
       if (/^[\*\-•]\s+/.test(trimmed)) {
-        if (!inList) {
-          html += '<ul class="ai-bullet-list" style="margin-top: 8px;">';
-          inList = true;
-        }
         let content = trimmed.replace(/^[\*\-•]\s+/, "");
-        content = content.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
-        html += `<li>${content}</li>`;
+        // Check for leading emoji
+        let emojiMatch = content.match(/^([\u{1F300}-\u{1F9FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]|[🏦🌐📉📈📊💡🛡️🌍])\s*/u);
+        let icon = emojiMatch ? emojiMatch[1] : "📌";
+        let rest = emojiMatch ? content.slice(emojiMatch[0].length) : content;
+        rest = rest.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+
+        html += `
+          <div class="ai-factor-item" style="margin-top: 8px; background: #F8FAFC; border: 1px solid #E2E8F0; padding: 10px 12px; border-radius: 8px; display: flex; gap: 10px; align-items: flex-start;">
+            <div class="ai-factor-icon" style="font-size: 16px; flex-shrink: 0; margin-top: 2px;">${icon}</div>
+            <div style="font-size: 13px; line-height: 1.5; color: #334155;">${rest}</div>
+          </div>
+        `;
       } else {
-        if (inList) {
-          html += "</ul>";
-          inList = false;
-        }
         let content = trimmed.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
-        html += `<p style="margin-top: 6px;">${content}</p>`;
+        html += `<p style="margin-top: 6px; font-size: 13px; color: #475569; line-height: 1.45;">${content}</p>`;
       }
     }
 
-    if (inList) html += "</ul>";
     return html;
   }
 
@@ -569,17 +569,22 @@ ${query}
     const contextBundle = buildContextBundle(fundId, query, intent, mathData);
     const prompt = assemblePrompt(fundId, query, intent, mathData);
 
-    const systemInstruction = `You are an educational analytics assistant for Groww mutual fund investors.
-CRITICAL SEBI COMPLIANCE RULES:
-1. NEVER give prescriptive advice (buy, sell, pause, stop, switch, continue, double).
-2. HOLDINGS != CAUSALITY: Do not blame individual stock holdings for fund drops unless verified attribution is cited.
-3. NUMERICAL ACCURACY & STRICT CITE-ONLY: Cite ONLY the exact numbers written in the prompt. Do NOT convert currencies or calculate unmentioned figures. Do not invent any numbers.
+    const systemInstruction = `You are GR-1, Groww's educational AI co-pilot for first-time mutual fund investors.
+GROWW SIMPLICITY & TONE GUIDELINES:
+1. EXTREME CLARITY: Write in simple, conversational, human language that anyone can easily understand. Avoid heavy academic finance jargon.
+2. TRANSLATE TECHNICAL TERMS: Whenever a technical term appears, explain it simply (e.g. explain that "NIM compression" simply means "banks earned less profit on loans").
+3. BITE-SIZED STRUCTURE: Provide 2 to 3 concise, visually separated bullet points with emojis:
+   - 🏦 Industry/Sector factor
+   - 🌐 Market/Macro factor
+   - 📉 Mid-Cap swings factor
+4. SEBI COMPLIANCE: NEVER give advice (never say buy, sell, pause, hold, switch, continue).
+5. HOLDINGS != CAUSALITY: Do not blame individual companies for fund drops unless official attribution proves it.
+6. NUMERICAL ACCURACY & STRICT CITE-ONLY: Cite ONLY exact numbers written in the prompt. Do not invent any numbers.
    - Invested: ₹${mathData.totalInvested}
    - Current Value: ₹${mathData.currentValue}
    - Returns: ${mathData.totalReturnsPct}%
    - Total Units: ${mathData.totalUnits}
-   - Average Purchase NAV: ₹${mathData.avgPurchaseNav}
-4. Provide a crisp, structured explanation with 2 to 3 concise bullet points citing verified factors.`;
+   - Average Purchase NAV: ₹${mathData.avgPurchaseNav}`;
 
     try {
       const llmResult = await provider.routeAndGenerate({
@@ -600,16 +605,18 @@ CRITICAL SEBI COMPLIANCE RULES:
           variant: "success"
         },
         groundingScore: 98,
-        complianceDisclaimer: `Live AI generation powered by ${llmResult.provider} (${llmResult.model}) strictly anchored to AMC Factsheet and verified ledger. Educational analytics only, not investment advice.`,
-        headline: `Analysis for ${mathData.fundName} (${mathData.totalReturnsPct}%):`,
+        complianceDisclaimer: `Live AI explanation powered by ${llmResult.provider} (${llmResult.model}) anchored to official AMC Factsheet filings. Educational analytics only, not investment advice.`,
+        headline: `Why ${mathData.fundName} is down ${mathData.totalReturnsPct}%:`,
         explanationHtml: `
           <div class="ai-live-response-wrap">
             ${explanationHtml}
-            <div class="ai-factor-item" style="margin-top: 10px; background: #F0FDF4; border: 1px solid #DCFCE7; padding: 8px; border-radius: 6px;">
-              <div class="ai-factor-icon sip">📈</div>
+            <div class="ai-factor-item" style="margin-top: 10px; background: #F0FDF4; border: 1px solid #DCFCE7; padding: 10px 12px; border-radius: 8px; display: flex; gap: 10px; align-items: flex-start;">
+              <div class="ai-factor-icon sip" style="font-size: 16px; margin-top: 2px;">💡</div>
               <div>
-                <strong>Rupee-Cost Averaging Advantage:</strong>
-                <span style="font-size: 12px; color: #166534;">Your 3 SIP instalments acquired <strong>${mathData.totalUnits} units</strong> at an average NAV of <strong>₹${mathData.avgPurchaseNav}</strong> (+${mathData.constantNavScenario.bonusUnitsPct}% bonus units vs flat NAV).</span>
+                <strong style="color: #166534; font-size: 13px;">The Silver Lining for Your SIP:</strong>
+                <p style="font-size: 12.5px; color: #15803D; margin-top: 3px; line-height: 1.4;">
+                  Because NAV fell from ₹${mathData.firstPurchaseNav.toFixed(0)} to ₹${mathData.currentNav.toFixed(0)}, your monthly SIP bought <strong>more units at a discount</strong>. Your average purchase price dropped to <strong>₹${mathData.avgPurchaseNav}</strong>, giving you <strong>+${mathData.constantNavScenario.bonusUnitsPct}% extra units</strong> than if prices had stayed flat.
+                </p>
               </div>
             </div>
           </div>
