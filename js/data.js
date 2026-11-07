@@ -119,7 +119,7 @@ const GROWW_DATA = {
         behavioralInsight: {
           tag: "Personal Insight",
           dipAction: "During the last market dip, you kept your SIP running despite the red returns.",
-          reassurance: "You've handled market dips before. Trust your process."
+          reassurance: "You've handled market dips before."
         },
         disclaimer: "Market and sector data is sourced from public benchmark indices and fund fact sheets."
       },
@@ -346,7 +346,7 @@ const GROWW_DATA = {
         behavioralInsight: {
           tag: "Personal Insight",
           dipAction: "During the last market dip, you kept your SIP running despite the red returns.",
-          reassurance: "You've handled market dips before. Trust your process."
+          reassurance: "You've handled market dips before."
         },
         disclaimer: "Market and sector data is sourced from public benchmark indices and fund fact sheets."
       },
