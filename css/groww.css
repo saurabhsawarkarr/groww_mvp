@@ -2500,12 +2500,12 @@ body.dark-mode .fund-badge-chip.rating-chip {
 .fund-solution-bridge-card {
   margin: 0 16px 16px 16px;
   background: linear-gradient(135deg, #1E1B4B 0%, #2E1065 100%);
-  border-radius: 12px;
-  padding: 12px 14px;
+  border-radius: 14px;
+  padding: 12px 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
+  gap: 8px;
   cursor: pointer;
   box-shadow: 0 4px 14px rgba(46, 16, 101, 0.2);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
@@ -2537,13 +2537,14 @@ body.dark-mode .fund-badge-chip.rating-chip {
 .bridge-left {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   flex: 1;
+  min-width: 0;
 }
 
 .bridge-icon-box {
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.12);
   display: flex;
@@ -2553,10 +2554,17 @@ body.dark-mode .fund-badge-chip.rating-chip {
   flex-shrink: 0;
 }
 
+.bridge-text {
+  flex: 1;
+  min-width: 0;
+}
+
 .bridge-title {
-  font-size: var(--font-body);
+  font-size: 13.5px;
   font-weight: 700;
   color: #FFFFFF;
+  white-space: nowrap;
+  letter-spacing: -0.2px;
 }
 
 .bridge-sub {
@@ -2577,6 +2585,7 @@ body.dark-mode .fund-badge-chip.rating-chip {
   padding: 4px 8px;
   border-radius: var(--radius-pill);
   flex-shrink: 0;
+  white-space: nowrap;
 }
 
 /* Accordion Component */
