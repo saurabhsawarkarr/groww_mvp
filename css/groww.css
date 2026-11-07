@@ -1796,13 +1796,35 @@ body.dark-mode .correction-stat-val {
   margin-top: 1px;
 }
 
-.takeaway-dot-icon.mint { background: #E8F8F3; color: #00A877; }
-.takeaway-dot-icon.blue { background: #EFF6FF; color: #2563EB; }
-.takeaway-dot-icon.purple { background: #FAF5FF; color: #7E22CE; }
+.takeaway-dot-icon.mint {
+  background: #E8F8F3;
+  color: #00A877;
+}
 
-body.dark-mode .takeaway-dot-icon.mint { background: rgba(0, 208, 156, 0.15); color: #00D09C; }
-body.dark-mode .takeaway-dot-icon.blue { background: rgba(37, 99, 235, 0.15); color: #60A5FA; }
-body.dark-mode .takeaway-dot-icon.purple { background: rgba(147, 51, 234, 0.15); color: #C084FC; }
+.takeaway-dot-icon.blue {
+  background: #EFF6FF;
+  color: #2563EB;
+}
+
+.takeaway-dot-icon.purple {
+  background: #FAF5FF;
+  color: #7E22CE;
+}
+
+body.dark-mode .takeaway-dot-icon.mint {
+  background: rgba(0, 208, 156, 0.15);
+  color: #00D09C;
+}
+
+body.dark-mode .takeaway-dot-icon.blue {
+  background: rgba(37, 99, 235, 0.15);
+  color: #60A5FA;
+}
+
+body.dark-mode .takeaway-dot-icon.purple {
+  background: rgba(147, 51, 234, 0.15);
+  color: #C084FC;
+}
 
 .takeaway-rich-title {
   font-weight: 700;
@@ -1945,8 +1967,13 @@ body.dark-mode .detailed-status-banner {
   line-height: 1.2;
 }
 
-.detailed-stat-val.green { color: #00A877; }
-.detailed-stat-val.red { color: #EB5B56; }
+.detailed-stat-val.green {
+  color: #00A877;
+}
+
+.detailed-stat-val.red {
+  color: #EB5B56;
+}
 
 .detailed-stat-lbl {
   font-size: var(--font-legal);
@@ -3391,8 +3418,15 @@ body.dark-mode .groww-ai-chip.trap {
 }
 
 @keyframes fadeInGrowwAI {
-  from { opacity: 0; transform: translateY(-4px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 body.dark-mode .groww-ai-output-container {
@@ -3510,6 +3544,30 @@ body.dark-mode .ai-safe-fallback-box {
 .ai-fallback-source-link a {
   color: #0284C7;
   text-decoration: underline;
+}
+
+.ai-clarification-btn {
+  background: var(--groww-surface);
+  border: 1px solid var(--groww-border);
+  color: var(--groww-text-primary);
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  text-align: left;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ai-clarification-btn:hover {
+  background: rgba(0, 208, 156, 0.08);
+  border-color: var(--groww-primary);
+  color: var(--groww-primary);
+}
+
+.ai-txn-table th,
+.ai-txn-table td {
+  padding: 6px 4px;
 }
 
 .groww-ai-output-source-footer {

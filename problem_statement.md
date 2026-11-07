@@ -1,0 +1,381 @@
+# MVP Product Brief: Groww – Portfolio Understanding
+
+## 1. Product Overview
+
+**Product:** Groww – Portfolio Understanding  
+**Feature:** Why is my portfolio down?  
+**MVP category:** Category 1 – Portfolio Understanding  
+**Platform:** Mobile-first web application / clickable product prototype
+
+### Product vision
+
+Help mutual fund investors understand changes in their portfolio value by providing fund-specific explanations and showing how their SIP contributions have accumulated units during changing market conditions.
+
+The experience should help investors understand their investments rather than simply showing a negative return figure.
+
+---
+
+## 2. Background and Context
+
+Investors who start a mutual fund SIP generally monitor their investment performance through their portfolio dashboard.
+
+When they see their portfolio value declining after a few months, they may not understand what is causing the decline or what is happening to their ongoing investment.
+
+For example:
+
+An investor has invested ₹6,000 through monthly SIP contributions. After three months, the portfolio value is ₹5,500.
+
+The investor sees:
+
+- Total invested: ₹6,000
+- Current portfolio value: ₹5,500
+- Unrealised loss: ₹500
+- Return: -8.33%
+
+The investor can see the loss, but may not understand the factors affecting the fund's performance.
+
+They may also not understand how their regular SIP contributions purchase different quantities of units during changing market conditions.
+
+This creates an opportunity to improve portfolio transparency and investor understanding.
+
+---
+
+## 3. Problem Statement
+
+First-time mutual fund investors who have already started their SIP may experience uncertainty when their fund value declines during the initial months of investing.
+
+Existing portfolio information primarily communicates investment value and returns. However, investors may need additional context to understand why an individual fund's value has changed and how their regular SIP contributions have accumulated units during that period.
+
+Without this understanding, investors may become uncertain about their investment decisions and could consider reducing, pausing or stopping their SIP.
+
+**How might we help existing SIP investors understand the performance of each mutual fund and the impact of market fluctuations on their investments, so they can make more informed decisions and remain confident throughout their investment journey?**
+
+---
+
+## 4. Target Users
+
+### Primary user segment
+
+First-time mutual fund investors who:
+
+- Have already started their first mutual fund SIP.
+- Have been investing for a relatively short period.
+- Monitor their portfolio through Groww.
+- Experience negative returns or fluctuations in their fund value.
+- Need help understanding their fund performance.
+
+### Example user persona
+
+**User:** First-time mutual fund investor
+
+**Investment behaviour:**
+- Started investing through monthly SIPs.
+- Checks portfolio performance periodically.
+- Notices negative returns after two or three months.
+- Is unsure why the fund value has declined.
+- Wants to understand whether the movement is related to the market or the individual fund.
+
+---
+
+## 5. MVP Objective
+
+Build an experience that allows investors to:
+
+1. Discover a portfolio insight feature from the existing Groww mutual fund dashboard.
+2. View their individual mutual fund investments.
+3. Select a specific mutual fund to understand its performance.
+4. See a short explanation of the fund's recent market fluctuations.
+5. Understand how their SIP contributions have purchased different quantities of units at different prices.
+6. Access transparent, easy-to-understand information about their investment.
+
+### Primary business objective
+
+Improve 12-month active SIP retention among first-time mutual fund investors.
+
+**Business metric:**
+
+Percentage of first-time mutual fund investors who have at least one active SIP at month 12 after starting their first SIP.
+
+An active SIP is defined as having at least one successful instalment in the last 30 days at month 12.
+
+The MVP should validate whether improved portfolio understanding can contribute to this outcome. It should not assume that feature adoption automatically improves retention.
+
+---
+
+## 6. Proposed User Journey
+
+### Screen 1: Existing Groww Portfolio Dashboard
+
+The feature should be integrated into the existing Mutual Funds dashboard.
+
+The dashboard already displays:
+- Daily returns.
+- Total returns.
+- Invested amount.
+- XIRR.
+- Individual mutual fund investments.
+
+Add a contextual insight card below the portfolio summary and above the individual mutual fund list.
+
+**Card heading:**
+
+"Why is my portfolio down?"
+
+**Supporting text:**
+
+"Understand how market movements, your funds and SIP investments are affecting your returns."
+
+The card should be accessible from the portfolio dashboard.
+
+Its heading can adapt to portfolio performance:
+- Negative returns: Why is my portfolio down?
+- Positive returns: What's driving my portfolio returns?
+
+### Screen 2: Individual Mutual Fund Selection
+
+After clicking the insight card, display the investor's individual mutual fund holdings.
+
+Each mutual fund card should show:
+
+- Mutual fund name.
+- Plan and growth option.
+- SIP status.
+- Total invested amount.
+- Current portfolio value.
+- SIP contribution amount per month.
+- Individual fund returns in amount and percentage.
+
+Example:
+
+**SBI Large & Midcap Fund**
+
+- Invested: ₹3,000
+- Current value: ₹2,750
+- Returns: -₹250 (-8.3%)
+- SIP amount: ₹1,000/month
+- Status: Active SIP
+
+Each fund card should have a clear action:
+
+"Understand this fund"
+
+The investor should be able to select any individual fund independently.
+
+### Screen 3: Individual Fund Explanation and SIP Unit Accumulation
+
+After selecting a mutual fund, show a fund-specific explanation screen.
+
+The screen should contain three sections.
+
+#### A. Short fund performance summary
+
+Display:
+- Selected mutual fund name.
+- SIP status.
+- One-line contextual explanation.
+
+Example:
+
+"Your fund has experienced market fluctuations while your SIP investments have continued."
+
+The purpose is to provide context without repeating the invested amount, current value and SIP amount already shown on Screen 2.
+
+#### B. SIP Unit Accumulation
+
+Show how the investor's regular SIP contributions purchased different quantities of units at different prices.
+
+Example data:
+
+| Month | SIP amount | NAV | Units purchased |
+|---|---:|---:|---:|
+| January | ₹1,000 | ₹100 | 10.00 |
+| February | ₹1,000 | ₹90 | 11.11 |
+| March | ₹1,000 | ₹85 | 11.76 |
+
+Total units accumulated: 32.87
+
+Comparison:
+
+If all three instalments had purchased units at ₹100, the investor would have accumulated 30 units.
+
+The investor accumulated approximately 9.6% more units in this illustrative example.
+
+**Important explanation:**
+
+When NAV is lower, the same SIP contribution purchases more units. However, accumulating more units does not guarantee positive returns or protect the investment from losses.
+
+For the MVP, use actual transaction and NAV data where available. If real integrations are unavailable, clearly label all figures as illustrative sample data.
+
+#### C. What this means
+
+Display a short explanation:
+
+"Your fund has experienced market fluctuations while your SIP investments have continued purchasing units at different prices. The total value of your investment will continue to depend on the fund's performance."
+
+The language must remain neutral and educational.
+
+---
+
+## 7. Functional Requirements
+
+### FR-01: Portfolio Insight Entry Point
+- Display the portfolio insight card on the Mutual Funds dashboard.
+- Place it below the portfolio summary.
+- Make the entire card clickable.
+- Use appropriate wording based on positive or negative portfolio performance.
+
+### FR-02: Individual Fund Listing
+- Display all mutual funds associated with the investor's portfolio.
+- Show individual invested amount.
+- Show current value.
+- Show SIP contribution amount.
+- Show individual returns.
+- Show SIP status.
+
+### FR-03: Fund Selection
+- Allow investors to select an individual mutual fund.
+- Display the selected fund's information independently.
+- Do not combine performance information from different funds.
+
+### FR-04: Fund Context
+- Display a concise, fund-specific contextual summary.
+- Avoid repeating the financial summary already visible on Screen 2.
+
+### FR-05: SIP Unit Accumulation
+- Display month-wise SIP contributions.
+- Display the corresponding purchase NAV.
+- Calculate units purchased using the actual transaction values.
+- Display total accumulated units.
+- Provide a comparison against the illustrative constant-NAV scenario, if included.
+- Explain that additional units do not guarantee positive returns.
+
+### FR-06: Data Accuracy
+- Use the selected mutual fund's own transaction history.
+- Use the correct NAV corresponding to the transaction's unit allotment.
+- Exclude failed or unsuccessful SIP instalments from successful unit accumulation.
+- Clearly distinguish actual data from illustrative examples.
+
+---
+
+## 8. MVP Scope
+
+### Included in MVP
+
+1. Groww-style Mutual Funds dashboard with the portfolio insight card.
+2. Individual mutual fund listing.
+3. Invested amount, current value and SIP contribution details.
+4. Individual fund selection.
+5. Short fund-specific contextual explanation.
+6. Month-wise SIP unit accumulation.
+7. Total unit calculation.
+8. Educational explanation and relevant disclaimers.
+
+### Excluded from MVP
+
+The following features should not be included in this first version:
+
+- Detailed market attribution engine.
+- Sector-wise portfolio impact analysis.
+- Individual stock-level market analysis.
+- Historical fund downturn and recovery analysis.
+- Fund manager analysis.
+- Fund health scoring.
+- AI investment chatbot.
+- Buy, sell or switch fund recommendations.
+- SIP pause/stop intervention workflow.
+
+These belong to other solution categories and can be evaluated separately.
+
+---
+
+## 9. Business and Product Constraints
+
+The MVP must follow these rules:
+
+1. No specific mutual fund or stock recommendations.
+2. No fear-based messaging, FOMO or urgency nudges.
+3. No guaranteed returns or recovery predictions.
+4. Do not encourage investors to continue investing regardless of their financial situation.
+5. Investors must retain full control over their SIP decisions.
+6. Do not present additional unit accumulation as guaranteed profit.
+7. Use clear, simple language instead of complicated financial terminology.
+8. Do not combine the performance of multiple funds into a single fund-level explanation.
+
+---
+
+## 10. Success Metrics
+
+### Primary business metric
+
+**12-month active SIP retention**
+
+Percentage of first-time mutual fund investors who have at least one active SIP at month 12.
+
+### MVP validation metrics
+
+| Metric | What it measures |
+|---|---|
+| Insight card CTR | Percentage of eligible investors who open Portfolio Insights |
+| Fund selection rate | Percentage of users who select an individual fund |
+| Unit accumulation engagement | Percentage of users who explore the unit accumulation section |
+| Explanation comprehension | Whether users understand the relationship between changing NAV and units purchased |
+| Investor confidence | Change in self-reported understanding/confidence before and after the experience |
+| SIP pause/stop rate | Whether avoidable interruptions change among relevant users |
+
+Feature engagement metrics are diagnostic indicators, not proof of improved retention.
+
+---
+
+## 11. Acceptance Criteria
+
+The MVP will be considered functionally complete when:
+
+- An investor can access the feature from the Mutual Funds dashboard.
+- The portfolio insight card appears in the correct location.
+- The individual fund listing displays the required financial details.
+- The investor can select any listed fund.
+- The selected fund's information is shown independently.
+- SIP accumulation is calculated correctly using the selected fund's transaction data.
+- The total units match the sum of successful transaction units.
+- The application clearly distinguishes actual and sample data.
+- All educational messages are neutral and do not promise returns.
+- The experience works correctly on a mobile screen.
+
+---
+
+## 12. Assumptions and Open Questions
+
+The following assumptions need validation:
+
+1. Investors who experience negative returns need additional explanations beyond the existing portfolio dashboard.
+2. Showing month-wise unit accumulation helps investors understand how SIP contributions behave during market fluctuations.
+3. Fund-specific explanations are more useful than a combined portfolio explanation.
+4. Better understanding may reduce uncertainty and avoidable SIP interruptions.
+
+Open questions:
+
+- Will investors understand unit accumulation without additional financial education?
+- Will they find the feature useful when their fund is showing positive returns?
+- Does the experience change their understanding or confidence?
+- Does improved understanding translate into fewer SIP interruptions?
+
+These should be tested with actual investors before claiming a retention impact.
+
+---
+
+## 13. MVP Deliverable
+
+Build a mobile-first, Groww-inspired prototype with three main screens:
+
+**Screen 1:** Existing portfolio dashboard with the "Why is my portfolio down?" insight card.
+
+**Screen 2:** Individual mutual fund listing showing invested amount, current value, SIP amount and returns.
+
+**Screen 3:** Selected fund explanation with a short contextual summary and detailed SIP unit accumulation.
+
+The prototype should demonstrate the complete journey from discovering the feature to understanding an individual fund's performance and SIP unit accumulation.
+
+**Final product principle:**
+
+Help investors understand their investments through transparent, fund-specific information. Do not manipulate their decisions or promise that continuing an SIP will produce positive returns.
+

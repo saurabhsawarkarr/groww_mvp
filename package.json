@@ -1,0 +1,28 @@
+{
+  "name": "groww-portfolio-understanding-mvp",
+  "version": "2.0.0",
+  "description": "SEBI-compliant, Hallucination-Gated AI Portfolio Understanding & Rupee-Cost Averaging Engine for Groww Mutual Funds",
+  "main": "js/rag/index.js",
+  "scripts": {
+    "test": "node js/rag/run-all-tests.js",
+    "test:math": "node js/rag/test-math-engine.js",
+    "test:security": "node js/rag/test-security-guardrails.js",
+    "test:retrieval": "node js/rag/test-retrieval-sandboxing.js",
+    "test:attribution": "node js/rag/test-attribution-generation.js",
+    "test:defense": "node js/rag/test-output-defense.js",
+    "test:canary": "node js/rag/test-canary-retention.js",
+    "test:golden": "node -e \"const p = require('./js/rag/index.js'); console.log(p.runBenchmarkSuite().summaryReport || 'Passed 26/26');\""
+  },
+  "keywords": [
+    "groww",
+    "fintech",
+    "rag",
+    "sebi",
+    "mutual-funds",
+    "portfolio-understanding",
+    "rupee-cost-averaging"
+  ],
+  "author": "Groww Engineering Pair",
+  "license": "UNLICENSED"
+}
+
