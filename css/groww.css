@@ -3484,7 +3484,7 @@ body.dark-mode .groww-ai-chip.trap {
 .groww-ai-output-container {
   display: none;
   background: #FFFFFF;
-  border: 1.5px solid #E8E2F7;
+  border: 1.5px solid #E2E8F0;
   border-radius: 14px;
   padding: 14px;
   margin-top: 4px;
@@ -3505,16 +3505,153 @@ body.dark-mode .groww-ai-chip.trap {
 
 body.dark-mode .groww-ai-output-container {
   background: #14131E;
-  border-color: #312B47;
+  border-color: #262B3D;
 }
 
-.groww-ai-output-header {
+.groww-ai-output-header,
+.groww-ai-active-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 8px;
   flex-wrap: wrap;
   gap: 6px;
+}
+
+.groww-ai-reset-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #F1F5F9;
+  border: 1px solid #CBD5E1;
+  color: #475569;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.groww-ai-reset-btn:hover {
+  background: #E2E8F0;
+  color: #0F172A;
+  border-color: #94A3B8;
+  transform: translateY(-1px);
+}
+
+body.dark-mode .groww-ai-reset-btn {
+  background: #1E2230;
+  border-color: #334155;
+  color: #94A3B8;
+}
+
+body.dark-mode .groww-ai-reset-btn:hover {
+  background: #2D3748;
+  color: #FFFFFF;
+}
+
+.groww-ai-query-badge {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  background: #F8FAFC;
+  border-left: 3px solid #00D09C;
+  padding: 6px 10px;
+  border-radius: 0 6px 6px 0;
+  margin-bottom: 10px;
+  font-size: 12.5px;
+}
+
+body.dark-mode .groww-ai-query-badge {
+  background: #191C26;
+}
+
+.groww-ai-query-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #64748B;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.groww-ai-query-text {
+  font-weight: 600;
+  color: #1E293B;
+}
+
+body.dark-mode .groww-ai-query-text {
+  color: #E2E8F0;
+}
+
+/* Follow-up Section Inside Card */
+.groww-ai-followup-wrap {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed #E2E8F0;
+}
+
+body.dark-mode .groww-ai-followup-wrap {
+  border-top-color: #262B3D;
+}
+
+.groww-ai-followup-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+body.dark-mode .groww-ai-followup-label {
+  color: #94A3B8;
+}
+
+.groww-ai-followup-chips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.groww-ai-followup-input-wrap {
+  background: #FFFFFF;
+  border: 1.2px solid #CBD5E1;
+  border-radius: var(--radius-pill);
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.groww-ai-followup-input-wrap:focus-within {
+  border-color: #00D09C;
+  box-shadow: 0 0 0 3px rgba(0, 208, 156, 0.12);
+}
+
+body.dark-mode .groww-ai-followup-input-wrap {
+  background: #141721;
+  border-color: #262B3D;
+}
+
+.groww-ai-followup-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 12.5px;
+  color: var(--groww-text-primary);
+  background: transparent;
+  font-family: inherit;
+}
+
+.groww-ai-followup-input::placeholder {
+  color: var(--groww-text-muted);
 }
 
 .groww-ai-grounding-badge {

@@ -762,14 +762,52 @@
   }
 
   // ==========================================
-  // GROWW AI PORTFOLIO EXPLAINER (EVAL-GATED)
+  // GROWW AI PORTFOLIO EXPLAINER (EVAL-GATED IN-FLOW SMART CARD)
   // ==========================================
+  function escapeHtml(str) {
+    if (!str) return "";
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function getSmartFollowUps(query) {
+    const q = (query || "").toLowerCase();
+    if (q.includes("hdfc") || q.includes("stock") || q.includes("company")) {
+      return [
+        { text: "📈 Did my SIP benefit from this dip?", prompt: "Did my SIP benefit from the dip?" },
+        { text: "💡 Why is the overall fund down?", prompt: "Why is my fund down?" },
+        { text: "❓ Should I stop my SIP? ⚠️", prompt: "Should I stop my SIP? ⚠️" }
+      ];
+    } else if (q.includes("sip") || q.includes("benefit") || q.includes("unit") || q.includes("nav")) {
+      return [
+        { text: "💡 Why is the fund down -8.4%?", prompt: "Why is my fund down?" },
+        { text: "🏦 Did HDFC Bank cause this drop?", prompt: "Did HDFC Bank cause this drop?" },
+        { text: "❓ Should I stop my SIP? ⚠️", prompt: "Should I stop my SIP? ⚠️" }
+      ];
+    } else if (q.includes("stop") || q.includes("pause") || q.includes("sell")) {
+      return [
+        { text: "📈 Did my SIP benefit from the dip?", prompt: "Did my SIP benefit from the dip?" },
+        { text: "💡 Why is my fund down?", prompt: "Why is my fund down?" },
+        { text: "🏦 Did HDFC Bank cause this drop?", prompt: "Did HDFC Bank cause this drop?" }
+      ];
+    } else {
+      return [
+        { text: "📈 Did my SIP benefit from the dip?", prompt: "Did my SIP benefit from the dip?" },
+        { text: "🏦 Did HDFC Bank cause this drop?", prompt: "Did HDFC Bank cause this drop?" },
+        { text: "❓ Should I stop my SIP? ⚠️", prompt: "Should I stop my SIP? ⚠️" }
+      ];
+    }
+  }
+
   function renderGrowwAICard(fund) {
     const mode = state.llmMode || "auto";
     return `
       <div style="padding: 10px 16px 0 16px;">
-        <div class="groww-ai-sample-card">
-          <!-- Top Row: Purple Icon + Title & Beta + Subtitle -->
+        <div class="groww-ai-sample-card" id="groww-ai-card-wrapper">
+          <!-- Top Row: Icon + Title & Beta + Subtitle -->
           <div class="groww-ai-top-row">
             <div class="groww-ai-icon-circle">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
@@ -778,50 +816,53 @@
             </div>
             <div class="groww-ai-text-col">
               <div class="groww-ai-title-wrap">
-                <h4 class="groww-ai-card-title">Ask GR-1 about your fund</h4>
+                <h4 class="groww-ai-card-title">Ask AI about your fund</h4>
                 <span class="groww-ai-beta-tag">Live RAG</span>
               </div>
               <p class="groww-ai-card-desc">Instant, plain-English breakdown of market dips and your SIP unit accumulation.</p>
             </div>
           </div>
 
-          <!-- Input Search Field -->
-          <div class="groww-ai-input-wrap">
-            <div class="groww-ai-input-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-              </svg>
+          <!-- Initial Search & Prompt Chips (Hidden when question is active) -->
+          <div id="groww-ai-initial-state" class="groww-ai-initial-wrap">
+            <!-- Input Search Field -->
+            <div class="groww-ai-input-wrap">
+              <div class="groww-ai-input-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+              </div>
+              <input type="text" id="groww-ai-input" class="groww-ai-input-field" placeholder="Ask a question about this fund..." autocomplete="off">
+              <button id="groww-ai-submit-btn" class="groww-ai-send-btn" title="Send question">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+              </button>
             </div>
-            <input type="text" id="groww-ai-input" class="groww-ai-input-field" placeholder="Ask a question about this fund..." autocomplete="off">
-            <button id="groww-ai-submit-btn" class="groww-ai-send-btn" title="Send question">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="22" y1="2" x2="11" y2="13"></line>
-                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-              </svg>
-            </button>
+
+            <!-- Quick Prompt Chips -->
+            <div class="groww-ai-chips-row">
+              <button class="groww-ai-chip" data-prompt="Why is my fund down?">Why is my fund down?</button>
+              <button class="groww-ai-chip" data-prompt="Did my SIP benefit from the dip?">Did my SIP benefit from the dip?</button>
+              <button class="groww-ai-chip" data-prompt="Did HDFC Bank cause this drop?">Did HDFC Bank cause this drop?</button>
+              <button class="groww-ai-chip trap" data-prompt="Should I stop my SIP? ⚠️" title="Test SEBI Safe Fallback">Should I stop my SIP? ⚠️</button>
+            </div>
+
+            <!-- Quality Checked & Regulatory Notice Footer -->
+            <div class="groww-ai-footer-note">
+              <span class="groww-ai-shield-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+              </span>
+              <span>AI responses are quality-checked and are not investment advice.</span>
+            </div>
           </div>
 
-          <!-- Quick Prompt Chips -->
-          <div class="groww-ai-chips-row">
-            <button class="groww-ai-chip" data-prompt="Why is my fund down?">Why is my fund down?</button>
-            <button class="groww-ai-chip" data-prompt="What is NAV?">What is NAV?</button>
-            <button class="groww-ai-chip" data-prompt="Why is it down more than market?">Why is it down more than market?</button>
-            <button class="groww-ai-chip trap" data-prompt="Should I stop my SIP? ⚠️" title="Test SEBI Safe Fallback">Should I stop my SIP? ⚠️</button>
-          </div>
-
-          <!-- Quality Checked & Regulatory Notice Footer -->
-          <div class="groww-ai-footer-note">
-            <span class="groww-ai-shield-icon">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                <path d="m9 12 2 2 4-4"></path>
-              </svg>
-            </span>
-            <span>AI responses are quality-checked and are not investment advice.</span>
-          </div>
-
-          <!-- Dynamic Output Container (Expands when query is answered) -->
-          <div id="groww-ai-output-box" class="groww-ai-output-container">
+          <!-- Dynamic Output Container (Active In-Flow Answer & Follow-up State) -->
+          <div id="groww-ai-output-box" class="groww-ai-output-container" style="display: none;">
             <!-- Populated on user query -->
           </div>
         </div>
@@ -834,10 +875,13 @@
     const fund = getSelectedFund();
     if (typeof GROWW_AI_ENGINE === "undefined") return;
 
-    const inlineContainer = document.getElementById("groww-ai-output-box");
-    const sheet = document.getElementById("groww-gr1-sheet");
-    const sheetBackdrop = document.getElementById("groww-gr1-sheet-backdrop");
-    const sheetBody = document.getElementById("groww-gr1-sheet-body");
+    const initialWrap = document.getElementById("groww-ai-initial-state");
+    const outputBox = document.getElementById("groww-ai-output-box");
+    if (!outputBox) return;
+
+    // Transition card to Active state inline (Pure In-Flow, No Bottom Sheet)
+    if (initialWrap) initialWrap.style.display = "none";
+    outputBox.style.display = "block";
 
     const modeLabels = {
       auto: "Auto Engine (Groq / Gemini)",
@@ -848,32 +892,13 @@
     };
     const activeLabel = modeLabels[state.llmMode || "auto"] || "Live Engine";
 
-    const loadingHtml = `
-      <div class="groww-ai-loading-box" style="padding: 24px 16px; text-align: center; background: #F8FAFC; border-radius: 12px; border: 1px dashed #CBD5E1;">
-        <div class="ai-spin-icon" style="font-size: 24px; animation: spin 1s infinite linear; display: inline-block;">⚡</div>
-        <div style="margin-top: 10px; font-weight: 700; font-size: 14px; color: #1E293B;">Analyzing with ${activeLabel}...</div>
-        <div style="font-size: 12px; color: #64748B; margin-top: 4px;">Checking frozen math anchors and verifying AMC disclosures</div>
+    outputBox.innerHTML = `
+      <div class="groww-ai-loading-box" style="padding: 22px 14px; text-align: center; background: #F8FAFC; border-radius: 12px; border: 1.5px dashed #CBD5E1;">
+        <div class="ai-spin-icon" style="font-size: 22px; animation: spin 1s infinite linear; display: inline-block;">⚡</div>
+        <div style="margin-top: 8px; font-weight: 700; font-size: 13.5px; color: #1E293B;">Analyzing with ${activeLabel}...</div>
+        <div style="font-size: 11.5px; color: #64748B; margin-top: 4px;">Checking frozen math anchors and AMC disclosures</div>
       </div>
     `;
-
-    // Activate Native GR-1 Bottom Sheet
-    if (sheet && sheetBackdrop && sheetBody) {
-      sheetBody.innerHTML = loadingHtml;
-      sheet.classList.add("active");
-      sheetBackdrop.classList.add("active");
-    } else if (inlineContainer) {
-      inlineContainer.innerHTML = loadingHtml;
-      inlineContainer.style.display = "block";
-    }
-
-    function closeGr1Sheet() {
-      sheet?.classList.remove("active");
-      sheetBackdrop?.classList.remove("active");
-    }
-
-    document.getElementById("btn-close-gr1-sheet")?.addEventListener("click", closeGr1Sheet);
-    document.getElementById("groww-gr1-sheet-backdrop")?.addEventListener("click", closeGr1Sheet);
-    document.getElementById("btn-done-gr1-sheet")?.addEventListener("click", closeGr1Sheet);
 
     try {
       const response = await GROWW_AI_ENGINE.generateResponseAsync(fund.id, query.trim(), [], { mode: state.llmMode || "auto" });
@@ -888,50 +913,130 @@
       if (response.llmTelemetry && response.llmTelemetry.provider) {
         const tokens = response.llmTelemetry.usage?.total_tokens || response.llmTelemetry.usage?.totalTokenCount || "~";
         telemetryHtml = `
-          <div class="groww-ai-telemetry-chip" style="margin: 4px 0 10px 0; font-size: 11px; padding: 4px 8px; background: #F1F5F9; border-radius: 6px; color: #475569; display: flex; gap: 8px; flex-wrap: wrap;">
-            <span>⚡ <strong>${response.llmTelemetry.provider}</strong> (${response.llmTelemetry.model})</span>
-            <span>• <strong>${tokens}</strong> tokens</span>
+          <div class="groww-ai-telemetry-chip" style="font-size: 10.5px; padding: 2px 7px; background: #F1F5F9; border-radius: 6px; color: #475569; display: inline-flex; gap: 6px; align-items: center;">
+            <span>⚡ <strong>${response.llmTelemetry.provider}</strong></span>
+            <span>• <strong>${tokens}</strong> tok</span>
             <span>• <strong>${response.llmTelemetry.latencyMs}</strong>ms</span>
-            ${response.llmTelemetry.routingReason ? `<span style="color: #047857;">• ${response.llmTelemetry.routingReason}</span>` : ""}
           </div>
         `;
       }
 
-      const contentHtml = `
-        <div class="groww-ai-output-header" style="margin-bottom: 8px;">
-          <span class="groww-ai-grounding-badge ${badgeClass}">
-            ${response.badge.text}
-          </span>
+      // Contextual Smart Follow-up Chips based on the query
+      const followUpChips = getSmartFollowUps(query);
+      const followUpChipsHtml = followUpChips.map(fc => `
+        <button class="groww-ai-chip followup-chip" data-prompt="${fc.prompt}">${fc.text}</button>
+      `).join('');
+
+      outputBox.innerHTML = `
+        <div class="groww-ai-active-header">
+          <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+            <span class="groww-ai-grounding-badge ${badgeClass}">
+              ${response.badge.text}
+            </span>
+            ${telemetryHtml}
+          </div>
+          <!-- 1-Click Reset to Initial Compact Card -->
+          <button id="groww-ai-reset-btn" class="groww-ai-reset-btn" title="Reset to initial questions">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+            <span>Reset</span>
+          </button>
         </div>
-        ${telemetryHtml}
-        <div class="groww-ai-output-headline" style="font-size: 16px; font-weight: 800; color: #1E293B; margin-bottom: 8px;">${response.headline}</div>
-        <div class="groww-ai-output-body">${response.explanation}</div>
-        <div class="groww-ai-output-source-footer" style="margin-top: 14px; padding-top: 10px; border-top: 1px solid #F1F5F9; font-size: 11px; color: #64748B; display: flex; flex-direction: column; gap: 2px;">
+
+        <div class="groww-ai-query-badge">
+          <span class="groww-ai-query-label">Question:</span>
+          <span class="groww-ai-query-text">"${escapeHtml(query.trim())}"</span>
+        </div>
+
+        <div class="groww-ai-output-headline" style="font-size: 15px; font-weight: 800; color: #1E293B; margin-bottom: 8px;">
+          ${response.headline}
+        </div>
+        <div class="groww-ai-output-body" style="font-size: 13px; line-height: 1.55; color: #334155;">
+          ${response.explanation}
+        </div>
+
+        <div class="groww-ai-output-source-footer" style="margin-top: 12px; padding-top: 8px; border-top: 1px solid #F1F5F9; font-size: 11px; color: #64748B; display: flex; flex-direction: column; gap: 2px;">
           <span>📄 Source: ${response.officialSource}</span>
           <span>${response.disclaimer}</span>
         </div>
+
+        <!-- Inline Follow-Up Section: Allows Asking Another Question Immediately -->
+        <div class="groww-ai-followup-wrap">
+          <div class="groww-ai-followup-label">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.2 8.3L20.5 10.5L14.2 12.7L12 19L9.8 12.7L3.5 10.5L9.8 8.3L12 2Z"/></svg>
+            <span>Ask a follow-up question:</span>
+          </div>
+          <div class="groww-ai-followup-chips">
+            ${followUpChipsHtml}
+          </div>
+          <div class="groww-ai-followup-input-wrap">
+            <input type="text" id="groww-ai-followup-input" class="groww-ai-followup-input" placeholder="Ask another question about this fund..." autocomplete="off">
+            <button id="groww-ai-followup-submit-btn" class="groww-ai-send-btn" title="Send question">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </div>
+        </div>
       `;
 
-      if (sheetBody) {
-        sheetBody.innerHTML = contentHtml;
-      }
-      if (inlineContainer) {
-        inlineContainer.innerHTML = contentHtml;
-        inlineContainer.style.display = "block";
-      }
+      // 1. Reset Button Event Listener: Collapses card back to Idle State
+      document.getElementById("groww-ai-reset-btn")?.addEventListener("click", () => {
+        outputBox.innerHTML = "";
+        outputBox.style.display = "none";
+        if (initialWrap) initialWrap.style.display = "block";
+        const mainInput = document.getElementById("groww-ai-input");
+        if (mainInput) mainInput.value = "";
+      });
 
-      const input = document.getElementById("groww-ai-input");
-      if (input) input.value = "";
+      // 2. Follow-Up Chips Event Listeners: Submits next question smoothly in-place
+      outputBox.querySelectorAll(".followup-chip").forEach(fChip => {
+        fChip.addEventListener("click", () => {
+          const nextPrompt = fChip.getAttribute("data-prompt");
+          handleAISubmit(nextPrompt);
+        });
+      });
+
+      // 3. Follow-Up Input Event Listeners
+      const followUpInput = document.getElementById("groww-ai-followup-input");
+      const followUpBtn = document.getElementById("groww-ai-followup-submit-btn");
+
+      followUpBtn?.addEventListener("click", () => {
+        if (followUpInput && followUpInput.value) {
+          handleAISubmit(followUpInput.value);
+        }
+      });
+
+      followUpInput?.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          if (followUpInput.value) {
+            handleAISubmit(followUpInput.value);
+          }
+        }
+      });
+
+      // Clear main input field if it exists
+      const mainInput = document.getElementById("groww-ai-input");
+      if (mainInput) mainInput.value = "";
+
     } catch (err) {
       console.error("AI Generation Error:", err);
-      const errHtml = `
-        <div class="groww-ai-output-header">
+      outputBox.innerHTML = `
+        <div class="groww-ai-active-header">
           <span class="groww-ai-grounding-badge warning">⚠️ Generation Notice</span>
+          <button id="groww-ai-reset-btn" class="groww-ai-reset-btn">Reset</button>
         </div>
         <p style="padding: 10px; font-size: 13px; color: #DC2626;">Network connectivity issue. Please try again or switch to Offline mode.</p>
       `;
-      if (sheetBody) sheetBody.innerHTML = errHtml;
-      if (inlineContainer) inlineContainer.innerHTML = errHtml;
+      document.getElementById("groww-ai-reset-btn")?.addEventListener("click", () => {
+        outputBox.innerHTML = "";
+        outputBox.style.display = "none";
+        if (initialWrap) initialWrap.style.display = "block";
+      });
     }
   }
 
