@@ -1222,6 +1222,17 @@
     const manager = fund.fundManager || GROWW_DATA.funds[0].fundManager;
     const health = fund.fundHealth || GROWW_DATA.funds[0].fundHealth;
 
+    const cohort = hist.cohortBehavior || {};
+    const heroPct = cohort.heroPct || 81;
+    const breakdown = cohort.breakdown || [
+      { label: "Continued SIP", pct: heroPct },
+      { label: "Paused", pct: 12 },
+      { label: "Stopped", pct: 7 }
+    ];
+    const continuedPct = breakdown[0]?.pct ?? heroPct;
+    const pausedPct = breakdown[1]?.pct ?? 12;
+    const stoppedPct = breakdown[2]?.pct ?? (100 - continuedPct - pausedPct);
+
     return `
       <div class="screen-view scrolling-deepdive-screen" id="screen-deepdive-scroll">
         <!-- Sticky Top Navigation -->
@@ -1404,24 +1415,24 @@
 
                 <!-- Multi-segment bar -->
                 <div class="cohort-bar-track">
-                  <div class="cohort-bar-seg seg-continued" style="width: 81%;"></div>
-                  <div class="cohort-bar-seg seg-paused" style="width: 12%;"></div>
-                  <div class="cohort-bar-seg seg-stopped" style="width: 7%;"></div>
+                  <div class="cohort-bar-seg seg-continued" style="width: ${continuedPct}%;"></div>
+                  <div class="cohort-bar-seg seg-paused" style="width: ${pausedPct}%;"></div>
+                  <div class="cohort-bar-seg seg-stopped" style="width: ${stoppedPct}%;"></div>
                 </div>
 
                 <!-- 3-Column Legend -->
                 <div class="cohort-stats-row">
                   <div class="cohort-stat-col">
-                    <span class="cohort-stat-pct color-green">81%</span>
-                    <span class="cohort-stat-label">Continued SIP</span>
+                    <span class="cohort-stat-pct color-green">${continuedPct}%</span>
+                    <span class="cohort-stat-label">${breakdown[0]?.label || 'Continued SIP'}</span>
                   </div>
                   <div class="cohort-stat-col">
-                    <span class="cohort-stat-pct color-amber">12%</span>
-                    <span class="cohort-stat-label">Paused</span>
+                    <span class="cohort-stat-pct color-amber">${pausedPct}%</span>
+                    <span class="cohort-stat-label">${breakdown[1]?.label || 'Paused'}</span>
                   </div>
                   <div class="cohort-stat-col">
-                    <span class="cohort-stat-pct color-red">7%</span>
-                    <span class="cohort-stat-label">Stopped</span>
+                    <span class="cohort-stat-pct color-red">${stoppedPct}%</span>
+                    <span class="cohort-stat-label">${breakdown[2]?.label || 'Stopped'}</span>
                   </div>
                 </div>
 
@@ -1714,6 +1725,9 @@
     const attr = detail.attribution || {};
     const gov = detail.governance || {};
     const auto = detail.autopay || {};
+    const streakMatch = (auto.streak || '').match(/(\d+)\s*of\s*(\d+)/i);
+    const streakRatio = streakMatch ? `${streakMatch[1]} / ${streakMatch[2]}` : '3 / 3';
+    const alphaColor = String(attr.alpha || '').startsWith('-') ? 'red' : 'green';
 
     return `
       <div class="screen-view detailed-summary-screen" id="screen-detailed-summary">
@@ -1783,7 +1797,7 @@
                   <div class="detailed-stat-lbl">Fund Return (vs ${attr.benchmarkReturn || (isNeg ? '-5.8%' : '+4.2%')})</div>
                 </div>
                 <div class="detailed-stat-cell">
-                  <div class="detailed-stat-val green">${attr.alpha || '+1.6%'}</div>
+                  <div class="detailed-stat-val ${alphaColor}">${attr.alpha || '+1.6%'}</div>
                   <div class="detailed-stat-lbl">Relative Alpha Outperformance</div>
                 </div>
               </div>
@@ -1829,7 +1843,7 @@
                   <div class="detailed-stat-lbl">Next SIP Date (${auto.amount || '₹2,000'})</div>
                 </div>
                 <div class="detailed-stat-cell">
-                  <div class="detailed-stat-val" style="color: #EA580C;">3 / 3</div>
+                  <div class="detailed-stat-val" style="color: #EA580C;">${streakRatio}</div>
                   <div class="detailed-stat-lbl">Instalment Streak (100% on time)</div>
                 </div>
               </div>

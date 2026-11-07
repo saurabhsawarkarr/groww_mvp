@@ -187,7 +187,7 @@ const GROWW_DATA = {
             badge: "MARKET ATTRIBUTION",
             badgeClass: "blue",
             title: "Outperforming category benchmark",
-            desc: "Decline is market-wide; fund held up stronger at -8.3% vs benchmark (-6.7%)."
+            desc: "Decline is market-wide; fund held up stronger at -8.3% vs peer category average (-9.6%)."
           },
           {
             badge: "HISTORICAL & PEER DISCIPLINE",
@@ -366,18 +366,18 @@ const GROWW_DATA = {
           title: "How Groww investors responded to market declines",
           subtitle: "SIP behaviour across historical market events",
           moatBadge: "10-Year Data",
-          heroPct: 81,
-          heroLabel: "continued their SIP during the February 2025 market dip",
+          heroPct: 78,
+          heroLabel: "continued their SIP during the market pullback",
           breakdown: [
-            { label: "Continued SIP", pct: 81, colorClass: "color-green" },
-            { label: "Paused", pct: 12, colorClass: "color-amber" },
-            { label: "Stopped", pct: 7, colorClass: "color-red" }
+            { label: "Continued SIP", pct: 78, colorClass: "color-green" },
+            { label: "Paused", pct: 14, colorClass: "color-amber" },
+            { label: "Stopped", pct: 8, colorClass: "color-red" }
           ],
           historicalHeading: "SIP continuation across previous market events",
           previousEvents: [
-            { name: "2020 · COVID crash", pct: 67 },
-            { name: "2022 · Rate hike correction", pct: 74 },
-            { name: "2024 · Election volatility", pct: 81 }
+            { name: "2020 · COVID crash", pct: 65 },
+            { name: "2022 · Rate hike correction", pct: 71 },
+            { name: "2024 · Election volatility", pct: 78 }
           ],
           disclaimer: "Based on anonymised SIP behaviour data from Groww investors. Individual results may vary."
         }
@@ -418,8 +418,8 @@ const GROWW_DATA = {
           {
             badge: "HISTORICAL & PEER DISCIPLINE",
             badgeClass: "purple",
-            title: "11+ Years CIO leadership · 84% peer conviction",
-            desc: "CIO navigated 4 major drawdowns (~11 mo avg); 84% of Groww peers kept their SIP active."
+            title: "11+ Years CIO leadership · 78% peer conviction",
+            desc: "CIO navigated 4 major drawdowns (~11 mo avg); 78% of Groww peers kept their SIP active."
           }
         ],
         detailedAnalysis: {
@@ -452,7 +452,7 @@ const GROWW_DATA = {
             correctionsNavigated: "4 market corrections",
             avgRecoveryTime: "~11 months",
             expenseRatio: "0.69%",
-            peerContinuity: "84% continued SIP",
+            peerContinuity: "78% continued SIP",
             insight: "Longest unbroken track record in the flexi-cap category with conservative cash management (~14% cash & arbitrage buffer)."
           },
           autopay: {
@@ -816,18 +816,18 @@ const GROWW_DATA = {
           title: "How Groww investors responded across gold cycles",
           subtitle: "SIP behaviour across historical market events",
           moatBadge: "10-Year Data",
-          heroPct: 86,
+          heroPct: 87,
           heroLabel: "maintained their SIP through gold price swings, capturing steady gains",
           breakdown: [
-            { label: "Continued SIP", pct: 86, colorClass: "color-green" },
-            { label: "Paused", pct: 9, colorClass: "color-amber" },
+            { label: "Continued SIP", pct: 87, colorClass: "color-green" },
+            { label: "Paused", pct: 8, colorClass: "color-amber" },
             { label: "Stopped", pct: 5, colorClass: "color-red" }
           ],
           historicalHeading: "SIP continuation across previous market events",
           previousEvents: [
-            { name: "2020 · Bullion rally", pct: 74 },
-            { name: "2022 · Rate hike cycle", pct: 80 },
-            { name: "2024 · Safe haven surge", pct: 86 }
+            { name: "2020 · Bullion rally", pct: 75 },
+            { name: "2022 · Rate hike cycle", pct: 81 },
+            { name: "2024 · Safe haven surge", pct: 87 }
           ],
           disclaimer: "Based on anonymised SIP behaviour data from Groww investors. Individual results may vary."
         }
@@ -868,8 +868,8 @@ const GROWW_DATA = {
           {
             badge: "PEER DISCIPLINE",
             badgeClass: "purple",
-            title: "99.5% Pure Gold Custody · 86% peer conviction",
-            desc: "Physical bullion secured in accredited vaults; 86% of Groww gold investors maintained unbroken SIP contributions."
+            title: "99.5% Pure Gold Custody · 87% peer conviction",
+            desc: "Physical bullion secured in accredited vaults; 87% of Groww gold investors maintained unbroken SIP contributions."
           }
         ],
         detailedAnalysis: {
@@ -902,7 +902,7 @@ const GROWW_DATA = {
             correctionsNavigated: "3 gold price cycles",
             avgRecoveryTime: "~6 months",
             expenseRatio: "0.24%",
-            peerContinuity: "86% continued SIP",
+            peerContinuity: "87% continued SIP",
             insight: "Physical gold bars meeting LBMA 995 fineness stored with accredited independent custodians, audited regularly."
           },
           autopay: {
