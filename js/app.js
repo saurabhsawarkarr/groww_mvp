@@ -1810,6 +1810,131 @@
     });
   }
 
+  function openBenchmarkModal() {
+    const modal = document.getElementById("mentor-benchmark-modal");
+    if (!modal) return;
+    try {
+      if (typeof GROWW_AI_ENGINE !== "undefined") {
+        const tbody = document.getElementById("benchmark-table-body");
+        const benchmark = GROWW_AI_ENGINE.runBenchmarkSuite();
+        if (tbody && benchmark && benchmark.results) {
+          tbody.innerHTML = benchmark.results.map(r => `
+            <tr>
+              <td style="font-weight: 700; color: #4F46E5;">${r.id}</td>
+              <td style="font-weight: 600;">"${r.query}"</td>
+              <td><span style="font-size: 11px; padding: 2px 6px; border-radius: 4px; background: #F1F5F9; color: #475569;">${r.category}</span></td>
+              <td style="color: ${r.status === 'SAFE_FALLBACK_TRIGGERED' ? '#D97706' : '#059669'}; font-weight: 600;">${r.expectedGuardrail}</td>
+              <td style="font-weight: 600; color: #059669;">${r.groundingScore}%</td>
+              <td><span style="font-weight: 700; color: #00D09C;">${r.passed ? '✅ Passed' : '❌ Failed'}</span></td>
+            </tr>
+          `).join('');
+        }
+
+        // Render Phase 1 Math Tests Output if available
+        const mathOutput = document.getElementById("math-tests-output");
+        if (mathOutput && typeof window.GROWW_MATH_TESTS !== "undefined") {
+          const mathSummary = window.GROWW_MATH_TESTS.runAllTests();
+          mathOutput.innerHTML = `
+            <div style="color: #38BDF8; font-weight: 700; margin-bottom: 6px;">[PHASE 1 QUALITY GATE RESULTS - 0.0% DRIFT]</div>
+            <div>Passed: ${mathSummary.passed} / ${mathSummary.total} • Status: <span style="color: #4ADE80; font-weight: 700;">${mathSummary.verdict}</span></div>
+            <div style="margin-top: 6px; border-top: 1px dashed #334155; padding-top: 6px;">
+              ${mathSummary.results.map(t => `<div style="color: ${t.passed ? '#4ADE80' : '#F87171'};"> ${t.passed ? '✔' : '✖'} ${t.name}</div>`).join('')}
+            </div>
+          `;
+        }
+
+        // Render Phase 2 Security & Guardrails Tests Output if available
+        const securityOutput = document.getElementById("security-tests-output");
+        if (securityOutput && typeof window.GROWW_SECURITY_TESTS !== "undefined") {
+          const secSummary = window.GROWW_SECURITY_TESTS.runAllTests();
+          securityOutput.innerHTML = `
+            <div style="color: #818CF8; font-weight: 700; margin-bottom: 6px;">[PHASE 2 QUALITY GATE RESULTS - 0 TOKENS CONSUMED]</div>
+            <div>Passed: ${secSummary.passed} / ${secSummary.total} • Status: <span style="color: #4ADE80; font-weight: 700;">${secSummary.verdict}</span></div>
+            <div style="margin-top: 6px; border-top: 1px dashed #334155; padding-top: 6px;">
+              ${secSummary.results.map(t => `<div style="color: ${t.passed ? '#4ADE80' : '#F87171'};"> ${t.passed ? '✔' : '✖'} ${t.name}</div>`).join('')}
+            </div>
+          `;
+        }
+
+        // Render Phase 3 Hybrid Retrieval & Sandboxing Tests Output if available
+        const retrievalOutput = document.getElementById("retrieval-tests-output");
+        if (retrievalOutput && typeof window.GROWW_RETRIEVAL_TESTS !== "undefined") {
+          const retSummary = window.GROWW_RETRIEVAL_TESTS.runAllTests();
+          retrievalOutput.innerHTML = `
+            <div style="color: #38BDF8; font-weight: 700; margin-bottom: 6px;">[PHASE 3 QUALITY GATE RESULTS - ZERO LEAKAGE & PRECISION >= 95%]</div>
+            <div>Passed: ${retSummary.passed} / ${retSummary.total} • Status: <span style="color: #4ADE80; font-weight: 700;">${retSummary.verdict}</span></div>
+            <div style="margin-top: 6px; border-top: 1px dashed #334155; padding-top: 6px;">
+              ${retSummary.results.map(t => `<div style="color: ${t.passed ? '#4ADE80' : '#F87171'};"> ${t.passed ? '✔' : '✖'} ${t.name}</div>`).join('')}
+            </div>
+          `;
+        }
+
+        // Render Phase 4 Structured Attribution Tests Output if available
+        const attributionOutput = document.getElementById("attribution-tests-output");
+        if (attributionOutput && typeof window.GROWW_ATTRIBUTION_TESTS !== "undefined") {
+          const attrSummary = window.GROWW_ATTRIBUTION_TESTS.runAllTests();
+          attributionOutput.innerHTML = `
+            <div style="color: #F59E0B; font-weight: 700; margin-bottom: 6px;">[PHASE 4 QUALITY GATE RESULTS - BRINSON-FACHLER & CAUSALITY SAFEGUARD]</div>
+            <div>Passed: ${attrSummary.passed} / ${attrSummary.total} • Status: <span style="color: #4ADE80; font-weight: 700;">${attrSummary.verdict}</span></div>
+            <div style="margin-top: 6px; border-top: 1px dashed #334155; padding-top: 6px;">
+              ${attrSummary.results.map(t => `<div style="color: ${t.passed ? '#4ADE80' : '#F87171'};"> ${t.passed ? '✔' : '✖'} ${t.name}</div>`).join('')}
+            </div>
+          `;
+        }
+
+        // Render Phase 5 Multi-Layer Output Defense Tests Output if available
+        const outputDefenseOutput = document.getElementById("output-defense-tests-output");
+        if (outputDefenseOutput && typeof window.GROWW_OUTPUT_DEFENSE_TESTS !== "undefined") {
+          const outSummary = window.GROWW_OUTPUT_DEFENSE_TESTS.runAllTests();
+          outputDefenseOutput.innerHTML = `
+            <div style="color: #C084FC; font-weight: 700; margin-bottom: 6px;">[PHASE 5 QUALITY GATE RESULTS - 4-LAYER OUTPUT GATE]</div>
+            <div>Passed: ${outSummary.passed} / ${outSummary.total} • Status: <span style="color: #4ADE80; font-weight: 700;">${outSummary.verdict}</span></div>
+            <div style="margin-top: 6px; border-top: 1px dashed #334155; padding-top: 6px;">
+              ${outSummary.results.map(t => `<div style="color: ${t.passed ? '#4ADE80' : '#F87171'};"> ${t.passed ? '✔' : '✖'} ${t.name}</div>`).join('')}
+            </div>
+          `;
+        }
+
+        // Render Phase 8 Canary & Retention Simulation Output if available
+        const canaryOutput = document.getElementById("canary-tests-output");
+        if (canaryOutput && typeof window.GROWW_CANARY_TESTS !== "undefined") {
+          const canSummary = window.GROWW_CANARY_TESTS.runAllTests();
+          const analysis = typeof window.GROWW_RETENTION_METRICS !== "undefined" ? window.GROWW_RETENTION_METRICS.getSimulatedCohortAnalysis() : null;
+          canaryOutput.innerHTML = `
+            <div style="color: #2DD4BF; font-weight: 700; margin-bottom: 6px;">[PHASE 8 CANARY TRIAL & 12M RETENTION PROJECTION]</div>
+            <div>Passed: ${canSummary.passed} / ${canSummary.total} • Status: <span style="color: #4ADE80; font-weight: 700;">${canSummary.verdict}</span></div>
+            ${analysis ? `
+              <div style="margin-top: 6px; background: rgba(15, 23, 42, 0.6); padding: 8px; border-radius: 4px; border: 1px solid #1E293B;">
+                <div style="color: #A7F3D0;">• Control Group 12M Active Retention: <strong>${analysis.controlGroup.activeSipRetention12M}%</strong> (Avoidable Pause: ${analysis.controlGroup.avoidableSipPauseRate}%)</div>
+                <div style="color: #6EE7B7;">• Treatment Group 12M Active Retention: <strong>${analysis.treatmentGroup.activeSipRetention12M}%</strong> (Avoidable Pause: ${analysis.treatmentGroup.avoidableSipPauseRate}%)</div>
+                <div style="color: #34D399; font-weight: 700;">• Absolute Lift: +${analysis.statisticalSignificance.absoluteRetentionLiftPct}% • Avoidable Pause Drop: ${analysis.statisticalSignificance.avoidablePauseReductionPct}% (${analysis.statisticalSignificance.confidenceLevel})</div>
+              </div>
+            ` : ''}
+            <div style="margin-top: 6px; border-top: 1px dashed #334155; padding-top: 6px;">
+              ${canSummary.results.map(t => `<div style="color: ${t.passed ? '#4ADE80' : '#F87171'};"> ${t.passed ? '✔' : '✖'} ${t.name}</div>`).join('')}
+            </div>
+          `;
+        }
+
+        // Audit chain integrity badge
+        const integrityBadge = document.getElementById("audit-integrity-badge");
+        if (integrityBadge && typeof window.GROWW_AUDIT_LOGGER !== "undefined") {
+          const integrity = window.GROWW_AUDIT_LOGGER.verifyAuditChainIntegrity();
+          if (integrity.isValid) {
+            integrityBadge.innerHTML = `✔ SHA-256 Chain Verified (${integrity.checkedRecords} records)`;
+            integrityBadge.style.color = "#15803D";
+          } else {
+            integrityBadge.innerHTML = `✖ Tamper Detected!`;
+            integrityBadge.style.color = "#DC2626";
+          }
+        }
+      }
+    } catch (err) {
+      console.error("Error opening benchmark modal:", err);
+    }
+    modal.style.display = "flex";
+  }
+
   function attachEventHandlers() {
     // Screen 1: Click Insight Card -> Navigate to Screen 2 (Portfolio Insights / Fund Select)
     document.getElementById("btn-trigger-insights")?.addEventListener("click", () => {
@@ -2012,132 +2137,6 @@
       }
     });
 
-  function openBenchmarkModal() {
-    const modal = document.getElementById("mentor-benchmark-modal");
-    if (!modal) return;
-    try {
-      if (typeof GROWW_AI_ENGINE !== "undefined") {
-        const tbody = document.getElementById("benchmark-table-body");
-        const benchmark = GROWW_AI_ENGINE.runBenchmarkSuite();
-        if (tbody && benchmark && benchmark.results) {
-          tbody.innerHTML = benchmark.results.map(r => `
-            <tr>
-              <td style="font-weight: 700; color: #4F46E5;">${r.id}</td>
-              <td style="font-weight: 600;">"${r.query}"</td>
-              <td><span style="font-size: 11px; padding: 2px 6px; border-radius: 4px; background: #F1F5F9; color: #475569;">${r.category}</span></td>
-              <td style="color: ${r.status === 'SAFE_FALLBACK_TRIGGERED' ? '#D97706' : '#059669'}; font-weight: 600;">${r.expectedGuardrail}</td>
-              <td style="font-weight: 600; color: #059669;">${r.groundingScore}%</td>
-              <td><span style="font-weight: 700; color: #00D09C;">${r.passed ? '✅ Passed' : '❌ Failed'}</span></td>
-            </tr>
-          `).join('');
-        }
-
-        // Render Phase 1 Math Tests Output if available
-        const mathOutput = document.getElementById("math-tests-output");
-        if (mathOutput && typeof window.GROWW_MATH_TESTS !== "undefined") {
-          const mathSummary = window.GROWW_MATH_TESTS.runAllTests();
-          mathOutput.innerHTML = `
-            <div style="color: #38BDF8; font-weight: 700; margin-bottom: 6px;">[PHASE 1 QUALITY GATE RESULTS - 0.0% DRIFT]</div>
-            <div>Passed: ${mathSummary.passed} / ${mathSummary.total} • Status: <span style="color: #4ADE80; font-weight: 700;">${mathSummary.verdict}</span></div>
-            <div style="margin-top: 6px; border-top: 1px dashed #334155; padding-top: 6px;">
-              ${mathSummary.results.map(t => `<div style="color: ${t.passed ? '#4ADE80' : '#F87171'};"> ${t.passed ? '✔' : '✖'} ${t.name}</div>`).join('')}
-            </div>
-          `;
-        }
-
-        // Render Phase 2 Security & Guardrails Tests Output if available
-        const securityOutput = document.getElementById("security-tests-output");
-        if (securityOutput && typeof window.GROWW_SECURITY_TESTS !== "undefined") {
-          const secSummary = window.GROWW_SECURITY_TESTS.runAllTests();
-          securityOutput.innerHTML = `
-            <div style="color: #818CF8; font-weight: 700; margin-bottom: 6px;">[PHASE 2 QUALITY GATE RESULTS - 0 TOKENS CONSUMED]</div>
-            <div>Passed: ${secSummary.passed} / ${secSummary.total} • Status: <span style="color: #4ADE80; font-weight: 700;">${secSummary.verdict}</span></div>
-            <div style="margin-top: 6px; border-top: 1px dashed #334155; padding-top: 6px;">
-              ${secSummary.results.map(t => `<div style="color: ${t.passed ? '#4ADE80' : '#F87171'};"> ${t.passed ? '✔' : '✖'} ${t.name}</div>`).join('')}
-            </div>
-          `;
-        }
-
-        // Render Phase 3 Hybrid Retrieval & Sandboxing Tests Output if available
-        const retrievalOutput = document.getElementById("retrieval-tests-output");
-        if (retrievalOutput && typeof window.GROWW_RETRIEVAL_TESTS !== "undefined") {
-          const retSummary = window.GROWW_RETRIEVAL_TESTS.runAllTests();
-          retrievalOutput.innerHTML = `
-            <div style="color: #38BDF8; font-weight: 700; margin-bottom: 6px;">[PHASE 3 QUALITY GATE RESULTS - ZERO LEAKAGE & PRECISION >= 95%]</div>
-            <div>Passed: ${retSummary.passed} / ${retSummary.total} • Status: <span style="color: #4ADE80; font-weight: 700;">${retSummary.verdict}</span></div>
-            <div style="margin-top: 6px; border-top: 1px dashed #334155; padding-top: 6px;">
-              ${retSummary.results.map(t => `<div style="color: ${t.passed ? '#4ADE80' : '#F87171'};"> ${t.passed ? '✔' : '✖'} ${t.name}</div>`).join('')}
-            </div>
-          `;
-        }
-
-        // Render Phase 4 Structured Attribution Tests Output if available
-        const attributionOutput = document.getElementById("attribution-tests-output");
-        if (attributionOutput && typeof window.GROWW_ATTRIBUTION_TESTS !== "undefined") {
-          const attrSummary = window.GROWW_ATTRIBUTION_TESTS.runAllTests();
-          attributionOutput.innerHTML = `
-            <div style="color: #F59E0B; font-weight: 700; margin-bottom: 6px;">[PHASE 4 QUALITY GATE RESULTS - BRINSON-FACHLER & CAUSALITY SAFEGUARD]</div>
-            <div>Passed: ${attrSummary.passed} / ${attrSummary.total} • Status: <span style="color: #4ADE80; font-weight: 700;">${attrSummary.verdict}</span></div>
-            <div style="margin-top: 6px; border-top: 1px dashed #334155; padding-top: 6px;">
-              ${attrSummary.results.map(t => `<div style="color: ${t.passed ? '#4ADE80' : '#F87171'};"> ${t.passed ? '✔' : '✖'} ${t.name}</div>`).join('')}
-            </div>
-          `;
-        }
-
-        // Render Phase 5 Multi-Layer Output Defense Tests Output if available
-        const outputDefenseOutput = document.getElementById("output-defense-tests-output");
-        if (outputDefenseOutput && typeof window.GROWW_OUTPUT_DEFENSE_TESTS !== "undefined") {
-          const outSummary = window.GROWW_OUTPUT_DEFENSE_TESTS.runAllTests();
-          outputDefenseOutput.innerHTML = `
-            <div style="color: #C084FC; font-weight: 700; margin-bottom: 6px;">[PHASE 5 QUALITY GATE RESULTS - 4-LAYER OUTPUT GATE]</div>
-            <div>Passed: ${outSummary.passed} / ${outSummary.total} • Status: <span style="color: #4ADE80; font-weight: 700;">${outSummary.verdict}</span></div>
-            <div style="margin-top: 6px; border-top: 1px dashed #334155; padding-top: 6px;">
-              ${outSummary.results.map(t => `<div style="color: ${t.passed ? '#4ADE80' : '#F87171'};"> ${t.passed ? '✔' : '✖'} ${t.name}</div>`).join('')}
-            </div>
-          `;
-        }
-
-        // Render Phase 8 Canary & Retention Simulation Output if available
-        const canaryOutput = document.getElementById("canary-tests-output");
-        if (canaryOutput && typeof window.GROWW_CANARY_TESTS !== "undefined") {
-          const canSummary = window.GROWW_CANARY_TESTS.runAllTests();
-          const analysis = typeof window.GROWW_RETENTION_METRICS !== "undefined" ? window.GROWW_RETENTION_METRICS.getSimulatedCohortAnalysis() : null;
-          canaryOutput.innerHTML = `
-            <div style="color: #2DD4BF; font-weight: 700; margin-bottom: 6px;">[PHASE 8 CANARY TRIAL & 12M RETENTION PROJECTION]</div>
-            <div>Passed: ${canSummary.passed} / ${canSummary.total} • Status: <span style="color: #4ADE80; font-weight: 700;">${canSummary.verdict}</span></div>
-            ${analysis ? `
-              <div style="margin-top: 6px; background: rgba(15, 23, 42, 0.6); padding: 8px; border-radius: 4px; border: 1px solid #1E293B;">
-                <div style="color: #A7F3D0;">• Control Group 12M Active Retention: <strong>${analysis.controlGroup.activeSipRetention12M}%</strong> (Avoidable Pause: ${analysis.controlGroup.avoidableSipPauseRate}%)</div>
-                <div style="color: #6EE7B7;">• Treatment Group 12M Active Retention: <strong>${analysis.treatmentGroup.activeSipRetention12M}%</strong> (Avoidable Pause: ${analysis.treatmentGroup.avoidableSipPauseRate}%)</div>
-                <div style="color: #34D399; font-weight: 700;">• Absolute Lift: +${analysis.statisticalSignificance.absoluteRetentionLiftPct}% • Avoidable Pause Drop: ${analysis.statisticalSignificance.avoidablePauseReductionPct}% (${analysis.statisticalSignificance.confidenceLevel})</div>
-              </div>
-            ` : ''}
-            <div style="margin-top: 6px; border-top: 1px dashed #334155; padding-top: 6px;">
-              ${canSummary.results.map(t => `<div style="color: ${t.passed ? '#4ADE80' : '#F87171'};"> ${t.passed ? '✔' : '✖'} ${t.name}</div>`).join('')}
-            </div>
-          `;
-        }
-
-        // Audit chain integrity badge
-        const integrityBadge = document.getElementById("audit-integrity-badge");
-        if (integrityBadge && typeof window.GROWW_AUDIT_LOGGER !== "undefined") {
-          const integrity = window.GROWW_AUDIT_LOGGER.verifyAuditChainIntegrity();
-          if (integrity.isValid) {
-            integrityBadge.innerHTML = `✔ SHA-256 Chain Verified (${integrity.checkedRecords} records)`;
-            integrityBadge.style.color = "#15803D";
-          } else {
-            integrityBadge.innerHTML = `✖ Tamper Detected!`;
-            integrityBadge.style.color = "#DC2626";
-          }
-        }
-      }
-    } catch (err) {
-      console.error("Error opening benchmark modal:", err);
-    }
-    modal.style.display = "flex";
-  }
-
-  function attachEventHandlers() {
     // Mentor Benchmark Modal Event Handlers
     document.getElementById("btn-open-benchmark")?.addEventListener("click", openBenchmarkModal);
     document.getElementById("btn-open-eval-benchmark")?.addEventListener("click", openBenchmarkModal);
