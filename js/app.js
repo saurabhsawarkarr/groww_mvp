@@ -948,7 +948,7 @@
             <div class="groww-ai-text-col">
               <div class="groww-ai-title-wrap">
                 <h4 class="groww-ai-card-title">${config.title}</h4>
-                <span class="groww-ai-beta-tag">Live RAG</span>
+                <span class="groww-ai-beta-tag">AI</span>
               </div>
               <p class="groww-ai-card-desc">${config.desc}</p>
             </div>
@@ -1022,32 +1022,14 @@
 
     outputBox.innerHTML = `
       <div class="groww-ai-loading-box" style="padding: 22px 14px; text-align: center; background: #F8FAFC; border-radius: 12px; border: 1.5px dashed #CBD5E1;">
-        <div class="ai-spin-icon" style="font-size: 22px; animation: spin 1s infinite linear; display: inline-block;">⚡</div>
-        <div style="margin-top: 8px; font-weight: 700; font-size: 13.5px; color: #1E293B;">Analyzing with ${activeLabel}...</div>
-        <div style="font-size: 11.5px; color: #64748B; margin-top: 4px;">Checking frozen math anchors and AMC disclosures</div>
+        <div class="ai-spin-icon" style="font-size: 20px; animation: spin 1s infinite linear; display: inline-block;">✦</div>
+        <div style="margin-top: 8px; font-weight: 700; font-size: 13.5px; color: #1E293B;">Analyzing fund portfolio...</div>
+        <div style="font-size: 11.5px; color: #64748B; margin-top: 4px;">Reviewing official disclosures & transaction history</div>
       </div>
     `;
 
     try {
       const response = await GROWW_AI_ENGINE.generateResponseAsync(fund.id, query.trim(), [], { mode: state.llmMode || "auto" });
-
-      let badgeClass = "verified";
-      if (response.status === "SAFE_FALLBACK_TRIGGERED") badgeClass = "warning";
-      if (response.status === "SAFE_FALLBACK_UNCERTAINTY") badgeClass = "uncertainty";
-      if (response.status === "CLARIFICATION_REQUIRED") badgeClass = "uncertainty";
-      if (response.status === "PARTIALLY_GROUNDED_SUCCESS") badgeClass = "warning";
-
-      let telemetryHtml = "";
-      if (response.llmTelemetry && response.llmTelemetry.provider) {
-        const tokens = response.llmTelemetry.usage?.total_tokens || response.llmTelemetry.usage?.totalTokenCount || "~";
-        telemetryHtml = `
-          <div class="groww-ai-telemetry-chip" style="font-size: 10.5px; padding: 2px 7px; background: #F1F5F9; border-radius: 6px; color: #475569; display: inline-flex; gap: 6px; align-items: center;">
-            <span>⚡ <strong>${response.llmTelemetry.provider}</strong></span>
-            <span>• <strong>${tokens}</strong> tok</span>
-            <span>• <strong>${response.llmTelemetry.latencyMs}</strong>ms</span>
-          </div>
-        `;
-      }
 
       // Contextual Smart Follow-up Chips based on the query and fund
       const followUpChips = getSmartFollowUps(query, fund);
@@ -1057,11 +1039,11 @@
 
       outputBox.innerHTML = `
         <div class="groww-ai-active-header">
-          <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
-            <span class="groww-ai-grounding-badge ${badgeClass}">
-              ${response.badge.text}
+          <div style="display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: #0F172A;">
+            <span style="display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; background: #E6FBF5; color: #00D09C;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.2 8.3L20.5 10.5L14.2 12.7L12 19L9.8 12.7L3.5 10.5L9.8 8.3L12 2Z"/></svg>
             </span>
-            ${telemetryHtml}
+            <span>AI Insights</span>
           </div>
           <!-- 1-Click Reset to Initial Compact Card -->
           <button id="groww-ai-reset-btn" class="groww-ai-reset-btn" title="Reset to initial questions">
@@ -1078,16 +1060,8 @@
           <span class="groww-ai-query-text">"${escapeHtml(query.trim())}"</span>
         </div>
 
-        <div class="groww-ai-output-headline" style="font-size: 15px; font-weight: 800; color: #1E293B; margin-bottom: 8px;">
-          ${response.headline}
-        </div>
         <div class="groww-ai-output-body" style="font-size: 13px; line-height: 1.55; color: #334155;">
           ${response.explanation}
-        </div>
-
-        <div class="groww-ai-output-source-footer" style="margin-top: 12px; padding-top: 8px; border-top: 1px solid #F1F5F9; font-size: 11px; color: #64748B; display: flex; flex-direction: column; gap: 2px;">
-          <span>📄 Source: ${response.officialSource}</span>
-          <span>${response.disclaimer}</span>
         </div>
 
         <!-- Inline Follow-Up Section: Allows Asking Another Question Immediately -->
@@ -1155,7 +1129,9 @@
       console.error("AI Generation Error:", err);
       outputBox.innerHTML = `
         <div class="groww-ai-active-header">
-          <span class="groww-ai-grounding-badge warning">⚠️ Generation Notice</span>
+          <div style="display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: #DC2626;">
+            <span>⚠️ Notice</span>
+          </div>
           <button id="groww-ai-reset-btn" class="groww-ai-reset-btn">Reset</button>
         </div>
         <p style="padding: 10px; font-size: 13px; color: #DC2626;">Network connectivity issue. Please try again or switch to Offline mode.</p>
