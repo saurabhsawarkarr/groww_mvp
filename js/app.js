@@ -532,7 +532,7 @@
                   </svg>
                 `}
               </div>
-              <div>
+              <div class="bridge-text">
                 <div class="bridge-title">${isNeg ? 'Why is this fund down?' : "What's driving this fund's growth?"}</div>
                 <div class="bridge-sub">${isNeg ? 'Understand market impact & how your SIP accumulated units' : 'Understand market tailwinds & how your SIP is compounding'}</div>
               </div>
