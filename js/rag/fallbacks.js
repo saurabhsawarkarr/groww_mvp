@@ -13,6 +13,11 @@ const GROWW_FALLBACKS = (function () {
    */
   function createTier1AdvisoryRefusal(mathData, rawQuery, traceId, preGuardrail) {
     const matchedTrigger = preGuardrail?.matchedTrigger || "Actionable financial advice request";
+    const qLower = (rawQuery || "").toLowerCase();
+    let headline = "Groww cannot recommend pausing, stopping, continuing, or switching your mutual fund SIP.";
+    if (qLower.includes("add") || qLower.includes("invest") || qLower.includes("more") || qLower.includes("money") || qLower.includes("double")) {
+      headline = "Groww cannot provide advice on adding money, doubling SIP, or timing market investments.";
+    }
     return {
       traceId: traceId || `tr_${Date.now()}`,
       status: "SAFE_FALLBACK_TRIGGERED",
@@ -23,7 +28,7 @@ const GROWW_FALLBACKS = (function () {
       },
       groundingScore: 100,
       complianceDisclaimer: "Under SEBI (Investment Advisers) Regulations, 2013 (Regulation 19), Groww is an execution-only mutual fund distributor and analytics platform. Groww does not provide investment recommendations, advisory calls, or market timing opinions.",
-      headline: "Groww cannot recommend pausing, stopping, continuing, or switching your mutual fund SIP.",
+      headline,
       explanationHtml: `
         <div class="ai-safe-fallback-box">
           <div class="ai-fallback-section">

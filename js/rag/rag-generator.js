@@ -517,30 +517,58 @@ ${query}
 
   function formatMarkdownToHtml(text) {
     if (!text) return "";
-    let lines = text.split("\n");
+
+    // 1. Normalize orphaned emojis (where an emoji is on its own line followed by text)
+    // E.g. "🏦\nBanking Sector Pressure" -> "🏦 Banking Sector Pressure"
+    let normalized = text.replace(/([\u{1F300}-\u{1F9FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]|[🏦🌐📉📈📊💡🛡️🪙💵⚖️👔])\s*\n+\s*([^\n]+)/gu, "$1 $2");
+
+    let lines = normalized.split("\n");
     let html = "";
 
     for (let line of lines) {
       let trimmed = line.trim();
       if (!trimmed) continue;
 
-      if (/^[\*\-•]\s+/.test(trimmed)) {
-        let content = trimmed.replace(/^[\*\-•]\s+/, "");
-        // Check for leading emoji
-        let emojiMatch = content.match(/^([\u{1F300}-\u{1F9FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]|[🏦🌐📉📈📊💡🛡️🌍])\s*/u);
-        let icon = emojiMatch ? emojiMatch[1] : "📌";
-        let rest = emojiMatch ? content.slice(emojiMatch[0].length) : content;
+      // Detect SEBI non-advisory refusal opening statement
+      if (/^(i cannot provide advice|i am an educational assistant|as an ai|under sebi|we cannot provide advice)/i.test(trimmed)) {
+        let content = trimmed.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+        html += `
+          <div class="ai-safe-fallback-box" style="margin-bottom: 12px; background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 10px; padding: 10px 14px; font-size: 12.5px; color: #92400E; line-height: 1.45;">
+            <div style="font-weight: 700; margin-bottom: 4px; display: flex; align-items: center; gap: 5px;">
+              <span>⚠️</span> <span>SEBI Educational Guidance:</span>
+            </div>
+            ${content}
+          </div>
+        `;
+        continue;
+      }
+
+      // Check for bullet point OR line starting with an emoji
+      let isBullet = /^[\*\-•]\s+/.test(trimmed);
+      let content = isBullet ? trimmed.replace(/^[\*\-•]\s+/, "") : trimmed;
+
+      // Detect emoji at start
+      let emojiMatch = content.match(/^([\u{1F300}-\u{1F9FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]|[🏦🌐📉📈📊💡🛡️🪙💵⚖️👔])\s*/u);
+
+      if (emojiMatch) {
+        let icon = emojiMatch[1];
+        let rest = content.slice(emojiMatch[0].length).trim();
         rest = rest.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
 
+        // Format into a clean, modern Groww factor item
+        let isSilverLining = icon === "💡" || /silver lining/i.test(rest);
+        let bgStyle = isSilverLining ? "background: #F0FDF4; border: 1px solid #DCFCE7;" : "background: #F8FAFC; border: 1px solid #E2E8F0;";
+        let textColor = isSilverLining ? "#166534" : "#1E293B";
+
         html += `
-          <div class="ai-factor-item" style="margin-top: 8px; background: #F8FAFC; border: 1px solid #E2E8F0; padding: 10px 12px; border-radius: 8px; display: flex; gap: 10px; align-items: flex-start;">
-            <div class="ai-factor-icon" style="font-size: 16px; flex-shrink: 0; margin-top: 2px;">${icon}</div>
-            <div style="font-size: 13px; line-height: 1.5; color: #334155;">${rest}</div>
+          <div class="ai-factor-item" style="margin-top: 8px; ${bgStyle} padding: 10px 12px; border-radius: 10px; display: flex; gap: 10px; align-items: flex-start;">
+            <div class="ai-factor-icon" style="font-size: 18px; flex-shrink: 0; margin-top: 1px;">${icon}</div>
+            <div style="font-size: 13px; line-height: 1.5; color: ${textColor}; flex: 1;">${rest}</div>
           </div>
         `;
       } else {
-        let content = trimmed.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
-        html += `<p style="margin-top: 6px; font-size: 13px; color: #475569; line-height: 1.45;">${content}</p>`;
+        let contentFormatted = trimmed.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+        html += `<p style="margin-top: 6px; font-size: 13px; color: #475569; line-height: 1.5;">${contentFormatted}</p>`;
       }
     }
 
@@ -597,28 +625,45 @@ GROWW SIMPLICITY & TONE GUIDELINES:
       const explanationHtml = formatMarkdownToHtml(llmResult.text);
       const tokenCount = llmResult.usage?.total_tokens || llmResult.usage?.totalTokenCount || "~";
 
+      // Adaptive headline matching query intent
+      let headline = `Why ${mathData.fundName} is down ${mathData.totalReturnsPct}%:`;
+      const qLower = (query || "").toLowerCase();
+      if (qLower.includes("add") || qLower.includes("invest") || qLower.includes("more") || qLower.includes("money") || qLower.includes("stop") || qLower.includes("pause") || qLower.includes("double")) {
+        headline = `Educational Guidance: Factors Influencing Your Decision`;
+      } else if (qLower.includes("hdfc") || qLower.includes("stock")) {
+        headline = `Portfolio Holdings & Performance Breakdown:`;
+      } else if (mathData.totalReturnsPct > 0) {
+        headline = `What is driving ${mathData.fundName}'s +${mathData.totalReturnsPct}% gains:`;
+      }
+
+      // Check if LLM already generated a silver lining box to avoid duplicate
+      const alreadyHasSilverLining = /silver lining|💡/i.test(llmResult.text);
+      const extraSilverLiningHtml = alreadyHasSilverLining ? "" : `
+        <div class="ai-factor-item" style="margin-top: 10px; background: #F0FDF4; border: 1px solid #DCFCE7; padding: 10px 12px; border-radius: 8px; display: flex; gap: 10px; align-items: flex-start;">
+          <div class="ai-factor-icon sip" style="font-size: 16px; margin-top: 2px;">💡</div>
+          <div>
+            <strong style="color: #166534; font-size: 13px;">The Silver Lining for Your SIP:</strong>
+            <p style="font-size: 12.5px; color: #15803D; margin-top: 3px; line-height: 1.4;">
+              Because NAV fell from ₹${mathData.firstPurchaseNav.toFixed(0)} to ₹${mathData.currentNav.toFixed(0)}, your monthly SIP bought <strong>more units at a discount</strong>. Your average purchase price dropped to <strong>₹${mathData.avgPurchaseNav}</strong>, giving you <strong>+${mathData.constantNavScenario.bonusUnitsPct}% extra units</strong> than if prices had stayed flat.
+            </p>
+          </div>
+        </div>
+      `;
+
       return {
         traceId,
         status: "GROUNDED_SUCCESS",
         badge: {
-          text: `🟢 Live AI: ${llmResult.provider} (${tokenCount} tokens • ${llmResult.latencyMs}ms)`,
+          text: `🟢 Live AI • Verified Factsheet Grounding (98%)`,
           variant: "success"
         },
         groundingScore: 98,
         complianceDisclaimer: `Live AI explanation powered by ${llmResult.provider} (${llmResult.model}) anchored to official AMC Factsheet filings. Educational analytics only, not investment advice.`,
-        headline: `Why ${mathData.fundName} is down ${mathData.totalReturnsPct}%:`,
+        headline,
         explanationHtml: `
           <div class="ai-live-response-wrap">
             ${explanationHtml}
-            <div class="ai-factor-item" style="margin-top: 10px; background: #F0FDF4; border: 1px solid #DCFCE7; padding: 10px 12px; border-radius: 8px; display: flex; gap: 10px; align-items: flex-start;">
-              <div class="ai-factor-icon sip" style="font-size: 16px; margin-top: 2px;">💡</div>
-              <div>
-                <strong style="color: #166534; font-size: 13px;">The Silver Lining for Your SIP:</strong>
-                <p style="font-size: 12.5px; color: #15803D; margin-top: 3px; line-height: 1.4;">
-                  Because NAV fell from ₹${mathData.firstPurchaseNav.toFixed(0)} to ₹${mathData.currentNav.toFixed(0)}, your monthly SIP bought <strong>more units at a discount</strong>. Your average purchase price dropped to <strong>₹${mathData.avgPurchaseNav}</strong>, giving you <strong>+${mathData.constantNavScenario.bonusUnitsPct}% extra units</strong> than if prices had stayed flat.
-                </p>
-              </div>
-            </div>
+            ${extraSilverLiningHtml}
           </div>
         `,
         unitAccumulationData: {

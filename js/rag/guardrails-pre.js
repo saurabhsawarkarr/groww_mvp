@@ -6,7 +6,9 @@ const GROWW_PRE_GUARDRAILS = (function () {
   // 1. High-Risk Advisory Triggers (SEBI RIA Mandate - Reg 19)
   const ADVISORY_PATTERNS = [
     /\b(stop|pause|cancel|freeze|halt)\s+(my\s+)?sip\b/i,
-    /\bshould\s+i\s+(stop|pause|cancel|exit|sell|continue|switch|redeem|double|increase|hold)\b/i,
+    /\bshould\s+i\s+(stop|pause|cancel|exit|sell|continue|switch|redeem|double|increase|hold|add|invest|put)\b/i,
+    /\b(add|invest|put)\s+(more|additional|extra|lump\s*sum)\s+(money|funds?|amount|cash|capital)\b/i,
+    /\b(is\s+it\s+(a\s+)?(good|right|best)\s+time\s+to|should\s+i)\s+(add|invest|put)\s+more\b/i,
     /\b(sell|redeem|exit|liquidate)\s+(all\s+)?(my\s+)?(units|funds|shares|investment|portfolio)\b/i,
     /\b(switch|move|transfer)\s+(to\s+)?(which|another|better|safe|guaranteed)\s+fund\b/i,
     /\bwhich\s+(fund|stock|mutual\s+fund)\s+(is\s+(the\s+)?(best|better|safest|good)|should\s+i|to)\b/i,
