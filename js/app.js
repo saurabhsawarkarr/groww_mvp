@@ -778,22 +778,10 @@
             </div>
             <div class="groww-ai-text-col">
               <div class="groww-ai-title-wrap">
-                <h4 class="groww-ai-card-title">Ask AI about your fund</h4>
-                <span class="groww-ai-beta-tag" style="background: #E0E7FF; color: #4338CA;">Live RAG</span>
+                <h4 class="groww-ai-card-title">Ask GR-1 about your fund</h4>
+                <span class="groww-ai-beta-tag">Live RAG</span>
               </div>
-              <p class="groww-ai-card-desc">Grounded analysis powered by verified AMC filings, frozen math anchors, and live token routing.</p>
-            </div>
-          </div>
-
-          <!-- Live Model & Engine Selector Pills -->
-          <div class="groww-ai-engine-selector-bar">
-            <span class="groww-ai-engine-label">Model:</span>
-            <div class="groww-ai-engine-pills">
-              <button class="groww-ai-pill ${mode === 'auto' ? 'active' : ''}" data-mode="auto" title="Token optimizer: routes low-token queries to Groq, deep reasoning to Gemini">⚡ Auto (Groq / Gemini)</button>
-              <button class="groww-ai-pill ${mode === 'groq' ? 'active' : ''}" data-mode="groq" title="Groq Qwen 27B: Ultra-fast generation & minimal tokens">🚀 Groq (Fast)</button>
-              <button class="groww-ai-pill ${mode === 'gemini' ? 'active' : ''}" data-mode="gemini" title="Google Gemini 3.5 Flash: Deep analytical reasoning">✨ Gemini 3.5</button>
-              <button class="groww-ai-pill ${mode === 'dual' ? 'active' : ''}" data-mode="dual" title="Dual-LLM: Groq Generator + Gemini Compliance Critic">🛡️ Dual-LLM</button>
-              <button class="groww-ai-pill ${mode === 'deterministic' ? 'active' : ''}" data-mode="deterministic" title="Offline deterministic math engine (0 tokens)">🔒 Offline</button>
+              <p class="groww-ai-card-desc">Instant, plain-English breakdown of market dips and your SIP unit accumulation.</p>
             </div>
           </div>
 
@@ -1839,16 +1827,6 @@
           chartBox.innerHTML = renderManagerChart(fund, state.managerTf);
           attachEventHandlers();
         }
-      });
-    });
-
-    // Groww AI Explainer Model Selector Pills
-    document.querySelectorAll(".groww-ai-pill").forEach(pill => {
-      pill.addEventListener("click", () => {
-        const mode = pill.getAttribute("data-mode");
-        state.llmMode = mode;
-        document.querySelectorAll(".groww-ai-pill").forEach(p => p.classList.remove("active"));
-        pill.classList.add("active");
       });
     });
 
