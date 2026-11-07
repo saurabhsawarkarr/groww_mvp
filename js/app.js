@@ -1657,7 +1657,6 @@
           <div style="padding: 0 16px 20px 16px;">
             <div class="section-title-row">
               <h3 class="flow-section-heading">Summary & Key Takeaways</h3>
-              <span class="flow-section-sub">${isNeg ? "Overview of management continuity, costs, and peer activity" : "Overview of returns, portfolio contribution, and peer activity"}</span>
             </div>
 
             <!-- Compact Single Card Summary (Like previous one with little more space) -->
