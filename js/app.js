@@ -2113,13 +2113,14 @@
       }
     });
 
-    // Mentor Benchmark Modal Event Handlers
-    document.getElementById("btn-open-eval-benchmark")?.addEventListener("click", () => {
-      const modal = document.getElementById("mentor-benchmark-modal");
-      const tbody = document.getElementById("benchmark-table-body");
-      if (modal && typeof GROWW_AI_ENGINE !== "undefined") {
+  function openBenchmarkModal() {
+    const modal = document.getElementById("mentor-benchmark-modal");
+    if (!modal) return;
+    try {
+      if (typeof GROWW_AI_ENGINE !== "undefined") {
+        const tbody = document.getElementById("benchmark-table-body");
         const benchmark = GROWW_AI_ENGINE.runBenchmarkSuite();
-        if (tbody) {
+        if (tbody && benchmark && benchmark.results) {
           tbody.innerHTML = benchmark.results.map(r => `
             <tr>
               <td style="font-weight: 700; color: #4F46E5;">${r.id}</td>
@@ -2230,10 +2231,17 @@
             integrityBadge.style.color = "#DC2626";
           }
         }
-
-        modal.style.display = "flex";
       }
-    });
+    } catch (err) {
+      console.error("Error opening benchmark modal:", err);
+    }
+    modal.style.display = "flex";
+  }
+
+  function attachEventHandlers() {
+    // Mentor Benchmark Modal Event Handlers
+    document.getElementById("btn-open-benchmark")?.addEventListener("click", openBenchmarkModal);
+    document.getElementById("btn-open-eval-benchmark")?.addEventListener("click", openBenchmarkModal);
 
     document.getElementById("btn-toggle-math-tests")?.addEventListener("click", () => {
       const container = document.getElementById("math-tests-container");
@@ -2325,27 +2333,23 @@
       });
     });
 
-    function openBenchmarkModal() {
+    document.getElementById("btn-open-benchmark")?.addEventListener("click", openBenchmarkModal);
+    document.getElementById("btn-open-eval-benchmark")?.addEventListener("click", openBenchmarkModal);
+    document.getElementById("btn-close-benchmark-modal")?.addEventListener("click", () => {
       const modal = document.getElementById("mentor-benchmark-modal");
-      if (!modal) return;
-      if (typeof GROWW_AI_ENGINE !== "undefined") {
-        const tbody = document.getElementById("benchmark-table-body");
-        const benchmark = GROWW_AI_ENGINE.runBenchmarkSuite();
-        if (tbody) {
-          tbody.innerHTML = benchmark.results.map(r => `
-            <tr>
-              <td style="font-weight: 700; color: #4F46E5;">${r.id}</td>
-              <td style="font-weight: 600;">"${r.query}"</td>
-              <td><span style="font-size: 11px; padding: 2px 6px; border-radius: 4px; background: #F1F5F9; color: #475569;">${r.category}</span></td>
-              <td style="color: ${r.status === 'SAFE_FALLBACK_TRIGGERED' ? '#D97706' : '#059669'}; font-weight: 600;">${r.expectedGuardrail}</td>
-              <td style="font-weight: 600; color: #059669;">${r.groundingScore}%</td>
-              <td><span style="font-weight: 700; color: #00D09C;">${r.passed ? '✅ Passed' : '❌ Failed'}</span></td>
-            </tr>
-          `).join('');
-        }
+      if (modal) modal.style.display = "none";
+    });
+    document.getElementById("mentor-benchmark-modal")?.addEventListener("click", (e) => {
+      if (e.target.id === "mentor-benchmark-modal") {
+        e.target.style.display = "none";
       }
-      modal.style.display = "flex";
-    }
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        const modal = document.getElementById("mentor-benchmark-modal");
+        if (modal) modal.style.display = "none";
+      }
+    });
 
     window.GROWW_APP = {
       handleAiQuickQuery: handleAISubmit,
