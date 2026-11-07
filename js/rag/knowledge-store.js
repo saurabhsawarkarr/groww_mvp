@@ -174,6 +174,133 @@ const GROWW_KNOWLEDGE_STORE = (function () {
         }
       ],
       failedTransactions: []
+    },
+    "tata-silver-etf": {
+      fundId: "tata-silver-etf",
+      fundName: "Tata Silver ETF FoF",
+      plan: "Direct Plan · Growth",
+      category: "Commodities / Silver",
+      isin: "INF277K01918",
+      folioNumber: "782019482/09",
+      sourceTier: "TIER_1_RTA",
+      sourceAuthority: "CAMS Settlement System (Mutual Fund Folio Registry)",
+      rtaSyncTimestamp: "2026-11-06T18:30:00Z",
+      asOfDate: "07 Nov 2026",
+      navDate: "06 Nov 2026",
+      navTimestamp: "2026-11-06T21:00:00Z",
+      currentNav: 26.48,
+      benchmark: "Domestic Price of Silver (LBMA Spot)",
+      benchmarkDrawdownPct: 4.20,
+      nifty50DrawdownPct: -2.60,
+      benchmarkFeed: {
+        sourceTier: "TIER_2_EXCHANGE",
+        sourceAuthority: "LBMA Domestic Silver Spot Feed",
+        benchmarkName: "Domestic Price of Silver (LBMA Spot)",
+        benchmarkDrawdownPct: 4.20,
+        nifty50DrawdownPct: -2.60,
+        feedTimestamp: "2026-11-06T16:00:00Z"
+      },
+      manager: "Mr. Tushar Pradhan",
+      managerTenure: "3+ years (Commodity specialist)",
+      activeSipAmount: 250,
+      sipFrequency: "Monthly",
+      transactions: [
+        {
+          txnId: "CAMS-TXN-20251215-001",
+          month: "December 2025",
+          date: "15 Dec 2025",
+          allotmentDate: "16 Dec 2025",
+          settlementCycle: "T+1",
+          amount: 250,
+          allotmentNav: 28.00,
+          units: 8.9286,
+          status: "SUCCESS"
+        },
+        {
+          txnId: "CAMS-TXN-20260115-002",
+          month: "January 2026",
+          date: "15 Jan 2026",
+          allotmentDate: "16 Jan 2026",
+          settlementCycle: "T+1",
+          amount: 250,
+          allotmentNav: 26.50,
+          units: 9.4340,
+          status: "SUCCESS"
+        },
+        {
+          txnId: "CAMS-TXN-20260215-003",
+          month: "February 2026",
+          date: "15 Feb 2026",
+          allotmentDate: "16 Feb 2026",
+          settlementCycle: "T+1",
+          amount: 250,
+          allotmentNav: 24.20,
+          units: 10.3306,
+          status: "SUCCESS"
+        },
+        {
+          txnId: "CAMS-TXN-20260315-004",
+          month: "March 2026",
+          date: "15 Mar 2026",
+          allotmentDate: "16 Mar 2026",
+          settlementCycle: "T+1",
+          amount: 250,
+          allotmentNav: 22.80,
+          units: 10.9649,
+          status: "SUCCESS"
+        }
+      ],
+      failedTransactions: []
+    },
+    "tata-gold-etf": {
+      fundId: "tata-gold-etf",
+      fundName: "Tata Gold ETF FoF",
+      plan: "Direct Plan · Growth",
+      category: "Commodities / Gold",
+      isin: "INF277K01926",
+      folioNumber: "782019482/10",
+      sourceTier: "TIER_1_RTA",
+      sourceAuthority: "CAMS Settlement System (Mutual Fund Folio Registry)",
+      rtaSyncTimestamp: "2026-11-06T18:30:00Z",
+      asOfDate: "07 Nov 2026",
+      navDate: "06 Nov 2026",
+      navTimestamp: "2026-11-06T21:00:00Z",
+      currentNav: 21.56,
+      benchmark: "Domestic Price of Gold (LBMA Spot)",
+      benchmarkDrawdownPct: 1.80,
+      nifty50DrawdownPct: -2.60,
+      benchmarkFeed: {
+        sourceTier: "TIER_2_EXCHANGE",
+        sourceAuthority: "LBMA Domestic Gold Spot Feed",
+        benchmarkName: "Domestic Price of Gold (LBMA Spot)",
+        benchmarkDrawdownPct: 1.80,
+        nifty50DrawdownPct: -2.60
+      },
+      transactions: [
+        {
+          txnId: "CAMS-TXN-20261005-001",
+          month: "October 2026",
+          date: "05 Oct 2026",
+          allotmentDate: "06 Oct 2026",
+          settlementCycle: "T+1",
+          amount: 250,
+          allotmentNav: 21.14,
+          units: 11.8259,
+          status: "SUCCESS"
+        },
+        {
+          txnId: "CAMS-TXN-20261105-002",
+          month: "November 2026",
+          date: "05 Nov 2026",
+          allotmentDate: "06 Nov 2026",
+          settlementCycle: "T+1",
+          amount: 250,
+          allotmentNav: 21.14,
+          units: 11.8259,
+          status: "SUCCESS"
+        }
+      ],
+      failedTransactions: []
     }
   };
 
@@ -307,6 +434,76 @@ const GROWW_KNOWLEDGE_STORE = (function () {
       source: "PPFAS Mutual Fund Monthly Factsheet (Oct 2026, Page 3)",
       content: "Domestic consumer goods and financial holdings lagged by -2.8%, but the fund's disciplined ~14% cash and arbitrage buffer cushioned the overall portfolio against steeper declines (+0.9% relative cushion).",
       tags: ["sector", "cash", "buffer", "consumer", "resilience"]
+    },
+
+    // Tata Silver ETF Factsheet Chunks
+    {
+      id: "chunk_silver_tracking_01",
+      fundId: "tata-silver-etf",
+      sourceTier: "TIER_3_AMC",
+      category: "commodity",
+      section: "[Physical Bullion Custody & Tracking Standards]",
+      title: "Physical Silver Tracking & 99.9% LBMA Purity",
+      asOfDate: "31 Oct 2026",
+      filingDate: "2026-10-31",
+      validUntil: "2026-12-15",
+      pageNumber: 2,
+      tablePreserved: true,
+      tableMarkdown: `| Metric | Fund Metric | Benchmark |\n| :--- | :--- | :--- |\n| Bullion Purity | 99.9% Physical Silver | LBMA Good Delivery Standard |\n| Reported Tracking Error | 0.14% | Domestic LBMA Spot Price |`,
+      source: "Tata Mutual Fund Monthly Factsheet (Oct 2026, Page 2)",
+      content: "Tata Silver ETF invests directly in physical silver bullion conforming to LBMA 99.9% purity standards, held securely in domestic bank vaults. The fund's reported tracking error is exceptionally low at 0.14% relative to domestic spot silver prices.",
+      tags: ["commodity", "silver", "tracking", "lbma", "spot", "bullion", "physical"]
+    },
+    {
+      id: "chunk_silver_macro_01",
+      fundId: "tata-silver-etf",
+      sourceTier: "TIER_3_AMC",
+      category: "macro",
+      section: "[Commodity Demand Outlook & Performance Drivers]",
+      title: "Industrial & Green Energy Demand Tailwinds",
+      asOfDate: "31 Oct 2026",
+      filingDate: "2026-10-31",
+      validUntil: "2026-12-15",
+      pageNumber: 3,
+      tablePreserved: true,
+      tableMarkdown: `| Driver | Market Trend | Fund Impact |\n| :--- | :--- | :--- |\n| Photovoltaic & Solar Cell Demand | +18.4% YoY industrial consumption | Direct Bullion Price Tailwinds |\n| LBMA Spot Price Rebound | Rebounded from ₹22.80 to ₹26.48 | +5.0% Net Fund Returns |`,
+      source: "Tata Mutual Fund Monthly Factsheet (Oct 2026, Page 3)",
+      content: "Physical silver appreciation of +5.0% was driven by expanding industrial demand across photovoltaic solar panels, automotive electrification, and global electronics manufacturing.",
+      tags: ["macro", "silver", "spot", "industrial", "demand", "returns", "gains"]
+    },
+    {
+      id: "chunk_gold_tracking_01",
+      fundId: "tata-gold-etf",
+      sourceTier: "TIER_3_AMC",
+      category: "commodity",
+      section: "[Physical Gold Vault Custody & Standards]",
+      title: "Physical Gold Bullion (99.5% Purity)",
+      asOfDate: "31 Oct 2026",
+      filingDate: "2026-10-31",
+      validUntil: "2026-12-15",
+      pageNumber: 2,
+      tablePreserved: true,
+      tableMarkdown: `| Metric | Fund Metric | Benchmark |\n| :--- | :--- | :--- |\n| Bullion Standard | 99.5% Physical Gold | LBMA Good Delivery Standard |\n| Tracking Error | 0.12% | Domestic LBMA Gold Spot |`,
+      source: "Tata Mutual Fund Monthly Factsheet (Oct 2026, Page 2)",
+      content: "Tata Gold ETF invests in 99.5% purity physical gold bars conforming to LBMA standards, stored securely in bank vaults with 0.12% low tracking error.",
+      tags: ["commodity", "gold", "tracking", "lbma", "spot", "bullion", "vault"]
+    },
+    {
+      id: "chunk_gold_macro_01",
+      fundId: "tata-gold-etf",
+      sourceTier: "TIER_3_AMC",
+      category: "macro",
+      section: "[Macroeconomic Safe-Haven & Inflation Drivers]",
+      title: "Safe Haven Demand & Currency Hedge",
+      asOfDate: "31 Oct 2026",
+      filingDate: "2026-10-31",
+      validUntil: "2026-12-15",
+      pageNumber: 3,
+      tablePreserved: true,
+      tableMarkdown: `| Driver | Market Trend | Fund Impact |\n| :--- | :--- | :--- |\n| Central Bank Gold Reserves | +8.2% YoY accumulation | Bullion Price Support |\n| USD/INR Depreciation | +1.4% currency tailwind | +2.0% Net Fund Returns |`,
+      source: "Tata Mutual Fund Monthly Factsheet (Oct 2026, Page 3)",
+      content: "Gold returns (+2.0%) were supported by sustained central bank accumulation, geopolitical risk hedging, and domestic currency tailwinds.",
+      tags: ["macro", "gold", "spot", "safe haven", "inflation", "returns", "gains"]
     },
 
     // Educational Chunks (AMFI Standards)
@@ -583,17 +780,104 @@ const GROWW_KNOWLEDGE_STORE = (function () {
       singleStockAttributionAvailable: false,
       unattributedResidualPct: +1.00,
       disclaimer: "SEBI/AMFI Portfolio Attribution Standards: Single-stock causality is non-attributable without verified statutory AMC factor decomposition."
+    }),
+    "tata-silver-etf": Object.freeze({
+      fundId: "tata-silver-etf",
+      fundName: "Tata Silver ETF FoF",
+      period: "OCT_2026",
+      asOfDate: "2026-10-31",
+      methodology: "Commodity Tracking Attribution",
+      benchmarkName: "Domestic Price of Silver (LBMA Spot)",
+      totalPortfolioDrawdownPct: 5.00,
+      benchmarkDrawdownPct: 4.20,
+      activeManagementDeltaPct: 0.80,
+      macroAttribution: Object.freeze({
+        netContributionPct: 4.20,
+        keyDrivers: Object.freeze([
+          "LBMA physical silver spot price appreciation in INR",
+          "Global electronics, automotive, and solar photovoltaic industrial demand recovery"
+        ])
+      }),
+      sectorAttribution: Object.freeze([
+        Object.freeze({
+          sector: "Physical Silver Bullion (99.9% Purity)",
+          allocationPct: 98.2,
+          contributionPct: 4.80,
+          allocationEffectPct: 4.20,
+          selectionEffectPct: 0.60,
+          verifiedDriver: "Direct bullion price appreciation with 0.14% low tracking error"
+        }),
+        Object.freeze({
+          sector: "TREPS / Cash Collateral",
+          allocationPct: 1.8,
+          contributionPct: 0.20,
+          allocationEffectPct: 0.10,
+          selectionEffectPct: 0.10,
+          verifiedDriver: "Collateralized overnight yield buffer"
+        })
+      ]),
+      singleStockAttributionAvailable: false,
+      unattributedResidualPct: 0.00,
+      disclaimer: "SEBI Commodity Mutual Fund Regulations: Fund tracks physical silver spot prices with verifiable vault custodian audits."
+    }),
+    "tata-gold-etf": Object.freeze({
+      fundId: "tata-gold-etf",
+      fundName: "Tata Gold ETF FoF",
+      period: "OCT_2026",
+      asOfDate: "2026-10-31",
+      methodology: "Commodity Tracking Attribution",
+      benchmarkName: "Domestic Price of Gold (LBMA Spot)",
+      totalPortfolioDrawdownPct: 2.00,
+      benchmarkDrawdownPct: 1.80,
+      activeManagementDeltaPct: 0.20,
+      macroAttribution: Object.freeze({
+        netContributionPct: 1.80,
+        keyDrivers: Object.freeze([
+          "LBMA domestic gold spot price appreciation",
+          "Global inflation hedge demand and central bank gold reserve purchases"
+        ])
+      }),
+      sectorAttribution: Object.freeze([
+        Object.freeze({
+          sector: "Physical Gold Bullion (99.5% Purity)",
+          allocationPct: 98.5,
+          contributionPct: 1.90,
+          allocationEffectPct: 1.70,
+          selectionEffectPct: 0.20,
+          verifiedDriver: "Direct bullion spot price tracking with 0.12% low tracking error"
+        }),
+        Object.freeze({
+          sector: "TREPS / Cash Collateral",
+          allocationPct: 1.5,
+          contributionPct: 0.10,
+          allocationEffectPct: 0.10,
+          selectionEffectPct: 0.00,
+          verifiedDriver: "Collateralized overnight liquidity buffer"
+        })
+      ]),
+      singleStockAttributionAvailable: false,
+      unattributedResidualPct: 0.00,
+      disclaimer: "SEBI Commodity Mutual Fund Regulations: Fund tracks physical gold spot prices with verifiable vault custodian audits."
     })
   });
 
+  function resolveFundId(fundId) {
+    if (!fundId) return "sbi-large-midcap";
+    if (fundId === "parag-parikh-flexi" || fundId === "parag-parikh-flexi-cap") return "parag-parikh-flexi-cap";
+    if (fundId === "tata-silver-etf" || fundId === "silver-etf") return "tata-silver-etf";
+    if (fundId === "tata-gold-etf" || fundId === "gold-etf") return "tata-gold-etf";
+    return fundId;
+  }
+
   return {
     DATA_SOURCE_TIERS,
-    getLedger: (fundId) => STRUCTURED_LEDGERS[fundId] || STRUCTURED_LEDGERS["sbi-large-midcap"],
-    getStructuredLedger: (fundId) => STRUCTURED_LEDGERS[fundId] || STRUCTURED_LEDGERS["sbi-large-midcap"],
-    getStructuredAttribution: (fundId) => STRUCTURED_ATTRIBUTION[fundId] || STRUCTURED_ATTRIBUTION["sbi-large-midcap"],
+    resolveFundId,
+    getLedger: (fundId) => STRUCTURED_LEDGERS[resolveFundId(fundId)] || STRUCTURED_LEDGERS["sbi-large-midcap"],
+    getStructuredLedger: (fundId) => STRUCTURED_LEDGERS[resolveFundId(fundId)] || STRUCTURED_LEDGERS["sbi-large-midcap"],
+    getStructuredAttribution: (fundId) => STRUCTURED_ATTRIBUTION[resolveFundId(fundId)] || STRUCTURED_ATTRIBUTION["sbi-large-midcap"],
     getAllChunks: () => DOCUMENT_CHUNKS,
-    getUnstructuredChunks: (fundId) => DOCUMENT_CHUNKS.filter(c => c.fundId === fundId || c.fundId === "*"),
-    getChunksForFund: (fundId) => DOCUMENT_CHUNKS.filter(c => c.fundId === fundId || c.fundId === "*"),
+    getUnstructuredChunks: (fundId) => DOCUMENT_CHUNKS.filter(c => c.fundId === resolveFundId(fundId) || c.fundId === "*"),
+    getChunksForFund: (fundId) => DOCUMENT_CHUNKS.filter(c => c.fundId === resolveFundId(fundId) || c.fundId === "*"),
     findChunksByTags: (fundId, queryTokens) => {
       const fundChunks = DOCUMENT_CHUNKS.filter(c => c.fundId === fundId || c.fundId === "*");
       return fundChunks.filter(chunk => {

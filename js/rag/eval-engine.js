@@ -67,7 +67,20 @@ const GROWW_EVAL_ENGINE = (function () {
     // Allowed financial numbers set (formatted strings & floats)
     const allowedNumbers = new Set();
 
-    // 1. Frozen Math figures
+    // 1. Frozen Math figures (dynamically extract all numbers from frozenMath)
+    Object.values(frozenMath).forEach(v => {
+      const num = Number(v);
+      if (!isNaN(num)) {
+        const absN = Math.abs(num);
+        allowedNumbers.add(absN.toFixed(2));
+        allowedNumbers.add(absN.toFixed(1));
+        allowedNumbers.add(absN.toFixed(0));
+        allowedNumbers.add(num.toFixed(2));
+        allowedNumbers.add(num.toFixed(1));
+        allowedNumbers.add(num.toFixed(0));
+      }
+    });
+
     [
       frozenMath.invested,
       frozenMath.totalInvested,

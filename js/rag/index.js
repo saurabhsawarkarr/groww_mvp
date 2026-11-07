@@ -125,7 +125,7 @@ const GROWW_RAG_PIPELINE = (function () {
     const mathData = me.computePortfolioMath(ledger);
 
     // 2. Pre-LLM Guardrail & Intent Classification (< 5ms)
-    const preGuardrail = pg.inspectQuery(query, history);
+    const preGuardrail = pg.inspectQuery(query, history, fundId);
 
     let finalResponse;
 
@@ -243,7 +243,7 @@ const GROWW_RAG_PIPELINE = (function () {
     const mathData = me.computePortfolioMath(ledger);
 
     // 2. Pre-LLM Guardrail & Intent Classification (0 Tokens on Advisory Traps)
-    const preGuardrail = pg.inspectQuery(query, history);
+    const preGuardrail = pg.inspectQuery(query, history, fundId);
     let finalResponse;
 
     if (preGuardrail.action === "TRIGGER_TIER_1_REFUSAL") {
