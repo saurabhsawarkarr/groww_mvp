@@ -1217,15 +1217,6 @@
     const fund = getSelectedFund();
     const isNeg = fund.returns < 0;
     const deep = fund.deepDive || GROWW_DATA.funds[0].deepDive;
-    const ctx = deep.context || deep.recommendation || {
-      tag: "What this means for your SIP",
-      headline: isNeg
-        ? "Market dips allow your monthly SIP to collect more units at lower prices."
-        : "Your accumulated units are gaining value and compounding.",
-      subtext: isNeg
-        ? "Pausing now stops this cost-averaging advantage. Continuing your SIP lowers your average purchase price for when the market rebounds."
-        : "Continuing your regular monthly SIP ensures steady wealth accumulation without trying to time market peaks."
-    };
     const market = fund.marketImpact || GROWW_DATA.funds[0].marketImpact;
     const hist = fund.historicalPerformance || GROWW_DATA.funds[0].historicalPerformance;
     const manager = fund.fundManager || GROWW_DATA.funds[0].fundManager;
@@ -1254,26 +1245,11 @@
             </div>
           </div>
 
-          <!-- Section A: Context Callout (Slide 3) -->
-          <div style="padding: 10px 16px 0 16px;">
-            <div class="context-card-soft">
-              <div class="context-icon-box">
-                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-                  <circle cx="12" cy="12" r="10"/>
-                  <line x1="12" y1="16" x2="12" y2="12"/>
-                  <line x1="12" y1="8" x2="12.01" y2="8"/>
-                </svg>
-              </div>
-              <div style="flex: 1;">
-                <div class="context-tag-pill">${ctx.tag}</div>
-                <h4 class="context-title-text">${ctx.headline}</h4>
-                <p class="context-desc-text">${ctx.subtext}</p>
-              </div>
-            </div>
-          </div>
+          <!-- Section A: Ask AI About Your Fund (Eval-Gated Explainer) -->
+          ${renderGrowwAICard(fund, 'deepdive')}
 
           <!-- Section B: SIP Unit Accumulation (Slide 3) -->
-          <div style="padding: 14px 16px 0 16px;">
+          <div style="padding: 0 16px;">
             <div class="accumulation-container">
               <div class="acc-header">
                 <div class="acc-icon-badge">
@@ -1335,18 +1311,18 @@
               </div>
 
               <div class="disclaimer-muted">
-                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4m0-4h.01"/></svg>
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/>
+                  <line x1="12" y1="16" x2="12" y2="12"/>
+                  <line x1="12" y1="8" x2="12.01" y2="8"/>
+                </svg>
                 <span>${deep.unitAccumulation.disclaimer}</span>
               </div>
             </div>
           </div>
 
-          <!-- Section C: Ask AI About Your Fund (Eval-Gated Explainer) -->
-          ${renderGrowwAICard(fund, 'deepdive')}
-
           <div class="flow-divider"></div>
 
-          <!-- Section D: Market Impact Attribution (Slide 4) -->
+          <!-- Section C: Market Impact Attribution (Slide 4) -->
           <div style="padding: 0 16px;">
             <div class="section-title-row">
               <h3 class="flow-section-heading">Market Impact & Attribution</h3>

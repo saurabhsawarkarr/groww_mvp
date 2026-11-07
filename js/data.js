@@ -339,8 +339,7 @@ const GROWW_DATA = {
         factors: [
           { label: "Domestic broader market (Nifty 500)", changePct: -2.8, color: "#EB5B56" },
           { label: "Global Tech holdings (Alphabet, Microsoft)", changePct: -3.5, color: "#EB5B56" },
-          { label: "Domestic stock selection & midcap drift", changePct: -1.7, color: "#EB5B56" },
-          { label: "Cash & Arbitrage defensive cushion", changePct: +0.5, color: "#00D09C" },
+          { label: "Domestic stock selection & midcap drift", changePct: -1.2, color: "#EB5B56" },
           { label: "Net fund performance", changePct: -7.5, color: "#EB5B56", isTotal: true }
         ],
         behavioralInsight: {
