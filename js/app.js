@@ -1484,7 +1484,6 @@
           <div style="padding: 0 16px;">
             <div class="section-title-row">
               <h3 class="flow-section-heading">Fund Manager & Performance</h3>
-              <span class="flow-section-sub">Transparent governance, historical returns & investment approach</span>
             </div>
 
             <!-- Card 1: Fund Manager Identity -->
