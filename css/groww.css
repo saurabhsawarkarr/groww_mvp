@@ -1540,6 +1540,10 @@ body.dark-mode .fund-card-soft:hover {
   color: var(--groww-green-text);
 }
 
+.perf-pill-val.val-red {
+  color: var(--groww-red);
+}
+
 .perf-pill-val.val-muted {
   color: var(--groww-text-primary);
 }
