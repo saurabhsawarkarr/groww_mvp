@@ -2276,12 +2276,43 @@
       });
     });
 
+    function openBenchmarkModal() {
+      const modal = document.getElementById("mentor-benchmark-modal");
+      if (!modal) return;
+      if (typeof GROWW_AI_ENGINE !== "undefined") {
+        const tbody = document.getElementById("benchmark-table-body");
+        const benchmark = GROWW_AI_ENGINE.runBenchmarkSuite();
+        if (tbody) {
+          tbody.innerHTML = benchmark.results.map(r => `
+            <tr>
+              <td style="font-weight: 700; color: #4F46E5;">${r.id}</td>
+              <td style="font-weight: 600;">"${r.query}"</td>
+              <td><span style="font-size: 11px; padding: 2px 6px; border-radius: 4px; background: #F1F5F9; color: #475569;">${r.category}</span></td>
+              <td style="color: ${r.status === 'SAFE_FALLBACK_TRIGGERED' ? '#D97706' : '#059669'}; font-weight: 600;">${r.expectedGuardrail}</td>
+              <td style="font-weight: 600; color: #059669;">${r.groundingScore}%</td>
+              <td><span style="font-weight: 700; color: #00D09C;">${r.passed ? '✅ Passed' : '❌ Failed'}</span></td>
+            </tr>
+          `).join('');
+        }
+      }
+      modal.style.display = "flex";
+    }
+
     window.GROWW_APP = {
       handleAiQuickQuery: handleAISubmit,
       state,
       render,
-      getSelectedFund
+      getSelectedFund,
+      openBenchmark: openBenchmarkModal
     };
+
+    // Auto-open benchmark if URL param present (?benchmark=1 or ?eval=1)
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get("benchmark") === "1" || urlParams.get("eval") === "1") {
+        setTimeout(openBenchmarkModal, 150);
+      }
+    } catch (e) { }
 
     render();
   });

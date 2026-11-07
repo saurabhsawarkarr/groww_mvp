@@ -4113,3 +4113,30 @@ body.dark-mode .groww-gr1-sheet-footer {
 .groww-gr1-done-btn:hover {
   background: #00B98A;
 }
+
+/* ==========================================================================
+   Mobile-First Native Test Viewport (True Edge-to-Edge Experience on Phones)
+   ========================================================================== */
+@media (max-width: 600px) {
+  .pres-header {
+    display: none !important;
+  }
+  .app-container {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+  }
+  .phone-frame {
+    max-width: 100% !important;
+    width: 100% !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    max-height: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+}
+
